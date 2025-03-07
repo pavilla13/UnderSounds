@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Inicio</title>
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <div class="tabs">
+    <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
+    <button class="tab active" data-tab="recientes">Recientes</button>
+    <button class="tab" data-tab="bestofs">Best Of's</button>
+    <button class="tab" data-tab="tienda">Tienda</button>
+    <button class="tab" data-tab="amigos">Amigos</button>
+  </div>
+
+  <!-- Secciones de cada pestaña -->
+  <!-- Recientes (por defecto visible) -->
+  <section id="recientes" class="tab-content active">
+    <h2>Recientes</h2>
+    <!-- Fila de canciones -->
+    <h3>Canciones Recientes</h3>
+    <div class="row">
+      <div class="card">Canción 1</div>
+      <div class="card">Canción 2</div>
+      <div class="card">Canción 3</div>
+      <div class="card">Canción 4</div>
+    </div>
+    <!-- Fila de álbumes -->
+    <h3>Álbumes Recientes</h3>
+    <div class="row">
+      <div class="card">Álbum 1</div>
+      <div class="card">Álbum 2</div>
+      <div class="card">Álbum 3</div>
+      <div class="card">Álbum 4</div>
+    </div>
+    <!-- Fila de géneros -->
+    <h3>Géneros Recientes</h3>
+    <div class="row">
+      <div class="card">Rock</div>
+      <div class="card">Pop</div>
+      <div class="card">Electrónica</div>
+      <div class="card">Jazz</div>
+    </div>
+  </section>
+
+  <!-- Best Of's -->
+  <section id="bestofs" class="tab-content">
+    <h2>Best Of's</h2>
+    <!-- Fila de canciones Best Of's -->
+    <h3>Mejores Canciones</h3>
+    <div class="row">
+      <div class="card">Canción A</div>
+      <div class="card">Canción B</div>
+      <div class="card">Canción C</div>
+      <div class="card">Canción D</div>
+    </div>
+    <!-- Fila de álbumes Best Of's -->
+    <h3>Mejores Álbumes</h3>
+    <div class="row">
+      <div class="card">Álbum A</div>
+      <div class="card">Álbum B</div>
+      <div class="card">Álbum C</div>
+      <div class="card">Álbum D</div>
+    </div>
+    <!-- Fila de géneros Best Of's -->
+    <h3>Mejores Géneros</h3>
+    <div class="row">
+      <div class="card">Rock</div>
+      <div class="card">Pop</div>
+      <div class="card">Electrónica</div>
+      <div class="card">Jazz</div>
+    </div>
+  </section>
+
+  <!-- Tienda (placeholder por ahora) -->
+  <section id="tienda" class="tab-content">
+    <h2>Tienda</h2>
+    <p>Sección en construcción...</p>
+  </section>
+
+  <!-- Amigos (placeholder por ahora) -->
+  <section id="amigos" class="tab-content">
+    <h2>Amigos</h2>
+    <p>Sección en construcción...</p>
+  </section>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
