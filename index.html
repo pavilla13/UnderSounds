@@ -8,11 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <!-- Header común -->
   <header>
     <div class="nav-left">
-      <a href="index.html" class="logo">UnderSounds</a>
+      <a href="index.html" class="logo" title="Inicio">UnderSounds</a>
     </div>
     <div class="nav-center">
       <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
@@ -31,78 +32,72 @@
     <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
     <button class="tab active" data-tab="recientes">Recientes</button>
     <button class="tab" data-tab="bestofs">Best Of's</button>
-    <button class="tab" data-tab="tienda">Tienda</button>
+    <a href="tienda.html" class="tab">Tienda</a>
     <button class="tab" data-tab="amigos">Amigos</button>
   </div>
 
   <!-- Secciones de cada pestaña -->
   <!-- Recientes (por defecto visible) -->
   <section id="recientes" class="tab-content active">
-    <h2>Recientes</h2>
+    <h2 class="logo">Recientes</h2>
     <!-- Fila de canciones -->
     <h3>Canciones Recientes</h3>
     <div class="row">
-      <div class="card">Canción 1</div>
-      <div class="card">Canción 2</div>
-      <div class="card">Canción 3</div>
-      <div class="card">Canción 4</div>
+      <a href="cancion.html?id=1" class="card">Canción 1</a>
+      <a href="cancion.html?id=2" class="card">Canción 2</a>
+      <a href="cancion.html?id=3" class="card">Canción 3</a>
+      <a href="cancion.html?id=4" class="card">Canción 4</a>
     </div>
     <!-- Fila de álbumes -->
     <h3>Álbumes Recientes</h3>
     <div class="row">
-      <div class="card">Álbum 1</div>
-      <div class="card">Álbum 2</div>
-      <div class="card">Álbum 3</div>
-      <div class="card">Álbum 4</div>
+      <a href="album.html?id=5" class="card">Álbum 1</a>
+      <a href="album.html?id=6" class="card">Álbum 2</a>
+      <a href="album.html?id=7" class="card">Álbum 3</a>
+      <a href="album.html?id=8" class="card">Álbum 4</a>
     </div>
     <!-- Fila de géneros -->
     <h3>Géneros Recientes</h3>
     <div class="row">
-      <div class="card">Rock</div>
-      <div class="card">Pop</div>
-      <div class="card">Electrónica</div>
-      <div class="card">Jazz</div>
+      <a href="generos.html?id=1" class="card">Rock</a>
+      <a href="generos.html?id=2" class="card">Pop</a>
+      <a href="generos.html?id=3" class="card">Electrónica</a>
+      <a href="generos.html?id=4" class="card">Jazz</a>
     </div>
   </section>
 
   <!-- Best Of's -->
   <section id="bestofs" class="tab-content">
-    <h2>Best Of's</h2>
+    <h2 class="logo">Best Of's</h2>
     <!-- Fila de canciones Best Of's -->
     <h3>Mejores Canciones</h3>
     <div class="row">
-      <div class="card">Canción A</div>
-      <div class="card">Canción B</div>
-      <div class="card">Canción C</div>
-      <div class="card">Canción D</div>
+      <a href="cancion.html?id=5" class="card">Canción A</a>
+      <a href="cancion.html?id=6" class="card">Canción B</a>
+      <a href="cancion.html?id=7" class="card">Canción C</a>
+      <a href="cancion.html?id=8" class="card">Canción D</a>
     </div>
     <!-- Fila de álbumes Best Of's -->
     <h3>Mejores Álbumes</h3>
     <div class="row">
-      <div class="card">Álbum A</div>
-      <div class="card">Álbum B</div>
-      <div class="card">Álbum C</div>
-      <div class="card">Álbum D</div>
+      <a href="album.html?id=1" class="card">Álbum A</a>
+      <a href="album.html?id=2" class="card">Álbum B</a>
+      <a href="album.html?id=3" class="card">Álbum C</a>
+      <a href="album.html?id=4" class="card">Álbum D</a>
     </div>
     <!-- Fila de géneros Best Of's -->
     <h3>Mejores Géneros</h3>
     <div class="row">
-      <div class="card">Rock</div>
-      <div class="card">Pop</div>
-      <div class="card">Electrónica</div>
-      <div class="card">Jazz</div>
+      <a href="generos.html?id=1" class="card">Rock</a>
+      <a href="generos.html?id=2" class="card">Pop</a>
+      <a href="generos.html?id=3" class="card">Electrónica</a>
+      <a href="generos.html?id=4" class="card">Jazz</a>
     </div>
-  </section>
-
-  <!-- Tienda (placeholder por ahora) -->
-  <section id="tienda" class="tab-content">
-    <h2>Tienda</h2>
-    <p>Sección en construcción...</p>
   </section>
 
   <!-- Amigos (placeholder por ahora) -->
   <section id="amigos" class="tab-content">
-    <h2>Amigos</h2>
+    <h2 class="logo">Amigos</h2>
     <p>Sección en construcción...</p>
   </section>
 
@@ -116,6 +111,5 @@
 
   <!-- Script principal -->
   <script src="js/main.js"></script>
-
 </body>
 </html>

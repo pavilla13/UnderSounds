@@ -1,99 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Configuración básica del documento -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Registro</title>
+  
+  <!-- Fuente personalizada desde Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Incluir CSS de Select2 para estilizar el select con búsqueda -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
+  <!-- Hoja de estilos personalizada -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header común -->
+  <!-- HEADER: Sección de navegación principal -->
   <header>
     <div class="nav-left">
+      <!-- Logo que redirige a la página principal -->
       <a href="index.html" class="logo">UnderSounds</a>
     </div>
     <div class="nav-center">
+      <!-- Botón de icono para navegar a la página de géneros -->
       <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
       <div class="search-container">
+        <!-- Campo de búsqueda para artistas, álbumes, etc. -->
         <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <!-- Botón que activa la búsqueda -->
         <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
       </div>
     </div>
     <div class="nav-right">
+      <!-- Enlace para iniciar sesión -->
       <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
     </div>
   </header>
 
-  <!-- Contenido principal: Registro -->
+  <!-- CONTENIDO PRINCIPAL: Formulario de Registro -->
   <main class="content login-page">
-    <h2>Registro</h2>
+    <!-- Título del formulario -->
+    <h2 class="logo">Registro</h2>
+    <!-- Formulario de registro -->
     <form id="registerForm" class="form">
-        
-        <label for="name">Nombre completo:</label>
-        <input type="text" id="name" name="name" required>
+      <!-- Campo: Nombre completo -->
+      <label for="name">Nombre completo:</label>
+      <input type="text" id="name" name="name" required>
 
-        <label for="username">Usuario:</label>
-        <input type="text" id="name" name="name" required>
+      <!-- Campo: Usuario -->
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required>
 
+      <!-- Campo: Correo electrónico -->
       <label for="email">Correo electrónico:</label>
       <input type="email" id="email" name="email" required>
 
+      <!-- Campo: Contraseña -->
       <label for="password">Contraseña (mínimo 8 caracteres):</label>
       <input type="password" id="password" name="password" required>
 
-        <label for="password2">Repetir contraseña:</label>
-        <input type="password" id="password2" name="password2" required>
+      <!-- Campo: Repetir contraseña -->
+      <label for="password2">Repetir contraseña:</label>
+      <input type="password" id="password2" name="password2" required>
 
-        <label for="birthdate">Fecha de nacimiento:</label>
-        <input type="date" id="birthdate" name="birthdate" required>
+      <!-- Campo: Fecha de nacimiento -->
+      <label for="birthdate">Fecha de nacimiento:</label>
+      <input type="date" id="birthdate" name="birthdate" required>
 
-        <label for="country">País:</label>
-        <select id="country" name="country" required>
-            <option value="">Selecciona tu país</option>
-            <option value="ar">Argentina</option>
-            <option value="bo">Bolivia</option>
-            <option value="cl">Chile</option>
-            <option value="co">Colombia</option>
-            <option value="cr">Costa Rica</option>
-            <option value="cu">Cuba</option>
-            <option value="ec">Ecuador</option>
-            <option value="sv">El Salvador</option>
-            <option value="es">España</option>
-            <option value="us">Estados Unidos</option>
-            <option value="gt">Guatemala</option>
-            <option value="hn">Honduras</option>
-            <option value="mx">México</option>
-            <option value="ni">Nicaragua</option>
-            <option value="pa">Panamá</option>
-            <option value="py">Paraguay</option>
-            <option value="pe">Perú</option>
-            <option value="pr">Puerto Rico</option>
-            <option value="uy">Uruguay</option>
-            <option value="ve">Venezuela</option>
-          </select>
-          
+      <!-- Campo: Selección de país -->
+      <label for="country">País:</label>
+      <select id="country" name="country" required>
+        <!-- Las opciones se llenarán dinámicamente con datos de la API RestCountries -->
+      </select>
 
-        <label for="terms"> 
-            Acepto los <a href="#">términos y condiciones</a>
-            <input type="checkbox" id="terms" name="terms" required>
-        </label>
+      <!-- Campo: Aceptación de términos y condiciones -->
+      <label for="terms">
+        Acepto los <a href="#">términos y condiciones</a>
+        <input type="checkbox" id="terms" name="terms" required>
+      </label>
 
+      <!-- Botón para enviar el formulario -->
       <button type="submit" class="btn">Registrarse</button>
     </form>
+    <!-- Opciones adicionales para usuarios ya registrados -->
     <div class="login-options">
       <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
     </div>
   </main>
 
-  <!-- Botón de Ayuda Flotante -->
+  <!-- BOTÓN DE AYUDA: Botón flotante para acceder a la ayuda -->
   <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Footer común -->
+  <!-- FOOTER: Pie de página -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- Incluir jQuery para facilitar la manipulación del DOM y realizar peticiones AJAX -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Incluir Select2 JS para transformar el <select> en un componente con búsqueda -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  
+  <!-- Script para cargar dinámicamente los países desde la API de RestCountries y aplicar Select2 -->
+  <script>
+    $(document).ready(function() {
+      // Realiza una petición AJAX a la API de RestCountries para obtener la lista de países
+      $.ajax({
+        url: 'https://restcountries.com/v3.1/all', // URL de la API
+        method: 'GET', // Método HTTP de la petición
+        success: function(data) {
+          // Ordena la lista de países alfabéticamente por su nombre común
+          data.sort(function(a, b) {
+            return a.name.common.localeCompare(b.name.common);
+          });
+          // Selecciona el elemento <select> por su ID
+          var $select = $('#country');
+          // Limpia el contenido actual del <select>
+          $select.empty();
+          // Agrega una opción placeholder
+          $select.append($('<option>', {
+            value: '',
+            text: 'Selecciona tu país'
+          }));
+          // Itera sobre cada país recibido de la API y lo añade como opción en el <select>
+          $.each(data, function(index, country) {
+            $select.append($('<option>', {
+              value: country.cca2,  // Usa el código del país (por ejemplo, "US" o "ES")
+              text: country.name.common // Muestra el nombre común del país
+            }));
+          });
+          // Inicializa Select2 en el <select> para habilitar la funcionalidad de búsqueda y filtrado
+          $select.select2({
+            placeholder: "Selecciona tu país"
+          });
+        },
+        error: function(err) {
+          // En caso de error, se muestra un mensaje en la consola
+          console.error("Error al obtener los países:", err);
+        }
+      });
+    });
+  </script>
+  
+  <!-- Incluir el script principal de la aplicación -->
   <script src="js/main.js"></script>
 </body>
 </html>
