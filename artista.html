@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Canción</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Contenido principal: Detalles de la canción -->
+  <main class="content">
+    <h2>Detalles de la Canción</h2>
+    <div class="song-details">
+      <div class="song-info">
+        <img src="images/song-cover.jpg" alt="Portada del álbum" class="song-cover">
+        <div class="song-metadata">
+          <h3 class="song-title">Nombre de la Canción</h3>
+          <p class="song-artist">Artista: Nombre del Artista</p>
+          <p class="song-album">Álbum: Nombre del Álbum</p>
+          <p class="song-genre">Género: Rock</p>
+          <p class="song-duration">Duración: 3:45</p>
+        </div>
+      </div>
+      <div class="song-controls">
+        <button class="btn play-btn">Reproducir</button>
+        <button class="btn pause-btn">Pausar</button>
+        <button class="btn add-to-playlist">Añadir a Playlist</button>
+      </div>
+      <div class="song-lyrics">
+        <h4>Letra de la Canción</h4>
+        <p>
+          Aquí va la letra de la canción...
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <br>
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
