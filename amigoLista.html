@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Perfil de Amigo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <div class="tabs">
+    <a href="index.html" class="tab">Recientes</a>
+    <a href="index.html#bestofs" class="tab">Best Of's</a>
+    <a href="tienda.html" class="tab">Tienda</a>
+    <a href="amigos.html" class="tab">Amigos</a> <!-- La pestaña de Amigos está activa -->
+  </div>
+
+  <!-- Contenido principal: Perfil del fan -->
+  <main class="content">
+    <h1>Perfil de Amigo</h1>
+
+    <!-- Información del fan -->
+    <section class="fan-info">
+      <img src="images/fan1.jpg" alt="Fan 1" class="fan-avatar">
+      <div class="fan-details">
+        <h2 id="fan-name">Nombre del Amigo</h2>
+        <p id="fan-description">Descripción del amigo...</p>
+        <p><strong>Géneros favoritos:</strong> <span id="fan-genres">Rock, Pop</span></p>
+        <p><strong>Última conexión:</strong> <span id="fan-last-seen">Hace 2 días</span></p>
+      </div>
+    </section>
+
+    <!-- Sección de actividad reciente (opcional) -->
+    <section class="recent-activity">
+      <h2>Actividad Reciente</h2>
+      <ul id="fan-activity">
+        <li>Escuchó "Canción 1" de Artista 1</li>
+        <li>Agregó "Álbum 2" a su lista de favoritos</li>
+        <li>Compró "Vinilo 3" en la tienda</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script para cargar los datos del fan -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Obtener el ID del fan desde la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const fanId = urlParams.get('id');
+
+      // Simulación de datos del fan (puedes reemplazar esto con una llamada a una API)
+      const fanData = {
+        1: {
+          name: "Amigo 1",
+          description: "Descripción del amigo 1...",
+          genres: "Rock, Pop",
+          lastSeen: "Hace 2 días",
+          activity: [
+            "Escuchó 'Canción 1' de Artista 1",
+            "Agregó 'Álbum 2' a su lista de favoritos",
+            "Compró 'Vinilo 3' en la tienda"
+          ]
+        },
+        2: {
+          name: "Amigo 2",
+          description: "Descripción del amigo 2...",
+          genres: "Electrónica, Jazz",
+          lastSeen: "Hace 5 días",
+          activity: [
+            "Escuchó 'Canción 3' de Artista 2",
+            "Agregó 'Álbum 4' a su lista de favoritos"
+          ]
+        }
+      };
+
+      // Cargar los datos del fan en la página
+      if (fanData[fanId]) {
+        document.getElementById("fan-name").textContent = fanData[fanId].name;
+        document.getElementById("fan-description").textContent = fanData[fanId].description;
+        document.getElementById("fan-genres").textContent = fanData[fanId].genres;
+        document.getElementById("fan-last-seen").textContent = fanData[fanId].lastSeen;
+
+        const activityList = document.getElementById("fan-activity");
+        activityList.innerHTML = fanData[fanId].activity.map(activity => `<li>${activity}</li>`).join("");
+      } else {
+        document.getElementById("fan-name").textContent = "Fan no encontrado";
+      }
+    });
+  </script>
+</body>
+</html>

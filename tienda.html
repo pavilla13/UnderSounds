@@ -25,68 +25,79 @@
     </div>
   </header>
 
+  <!-- Menú de pestañas principal: Recientes, Best Of's, Tienda, Amigos -->
+  <div class="tabs">
+    <a href="index.html" class="tab">Recientes</a>
+    <a href="index.html#bestofs" class="tab">Best Of's</a>
+    <a href="tienda.html" class="tab active">Tienda</a> <!-- La pestaña de Tienda está activa -->
+    <a href="amigos.html" class="tab">Amigos</a>
+  </div>
+
+  <!-- Menú de pestañas secundario: CDs, Cassettes, Vinilos, Merchandising, Otros -->
+  <div class="tabs">
+    <button class="tab active" data-tab="cds">CDs</button>
+    <button class="tab" data-tab="cassettes">Cassettes</button>
+    <button class="tab" data-tab="vinilos">Vinilos</button>
+    <button class="tab" data-tab="merchandising">Merchandising</button>
+    <button class="tab" data-tab="otros">Otros</button>
+  </div>
+
   <!-- Contenido principal: Tienda -->
   <main class="content">
-    <h1>TIENDA</h1>
-
-    <!-- Categorías de productos -->
-    <div class="categories">
-      <div class="search-container">
-        <input type="text" placeholder="Buscar artista, álbum,..." />
+    <!-- Sección de CDs (visible por defecto) -->
+    <section id="cds" class="tab-content active">
+      <h2>CDs</h2>
+      <div class="row">
+        <a href="producto.html?id=1" class="card">CD 1</a>
+        <a href="producto.html?id=2" class="card">CD 2</a>
+        <a href="producto.html?id=3" class="card">CD 3</a>
+        <a href="producto.html?id=4" class="card">CD 4</a>
       </div>
+    </section>
 
-      <!-- Tabla de productos -->
-      <table class="product-table">
-        <thead>
-          <tr>
-            <th>CDs</th>
-            <th>Cassettes</th>
-            <th>Vinilos</th>
-            <th>Merchandising</th>
-            <th>Otros</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <h3>Últimos CDs</h3>
-              <ul>
-                <li><a href="producto.html?id=1">CD 1</a></li>
-                <li><a href="producto.html?id=2">CD 2</a></li>
-              </ul>
-            </td>
-            <td>
-              <h3>Cassettes Populares</h3>
-              <ul>
-                <li><a href="producto.html?id=3">Cassette 1</a></li>
-                <li><a href="producto.html?id=4">Cassette 2</a></li>
-              </ul>
-            </td>
-            <td>
-              <h3>Vinilos Destacados</h3>
-              <ul>
-                <li><a href="producto.html?id=5">Vinilo 1</a></li>
-                <li><a href="producto.html?id=6">Vinilo 2</a></li>
-              </ul>
-            </td>
-            <td>
-              <h3>Merchandising</h3>
-              <ul>
-                <li><a href="producto.html?id=7">Camiseta 1</a></li>
-                <li><a href="producto.html?id=8">Poster 1</a></li>
-              </ul>
-            </td>
-            <td>
-              <h3>Otros</h3>
-              <ul>
-                <li><a href="producto.html?id=9">Producto 1</a></li>
-                <li><a href="producto.html?id=10">Producto 2</a></li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Sección de Cassettes (oculta por defecto) -->
+    <section id="cassettes" class="tab-content">
+      <h2>Cassettes</h2>
+      <div class="row">
+        <a href="producto.html?id=5" class="card">Cassette 1</a>
+        <a href="producto.html?id=6" class="card">Cassette 2</a>
+        <a href="producto.html?id=7" class="card">Cassette 3</a>
+        <a href="producto.html?id=8" class="card">Cassette 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Vinilos (oculta por defecto) -->
+    <section id="vinilos" class="tab-content">
+      <h2>Vinilos</h2>
+      <div class="row">
+        <a href="producto.html?id=9" class="card">Vinilo 1</a>
+        <a href="producto.html?id=10" class="card">Vinilo 2</a>
+        <a href="producto.html?id=11" class="card">Vinilo 3</a>
+        <a href="producto.html?id=12" class="card">Vinilo 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Merchandising (oculta por defecto) -->
+    <section id="merchandising" class="tab-content">
+      <h2>Merchandising</h2>
+      <div class="row">
+        <a href="producto.html?id=13" class="card">Camiseta 1</a>
+        <a href="producto.html?id=14" class="card">Poster 1</a>
+        <a href="producto.html?id=15" class="card">Taza 1</a>
+        <a href="producto.html?id=16" class="card">Gorra 1</a>
+      </div>
+    </section>
+
+    <!-- Sección de Otros (oculta por defecto) -->
+    <section id="otros" class="tab-content">
+      <h2>Otros</h2>
+      <div class="row">
+        <a href="producto.html?id=17" class="card">Producto 1</a>
+        <a href="producto.html?id=18" class="card">Producto 2</a>
+        <a href="producto.html?id=19" class="card">Producto 3</a>
+        <a href="producto.html?id=20" class="card">Producto 4</a>
+      </div>
+    </section>
   </main>
 
   <!-- Botón de Ayuda Flotante -->
@@ -97,6 +108,25 @@
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Script para manejar las pestañas secundarias -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".tabs .tab");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remover la clase "active" de todas las pestañas y secciones
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
+
+          // Añadir la clase "active" a la pestaña y sección seleccionada
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-tab");
+          document.getElementById(target).classList.add("active");
+        });
+      });
+    });
+  </script>
 </body>
 </html>

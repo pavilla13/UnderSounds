@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Lista de Amigos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <div class="tabs">
+    <a href="index.html" class="tab">Recientes</a>
+    <a href="index.html#bestofs" class="tab">Best Of's</a>
+    <a href="tienda.html" class="tab">Tienda</a>
+    <a href="amigos.html" class="tab">Amigos</a> <!-- La pestaña de Amigos está activa -->
+  </div>
+
+  <!-- Contenido principal: Lista de amigos (fans) -->
+  <main class="content">
+    <h1>Lista de Amigos</h1>
+
+    <!-- Lista de amigos -->
+    <div class="friends-list">
+      <!-- Amigo 1 -->
+      <div class="friend-card">
+        <img src="images/fan1.jpg" alt="Amigo 1" class="friend-avatar">
+        <div class="friend-info">
+          <h2 class="friend-name">Amigo 1</h2>
+          <p class="friend-description">Descripción del amigo 1...</p>
+        </div>
+        <a href="amigoLista.html?id=1" class="friend-link">Ver perfil</a>
+      </div>
+
+      <!-- Amigo 2 -->
+      <div class="friend-card">
+        <img src="images/fan2.jpg" alt="Amigo 2" class="friend-avatar">
+        <div class="friend-info">
+          <h2 class="friend-name">Amigo 2</h2>
+          <p class="friend-description">Descripción del amigo 2...</p>
+        </div>
+        <a href="amigoLista.html?id=2" class="friend-link">Ver perfil</a>
+      </div>
+
+      <!-- Amigo 3 -->
+      <div class="friend-card">
+        <img src="images/fan3.jpg" alt="Amigo 3" class="friend-avatar">
+        <div class="friend-info">
+          <h2 class="friend-name">Amigo 3</h2>
+          <p class="friend-description">Descripción del amigo 3...</p>
+        </div>
+        <a href="amigoLista.html?id=3" class="friend-link">Ver perfil</a>
+      </div>
+
+      <!-- Amigo 4 -->
+      <div class="friend-card">
+        <img src="images/fan4.jpg" alt="Amigo 4" class="friend-avatar">
+        <div class="friend-info">
+          <h2 class="friend-name">Amigo 4</h2>
+          <p class="friend-description">Descripción del amigo 4...</p>
+        </div>
+        <a href="amigoLista.html?id=4" class="friend-link">Ver perfil</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
