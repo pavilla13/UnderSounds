@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Artista</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  
+
+  <!-- Contenido principal: Artista -->
+  <main class="content">
+    <h1>Nombre artista</h1>
+
+    <div class="Artist">
+        <img src="images/artist1.jpg" alt="Artista" class="artist-avatar">
+        <div class="Artist-info">
+          <h2 class="Presentation-artist">Presentación Artista</h2>
+          <p class="Artist-description">Descripción del artista...</p>
+          <p class="Artist-description">Redes sociales del artista...</p>
+          <p class="Artist-description">Contacto del artista...</p>
+          <section id="Albumes" class="tab-content active"> 
+          <!-- Fila de álbumes -->
+            <h3>Álbumes Recientes</h3>
+            <div class="row">
+            <a href="album.html?id=5" class="card">Álbum 1</a>
+            <a href="album.html?id=6" class="card">Álbum 2</a>
+            <a href="album.html?id=7" class="card">Álbum 3</a>
+            <a href="album.html?id=8" class="card">Álbum 4</a>
+            </div>
+
+            <h3>Artistas del mismo sello</h3>
+            <div class="row">
+            <a href="artistas.html?id=1" class="card">Artista 1</a>
+            <a href="artistas.html?id=2" class="card">Artista 2</a>
+            <a href="artistas.html?id=3" class="card">Artista 3</a>
+            <a href="artistas.html?id=4" class="card">Artista 4</a>
+            </div>
+          </section>
+      </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

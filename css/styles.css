@@ -273,6 +273,38 @@ input[type="checkbox"] {
   text-align: left;
 }
 
+/* Estilos específicos para las pestañas de la tienda */
+.store-tabs .tabs {
+  display: flex;
+  width: 100%;
+  padding: 0;    /* Elimina padding para que ocupe todo el ancho */
+  margin: 0;     /* Elimina márgenes extra */
+  background-color: #333;  /* Puedes mantener o cambiar el fondo */
+}
+
+.store-tabs .tabs .tab {
+  flex: 1;           /* Cada botón ocupa la misma cantidad de espacio */
+  margin: 0;         /* Quita los márgenes para que se junten */
+  border-radius: 0;  /* Elimina bordes redondeados para un aspecto rectangular */
+  padding: 0.6rem 0; /* Ajusta el padding vertical; el horizontal ya no es necesario */
+  text-align: center;
+  background-color: #f39c12;
+  border: 1px solid #f39c12;  /* Agrega un borde para definir los botones */
+  transition: background-color 0.3s;
+}
+
+/* Opcional: Para evitar dobles bordes entre botones */
+.store-tabs .tabs .tab:not(:last-child) {
+  border-right: none;
+}
+
+/* Estados activo y hover */
+.store-tabs .tabs .tab.active,
+.store-tabs .tabs .tab:hover {
+  background-color: #e67e22;
+}
+
+
 /*======================================
 =         ROWS & CARDS (ELEMENTOS)     =
 ======================================*/
@@ -311,6 +343,10 @@ input[type="checkbox"] {
   color: #333; /* Ajusta el color según lo desees */
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.artist-link{
+  margin-top: 50px;
 }
 
 /*======================================

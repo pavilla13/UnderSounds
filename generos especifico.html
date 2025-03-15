@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Géneros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header común -->
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="logo">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Contenido principal: Géneros -->
+
+  <div class="tabs">
+    <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
+    <button class="tab active" data-tab="recientes">Recientes</button>
+    <button class="tab" data-tab="bestofs">Best Of's</button>
+    <a href="tienda.html" class="tab">Tienda</a>
+    <button class="tab" data-tab="amigos">Amigos</button>
+  </div>
+
+  <section id="generos" class="tab-content active">
+    <h2 class="logo">Género X</h2>
+    <!-- Fila de álbumes -->
+    <h3>Álbumes</h3>
+    <div class="row">
+      <a href="album.html?id=5" class="card">Álbum 1</a>
+      <a href="album.html?id=6" class="card">Álbum 2</a>
+      <a href="album.html?id=7" class="card">Álbum 3</a>
+      <a href="album.html?id=8" class="card">Álbum 4</a>
+    </div>
+
+    <!-- Fila de canciones -->
+    <h3>Pistas y Canciones</h3>
+    <div class="row">
+      <a href="cancion.html?id=1" class="card">Canción 1</a>
+      <a href="cancion.html?id=2" class="card">Canción 2</a>
+      <a href="cancion.html?id=3" class="card">Canción 3</a>
+      <a href="cancion.html?id=4" class="card">Canción 4</a>
+    </div>
+
+    <!-- Fila de Artistas -->
+    <h3>Artistas</h3>
+    <div class="row">
+      <a href="artistas.html?id=1" class="card">Artista 1</a>
+      <a href="artistas.html?id=2" class="card">Artista 2</a>
+      <a href="artistas.html?id=3" class="card">Artista 3</a>
+      <a href="artistas.html?id=4" class="card">Artista 4</a>
+    </div>
+    <!--Fila de Sellos-->
+    <h3>Sellos Discografico</h3>
+    <div class="row">
+      <a href="sellos.html?id=1" class="card">Sello 1</a>
+      <a href="sellos.html?id=2" class="card">Sello 2</a>
+      <a href="sellos.html?id=3" class="card">Sello 3</a>
+      <a href="sellos.html?id=4" class="card">Sello 4</a>
+    </div>
+  </section>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

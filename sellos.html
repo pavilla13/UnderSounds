@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UnderSounds - Canción</title>
+  <title>UnderSounds - Artista</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -25,36 +25,36 @@
     </div>
   </header>
 
-  <!-- Contenido principal: Detalles de la canción -->
+  
+
+  <!-- Contenido principal: Sello -->
   <main class="content">
-    <h2>Detalles de la Canción</h2>
-    <div class="song-details">
-      <div class="song-info">
-        <img src="images/song-cover.jpg" alt="Portada del álbum" class="song-cover">
-        <div class="song-metadata">
-          <h3 class="song-title">Nombre de la Canción</h3>
-          <p class="song-artist">Artista: Nombre del Artista</p>
-          <p class="song-album">Álbum: Nombre del Álbum</p>
-          <p class="song-genre">Género: Rock</p>
-          <p class="song-duration">Duración: 3:45</p>
-        </div>
+    <h1>Nombre sello</h1>
+
+    <div class="record label">
+        <img src="images/record1.jpg" alt="Sello Discografico" class="record-avatar">
+        <div class="Record-info">
+          <h2 class="Presentation-record">Descripción Sello</h2>
+          <p class="Record-description">Descripción del sello...</p>
+          <section id="Sellos" class="tab-content active"> 
+          <!-- Fila de álbumes -->
+            <h3>Álbumes Recientes</h3>
+            <div class="row">
+            <a href="album.html?id=5" class="card">Álbum 1</a>
+            <a href="album.html?id=6" class="card">Álbum 2</a>
+            <a href="album.html?id=7" class="card">Álbum 3</a>
+            <a href="album.html?id=8" class="card">Álbum 4</a>
+            </div>
+
+            <h3>Artistas del mismo sello</h3>
+            <div class="row">
+            <a href="artistas.html?id=1" class="card">Artista 1</a>
+            <a href="artistas.html?id=2" class="card">Artista 2</a>
+            <a href="artistas.html?id=3" class="card">Artista 3</a>
+            <a href="artistas.html?id=4" class="card">Artista 4</a>
+            </div>
+          </section>
       </div>
-      <div class="song-controls">
-        <button class="btn play-btn">Reproducir</button>
-        <button class="btn pause-btn">Pausar</button>
-        <button class="btn add-to-playlist">Añadir a Playlist</button>
-      </div>
-      <div class="song-lyrics">
-        <h4>Letra de la Canción</h4>
-        <p>
-          Aquí va la letra de la canción...
-          <br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          <br>
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    </div>
   </main>
 
   <!-- Botón de Ayuda Flotante -->
