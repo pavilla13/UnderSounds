@@ -8,33 +8,26 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header común -->
-  <header>
-    <div class="nav-left">
-      <a href="index.html" class="logo">UnderSounds</a>
-    </div>
-    <div class="nav-center">
-      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
-        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
-      </div>
-    </div>
-    <div class="nav-right">
-      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
 
   <!-- Contenido principal: Detalles del Producto -->
   <main class="content">
-    <h1>Nombre del Producto</h1>
+    <h1 id="product-name">Producto</h1>
     <p class="product-description">Descripción del producto...</p>
-    <p class="product-price">Precio: $XX.XX</p>
+    <p class="product-price" id="product-price">Precio: $10</p>
 
     <!-- Botones de acción -->
     <div class="product-actions">
-      <button class="btn buy-btn">COMPRAR</button>
-      <a href="sello.html" class="btn">IR AL SELLO</a>
+      <!-- Añadir atributos data-name y data-price al botón -->
+      <button class="btn buy-btn">Añadir al carrito</button>
+      <a href="sellos.html" class="btn">Ir al sello</a>
     </div>
 
     <!-- Información adicional -->

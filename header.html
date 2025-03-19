@@ -1,0 +1,43 @@
+<header>
+  <div class="nav-left">
+    <a href="index.html" class="logo" title="Inicio">UnderSounds</a>
+  </div>
+  <div class="nav-center">
+    <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
+      <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="cart-btn" id="cart-btn">
+      <img src="assets/images/carrito.png" alt="Carrito" id="cartIcon">
+      <span id="cartCount">0</span> <!-- Número de productos en el carrito -->
+    
+      <!-- Desplegable del carrito -->
+      <div class="cart-dropdown" id="cartDropdown">
+        <h3>Carrito</h3>
+        <div class="cart-items" id="cartItems">
+          <!-- Los productos del carrito se mostrarán aquí -->
+        </div>
+        <div class="cart-actions">
+          <a href="compra.html" class="btn-compra">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de Iniciar Sesión -->
+    <a href="login.html" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>
+    <!-- Perfil de usuario con dropdown -->
+    <div class="profile-container" id="profileContainer">
+      <img src="assets/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
+      <div class="profile-dropdown" id="profileDropdown">
+        <a href="#">Editar perfil</a>
+        <a href="#">Lista de Me gusta</a>
+        <a href="#">Mis compras</a>
+        <a href="amigos.html">Gestionar amigos</a>
+        <a href="index.html" class="logout-link">Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -8,22 +8,14 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header común -->
-  <header>
-    <div class="nav-left">
-      <a href="index.html" class="logo">UnderSounds</a>
-    </div>
-    <div class="nav-center">
-      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
-        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
-      </div>
-    </div>
-    <div class="nav-right">
-      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
 
   
 

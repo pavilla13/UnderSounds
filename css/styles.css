@@ -350,6 +350,191 @@ input[type="checkbox"] {
 }
 
 /*======================================
+=           MENU DESPLEGABLE           =
+======================================*/
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Estilo para el carrito */
+.cart-btn {
+  position: relative;  /* Evita que el cambio de margin-left afecte a otros elementos */
+  margin-top: 5px;     /* Lo baja un poco */
+}
+.cart-btn img {
+  width: 40px; /* Ajusta el tamaño según convenga */
+  height: auto;
+}
+
+/* Perfil de usuario */
+.profile-container {
+  position: relative;
+  cursor: pointer;
+  margin-top: 5px;  /* Baja el perfil un poco */
+}
+
+.profile-icon {
+  width: 40px; /* Ajusta el tamaño según convenga */
+  height: 40px;
+  border-radius: 50%;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  min-width: 170px;  /* Ajusta el ancho de las opciones del dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border-radius: 10px;
+}
+
+.profile-dropdown a {
+  display: block;
+  padding: 5px 10px;  /* Ajusta el padding para reducir el alto de las opciones */
+  text-decoration: none;
+  color: #333;
+  width: 100%;  /* Asegura que las opciones se ajusten al ancho del dropdown */
+  border-radius: 10px;
+}
+
+.profile-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Mostrar dropdown al pasar el cursor o cuando tenga la clase 'active' */
+.profile-container:hover .profile-dropdown,
+.profile-container.active .profile-dropdown {
+  display: block;
+}
+
+.logout-link {
+  color: red; /* Cambia el color a rojo */
+}
+
+.logout-link:hover {
+  color: darkred; /* Opción para cambiar el color al pasar el cursor */
+}
+
+/*======================================
+=               CARRITO                =
+======================================*/
+
+/* Estilo del carrito */
+.cart-btn {
+  position: fixed;
+  top: 0px;
+  right: 30px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#cartCount {
+  position: absolute;
+  top: 10px;
+  right: -15px;
+  border-radius: 50%;
+  padding: 5px 10px;
+  color: white;
+  font-size: 18px;
+}
+
+.cart-dropdown {
+  display: none; /* Asegura que el carrito esté oculto por defecto */
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 100;
+}
+
+.cart-dropdown h3 {
+  margin-top: 0;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item p {
+  margin: 0;
+}
+
+.cart-item button {
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cart-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-actions .btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.cart-actions .btn:hover {
+  background-color: #e74c3c;
+}
+
+.btn-compra {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px; /* Reducir el tamaño del botón */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px; /* Hacer la fuente más pequeña */
+  text-decoration: none; /* Eliminar el subrayado si lo hay */
+}
+
+.remove-btn{
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px; /* Reducir el tamaño del botón */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px; /* Hacer la fuente más pequeña */
+  text-decoration: none;  
+}
+
+/*======================================
 =           BOTÓN DE AYUDA             =
 ======================================*/
 .help-button {

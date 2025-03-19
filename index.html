@@ -9,24 +9,16 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-  <!-- Header común -->
-  <header>
-    <div class="nav-left">
-      <a href="index.html" class="logo" title="Inicio">UnderSounds</a>
-    </div>
-    <div class="nav-center">
-      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
-        <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
-      </div>
-    </div>
-    <div class="nav-right">
-      <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
-    </div>
-  </header>
+<div id="header-placeholder"></div>
+<script>
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+      });
+</script>
 
+<body>
   <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
   <div class="tabs">
     <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
@@ -93,12 +85,6 @@
       <a href="generos especifico.html?id=3" class="card">Electrónica</a>
       <a href="generos especifico.html?id=4" class="card">Jazz</a>
     </div>
-  </section>
-
-  <!-- Amigos (placeholder por ahora) -->
-  <section id="amigos" class="tab-content">
-    <h2 class="logo">Amigos</h2>
-    <p>Sección en construcción...</p>
   </section>
 
   <!-- Botón de Ayuda Flotante -->
