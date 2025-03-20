@@ -350,7 +350,7 @@ input[type="checkbox"] {
 }
 
 /*======================================
-=           MENU DESPLEGABLE           =
+=        MENU DESPLEGABLE PERFIL       =
 ======================================*/
 
 .nav-right {
@@ -419,6 +419,19 @@ input[type="checkbox"] {
 
 .logout-link:hover {
   color: darkred; /* Opción para cambiar el color al pasar el cursor */
+}
+
+.recover-btn{
+  background-color: #f39c12;
+  color: #fff;
+  padding: 5px 10px; /* Reducir el tamaño del botón */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px; /* Hacer la fuente más pequeña */
+  text-decoration: none; /* Eliminar el subrayado si lo hay */
+  position: relative;
+  margin-left: 120px;
 }
 
 /*======================================
