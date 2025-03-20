@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Editar Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+    <script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+  <!-- Contenido principal: Editar Perfil -->
+  <main class="content edit-profile-page">
+    <h2 class="logo">Editar Perfil</h2>
+    <form id="profileForm" class="form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="firstName">Nombre completo:</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="birthdate">Fecha de nacimiento:</label>
+        <input type="date" id="birthdate" name="birthdate">
+      </div>
+      
+      <div class="form-group">
+        <label for="profilePic">Imagen de perfil:</label>
+        <input type="file" id="profilePic" name="profilePic" accept="image/*">
+      </div>
+      
+      <!-- Sección para actualizar contraseña -->
+        <h2>Actualizar contraseña</h2>
+        
+        <div class="form-group">
+            <label for="currentPassword">Contraseña actual:</label>
+            <input type="password" id="currentPassword" name="currentPassword">
+        </div>
+        
+        <div class="form-group">
+            <label for="newPassword">Nueva contraseña:</label>
+            <input type="password" id="newPassword" name="newPassword">
+        </div>
+        
+        <div class="form-group">
+            <label for="confirmPassword">Confirmar nueva contraseña:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+        </div>
+        
+        <span id="passwordError" style="color: red;"></span>
+      
+        <a href="index.html" class="edit-btn">Guardar cambios</a>
+    </form>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Footer común -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

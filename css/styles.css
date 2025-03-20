@@ -580,6 +580,19 @@ input[type="checkbox"] {
   100% { transform: translateY(0); }
 }
 
+.edit-btn{
+  background-color: #f39c12;
+  color: #fff;
+  padding: 10px 20px; /* Reducir el tamaño del botón */
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px; /* Hacer la fuente más pequeña */
+  text-decoration: none; /* Eliminar el subrayado si lo hay */
+  position: relative;
+  margin-top: 10px;
+}
+
 /*======================================
 =   TÉRMINOS Y CONDICIONES PAGE STYLE   =
 ======================================*/
