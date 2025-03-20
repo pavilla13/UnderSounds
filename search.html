@@ -14,24 +14,106 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-      });
+        });
   </script>
 
-  <!-- Contenido principal: Buscador -->
+  <h2>Mostrando resultados para "Palabras buscadas"</h2>
+  <div class="store-tabs">
+    <div class="tabs">
+      <button class="tab active" data-tab="todo">Todo</button>
+      <button class="tab" data-tab="artistas">Artistas</button>
+      <button class="tab" data-tab="sellos">Sellos</button>
+      <button class="tab" data-tab="albumes">Albumes</button>
+      <button class="tab" data-tab="canciones">Canciones</button>
+    </div>
+  </div>
+
   <main class="content">
-    <h2>Resultados de Búsqueda</h2>
-    <p>Aquí se mostrarán los resultados de la búsqueda.</p>
-    <!-- Contenido dinámico según la consulta -->
+    
+    <!-- Sección de Todos (Visible por defecto) -->
+    <section id="todo" class="tab-content active">
+      <h2>Todos</h2>
+      <div class="row">
+        <a href="artistas.html?id=1" class="card">Artista 1</a>
+        <a href="album.html?id=2" class="card">Album 3</a>
+        <a href="sellos.html?id=3" class="card">Sello 2</a>
+        <a href="cancion.html?id=4" class="card">Cancion 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Artistas (oculta por defecto) -->
+    <section id="artistas" class="tab-content">
+      <h2>Artistas</h2>
+      <div class="row">
+        <a href="artistas.html?id=1" class="card">Artistas 1</a>
+        <a href="artistas.html?id=2" class="card">Artistas 2</a>
+        <a href="artistas.html?id=3" class="card">Artistas 3</a>
+        <a href="artistas.html?id=4" class="card">Artistas 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Sellos (oculta por defecto) -->
+    <section id="sellos" class="tab-content">
+      <h2>Sellos</h2>
+      <div class="row">
+        <a href="sellos.html?id=1" class="card">Sellos 1</a>
+        <a href="sellos.html?id=2" class="card">Sellos 2</a>
+        <a href="sellos.html?id=3" class="card">Sellos 3</a>
+        <a href="sellos.html?id=4" class="card">Sellos 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Albumes (oculta por defecto) -->
+    <section id="albumes" class="tab-content">
+      <h2>Albumes</h2>
+      <div class="row">
+        <a href="albumes.html?id=1" class="card">Albumes 1</a>
+        <a href="albumes.html?id=2" class="card">Albumes 2</a>
+        <a href="albumes.html?id=3" class="card">Albumes 3</a>
+        <a href="albumes.html?id=4" class="card">Albumes 4</a>
+      </div>
+    </section>
+
+    <!-- Sección de Cancion (oculta por defecto) -->
+    <section id="canciones" class="tab-content">
+      <h2>Cancion</h2>
+      <div class="row">
+        <a href="canciones.html?id=1" class="card">Cancion 1</a>
+        <a href="canciones.html?id=2" class="card">Cancion 2</a>
+        <a href="canciones.html?id=3" class="card">Cancion 3</a>
+        <a href="canciones.html?id=4" class="card">Cancion 4</a>
+      </div>
+    </section>
+
   </main>
 
   <!-- Botón de Ayuda Flotante -->
   <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Footer común -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/main.js"></script>
+<!-- Script para manejar las pestañas secundarias -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tabs .tab");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Remover la clase "active" de todas las pestañas y secciones
+        tabs.forEach((t) => t.classList.remove("active"));
+        tabContents.forEach((c) => c.classList.remove("active"));
+
+        // Añadir la clase "active" a la pestaña y sección seleccionada
+        tab.classList.add("active");
+        const target = tab.getAttribute("data-tab");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
