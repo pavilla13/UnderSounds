@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
   // Recuperar el carrito del localStorage
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
@@ -7,13 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.text())
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
+      
 
       // Una vez cargado el header, buscamos los elementos
       const cartBtn = document.getElementById('cart-btn');
+      const emptyCartBtn = document.getElementById('emptyCartBtn');
+      const cartItems = document.getElementById('cartItems');
       const cartCount = document.getElementById('cartCount');
       const cartDropdown = document.getElementById('cartDropdown');
-      const cartItems = document.getElementById('cartItems');
-      const emptyCartBtn = document.getElementById('emptyCartBtn');
+
 
       // Verifica si el botón del carrito existe
       if (cartBtn) {
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("El botón del carrito no se encuentra.");
       }
 
+
       // Lógica para vaciar el carrito
       if (emptyCartBtn) {
         emptyCartBtn.addEventListener('click', function() {
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         console.error("El botón para vaciar el carrito no se encuentra.");
       }
+
 
       // Verificar que 'cartItems' existe antes de añadir el evento
       if (cartItems) {
@@ -74,11 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("El contenedor de los productos del carrito no se encuentra.");
       }
 
+
       // Función para actualizar el contador del carrito
       function updateCartCount() {
         const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
         cartCount.textContent = totalItems;
       }
+
 
       // Función para actualizar el desplegable del carrito
       function updateCartDropdown() {
@@ -113,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
+
       // Añadir producto al carrito
       const addToCartBtn = document.querySelector('.buy-btn');
       if (addToCartBtn) {
@@ -144,11 +152,30 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("El botón para añadir al carrito no se encuentra.");
       }
 
-      // Actualizar el contador al cargar la página
-      updateCartCount();
-
     })
     .catch(err => console.error("Error al cargar el header:", err));
+
+
+    
+    // Función para mostrar el resumen de compra
+    function mostrarResumenCompra() {
+      resumenProductosLista.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+          const itemElement = document.createElement('div');
+          itemElement.className = 'resumen-item';
+          itemElement.innerHTML = `
+              <span>${item.nombre} x${item.cantidad}</span>
+              <span>${(item.precio * item.cantidad).toFixed(2)}€</span>
+          `;
+          resumenProductosLista.appendChild(itemElement);
+          total += item.precio * item.cantidad;
+      });
+
+      resumenTotal.textContent = `Total: ${total.toFixed(2)}€`;
+  }
+
 
   // ---------------------------
   // Lógica de la barra de búsqueda

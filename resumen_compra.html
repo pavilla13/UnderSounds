@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnderSounds - Resumen de Compra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+<body>
+
+    <div id="header-placeholder"></div>
+    <script>
+       fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+
+  <!-- Contenido principal: Resumen de compra -->
+  <main class="content resumen-page">
+    <h2 class="logo">Resumen de Compra</h2>
+    <div class="resumen-compra">
+      <div class="resumen-productos">
+        <h3>Productos en tu carrito</h3>
+        <div id="resumen-productos-lista"></div>
+        <p id="resumen-total" class="resumen-total"></p>
+      </div>
+      
+      <div class="metodo-pago">
+        <h3>Método de Pago</h3>
+        <form id="forma-pago" class="form">
+          <label>
+            <input type="radio" name="metodo-pago" value="tarjeta" checked>
+            Tarjeta de Crédito/Débito
+          </label>
+          
+          <div id="datos-tarjeta" class="tarjeta-info">
+            <label for="numero-tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="numero-tarjeta" required>
+            
+            <label for="fecha-expiracion">Fecha de Expiración:</label>
+            <input type="text" id="fecha-expiracion" placeholder="MM/AA" required>
+            
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" required>
+          </div>
+          
+          <label>
+            <input type="radio" name="metodo-pago" value="paypal">
+            PayPal
+          </label>
+          
+          <button type="submit" class="btn">Confirmar Compra</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
