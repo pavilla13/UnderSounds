@@ -435,116 +435,316 @@ input[type="checkbox"] {
 }
 
 /*======================================
-=               CARRITO                =
+=          TIENDA - PRODUCTOS          =
 ======================================*/
 
-/* Estilo del carrito */
-.cart-btn {
-  position: fixed;
-  top: 0px;
-  right: 30px;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  color: white;
-  font-size: 20px;
+/* Contenido principal y tarjetas de producto */
+.content {
+  padding: 1rem;
+}
+
+/* Mostramos cada producto en una fila */
+.row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #f4f4f4;
+  width: 150px;
+  height: 70px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  margin: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: left;
 }
 
-#cartCount {
-  position: absolute;
-  top: 10px;
-  right: -15px;
-  border-radius: 50%;
-  padding: 5px 10px;
-  color: white;
-  font-size: 18px;
+.card:hover {
+  transform: translateY(-3px);
 }
 
-.cart-dropdown {
-  display: none; /* Asegura que el carrito esté oculto por defecto */
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  background-color: #fff;
-  width: 250px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.card img {
+  width: 150px;
   border-radius: 8px;
-  padding: 10px;
-  z-index: 100;
+  object-fit: cover;
 }
 
-.cart-dropdown h3 {
-  margin-top: 0;
+.card .info {
+  flex: 1;
 }
 
-.cart-items {
+.card h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif; /* Fuente elegante para el título */
+  font-size: 1rem; /* Ajusta el tamaño según prefieras */
+}
+
+.card p {
+  margin: 0.3rem 0;
+  font-size: 0.8rem;
+  font-family: 'Merriweather', serif; /* Fuente elegante para la descripción */
+}
+
+.card .price {
+  font-weight: bold;
+  margin: 0.3rem 0;
+}
+
+/* Botones más elegantes */
+.card button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+  color: #e67e22;
+}
+
+.store-content .row {
+  gap: 5rem; /* Espacio mayor entre elementos */
+  margin: 5rem auto 0; /* 5rem arriba, auto izquierda y derecha para centrar */
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: column; /* Cada tarjeta en su propia fila */
+  align-items: center; /* Centra los elementos hijos */
 }
 
-.cart-item {
+
+.store-content .card {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1000px; /* Más ancho para mostrar más texto */
+  text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.cart-item p {
+/* Ajuste de tipografía para la tienda */
+.store-content .card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
   margin: 0;
 }
 
-.cart-item button {
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+.store-content .card p {
+  font-family: 'Merriweather', serif;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
 }
 
-.cart-actions {
-  margin-top: 20px;
+
+/* Botón para añadir al carrito */
+.btn-cart {
+  background: linear-gradient(45deg, #4a90e2, #357ab8);
+}
+
+.btn-cart:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(45deg, #357ab8, #4a90e2);
+}
+
+/* Botón para Favoritos */
+.btn-favorite {
+  background: linear-gradient(45deg, #e94e77, #d73c66);
+}
+
+.btn-favorite:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(45deg, #d73c66, #e94e77);
+}
+
+/*======================================
+=     Página de detalle de producto    =
+======================================*/
+.product-detail {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.cart-actions .btn {
-  background-color: #e74c3c;
-  color: white;
+.product-container {
+  display: flex;
+  gap: 2rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-container img {
+  width: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-info {
+  max-width: 400px;
+}
+
+.product-info h2 {
+  margin-top: 0;
+}
+
+/*======================================
+=       Páginas de carrito y favoritos =
+======================================*/
+.cart, .favorites {
+  padding: 2rem;
+  background: #fff;
+  margin: 2rem;
+  border-radius: 8px;
+}
+
+#cart-items, #favorite-items {
+  margin-top: 1rem;
+}
+
+.cart-item, .favorite-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+}
+
+.cart-item img, .favorite-item img {
+  width: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/*======================================
+=         Dropdown del Carrito         =
+======================================*/
+.cart-btn {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 100;
+  color: #000; /* Asegura que el texto se muestre en negro */
+}
+
+.cart-btn:hover .cart-dropdown {
+  display: block;
+}
+
+.cart-dropdown .cart-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+}
+
+.cart-dropdown .cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-dropdown img {
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cart-dropdown .dropdown-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.cart-dropdown .dropdown-footer button {
+  background: #e67e22;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botón para eliminar (cubo de basura) */
+.btn-remove {
+  background: #e74c3c;         /* Fondo rojo */
+  border: none;
+  border-radius: 50%;          /* Forma circular */
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;           /* Tamaño del icono/emoji */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-remove:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+/* Botones para incrementar y decrementar */
+.btn-decrement,
+.btn-increment {
+  background: #3498db;         /* Fondo azul */
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.8rem; /* Aumenta el padding horizontal para que sean más alargados */
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin: 0 0.2rem;
+}
+.btn-decrement:hover,
+.btn-increment:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+
+/* ---------------------------- */
+/* Notificación emergente       */
+/* ---------------------------- */
+#notification {
+  position: fixed;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
   padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: top 0.5s ease, opacity 0.5s ease;
+  z-index: 1000;
 }
 
-.cart-actions .btn:hover {
-  background-color: #e74c3c;
-}
-
-.btn-compra {
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 5px 10px; /* Reducir el tamaño del botón */
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px; /* Hacer la fuente más pequeña */
-  text-decoration: none; /* Eliminar el subrayado si lo hay */
-}
-
-.remove-btn{
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 5px 10px; /* Reducir el tamaño del botón */
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px; /* Hacer la fuente más pequeña */
-  text-decoration: none;  
+#notification.show {
+  top: 20px;
+  opacity: 1;
 }
 
 /*======================================

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Pago</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Inyección del header -->
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <main class="checkout">
+    <h2>Resumen del Pedido</h2>
+    <div id="order-summary"></div>
+    <div id="order-total"></div>
+    <h3>Opciones de Pago</h3>
+    <form id="payment-form">
+      <label for="cardNumber">Número de Tarjeta:</label>
+      <input type="text" id="cardNumber" name="cardNumber" required>
+      <label for="expiry">Fecha de Expiración:</label>
+      <input type="text" id="expiry" name="expiry" placeholder="MM/AA" required>
+      <label for="cvc">CVC:</label>
+      <input type="text" id="cvc" name="cvc" required>
+      <button type="submit">Confirmar Pago</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Renderizar el resumen del pedido
+    function renderOrderSummary() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const summaryContainer = document.getElementById('order-summary');
+      const totalContainer = document.getElementById('order-total');
+      if (!summaryContainer) return;
+
+      summaryContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        summaryContainer.innerHTML = '<p>El carrito está vacío.</p>';
+      } else {
+        cart.forEach(item => {
+          total += item.price * item.quantity;
+          const div = document.createElement('div');
+          div.classList.add('order-item');
+          div.innerHTML = `<p>${item.title} - $${item.price} x ${item.quantity}</p>`;
+          summaryContainer.appendChild(div);
+        });
+        totalContainer.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderOrderSummary();
+
+      document.getElementById('payment-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Aquí se implementaría la lógica real de pago
+        alert('Pago realizado con éxito.');
+        localStorage.removeItem('cart');
+        window.location.href = 'tienda.html';
+      });
+    });
+  </script>
+</body>
+</html>

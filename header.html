@@ -12,20 +12,13 @@
   <div class="nav-right">
     <div class="cart-btn" id="cart-btn">
       <img src="assets/images/carrito.png" alt="Carrito" id="cartIcon">
-      <span id="cartCount">0</span> <!-- Número de productos en el carrito -->
-    
-      <!-- Desplegable del carrito -->
-      <div class="cart-dropdown" id="cartDropdown">
-        <h3>Carrito</h3>
-        <div class="cart-items" id="cartItems">
-          <!-- Los productos del carrito se mostrarán aquí -->
-        </div>
-        <div class="cart-actions">
-          <a href="resumen_compra.html" class="btn-compra">Comprar</a>
-        </div>
+      <!-- Nuevo contador -->
+      <span id="cart-count" class="cart-count">0</span>
+      <!-- Dropdown que se mostrará al pasar el ratón -->
+      <div class="cart-dropdown" id="cart-dropdown">
+        <!-- El contenido se inyecta dinámicamente -->
       </div>
-    </div>
-
+    </div>    
     <!-- Botón de Iniciar Sesión -->
     <a href="login.html" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>
     <!-- Perfil de usuario con dropdown -->
@@ -33,7 +26,7 @@
       <img src="assets/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
       <div class="profile-dropdown" id="profileDropdown">
         <a href="edit_perfil.html">Editar perfil</a>
-        <a href="likes.html">Lista de Me gusta</a>
+        <a href="favoritos.html">Lista de Me gusta</a>
         <a href="mis_compras.html">Mis compras</a>
         <a href="amigos.html">Gestionar amigos</a>
         <a href="index.html" class="logout-link">Cerrar sesión</a>

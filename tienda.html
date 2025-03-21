@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Inyección del header -->
   <div id="header-placeholder"></div>
   <script>
     fetch('header.html')
@@ -17,7 +18,7 @@
       });
   </script>
 
-  <!-- Menú de pestañas secundario: CDs, Cassettes, Vinilos, Merchandising, Otros -->
+  <!-- Pestañas de la tienda -->
   <div class="store-tabs">
     <div class="tabs">
       <button class="tab active" data-tab="cds">CDs</button>
@@ -28,61 +29,36 @@
     </div>
   </div>
   
-  <!-- Contenido principal: Tienda -->
-  <main class="content">
-    <!-- Sección de CDs (visible por defecto) -->
+  <!-- Contenido principal -->
+  <main class="content store-content">
+    <!-- Sección de CDs -->
     <section id="cds" class="tab-content active">
       <h2>CDs</h2>
-      <div class="row">
-        <a href="producto.html?id=1" class="card">CD 1</a>
-        <a href="producto.html?id=2" class="card">CD 2</a>
-        <a href="producto.html?id=3" class="card">CD 3</a>
-        <a href="producto.html?id=4" class="card">CD 4</a>
-      </div>
+      <div class="row" id="cds-row"></div>
     </section>
 
-    <!-- Sección de Cassettes (oculta por defecto) -->
+    <!-- Sección de Cassettes -->
     <section id="cassettes" class="tab-content">
       <h2>Cassettes</h2>
-      <div class="row">
-        <a href="producto.html?id=5" class="card">Cassette 1</a>
-        <a href="producto.html?id=6" class="card">Cassette 2</a>
-        <a href="producto.html?id=7" class="card">Cassette 3</a>
-        <a href="producto.html?id=8" class="card">Cassette 4</a>
-      </div>
+      <div class="row" id="cassettes-row"></div>
     </section>
 
-    <!-- Sección de Vinilos (oculta por defecto) -->
+    <!-- Sección de Vinilos -->
     <section id="vinilos" class="tab-content">
       <h2>Vinilos</h2>
-      <div class="row">
-        <a href="producto.html?id=9" class="card">Vinilo 1</a>
-        <a href="producto.html?id=10" class="card">Vinilo 2</a>
-        <a href="producto.html?id=11" class="card">Vinilo 3</a>
-        <a href="producto.html?id=12" class="card">Vinilo 4</a>
-      </div>
+      <div class="row" id="vinilos-row"></div>
     </section>
 
-    <!-- Sección de Merchandising (oculta por defecto) -->
+    <!-- Sección de Merchandising -->
     <section id="merchandising" class="tab-content">
       <h2>Merchandising</h2>
-      <div class="row">
-        <a href="producto.html?id=13" class="card">Camiseta 1</a>
-        <a href="producto.html?id=14" class="card">Poster 1</a>
-        <a href="producto.html?id=15" class="card">Taza 1</a>
-        <a href="producto.html?id=16" class="card">Gorra 1</a>
-      </div>
+      <div class="row" id="merchandising-row"></div>
     </section>
 
-    <!-- Sección de Otros (oculta por defecto) -->
+    <!-- Sección de Otros -->
     <section id="otros" class="tab-content">
       <h2>Otros</h2>
-      <div class="row">
-        <a href="producto.html?id=17" class="card">Producto 1</a>
-        <a href="producto.html?id=18" class="card">Producto 2</a>
-        <a href="producto.html?id=19" class="card">Producto 3</a>
-        <a href="producto.html?id=20" class="card">Producto 4</a>
-      </div>
+      <div class="row" id="otros-row"></div>
     </section>
   </main>
 
@@ -94,7 +70,9 @@
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Script para manejar las pestañas secundarias -->
+  <!-- Carga del archivo JS con la funcionalidad -->
+  <script src="js/app.js"></script>
+  <!-- Script para gestionar las pestañas -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const tabs = document.querySelectorAll(".tabs .tab");
@@ -102,11 +80,9 @@
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-          // Remover la clase "active" de todas las pestañas y secciones
           tabs.forEach((t) => t.classList.remove("active"));
           tabContents.forEach((c) => c.classList.remove("active"));
 
-          // Añadir la clase "active" a la pestaña y sección seleccionada
           tab.classList.add("active");
           const target = tab.getAttribute("data-tab");
           document.getElementById(target).classList.add("active");
