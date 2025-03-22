@@ -567,33 +567,34 @@ input[type="checkbox"] {
 /*======================================
 =     Página de detalle de producto    =
 ======================================*/
-.product-detail {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
+.product-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
-
 .product-container {
   display: flex;
-  gap: 2rem;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  justify-content: space-between;
+  align-items: flex-start;
 }
-
-.product-container img {
-  width: 300px;
-  border-radius: 8px;
-  object-fit: cover;
+.product-image {
+  flex: 1;
 }
-
-.product-info {
-  max-width: 400px;
+.product-image img {
+  max-width: 100%;
+  height: auto;
 }
-
-.product-info h2 {
-  margin-top: 0;
+.product-description {
+  flex: 2;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.product-price {
+  flex: 1;
+  text-align: right;
+  font-size: 24px;
+  font-weight: bold;
+  align-self: center;
 }
 
 /*======================================
@@ -632,6 +633,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+/* Mejorar la visibilidad del dropdown del carrito */
 .cart-dropdown {
   display: none;
   position: absolute;
@@ -640,11 +642,13 @@ input[type="checkbox"] {
   width: 300px;
   background: #fff;
   border: 1px solid #ddd;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   padding: 10px;
   z-index: 100;
-  color: #000; /* Asegura que el texto se muestre en negro */
+  color: #000;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .cart-btn:hover .cart-dropdown {
@@ -723,7 +727,6 @@ input[type="checkbox"] {
   background: #2980b9;
   transform: translateY(-2px);
 }
-
 
 /* ---------------------------- */
 /* Notificación emergente       */

@@ -9,12 +9,19 @@
 </head>
 <body>
   <div id="header-placeholder"></div>
+  <!-- Inyección del header -->
+  <div id="header-placeholder"></div>
   <script>
     fetch('header.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-        });
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
   </script>
 
   <h2>Mostrando resultados para "Palabras buscadas"</h2>
@@ -94,26 +101,27 @@
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-<!-- Script para manejar las pestañas secundarias -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const tabs = document.querySelectorAll(".tabs .tab");
-    const tabContents = document.querySelectorAll(".tab-content");
+  <!-- Script para manejar las pestañas secundarias -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".tabs .tab");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        // Remover la clase "active" de todas las pestañas y secciones
-        tabs.forEach((t) => t.classList.remove("active"));
-        tabContents.forEach((c) => c.classList.remove("active"));
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remover la clase "active" de todas las pestañas y secciones
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
 
-        // Añadir la clase "active" a la pestaña y sección seleccionada
-        tab.classList.add("active");
-        const target = tab.getAttribute("data-tab");
-        document.getElementById(target).classList.add("active");
+          // Añadir la clase "active" a la pestaña y sección seleccionada
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-tab");
+          document.getElementById(target).classList.add("active");
+        });
       });
     });
-  });
-</script>
-
+  </script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

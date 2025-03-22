@@ -3,35 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mis Compras</title>
+  <title>UnderSounds - Mis Compras</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Estilos básicos adicionales para este archivo */
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .order {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #fafafa;
+    }
+    .order h2 {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      color: #3498db;
+    }
+    .order p {
+      margin: 5px 0;
+    }
+    .no-orders {
+      text-align: center;
+      font-size: 1.1em;
+      color: #888;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
-    <script>
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
-  <main class="content">
-    <section id="compras">
-      <h2>Mis Compras</h2>
-      <h3>Lista de Compras</h3>
-      <ul>
-        <li>Producto 1 - $10.00</li>
-        <li>Producto 2 - $20.00</li>
-        <li>Producto 3 - $30.00</li>
-      </ul>
-    </section>
-  </main>
-  <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+  <!-- Inyección del header -->
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>
+
+  <div class="container">
+    <h1>Mis Compras</h1>
+    <!-- Contenedor donde se mostrarán los pedidos -->
+    <div id="orders-container"></div>
+  </div>
+
   <footer>
-    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+    <p style="text-align: center;">&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
-  <script src="js/main.js"></script>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Recupera los pedidos almacenados en localStorage
+      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      const ordersContainer = document.getElementById('orders-container');
+
+      // Si no hay pedidos, muestra un mensaje
+      if (orders.length === 0) {
+        ordersContainer.innerHTML = '<p class="no-orders">No se ha realizado ningún pedido.</p>';
+      } else {
+        // Por cada pedido, crea un elemento para mostrar la información
+        orders.forEach((order, index) => {
+          const orderDiv = document.createElement('div');
+          orderDiv.classList.add('order');
+
+          orderDiv.innerHTML = `
+            <h2>Pedido ${index + 1}</h2>
+            <p><strong>Número de artículos:</strong> ${order.numItems}</p>
+            <p><strong>Fecha:</strong> ${order.date}</p>
+            <p><strong>Precio Total:</strong> $${order.totalPrice}</p>
+          `;
+          ordersContainer.appendChild(orderDiv);
+        });
+      }
+    });
+  </script>
+  <script src="js/confirmar_pedido.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

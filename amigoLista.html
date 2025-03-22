@@ -8,13 +8,18 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header común -->
+  <!-- Inyección del header -->
   <div id="header-placeholder"></div>
   <script>
     fetch('header.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
       });
   </script>
 
@@ -59,7 +64,7 @@
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
-
+  <script src="js/app.js"></script>
   <!-- Script para cargar los datos del fan -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -106,5 +111,6 @@
       }
     });
   </script>
+  <script src="js/app.js"></script>
 </body>
 </html>

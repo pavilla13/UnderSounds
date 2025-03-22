@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-  // Recuperar el carrito del localStorage
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
   // Cargar header de forma asíncrona
   fetch('header.html')

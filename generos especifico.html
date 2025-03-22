@@ -8,14 +8,20 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Inyección del header -->
   <div id="header-placeholder"></div>
-<script>
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('header-placeholder').innerHTML = data;
-    });
-</script>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>
 
   <!-- Contenido principal: Géneros -->
 
@@ -75,5 +81,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
