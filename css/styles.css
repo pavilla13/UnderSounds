@@ -751,6 +751,180 @@ input[type="checkbox"] {
 }
 
 /*======================================
+=          SECCIÓN DE MÚSICA           =
+======================================*/
+
+/* CSS específico para la sección de tarjetas (solo dentro de .music-section) */
+.music-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;          /* Espacio entre tarjetas */
+  margin-bottom: 3rem; /* Separación entre filas */
+  justify-content: center;
+}
+
+.music-section .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
+  background-color: #fff;
+  text-decoration: none;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.music-section .card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.music-section .card-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.music-section .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* CSS específico para la sección de canciones Best Of's */
+.bestofs-songs .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;          /* Espacio entre tarjetas */
+  margin-bottom: 3rem; /* Separación entre filas */
+  justify-content: center;
+}
+
+.bestofs-songs .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
+  background-color: #fff;
+  text-decoration: none;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.bestofs-songs .card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.bestofs-songs .card-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.bestofs-songs .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+/* CSS específico para la sección de álbumes */
+.album-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;          /* Espacio entre tarjetas */
+  margin-bottom: 3rem; /* Separación entre filas */
+  justify-content: center;
+}
+
+.album-section .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
+  background-color: #fff;
+  text-decoration: none;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.album-section .card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.album-section .card-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.album-section .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* CSS específico para la sección de géneros */
+.genres-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;          /* Espacio entre tarjetas */
+  margin-bottom: 3rem; /* Separación entre filas */
+  justify-content: center;
+}
+
+.genres-section .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
+  background-color: #fff;
+  text-decoration: none;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.genres-section .card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.genres-section .card-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.genres-section .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+/*======================================
 =           BOTÓN DE AYUDA             =
 ======================================*/
 .help-button {

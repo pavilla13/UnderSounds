@@ -15,7 +15,7 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
+        // Inicialización del carrito tras cargar el header
         setTimeout(() => {
           updateCartCount();
           updateCartDropdown();
@@ -23,18 +23,18 @@
       });
   </script>
 
-  <!-- Contenido principal: Detalles de la canción -->
+  <!-- Contenido principal: Detalles de la Canción -->
   <main class="content">
     <h2>Detalles de la Canción</h2>
     <div class="song-details">
       <div class="song-info">
-        <img src="images/song-cover.jpg" alt="Portada del álbum" class="song-cover">
+        <img id="song-cover" src="" alt="Portada de la canción" class="song-cover">
         <div class="song-metadata">
-          <h3 class="song-title">Nombre de la Canción</h3>
-          <p class="song-artist">Artista: Nombre del Artista</p>
-          <p class="song-album">Álbum: Nombre del Álbum</p>
-          <p class="song-genre">Género: Rock</p>
-          <p class="song-duration">Duración: 3:45</p>
+          <h3 class="song-title" id="song-title"></h3>
+          <p class="song-artist" id="song-artist"></p>
+          <p class="song-album" id="song-album"></p>
+          <p class="song-genre" id="song-genre"></p>
+          <p class="song-duration" id="song-duration"></p>
         </div>
       </div>
       <div class="song-controls">
@@ -44,13 +44,7 @@
       </div>
       <div class="song-lyrics">
         <h4>Letra de la Canción</h4>
-        <p>
-          Aquí va la letra de la canción...
-          <br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          <br>
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p id="song-lyrics-text"></p>
       </div>
     </div>
   </main>
@@ -58,10 +52,78 @@
   <!-- Botón de Ayuda Flotante -->
   <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Footer común -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Script para cargar la información de la canción -->
+  <script>
+    // Datos de ejemplo para las canciones (en una aplicación real estos datos vendrían de una API o base de datos)
+    const canciones = {
+      "1": {
+        title: "Bohemian Rhapsody",
+        artist: "Queen",
+        album: "A Night at the Opera",
+        genre: "Rock",
+        duration: "5:55",
+        cover: "images/bohemian-rhapsody.jpg",
+        lyrics: "Is this the real life? Is this just fantasy?..."
+      },
+      "2": {
+        title: "Blinding Lights",
+        artist: "The Weeknd",
+        album: "After Hours",
+        genre: "Pop",
+        duration: "3:20",
+        cover: "images/blinding-lights.jpg",
+        lyrics: "I said, ooh, I'm blinded by the lights..."
+      },
+      "3": {
+        title: "Animals",
+        artist: "Martin Garrix",
+        album: "Animals",
+        genre: "Electrónica",
+        duration: "5:03",
+        cover: "images/animals.jpg",
+        lyrics: "The club is full of energy..."
+      },
+      "4": {
+        title: "Take Five",
+        artist: "The Dave Brubeck Quartet",
+        album: "Time Out",
+        genre: "Jazz",
+        duration: "5:24",
+        cover: "images/take-five.jpg",
+        lyrics: "Instrumental..."
+      }
+      // Agrega más canciones según se necesite
+    };
+
+    // Función para obtener parámetros de la URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Obtener el id de la canción de la URL
+    const songId = getQueryParam('id');
+
+    // Actualizar la página con la información correspondiente
+    if (songId && canciones[songId]) {
+      const song = canciones[songId];
+      document.getElementById('song-title').textContent = song.title;
+      document.getElementById('song-artist').textContent = "Artista: " + song.artist;
+      document.getElementById('song-album').textContent = "Álbum: " + song.album;
+      document.getElementById('song-genre').textContent = "Género: " + song.genre;
+      document.getElementById('song-duration').textContent = "Duración: " + song.duration;
+      document.getElementById('song-cover').src = song.cover;
+      document.getElementById('song-cover').alt = "Portada de " + song.title;
+      document.getElementById('song-lyrics-text').textContent = song.lyrics;
+    } else {
+      document.querySelector('.content').innerHTML = "<p>La canción no se encontró.</p>";
+    }
+  </script>
 
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>

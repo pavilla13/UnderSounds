@@ -6,9 +6,12 @@
   <title>UnderSounds - Inicio</title>
   <!-- Fuente moderna y redondeada -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Aquí enlazamos el CSS con la nueva maquetación y efectos -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
+<body>
   <!-- Inyección del header -->
   <div id="header-placeholder"></div>
   <script>
@@ -24,74 +27,160 @@
       });
   </script>
 
-
-<body>
   <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
   <div class="tabs">
-    <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
     <button class="tab active" data-tab="recientes">Recientes</button>
     <button class="tab" data-tab="bestofs">Best Of's</button>
     <a href="tienda.html" class="tab">Tienda</a>
     <a href="amigos.html" class="tab">Amigos</a>
   </div>
 
-  <!-- Secciones de cada pestaña -->
-  <!-- Recientes (por defecto visible) -->
+  <!-- Sección: Recientes (visible por defecto) -->
   <section id="recientes" class="tab-content active">
     <h2 class="logo">Recientes</h2>
-    <!-- Fila de canciones -->
-    <h3>Canciones Recientes</h3>
-    <div class="row">
-      <a href="cancion.html?id=1" class="card">Canción 1</a>
-      <a href="cancion.html?id=2" class="card">Canción 2</a>
-      <a href="cancion.html?id=3" class="card">Canción 3</a>
-      <a href="cancion.html?id=4" class="card">Canción 4</a>
+    <div class="music-section">
+      <!-- Canciones Recientes -->
+      <h3>Canciones Recientes</h3>
+      <div class="row">
+        <a href="cancion.html?id=1" class="card">
+          <img src="images/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" class="card-img">
+          <div class="card-caption">Bohemian Rhapsody</div>
+        </a>
+        <a href="cancion.html?id=2" class="card">
+          <img src="images/blinding-lights.jpg" alt="Blinding Lights" class="card-img">
+          <div class="card-caption">Blinding Lights</div>
+        </a>
+        <a href="cancion.html?id=3" class="card">
+          <img src="images/animals.jpg" alt="Animals" class="card-img">
+          <div class="card-caption">Animals</div>
+        </a>
+        <a href="cancion.html?id=4" class="card">
+          <img src="images/take-five.jpg" alt="Take Five" class="card-img">
+          <div class="card-caption">Take Five</div>
+        </a>
+      </div>
     </div>
-    <!-- Fila de álbumes -->
-    <h3>Álbumes Recientes</h3>
-    <div class="row">
-      <a href="album.html?id=5" class="card">Álbum 1</a>
-      <a href="album.html?id=6" class="card">Álbum 2</a>
-      <a href="album.html?id=7" class="card">Álbum 3</a>
-      <a href="album.html?id=8" class="card">Álbum 4</a>
+    <div class="album-section">
+      <h3>Álbumes Recientes</h3>
+      <div class="row">
+        <a href="album.html?id=1" class="card">
+          <img src="images/album1.jpg" alt="A Night at the Opera" class="card-img">
+          <div class="card-caption">A Night at the Opera</div>
+        </a>
+        <a href="album.html?id=2" class="card">
+          <img src="images/album2.jpg" alt="Future Nostalgia" class="card-img">
+          <div class="card-caption">Future Nostalgia</div>
+        </a>
+        <a href="album.html?id=3" class="card">
+          <img src="images/album3.jpg" alt="Discovery" class="card-img">
+          <div class="card-caption">Discovery</div>
+        </a>
+        <a href="album.html?id=4" class="card">
+          <img src="images/album4.jpg" alt="Kind of Blue" class="card-img">
+          <div class="card-caption">Kind of Blue</div>
+        </a>
+      </div>
     </div>
-    <!-- Fila de géneros -->
-    <h3>Géneros Recientes</h3>
-    <div class="row">
-      <a href="generos especifico.html?id=1" class="card">Rock</a>
-      <a href="generos especifico.html?id=2" class="card">Pop</a>
-      <a href="generos especifico.html?id=3" class="card">Electrónica</a>
-      <a href="generos especifico.html?id=4" class="card">Jazz</a>
+    
+
+    <!-- Géneros Recientes -->
+    <div class="genres-section">
+      <h3>Géneros Recientes</h3>
+      <div class="row">
+        <a href="generos_especifico.html?id=rock" class="card">
+          <img src="images/rock.jpg" alt="Rock" class="card-img">
+          <div class="card-caption">Rock</div>
+        </a>
+        <a href="generos_especifico.html?id=pop" class="card">
+          <img src="images/pop.jpg" alt="Pop" class="card-img">
+          <div class="card-caption">Pop</div>
+        </a>
+        <a href="generos_especifico.html?id=electronica" class="card">
+          <img src="images/electronica.jpg" alt="Electrónica" class="card-img">
+          <div class="card-caption">Electrónica</div>
+        </a>
+        <a href="generos_especifico.html?id=jazz" class="card">
+          <img src="images/jazz.jpg" alt="Jazz" class="card-img">
+          <div class="card-caption">Jazz</div>
+        </a>
+      </div>
     </div>
+    
   </section>
 
-  <!-- Best Of's -->
+  <!-- Sección: Best Of's -->
   <section id="bestofs" class="tab-content">
     <h2 class="logo">Best Of's</h2>
-    <!-- Fila de canciones Best Of's -->
-    <h3>Mejores Canciones</h3>
-    <div class="row">
-      <a href="cancion.html?id=5" class="card">Canción A</a>
-      <a href="cancion.html?id=6" class="card">Canción B</a>
-      <a href="cancion.html?id=7" class="card">Canción C</a>
-      <a href="cancion.html?id=8" class="card">Canción D</a>
+    
+    <!-- Mejores Canciones -->
+    <div class="bestofs-songs">
+      <h3>Mejores Canciones</h3>
+      <div class="row">
+        <a href="cancion.html?id=9" class="card">
+          <img src="images/stairway-to-heaven.jpg" alt="Stairway to Heaven" class="card-img">
+          <div class="card-caption">Stairway to Heaven</div>
+        </a>
+        <a href="cancion.html?id=10" class="card">
+          <img src="images/like-a-prayer.jpg" alt="Like a Prayer" class="card-img">
+          <div class="card-caption">Like a Prayer</div>
+        </a>
+        <a href="cancion.html?id=11" class="card">
+          <img src="images/one-more-time.jpg" alt="One More Time" class="card-img">
+          <div class="card-caption">One More Time</div>
+        </a>
+        <a href="cancion.html?id=12" class="card">
+          <img src="images/so-what.jpg" alt="So What" class="card-img">
+          <div class="card-caption">So What</div>
+        </a>
+      </div>
     </div>
-    <!-- Fila de álbumes Best Of's -->
-    <h3>Mejores Álbumes</h3>
-    <div class="row">
-      <a href="album.html?id=1" class="card">Álbum A</a>
-      <a href="album.html?id=2" class="card">Álbum B</a>
-      <a href="album.html?id=3" class="card">Álbum C</a>
-      <a href="album.html?id=4" class="card">Álbum D</a>
+    
+    
+    <!-- Mejores Álbumes -->
+    <div class="album-section">
+      <h3>Mejores Álbumes</h3>
+      <div class="row">
+        <a href="album.html?id=9" class="card">
+          <img src="images/album9.jpg" alt="Led Zeppelin IV" class="card-img">
+          <div class="card-caption">Led Zeppelin IV</div>
+        </a>
+        <a href="album.html?id=10" class="card">
+          <img src="images/album10.jpg" alt="Thriller" class="card-img">
+          <div class="card-caption">Thriller</div>
+        </a>
+        <a href="album.html?id=11" class="card">
+          <img src="images/album11.jpg" alt="Random Access Memories" class="card-img">
+          <div class="card-caption">Random Access Memories</div>
+        </a>
+        <a href="album.html?id=12" class="card">
+          <img src="images/album12.jpg" alt="Blue Train" class="card-img">
+          <div class="card-caption">Blue Train</div>
+        </a>
+      </div>
     </div>
-    <!-- Fila de géneros Best Of's -->
-    <h3>Mejores Géneros</h3>
-    <div class="row">
-      <a href="generos especifico.html?id=1" class="card">Rock</a>
-      <a href="generos especifico.html?id=2" class="card">Pop</a>
-      <a href="generos especifico.html?id=3" class="card">Electrónica</a>
-      <a href="generos especifico.html?id=4" class="card">Jazz</a>
+    
+    <div class="genres-section">
+      <h3>Mejores Géneros</h3>
+      <div class="row">
+      <a href="generos_especifico.html?id=reggaeton" class="card">
+        <img src="images/reggaeton.jpg" alt="Reggaeton" class="card-img">
+        <div class="card-caption">Reggaeton</div>
+      </a>
+      <a href="generos_especifico.html?id=techno" class="card">
+        <img src="images/techno.jpg" alt="Techno" class="card-img">
+        <div class="card-caption">Techno</div>
+      </a>
+      <a href="generos_especifico.html?id=hiphop" class="card">
+        <img src="images/hiphop.jpg" alt="Hip Hop" class="card-img">
+        <div class="card-caption">Hip Hop</div>
+      </a>
+      <a href="generos_especifico.html?id=salsa" class="card">
+        <img src="images/salsa.jpg" alt="Salsa" class="card-img">
+        <div class="card-caption">Salsa</div>
+      </a>
+      </div>
     </div>
+    
   </section>
 
   <!-- Botón de Ayuda Flotante -->
@@ -102,9 +191,8 @@
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Script principal -->
+  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>
-
 </body>
 </html>
