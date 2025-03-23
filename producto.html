@@ -7,6 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
+    /* Estilos para asegurar que el footer quede al final */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    main {
+      flex: 1;
+    }
+    
     /* Estilos específicos para la página de producto */
     main {
       max-width: 1000px;
@@ -46,6 +62,11 @@
     </div>
   </main>
 
+  <!-- Botón para volver a la tienda -->
+  <div class="back-to-store">
+    <a href="tienda.html" class="btn-back-store">Volver a la tienda</a>
+  </div>
+  
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>

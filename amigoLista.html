@@ -6,6 +6,81 @@
   <title>UnderSounds - Perfil de Amigo</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    /* Estilos para el perfil de amigo */
+    .fan-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .fan-avatar {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #0077cc;
+    }
+    .fan-details {
+      flex: 1;
+    }
+    .fan-details h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .fan-details p {
+      font-size: 1.1rem;
+      margin: 0.3rem 0;
+      color: #555;
+    }
+    /* Secciones de favoritos y actividad */
+    .section {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      border-bottom: 2px solid #0077cc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #0077cc;
+    }
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .section li {
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #0077cc;
+      background-color: #f0f8ff;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <!-- Inyección del header -->
@@ -15,7 +90,6 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
         setTimeout(() => {
           updateCartCount();
           updateCartDropdown();
@@ -23,21 +97,21 @@
       });
   </script>
 
-  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <!-- Menú de pestañas -->
   <div class="tabs">
     <a href="index.html" class="tab">Recientes</a>
     <a href="index.html#bestofs" class="tab">Best Of's</a>
     <a href="tienda.html" class="tab">Tienda</a>
-    <a href="amigos.html" class="tab">Amigos</a> <!-- La pestaña de Amigos está activa -->
+    <a href="amigos.html" class="tab active">Amigos</a>
   </div>
 
-  <!-- Contenido principal: Perfil del fan -->
+  <!-- Contenido principal: Perfil del amigo -->
   <main class="content">
     <h1>Perfil de Amigo</h1>
 
-    <!-- Información del fan -->
+    <!-- Información del amigo -->
     <section class="fan-info">
-      <img src="images/fan1.jpg" alt="Fan 1" class="fan-avatar">
+      <img src="" alt="Avatar del Fan" class="fan-avatar" id="fan-avatar">
       <div class="fan-details">
         <h2 id="fan-name">Nombre del Amigo</h2>
         <p id="fan-description">Descripción del amigo...</p>
@@ -46,13 +120,27 @@
       </div>
     </section>
 
-    <!-- Sección de actividad reciente (opcional) -->
-    <section class="recent-activity">
+    <!-- Sección de canciones favoritas -->
+    <section class="section favorite-songs">
+      <h2>Canciones Favoritas</h2>
+      <ul id="favorite-songs-list">
+        <!-- Se llenará dinámicamente -->
+      </ul>
+    </section>
+
+    <!-- Sección de álbumes favoritos -->
+    <section class="section favorite-albums">
+      <h2>Álbumes Favoritos</h2>
+      <ul id="favorite-albums-list">
+        <!-- Se llenará dinámicamente -->
+      </ul>
+    </section>
+
+    <!-- Sección de actividad reciente -->
+    <section class="section recent-activity">
       <h2>Actividad Reciente</h2>
       <ul id="fan-activity">
-        <li>Escuchó "Canción 1" de Artista 1</li>
-        <li>Agregó "Álbum 2" a su lista de favoritos</li>
-        <li>Compró "Vinilo 3" en la tienda</li>
+        <!-- Se llenará dinámicamente -->
       </ul>
     </section>
   </main>
@@ -60,57 +148,135 @@
   <!-- Botón de Ayuda Flotante -->
   <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Footer común -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
-  <script src="js/app.js"></script>
-  <!-- Script para cargar los datos del fan -->
+
+  <!-- Script para cargar dinámicamente los datos del amigo -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Obtener el ID del fan desde la URL
+      // Obtener el ID del amigo desde la URL
       const urlParams = new URLSearchParams(window.location.search);
       const fanId = urlParams.get('id');
 
-      // Simulación de datos del fan (puedes reemplazar esto con una llamada a una API)
-      const fanData = {
+      // Datos de ejemplo del amigo con ejemplos reales
+      const friendData = {
         1: {
-          name: "Amigo 1",
-          description: "Descripción del amigo 1...",
+          name: "Carlos Rodríguez",
+          description: "Apasionado por el rock y pop, siempre en búsqueda de nuevos sonidos y experiencias musicales.",
           genres: "Rock, Pop",
           lastSeen: "Hace 2 días",
+          avatar: "assets/images/amigo1.jpg",
+          favoriteSongs: [
+            "Bohemian Rhapsody - Queen",
+            "Stairway to Heaven - Led Zeppelin",
+            "Imagine - John Lennon"
+          ],
+          favoriteAlbums: [
+            "A Night at the Opera - Queen",
+            "Led Zeppelin IV - Led Zeppelin",
+            "Abbey Road - The Beatles"
+          ],
           activity: [
-            "Escuchó 'Canción 1' de Artista 1",
-            "Agregó 'Álbum 2' a su lista de favoritos",
-            "Compró 'Vinilo 3' en la tienda"
+            "Escuchó 'Bohemian Rhapsody' de Queen",
+            "Agregó 'Abbey Road' a su lista de favoritos",
+            "Compró 'Thriller' en la tienda"
           ]
         },
         2: {
-          name: "Amigo 2",
-          description: "Descripción del amigo 2...",
+          name: "María González",
+          description: "Apasionada por la electrónica y el jazz, exploradora de ritmos y sonidos innovadores.",
           genres: "Electrónica, Jazz",
           lastSeen: "Hace 5 días",
+          avatar: "assets/images/amiga2.jpg",
+          favoriteSongs: [
+            "Billie Jean - Michael Jackson",
+            "Uptown Funk - Mark Ronson ft. Bruno Mars",
+            "Shape of You - Ed Sheeran"
+          ],
+          favoriteAlbums: [
+            "Thriller - Michael Jackson",
+            "1989 - Taylor Swift",
+            "Divide - Ed Sheeran"
+          ],
           activity: [
-            "Escuchó 'Canción 3' de Artista 2",
-            "Agregó 'Álbum 4' a su lista de favoritos"
+            "Escuchó 'Billie Jean' de Michael Jackson",
+            "Agregó '1989' a su lista de favoritos",
+            "Compartió 'Shape of You' en redes sociales"
+          ]
+        },
+        3: {
+          name: "Lucía Fernández",
+          description: "Fanática del indie y el folk, siempre descubriendo nuevas bandas y letras profundas.",
+          genres: "Indie, Folk",
+          lastSeen: "Hace 1 día",
+          avatar: "assets/images/amiga4.jpg",
+          favoriteSongs: [
+            "Skinny Love - Bon Iver",
+            "Riptide - Vance Joy",
+            "Holocene - Bon Iver"
+          ],
+          favoriteAlbums: [
+            "For Emma, Forever Ago - Bon Iver",
+            "Dream Your Life Away - Vance Joy",
+            "Punisher - Phoebe Bridgers"
+          ],
+          activity: [
+            "Escuchó 'Riptide' de Vance Joy",
+            "Comentó sobre 'Punisher' en el foro de fans",
+            "Agregó 'Skinny Love' a su playlist de favoritos"
+          ]
+        },
+        4: {
+          name: "David Martínez",
+          description: "Aficionado al rap y al hip hop clásico. Cree que la música puede cambiar el mundo.",
+          genres: "Hip Hop, Rap",
+          lastSeen: "Hace 6 horas",
+          avatar: "assets/images/amigo3.jpg",
+          favoriteSongs: [
+            "Lose Yourself - Eminem",
+            "Juicy - The Notorious B.I.G.",
+            "N.Y. State of Mind - Nas"
+          ],
+          favoriteAlbums: [
+            "The Marshall Mathers LP - Eminem",
+            "Ready to Die - The Notorious B.I.G.",
+            "Illmatic - Nas"
+          ],
+          activity: [
+            "Escuchó 'Juicy' de The Notorious B.I.G.",
+            "Agregó 'Illmatic' como su álbum favorito",
+            "Publicó una reseña sobre 'Lose Yourself'"
           ]
         }
+
       };
 
-      // Cargar los datos del fan en la página
-      if (fanData[fanId]) {
-        document.getElementById("fan-name").textContent = fanData[fanId].name;
-        document.getElementById("fan-description").textContent = fanData[fanId].description;
-        document.getElementById("fan-genres").textContent = fanData[fanId].genres;
-        document.getElementById("fan-last-seen").textContent = fanData[fanId].lastSeen;
+      // Actualizar la página con los datos del amigo
+      if (friendData[fanId]) {
+        const fan = friendData[fanId];
+        document.getElementById("fan-name").textContent = fan.name;
+        document.getElementById("fan-description").textContent = fan.description;
+        document.getElementById("fan-genres").textContent = fan.genres;
+        document.getElementById("fan-last-seen").textContent = fan.lastSeen;
+        document.getElementById("fan-avatar").src = fan.avatar;
+        document.getElementById("fan-avatar").alt = `Avatar de ${fan.name}`;
+
+        const songsList = document.getElementById("favorite-songs-list");
+        songsList.innerHTML = fan.favoriteSongs.map(song => `<li>${song}</li>`).join("");
+
+        const albumsList = document.getElementById("favorite-albums-list");
+        albumsList.innerHTML = fan.favoriteAlbums.map(album => `<li>${album}</li>`).join("");
 
         const activityList = document.getElementById("fan-activity");
-        activityList.innerHTML = fanData[fanId].activity.map(activity => `<li>${activity}</li>`).join("");
+        activityList.innerHTML = fan.activity.map(act => `<li>${act}</li>`).join("");
       } else {
-        document.getElementById("fan-name").textContent = "Fan no encontrado";
+        document.querySelector(".content").innerHTML = "<p>Fan no encontrado</p>";
       }
     });
   </script>
+
   <script src="js/app.js"></script>
 </body>
 </html>

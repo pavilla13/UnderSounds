@@ -1,6 +1,6 @@
 /* js/app.js */
 
-// Catálogo de productos (ajusta o amplía según tu catálogo)
+// Catálogo de productos
 const productCatalog = {
   1: {
     title: "Thriller - Michael Jackson (CD)",
@@ -370,7 +370,7 @@ const productCatalog = {
       localStorage.removeItem('orders');
     }
 
-    // Primero, poblar productos
+    // Primero, rellenar productos
     populateProducts();
     
     // Luego, asignar eventos a los botones recién creados
@@ -390,12 +390,10 @@ const productCatalog = {
       });
     });
     
-    // Actualiza el dropdown del carrito (si existe) y el contador
+    // Actualiza el dropdown del carrito y el contador
     updateCartDropdown();
     updateCartCount();
     
-    // En la página de checkout, si existe el botón para confirmar el pedido,
-    // al hacer clic vaciamos el carrito.
     const confirmOrderButton = document.getElementById('confirm-order');
     if (confirmOrderButton) {
       confirmOrderButton.addEventListener('click', () => {
@@ -409,7 +407,7 @@ const productCatalog = {
       renderCart();
       updateCartCount();
 
-      // Confirmar el pedido: vaciar el carrito y notificar (esto es opcional y podría depender de tu flujo)
+      // Confirmar el pedido: vaciar el carrito
       const confirmOrder = document.getElementById('confirm-order');
       confirmOrder.addEventListener('click', () => {
         emptyCart();
@@ -434,9 +432,7 @@ const productCatalog = {
       const paymentForm = document.getElementById('payment-form');
       paymentForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Aquí podrías agregar la lógica de validación y procesamiento del pago.
         showNotification("Pago confirmado. Gracias por su compra.");
-        // Si se desea, se puede vaciar el carrito tras el pago.
         emptyCart();
       });
 

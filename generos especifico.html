@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UnderSounds - Géneros</title>
+  <title>UnderSounds - Género</title>
+  <!-- Fuente moderna y redondeada -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .genre-header {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .genre-content {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <!-- Inyección del header -->
@@ -15,7 +27,6 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
         setTimeout(() => {
           updateCartCount();
           updateCartDropdown();
@@ -23,64 +34,22 @@
       });
   </script>
 
-  <!-- Contenido principal: Géneros -->
-
-  <div class="tabs">
-    <!-- data-tab indica el ID de la sección que mostrará al hacer clic -->
-    <button class="tab active" data-tab="recientes">Recientes</button>
-    <button class="tab" data-tab="bestofs">Best Of's</button>
-    <a href="tienda.html" class="tab">Tienda</a>
-    <button class="tab" data-tab="amigos">Amigos</button>
-  </div>
-
-  <!-- Secciones de cada pestaña -->
-  <section id="generos" class="tab-content active">
-    <h2 class="logo">Género X</h2>
-    <!-- Fila de álbumes -->
-    <h3>Álbumes</h3>
-    <div class="row">
-      <a href="album.html?id=5" class="card">Álbum 1</a>
-      <a href="album.html?id=6" class="card">Álbum 2</a>
-      <a href="album.html?id=7" class="card">Álbum 3</a>
-      <a href="album.html?id=8" class="card">Álbum 4</a>
+  <!-- Contenido específico del género -->
+  <main class="genre-content" id="genre-content">
+    <div class="genre-header">
+      <h1 id="genre-name">Nombre del Género</h1>
+      <img id="genre-image" src="" alt="Imagen del Género" style="max-width: 300px;">
     </div>
+    <p id="genre-description">Descripción del género.</p>
+  </main>
 
-    <!-- Fila de canciones -->
-    <h3>Pistas y Canciones</h3>
-    <div class="row">
-      <a href="cancion.html?id=1" class="card">Canción 1</a>
-      <a href="cancion.html?id=2" class="card">Canción 2</a>
-      <a href="cancion.html?id=3" class="card">Canción 3</a>
-      <a href="cancion.html?id=4" class="card">Canción 4</a>
-    </div>
-
-    <!-- Fila de Artistas -->
-    <h3>Artistas</h3>
-    <div class="row">
-      <a href="artistas.html?id=1" class="card">Artista 1</a>
-      <a href="artistas.html?id=2" class="card">Artista 2</a>
-      <a href="artistas.html?id=3" class="card">Artista 3</a>
-      <a href="artistas.html?id=4" class="card">Artista 4</a>
-    </div>
-    <!--Fila de Sellos-->
-    <h3>Sellos Discografico</h3>
-    <div class="row">
-      <a href="sellos.html?id=1" class="card">Sello 1</a>
-      <a href="sellos.html?id=2" class="card">Sello 2</a>
-      <a href="sellos.html?id=3" class="card">Sello 3</a>
-      <a href="sellos.html?id=4" class="card">Sello 4</a>
-    </div>
-  </section>
-
-  <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
-
-  <!-- Footer común -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Carga de scripts -->
+  <script src="js/generos.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

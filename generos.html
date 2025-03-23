@@ -15,7 +15,6 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
         setTimeout(() => {
           updateCartCount();
           updateCartDropdown();
@@ -23,32 +22,19 @@
       });
   </script>
 
-  <!-- Contenido principal: Géneros -->
-  <main class="content">
+  <!-- Contenedor específico para la página de géneros -->
+  <main class="content genres-page">
     <h2>Buscar por Géneros</h2>
-    <div class="genres-container">
-      <a href="generos especifico.html" class="card">Rock</a>
-      <a href="generos especifico.html" class="card">Pop</a>
-      <a href="generos especifico.html" class="card">Electrónica</a>
-      <a href="generos especifico.html" class="card">Jazz</a>
-      <a href="generos especifico.html" class="card">Reggaeton</a>
-      <a href="generos especifico.html" class="card">Techno</a>
-      <a href="generos especifico.html" class="card">Hip Hop</a>
-      <a href="generos especifico.html" class="card">Salsa</a>
-      <a href="generos especifico.html" class="card">...</a>
-      <!-- Agrega más géneros según sea necesario -->
-    </div>
+    <div class="genres-container"></div>
   </main>
 
-  <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
-
-  <!-- Footer común -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Carga de scripts -->
+  <script src="js/generos.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -15,6 +15,27 @@ body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
   color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  flex: 1; /* Este contenedor ocupa el espacio restante */
+}
+
+.footer {
+  background-color: #ccc;
+  padding: 1rem;
+}
+
+main.favorites {
+  flex: 1; /* Este contenedor se expande para ocupar el espacio disponible */
 }
 
 /*======================================
@@ -139,7 +160,7 @@ header {
 =           MAIN CONTENT               =
 ======================================*/
 .content {
-  padding: 2rem;
+  padding: 5rem;
   text-align: center;
 }
 
@@ -148,7 +169,7 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 5rem;
   margin-top: 1rem;
 }
 
@@ -157,6 +178,55 @@ header {
   padding: 1rem 2rem;
   border-radius: 50px;
   font-size: 1.2rem;
+}
+
+/* Contenedor de tarjetas */
+.genres-page .genres-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+  padding: 0 40px;
+}
+
+/* Carta del género */
+.genres-page .card {
+  display: flex;
+  flex-direction: column;   /* Hace que imagen y caption estén uno debajo del otro */
+  align-items: center;
+  height: auto;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+}
+
+/* Hover efecto */
+.genres-page .card:hover {
+  transform: scale(1.03);
+}
+
+/* Imagen más pequeña */
+.genres-page .card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Pie de foto debajo de la imagen */
+.genres-page .card-caption {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 16px;
+  color: #222;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* Formularios */
@@ -206,7 +276,7 @@ header {
 /* Agrega espacio entre el título y el formulario */
 .login-page h2.logo {
   margin-top: 15px;
-  margin-bottom: 40px; /* Ajusta el valor según necesites */
+  margin-bottom: 40px;
 }
 
 /* Agrega espacio justo antes y después del botón de iniciar sesión */
@@ -279,7 +349,7 @@ input[type="checkbox"] {
   width: 100%;
   padding: 0;    /* Elimina padding para que ocupe todo el ancho */
   margin: 0;     /* Elimina márgenes extra */
-  background-color: #333;  /* Puedes mantener o cambiar el fondo */
+  background-color: #333;
 }
 
 .store-tabs .tabs .tab {
@@ -293,7 +363,6 @@ input[type="checkbox"] {
   transition: background-color 0.3s;
 }
 
-/* Opcional: Para evitar dobles bordes entre botones */
 .store-tabs .tabs .tab:not(:last-child) {
   border-right: none;
 }
@@ -340,7 +409,7 @@ input[type="checkbox"] {
   font-family: 'Nunito', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #333; /* Ajusta el color según lo desees */
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -362,10 +431,10 @@ input[type="checkbox"] {
 /* Estilo para el carrito */
 .cart-btn {
   position: relative;  /* Evita que el cambio de margin-left afecte a otros elementos */
-  margin-top: 5px;     /* Lo baja un poco */
+  margin-top: 5px;
 }
 .cart-btn img {
-  width: 40px; /* Ajusta el tamaño según convenga */
+  width: 40px;
   height: auto;
 }
 
@@ -373,11 +442,11 @@ input[type="checkbox"] {
 .profile-container {
   position: relative;
   cursor: pointer;
-  margin-top: 5px;  /* Baja el perfil un poco */
+  margin-top: 5px;
 }
 
 .profile-icon {
-  width: 40px; /* Ajusta el tamaño según convenga */
+  width: 40px;
   height: 40px;
   border-radius: 50%;
 }
@@ -414,21 +483,21 @@ input[type="checkbox"] {
 }
 
 .logout-link {
-  color: red; /* Cambia el color a rojo */
+  color: red;
 }
 
 .logout-link:hover {
-  color: darkred; /* Opción para cambiar el color al pasar el cursor */
+  color: darkred;
 }
 
 .recover-btn{
   background-color: #f39c12;
   color: #fff;
-  padding: 5px 10px; /* Reducir el tamaño del botón */
+  padding: 5px 10px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  font-size: 15px; /* Hacer la fuente más pequeña */
+  font-size: 15px;
   text-decoration: none; /* Eliminar el subrayado si lo hay */
   position: relative;
   margin-left: 120px;
@@ -482,14 +551,14 @@ input[type="checkbox"] {
 
 .card h3 {
   margin: 0;
-  font-family: 'Playfair Display', serif; /* Fuente elegante para el título */
-  font-size: 1rem; /* Ajusta el tamaño según prefieras */
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
 }
 
 .card p {
   margin: 0.3rem 0;
   font-size: 0.8rem;
-  font-family: 'Merriweather', serif; /* Fuente elegante para la descripción */
+  font-family: 'Merriweather', serif;
 }
 
 .card .price {
@@ -497,7 +566,6 @@ input[type="checkbox"] {
   margin: 0.3rem 0;
 }
 
-/* Botones más elegantes */
 .card button {
   border: none;
   padding: 0.6rem 1.2rem;
@@ -510,8 +578,8 @@ input[type="checkbox"] {
 }
 
 .store-content .row {
-  gap: 5rem; /* Espacio mayor entre elementos */
-  margin: 5rem auto 0; /* 5rem arriba, auto izquierda y derecha para centrar */
+  gap: 5rem;
+  margin: 5rem auto 0;
   display: flex;
   flex-direction: column; /* Cada tarjeta en su propia fila */
   align-items: center; /* Centra los elementos hijos */
@@ -521,7 +589,7 @@ input[type="checkbox"] {
 .store-content .card {
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 1000px; /* Más ancho para mostrar más texto */
+  max-width: 1000px;
   text-align: center;
   display: flex;
   gap: 1rem;
@@ -571,12 +639,15 @@ input[type="checkbox"] {
   text-align: center;
   font-size: 32px;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
 .product-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 60px;
 }
+
 .product-image {
   flex: 1;
 }
@@ -596,6 +667,22 @@ input[type="checkbox"] {
   font-weight: bold;
   align-self: center;
 }
+
+.btn-back-store {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  background-color: #e67e22;
+  color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+  display: block;       /* Para que acepte margen automático */
+  margin: 0 auto;       /* Centra el elemento horizontalmente */
+  width: max-content;
+}
+
 
 /*======================================
 =       Páginas de carrito y favoritos =
@@ -696,7 +783,7 @@ input[type="checkbox"] {
   border-radius: 50%;          /* Forma circular */
   width: 32px;
   height: 32px;
-  font-size: 1.2rem;           /* Tamaño del icono/emoji */
+  font-size: 1.2rem;           
   color: #fff;
   display: flex;
   align-items: center;
@@ -715,7 +802,7 @@ input[type="checkbox"] {
   background: #3498db;         /* Fondo azul */
   border: none;
   border-radius: 4px;
-  padding: 0.2rem 0.8rem; /* Aumenta el padding horizontal para que sean más alargados */
+  padding: 0.2rem 0.8rem;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
@@ -754,147 +841,29 @@ input[type="checkbox"] {
 =          SECCIÓN DE MÚSICA           =
 ======================================*/
 
-/* CSS específico para la sección de tarjetas (solo dentro de .music-section) */
-.music-section .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;          /* Espacio entre tarjetas */
-  margin-bottom: 3rem; /* Separación entre filas */
-  justify-content: center;
-}
-
-.music-section .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
-  background-color: #fff;
-  text-decoration: none;
-  color: #333;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.music-section .card-img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.music-section .card-caption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #444;
-}
-
-.music-section .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* CSS específico para la sección de canciones Best Of's */
-.bestofs-songs .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;          /* Espacio entre tarjetas */
-  margin-bottom: 3rem; /* Separación entre filas */
-  justify-content: center;
-}
-
-.bestofs-songs .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
-  background-color: #fff;
-  text-decoration: none;
-  color: #333;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.bestofs-songs .card-img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.bestofs-songs .card-caption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #444;
-}
-
-.bestofs-songs .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-
-/* CSS específico para la sección de álbumes */
-.album-section .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;          /* Espacio entre tarjetas */
-  margin-bottom: 3rem; /* Separación entre filas */
-  justify-content: center;
-}
-
-.album-section .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
-  background-color: #fff;
-  text-decoration: none;
-  color: #333;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.album-section .card-img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.album-section .card-caption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #444;
-}
-
-.album-section .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* CSS específico para la sección de géneros */
+/* Reglas comunes para las filas de tarjetas */
+.music-section .row,
+.bestofs-songs .row,
+.album-section .row,
 .genres-section .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;          /* Espacio entre tarjetas */
-  margin-bottom: 3rem; /* Separación entre filas */
+  gap: 2rem;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
   justify-content: center;
 }
 
+/* Reglas comunes para las tarjetas */
+.music-section .card,
+.bestofs-songs .card,
+.album-section .card,
 .genres-section .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1 1 calc(25% - 2rem); /* 4 tarjetas por fila */
+  flex: 1 1 calc(25% - 2rem);
+  max-width: 300px;
   background-color: #fff;
   text-decoration: none;
   color: #333;
@@ -906,21 +875,44 @@ input[type="checkbox"] {
   text-align: center;
 }
 
+/* Imágenes uniformes, sin fondo blanco visible */
+.music-section .card-img,
+.bestofs-songs .card-img,
+.album-section .card-img,
 .genres-section .card-img {
   width: 100%;
-  height: auto;
+  height: 220px;
+  object-fit: cover;
   border-radius: 4px;
+  display: block;
 }
 
+/* Texto debajo de la imagen */
+.music-section .card-caption,
+.bestofs-songs .card-caption,
+.album-section .card-caption,
 .genres-section .card-caption {
   margin-top: 0.5rem;
   font-size: 0.9rem;
   color: #444;
 }
 
+/* Efecto hover */
+.music-section .card:hover,
+.bestofs-songs .card:hover,
+.album-section .card:hover,
 .genres-section .card:hover {
   transform: scale(1.03);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.song-cover {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 
@@ -960,11 +952,11 @@ input[type="checkbox"] {
 .edit-btn{
   background-color: #f39c12;
   color: #fff;
-  padding: 10px 20px; /* Reducir el tamaño del botón */
+  padding: 10px 20px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-size: 15px; /* Hacer la fuente más pequeña */
+  font-size: 15px;
   text-decoration: none; /* Eliminar el subrayado si lo hay */
   position: relative;
   margin-top: 10px;
