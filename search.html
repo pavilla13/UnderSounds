@@ -1,127 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UnderSounds - Buscador</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnderSounds - Buscador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div id="header-placeholder"></div>
-  <!-- Inyección del header -->
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                setTimeout(() => {
+                    if (typeof updateCartCount === 'function') updateCartCount();
+                    if (typeof updateCartDropdown === 'function') updateCartDropdown();
+                }, 100);
+            });
+    </script>
 
-  <h2>Mostrando resultados para "Palabras buscadas"</h2>
-  <div class="store-tabs">
-    <div class="tabs">
-      <button class="tab active" data-tab="todo">Todo</button>
-      <button class="tab" data-tab="artistas">Artistas</button>
-      <button class="tab" data-tab="sellos">Sellos</button>
-      <button class="tab" data-tab="albumes">Albumes</button>
-      <button class="tab" data-tab="canciones">Canciones</button>
+    <h2>Mostrando resultados para "<span id="search-query"></span>"</h2>
+    <div class="store-tabs">
+        <div class="tabs">
+            <button class="tab active" data-tab="todo">Todo</button>
+            <button class="tab" data-tab="artistas">Artistas</button>
+            <button class="tab" data-tab="sellos">Sellos</button>
+            <button class="tab" data-tab="albumes">Álbumes</button>
+            <button class="tab" data-tab="canciones">Canciones</button>
+            <button class="tab" data-tab="amigos">Amigos</button>
+        </div>
     </div>
-  </div>
 
-  <main class="content">
-    
-    <!-- Sección de Todos (Visible por defecto) -->
-    <section id="todo" class="tab-content active">
-      <h2>Todos</h2>
-      <div class="row">
-        <a href="artistas.html?id=1" class="card">Artista 1</a>
-        <a href="album.html?id=2" class="card">Album 3</a>
-        <a href="sellos.html?id=3" class="card">Sello 2</a>
-        <a href="cancion.html?id=4" class="card">Cancion 4</a>
-      </div>
-    </section>
+    <main class="content">
+        <section id="todo" class="tab-content active">
+            <h2>Todos</h2>
+            <div class="row" id="todo-results"></div>
+        </section>
 
-    <!-- Sección de Artistas (oculta por defecto) -->
-    <section id="artistas" class="tab-content">
-      <h2>Artistas</h2>
-      <div class="row">
-        <a href="artistas.html?id=1" class="card">Artistas 1</a>
-        <a href="artistas.html?id=2" class="card">Artistas 2</a>
-        <a href="artistas.html?id=3" class="card">Artistas 3</a>
-        <a href="artistas.html?id=4" class="card">Artistas 4</a>
-      </div>
-    </section>
+        <section id="artistas" class="tab-content">
+            <h2>Artistas</h2>
+            <div class="row" id="artistas-results"></div>
+        </section>
 
-    <!-- Sección de Sellos (oculta por defecto) -->
-    <section id="sellos" class="tab-content">
-      <h2>Sellos</h2>
-      <div class="row">
-        <a href="sellos.html?id=1" class="card">Sellos 1</a>
-        <a href="sellos.html?id=2" class="card">Sellos 2</a>
-        <a href="sellos.html?id=3" class="card">Sellos 3</a>
-        <a href="sellos.html?id=4" class="card">Sellos 4</a>
-      </div>
-    </section>
+        <section id="sellos" class="tab-content">
+            <h2>Sellos</h2>
+            <div class="row" id="sellos-results"></div>
+        </section>
 
-    <!-- Sección de Albumes (oculta por defecto) -->
-    <section id="albumes" class="tab-content">
-      <h2>Albumes</h2>
-      <div class="row">
-        <a href="albumes.html?id=1" class="card">Albumes 1</a>
-        <a href="albumes.html?id=2" class="card">Albumes 2</a>
-        <a href="albumes.html?id=3" class="card">Albumes 3</a>
-        <a href="albumes.html?id=4" class="card">Albumes 4</a>
-      </div>
-    </section>
+        <section id="albumes" class="tab-content">
+            <h2>Álbumes</h2>
+            <div class="row" id="albumes-results"></div>
+        </section>
 
-    <!-- Sección de Cancion (oculta por defecto) -->
-    <section id="canciones" class="tab-content">
-      <h2>Cancion</h2>
-      <div class="row">
-        <a href="canciones.html?id=1" class="card">Cancion 1</a>
-        <a href="canciones.html?id=2" class="card">Cancion 2</a>
-        <a href="canciones.html?id=3" class="card">Cancion 3</a>
-        <a href="canciones.html?id=4" class="card">Cancion 4</a>
-      </div>
-    </section>
+        <section id="canciones" class="tab-content">
+            <h2>Canciones</h2>
+            <div class="row" id="canciones-results"></div>
+        </section>
+        <section id="amigos" class="tab-content">
+            <h2>Amigos</h2>
+            <div class="row" id="amigos-results"></div>
+        </section>
+    </main>
 
-  </main>
+    <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+    <footer>
+        <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+    </footer>
 
-  <footer>
-    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
-  </footer>
+    <script src="js/artistas.js"></script>
+    <script src="js/sellos.js"></script>
+    <script src="js/albumes.js"></script>
+    <script src="js/canciones.js"></script>
+    <script src="js/amigos.js"></script>
 
-  <!-- Script para manejar las pestañas secundarias -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const tabs = document.querySelectorAll(".tabs .tab");
-      const tabContents = document.querySelectorAll(".tab-content");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener el término de búsqueda de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('q') || '';
+            
+            // Mostrar el término exacto que se escribió
+            document.getElementById('search-query').textContent = searchTerm;
+            
+            // Elementos del DOM
+            const tabs = document.querySelectorAll(".tabs .tab");
+            const tabContents = document.querySelectorAll(".tab-content");
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          // Remover la clase "active" de todas las pestañas y secciones
-          tabs.forEach((t) => t.classList.remove("active"));
-          tabContents.forEach((c) => c.classList.remove("active"));
+            // Función para cargar resultados desde los archivos JS
+            function loadData(tab) {
+                let data = [];
+                switch (tab) {
+                    case 'todo':
+                        data = [...artistas, ...sellos, ...albumes, ...canciones, ...amigos];
+                        break;
+                    case 'artistas':
+                        data = artistas;
+                        break;
+                    case 'sellos':
+                        data = sellos;
+                        break;
+                    case 'albumes':
+                        data = albumes;
+                        break;
+                    case 'canciones':
+                        data = canciones;
+                        break;
+                    case 'amigos':
+                        data = amigos;
+                        break;
+                }
+                return data;
+            }
 
-          // Añadir la clase "active" a la pestaña y sección seleccionada
-          tab.classList.add("active");
-          const target = tab.getAttribute("data-tab");
-          document.getElementById(target).classList.add("active");
+            // Función para filtrar los resultados
+            function filterResults(query, tab) {
+                const data = loadData(tab);
+                const filteredData = query 
+                    ? data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
+                    : data;
+                    
+                const resultsContainer = document.getElementById(`${tab}-results`);
+                resultsContainer.innerHTML = filteredData.length
+                    ? filteredData.map(item => `<a href="${item.link}" class="card">${item.name}</a>`).join("")
+                    : `<p>No se encontraron resultados para "${query}".</p>`;
+            }
+
+            // Manejo de las pestañas
+            tabs.forEach((tab) => {
+                tab.addEventListener("click", () => {
+                    tabs.forEach((t) => t.classList.remove("active"));
+                    tabContents.forEach((c) => c.classList.remove("active"));
+                    tab.classList.add("active");
+                    const target = tab.getAttribute("data-tab");
+                    document.getElementById(target).classList.add("active");
+                    filterResults(searchTerm, target);
+                });
+            });
+
+            // Inicialización de la primera búsqueda
+            filterResults(searchTerm, 'todo');
         });
-      });
-    });
-  </script>
-  <script src="js/main.js"></script>
-  <script src="js/app.js"></script>
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
