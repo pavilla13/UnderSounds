@@ -23,8 +23,8 @@ const canciones = [
     id: 3,
     name: "Animals",
     album: "Animals",
-    artist: "Pink Floyd",
-    genre: "Rock",
+    artist: "Martin Garrix",
+    genre: "Electronica",
     image: "assets/images/animals.jpeg",
     url: "cancion.html?id=3"
   },
