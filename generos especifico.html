@@ -27,34 +27,48 @@
       padding: 30px; 
       max-width: 1200px; 
       margin: 0 auto;
+      height: auto;
     }
     .card {
+      display: flex;               /* Para usar flexbox */
+      flex-direction: column;      /* Apilar hijos en columna */
+      align-items: center;         /* Centrar contenido horizontalmente */
       text-decoration: none;
       color: inherit;
-      border: 2px solid #ddd;
       border-radius: 12px;
-      overflow: hidden;
-      width: 400px; 
-      height: 140px; 
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      background-color: #f8f9fa;
-      padding-bottom: 10px; 
+      width: 400px;                /* Ancho fijo */
+      background-color: transparent;
+      margin-top: 100px;
+      transition: transform 0.3s;
     }
+
     .card:hover {
       transform: scale(1.08);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background-color: transparent; /* Mantiene el fondo blanco al pasar el ratón */
     }
+
     .card img {
-      width: 100%;
-      height: 160px; 
-      object-fit: cover;
+      max-width: 400px; /* La imagen no será más ancha que 400px */
+      max-height: 300px; /* La imagen no será más alta que 300px */
+      width: auto;
+      height: auto; /* Elimina espacios extra abajo de la imagen */
     }
+
     .card-caption {
       padding: 12px;
-      font-size: 18px; 
+      font-size: 18px;
       font-weight: bold;
-      color: #333; 
+      color: #333;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
     }
   </style>
 </head>
@@ -89,10 +103,13 @@
   </main>
 
   <!-- Sección de canciones del género -->
-  <section>
+  <section style="margin-bottom: 50px;">
     <h2 style="text-align: center;">Canciones de este género</h2>
     <div id="songs-container" class="songs-container"></div>
   </section>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
   <!-- Footer -->
   <footer>
