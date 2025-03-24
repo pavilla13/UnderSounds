@@ -72,10 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2) Mostrar el DETALLE de una canción (cancion.html)
   // ----------------------
   const urlParams = new URLSearchParams(window.location.search);
-  const songId = urlParams.get("id");
-  if (songId) {
-    const song = canciones.find(s => s.id === parseInt(songId));
+  const songId = Number(urlParams.get("id")); // Convertimos a número
+
+  if (!isNaN(songId) && songId > 0) {
+    const song = canciones.find(s => s.id === songId);
+    
     if (song) {
+      // Elementos del DOM donde insertaremos la información
       const nameEl = document.getElementById("song-name");
       const albumEl = document.getElementById("song-album");
       const artistEl = document.getElementById("song-artist");
@@ -89,10 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
         imageEl.alt = song.name;
       }
     } else {
-      const content = document.getElementById("song-content");
-      if (content) {
-        content.innerHTML = "<p>Canción no encontrada.</p>";
-      }
+      mostrarMensajeError("Canción no encontrada.");
     }
+  } else {
+    mostrarMensajeError("ID de canción inválido.");
   }
 });
+
+/**
+ * Función para mostrar un mensaje de error en la página de detalles.
+ */
+function mostrarMensajeError(mensaje) {
+  const content = document.getElementById("song-content");
+  if (content) {
+    content.innerHTML = `<p>${mensaje}</p>`;
+  }
+}

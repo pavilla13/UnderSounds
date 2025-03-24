@@ -59,64 +59,99 @@ const generos = [
     }
   ];
   
+
   document.addEventListener("DOMContentLoaded", () => {
     // ----------------------
     // 1) Llenar el LISTADO de géneros (generos.html)
     // ----------------------
     const genresContainer = document.querySelector('.genres-container');
     if (genresContainer) {
-      // Limpiamos el contenedor por si hay contenido
-      genresContainer.innerHTML = "";
-      generos.forEach((genre) => {
-        const card = document.createElement("a");
-        card.href = genre.url;
-        card.classList.add("card");
-  
-        // Creamos la imagen
-        const img = document.createElement("img");
-        img.src = genre.image;
-        img.alt = genre.name;
-        img.classList.add("card-img");
-  
-        // Creamos el pie de foto (caption) y lo ubicamos debajo de la imagen
-        const caption = document.createElement("div");
-        caption.classList.add("card-caption");
-        caption.textContent = genre.name;
-  
-        card.appendChild(img);
-        card.appendChild(caption);
-        genresContainer.appendChild(card);
-      });
+        genresContainer.innerHTML = "";
+        generos.forEach((genre) => {
+            const card = document.createElement("a");
+            card.href = genre.url;
+            card.classList.add("card");
+
+            const img = document.createElement("img");
+            img.src = genre.image;
+            img.alt = genre.name;
+            img.classList.add("card-img");
+
+            const caption = document.createElement("div");
+            caption.classList.add("card-caption");
+            caption.textContent = genre.name;
+
+            card.appendChild(img);
+            card.appendChild(caption);
+            genresContainer.appendChild(card);
+        });
     }
-  
+
     // ----------------------
-    // 2) Mostrar el DETALLE de un género (generos especifico.html)
+    // 2) Mostrar el DETALLE de un género (generos-especifico.html)
     // ----------------------
     const urlParams = new URLSearchParams(window.location.search);
     const genreId = urlParams.get("id");
     if (genreId) {
-      // Estamos en la página de detalle de un género
-      const genre = generos.find(g => g.id === genreId);
-  
-      if (genre) {
-        // Rellenamos los elementos del DOM
-        const nameEl = document.getElementById("genre-name");
-        const imageEl = document.getElementById("genre-image");
-        const descEl = document.getElementById("genre-description");
-  
-        if (nameEl) nameEl.textContent = genre.name;
-        if (imageEl) {
-          imageEl.src = genre.image;
-          imageEl.alt = genre.name;
+        const genre = generos.find(g => g.id === genreId);
+
+        if (genre) {
+            const nameEl = document.getElementById("genre-name");
+            const imageEl = document.getElementById("genre-image");
+            const descEl = document.getElementById("genre-description");
+
+            if (nameEl) nameEl.textContent = genre.name;
+            if (imageEl) {
+                imageEl.src = genre.image;
+                imageEl.alt = genre.name;
+            }
+            if (descEl) descEl.textContent = genre.description;
+            cargarCancionesPorGenero(genre.id);
+        } else {
+            const content = document.getElementById("genre-content");
+            if (content) {
+                content.innerHTML = "<p>Género no encontrado.</p>";
+            }
         }
-        if (descEl) descEl.textContent = genre.description;
-      } else {
-        // Si no se encontró ese ID, mostramos un mensaje de error
-        const content = document.getElementById("genre-content");
-        if (content) {
-          content.innerHTML = "<p>Género no encontrado.</p>";
-        }
-      }
     }
-  });
-  
+});
+
+// ----------------------
+// 3) Cargar canciones del género
+// ----------------------
+function cargarCancionesPorGenero(genreName) {
+    const songsContainer = document.getElementById("songs-container");
+    if (!songsContainer) return;
+
+    songsContainer.innerHTML = ""; // Limpiar contenedor antes de llenarlo
+
+    if (typeof canciones === "undefined") {
+        console.error("La variable 'canciones' no está definida.");
+        return;
+    }
+
+    const songsByGenre = canciones.filter(song => song.genre.toLowerCase() === genreName.toLowerCase());
+
+    if (songsByGenre.length > 0) {
+        songsByGenre.forEach(song => {
+            const songCard = document.createElement("a");
+            songCard.href = song.url;
+            songCard.classList.add("card");
+
+            const img = document.createElement("img");
+            img.src = song.image;
+            img.alt = song.name;
+            img.classList.add("card-img");
+
+            const caption = document.createElement("div");
+            caption.classList.add("card-caption");
+            caption.textContent = song.name;
+
+            songCard.appendChild(img);
+            songCard.appendChild(caption);
+            songsContainer.appendChild(songCard);
+        });
+    } else {
+        songsContainer.innerHTML = "<p>No hay canciones disponibles para este género.</p>";
+    }
+}

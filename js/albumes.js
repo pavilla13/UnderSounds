@@ -15,7 +15,7 @@ export const albumes = [
   { name: "A Night at the Opera", link: "album.html?id=1", imgSrc: "assets/images/opera.jpeg" },
   { name: "Future Nostalgia", link: "album.html?id=2", imgSrc: "assets/images/futuro.jpeg" },
   { name: "Discovery", link: "album.html?id=3", imgSrc: "assets/images/discovery.jpeg" },
-  { name: "Kind of Blue", link: "album.html?id=4", imgSrc: "assets/images/blue.jpeg" }
+  { name: "Kind of Blue", link: "album.html?id=4", imgSrc: "assets/images/blue.jpeg" },
 
 
 
