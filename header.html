@@ -4,10 +4,15 @@
   </div>
   <div class="nav-center">
     <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+
+
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Buscar artista, álbum,..." />
-      <a href="search.html" id="btnBuscar" class="search-btn" title="Buscar">🔍</a>
+      <form action="search.html" method="get">
+        <input type="text" id="searchInput" name="q" placeholder="Buscar artista, álbum,...">
+        <button type="submit" class="search-btn">🔍</button>
+      </form>
     </div>
+
   </div>
   <div class="nav-right">
     <div class="cart-btn" id="cart-btn">
