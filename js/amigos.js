@@ -4,30 +4,26 @@
 const amigos = [
   {
     id: 1,
-    name: "Amigo 1",
-    description: "Apasionado por el rock y pop, siempre buscando nuevos sonidos.",
-    avatar: "assets/images/amigo1.jpg",
+    name: "Carlos Rodríguez",
+    description: "Apasionado por el rock y pop, siempre en búsqueda de nuevos sonidos y experiencias musicales.",
     url: "amigoLista.html?id=1"
   },
   {
     id: 2,
-    name: "Amigo 2",
-    description: "Amante de la electrónica y el jazz, explorador de ritmos.",
-    avatar: "assets/images/amiga2.jpg",
+    name: "María González",
+    description: "Apasionada por la electrónica y el jazz, exploradora de ritmos y sonidos innovadores.",
     url: "amigoLista.html?id=2"
   },
   {
     id: 3,
-    name: "Amigo 3",
-    description: "Fanático de los clásicos y siempre actualizado en novedades.",
-    avatar: "assets/images/amiga4.jpg",
+    name: "Lucía Fernández",
+    description: "Fanática del indie y el folk, siempre descubriendo nuevas bandas y letras profundas.",
     url: "amigoLista.html?id=3"
   },
   {
     id: 4,
-    name: "Amigo 4",
-    description: "Seguidor de lo indie y alternativo, con gusto por lo experimental.",
-    avatar: "assets/images/amigo3.jpg",
+    name: "David Martínez",
+    description: "Aficionado al rap y al hip hop clásico. Cree que la música puede cambiar el mundo.",
     url: "amigoLista.html?id=4"
   }
 ];

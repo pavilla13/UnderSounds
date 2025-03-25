@@ -6,16 +6,59 @@ const sellos = [
     name: "Universal Music",
     description: "Universal Music es uno de los sellos discográficos más grandes del mundo.",
     image: "assets/images/universal.jpeg",
-    url: "sello.html?id=1"
+    url: "sellos.html?id=1"
   },
   {
     id: 2,
     name: "Sony Music",
     description: "Sony Music es una de las compañías discográficas más importantes en la industria de la música.",
     image: "assets/images/sony.jpeg",
-    url: "sello.html?id=2"
+    url: "sellos.html?id=2"
+  },
+  {
+    id: 3,
+    name: "Warner Music Group",
+    description: "Warner Music Group es uno de los tres grandes sellos discográficos a nivel mundial.",
+    image: "assets/images/warner.jpeg",
+    url: "sellos.html?id=3"
+  },
+  {
+    id: 4,
+    name: "EMI Records",
+    description: "EMI Records, ahora parte de Universal, fue uno de los sellos más influyentes del siglo XX.",
+    image: "assets/images/emi.jpeg",
+    url: "sellos.html?id=4"
+  },
+  {
+    id: 5,
+    name: "BMG Rights Management",
+    description: "BMG es una empresa global que combina la gestión de derechos musicales con la publicación discográfica.",
+    image: "assets/images/bmg.jpeg",
+    url: "sellos.html?id=5"
+  },
+  {
+    id: 6,
+    name: "Capitol Records",
+    description: "Capitol Records es un sellos icónico con una larga historia en la música pop y rock.",
+    image: "assets/images/capitol.jpeg",
+    url: "sellos.html?id=6"
+  },
+  {
+    id: 7,
+    name: "Atlantic Records",
+    description: "Atlantic Records ha sido pionero en géneros como el R&B, soul y rock desde su fundación.",
+    image: "assets/images/atlantic.jpeg",
+    url: "sellos.html?id=7"
+  },
+  {
+    id: 8,
+    name: "Columbia Records",
+    description: "Columbia Records es uno de los sellos más antiguos y prestigiosos de la historia musical.",
+    image: "assets/images/columbia.jpeg",
+    url: "sellos.html?id=8"
   }
 ];
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // ----------------------
@@ -29,13 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
       card.href = label.url;
       card.classList.add("card");
 
-      // Imagen del sello
+      // Imagen del sellos
       const img = document.createElement("img");
       img.src = label.image;
       img.alt = label.name;
       img.classList.add("card-img");
 
-      // Pie de foto con el nombre del sello
+      // Pie de foto con el nombre del sellos
       const caption = document.createElement("div");
       caption.classList.add("card-caption");
       caption.textContent = label.name;
@@ -47,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ----------------------
-  // 2) Mostrar el DETALLE de un sello (sello.html)
+  // 2) Mostrar el DETALLE de un sellos (sellos.html)
   // ----------------------
   const urlParams = new URLSearchParams(window.location.search);
   const labelId = urlParams.get("id");
@@ -67,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       const content = document.getElementById("label-content");
       if (content) {
-        content.innerHTML = "<p>Sello no encontrado.</p>";
+        content.innerHTML = "<p>sellos no encontrado.</p>";
       }
     }
   }
