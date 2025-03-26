@@ -23,8 +23,8 @@ const canciones = [
     id: 3,
     name: "Animals",
     album: "Animals",
-    artist: "Martin Garrix",
-    genre: "Electronica",
+    artist: "Pink Floyd",
+    genre: "Rock",
     image: "assets/images/animals.jpeg",
     url: "cancion.html?id=3"
   },
@@ -39,6 +39,8 @@ const canciones = [
   }
 ];
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // ----------------------
   // 1) Llenar el LISTADO de canciones (canciones.html)
@@ -50,12 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("a");
       card.href = song.url;
       card.classList.add("card");
-
-      // Imagen de la canción
-      const img = document.createElement("img");
-      img.src = song.image;
-      img.alt = song.name;
-      img.classList.add("card-img");
 
       // Pie de foto con nombre de la canción
       const caption = document.createElement("div");

@@ -1,150 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UnderSounds - Buscador</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Buscador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="header-placeholder"></div>
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-                setTimeout(() => {
-                    if (typeof updateCartCount === 'function') updateCartCount();
-                    if (typeof updateCartDropdown === 'function') updateCartDropdown();
-                }, 100);
-            });
-    </script>
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          if (typeof updateCartCount === 'function') updateCartCount();
+          if (typeof updateCartDropdown === 'function') updateCartDropdown();
+        }, 100);
+      });
+  </script>
 
-    <h2>Mostrando resultados para "<span id="search-query"></span>"</h2>
-    <div class="store-tabs">
-        <div class="tabs">
-            <button class="tab active" data-tab="todo">Todo</button>
-            <button class="tab" data-tab="artistas">Artistas</button>
-            <button class="tab" data-tab="sellos">Sellos</button>
-            <button class="tab" data-tab="albumes">Álbumes</button>
-            <button class="tab" data-tab="canciones">Canciones</button>
-            <button class="tab" data-tab="amigos">Amigos</button>
-        </div>
+  <h2>Mostrando resultados para "<span id="search-query"></span>"</h2>
+  <div class="store-tabs">
+    <div class="tabs">
+      <button class="tab active" data-tab="todo">Todo</button>
+      <button class="tab" data-tab="artistas">Artistas</button>
+      <button class="tab" data-tab="sellos">Sellos</button>
+      <button class="tab" data-tab="albumes">Álbumes</button>
+      <button class="tab" data-tab="canciones">Canciones</button>
+      <button class="tab" data-tab="amigos">Amigos</button>
     </div>
+  </div>
 
-    <main class="content">
-        <section id="todo" class="tab-content active">
-            <h2>Todos</h2>
-            <div class="row" id="todo-results"></div>
-        </section>
+  <main class="content">
+    <section id="todo" class="tab-content active">
+      <h2>Todos</h2>
+      <div id="todo-results"></div>
+    </section>
 
-        <section id="artistas" class="tab-content">
-            <h2>Artistas</h2>
-            <div class="row" id="artistas-results"></div>
-        </section>
+    <section id="artistas" class="tab-content">
+      <h2>Artistas</h2>
+      <div id="artistas-results" class="row"></div>
+    </section>
 
-        <section id="sellos" class="tab-content">
-            <h2>Sellos</h2>
-            <div class="row" id="sellos-results"></div>
-        </section>
+    <section id="sellos" class="tab-content">
+      <h2>Sellos</h2>
+      <div id="sellos-results" class="row"></div>
+    </section>
 
-        <section id="albumes" class="tab-content">
-            <h2>Álbumes</h2>
-            <div class="row" id="albumes-results"></div>
-        </section>
+    <section id="albumes" class="tab-content">
+      <h2>Álbumes</h2>
+      <div id="albumes-results" class="row"></div>
+    </section>
 
-        <section id="canciones" class="tab-content">
-            <h2>Canciones</h2>
-            <div class="row" id="canciones-results"></div>
-        </section>
-        <section id="amigos" class="tab-content">
-            <h2>Amigos</h2>
-            <div class="row" id="amigos-results"></div>
-        </section>
-    </main>
+    <section id="canciones" class="tab-content">
+      <h2>Canciones</h2>
+      <div id="canciones-results" class="row"></div>
+    </section>
 
-    <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+    <section id="amigos" class="tab-content">
+      <h2>Amigos</h2>
+      <div id="amigos-results" class="row"></div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
-    </footer>
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-    <script src="js/artistas.js"></script>
-    <script src="js/sellos.js"></script>
-    <script src="js/albumes.js"></script>
-    <script src="js/canciones.js"></script>
-    <script src="js/amigos.js"></script>
+  <footer>
+    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+  </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Obtener el término de búsqueda de la URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchTerm = urlParams.get('q') || '';
-            
-            // Mostrar el término exacto que se escribió
-            document.getElementById('search-query').textContent = searchTerm;
-            
-            // Elementos del DOM
-            const tabs = document.querySelectorAll(".tabs .tab");
-            const tabContents = document.querySelectorAll(".tab-content");
+  <!-- Carga de archivos JS con la información -->
+  <script src="js/artistas.js"></script>
+  <script src="js/sellos.js"></script>
+  <script src="js/albumes.js"></script>
+  <script src="js/canciones.js"></script>
+  <script src="js/amigos.js"></script>
 
-            // Función para cargar resultados desde los archivos JS
-            function loadData(tab) {
-                let data = [];
-                switch (tab) {
-                    case 'todo':
-                        data = [...artistas, ...sellos, ...albumes, ...canciones, ...amigos];
-                        break;
-                    case 'artistas':
-                        data = artistas;
-                        break;
-                    case 'sellos':
-                        data = sellos;
-                        break;
-                    case 'albumes':
-                        data = albumes;
-                        break;
-                    case 'canciones':
-                        data = canciones;
-                        break;
-                    case 'amigos':
-                        data = amigos;
-                        break;
-                }
-                return data;
+  <!-- Lógica del buscador -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Obtener el término de búsqueda desde la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchTerm = urlParams.get('q') || '';
+      document.getElementById('search-query').textContent = searchTerm;
+
+      const tabs = document.querySelectorAll(".tabs .tab");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // Mapeo de datos por categoría (se asume que estas variables son globales)
+      const dataMapping = {
+        artistas: artistas,
+        sellos: sellos,
+        albumes: albumes,
+        canciones: canciones,
+        amigos: amigos
+      };
+
+      // Función auxiliar para capitalizar la primera letra
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      // Renderiza los resultados en la pestaña indicada
+      function renderResults(query, tab) {
+        const resultsContainer = document.getElementById(`${tab}-results`);
+        // Si es la pestaña "Todo", se separan por categorías
+        if (tab === 'todo') {
+          let html = "";
+          Object.entries(dataMapping).forEach(([key, data]) => {
+            const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+            html += `<h3>${capitalize(key)}</h3>`;
+            if (filtered.length) {
+              html += `<div class="row">` +
+                filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("") +
+                `</div>`;
+            } else {
+              html += `<p>No se encontraron resultados en ${capitalize(key)} para "${query}".</p>`;
             }
+          });
+          resultsContainer.innerHTML = html;
+        } else {
+          // Para otras pestañas
+          const data = dataMapping[tab] || [];
+          const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+          resultsContainer.innerHTML = filtered.length
+            ? filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("")
+            : `<p>No se encontraron resultados para "${query}".</p>`;
+        }
+      }
 
-            // Función para filtrar los resultados
-            function filterResults(query, tab) {
-                const data = loadData(tab);
-                const filteredData = query 
-                    ? data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
-                    : data;
-                    
-                const resultsContainer = document.getElementById(`${tab}-results`);
-                resultsContainer.innerHTML = filteredData.length
-                    ? filteredData.map(item => `<a href="${item.link}" class="card">${item.name}</a>`).join("")
-                    : `<p>No se encontraron resultados para "${query}".</p>`;
-            }
-
-            // Manejo de las pestañas
-            tabs.forEach((tab) => {
-                tab.addEventListener("click", () => {
-                    tabs.forEach((t) => t.classList.remove("active"));
-                    tabContents.forEach((c) => c.classList.remove("active"));
-                    tab.classList.add("active");
-                    const target = tab.getAttribute("data-tab");
-                    document.getElementById(target).classList.add("active");
-                    filterResults(searchTerm, target);
-                });
-            });
-
-            // Inicialización de la primera búsqueda
-            filterResults(searchTerm, 'todo');
+      // Manejo de las pestañas
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tabContents.forEach(c => c.classList.remove("active"));
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-tab");
+          document.getElementById(target).classList.add("active");
+          renderResults(searchTerm, target);
         });
-    </script>
-    <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
+      });
+
+      // Inicializar con la pestaña "Todo"
+      renderResults(searchTerm, "todo");
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
