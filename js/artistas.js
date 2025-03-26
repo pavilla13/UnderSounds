@@ -1,6 +1,6 @@
 // artistas.js
 
-
+//REVISAR BIEN ID DE ALBUM, ARTISTA Y SELLO (PARA PODER HACER LISTAS)
 const artistas = [
   {
     id: 1,
