@@ -1,4 +1,5 @@
-
+// Objetivo: Cargar la información de los sellos discográficos en la página sellos.html
+//           y mostrar el detalle de un sello en particular.
 
 const sellos = [
   {
@@ -13,7 +14,7 @@ const sellos = [
     id: 2,
     name: "Sony Music",
     description: "Sony Music es una de las compañías discográficas más importantes en la industria de la música.",
-    image: "assets/images/sony.jpeg",
+    image: "assets/images/sony.png",
     url: "sellos.html?id=2",
     albumIds: [6, 7, 8, 9, 10]
   },
@@ -21,7 +22,7 @@ const sellos = [
     id: 3,
     name: "Warner Music Group",
     description: "Warner Music Group es uno de los tres grandes sellos discográficos a nivel mundial.",
-    image: "assets/images/warner.jpeg",
+    image: "assets/images/warner.webp",
     url: "sellos.html?id=3",
     albumIds: [11, 12, 13, 14, 15]
   },
@@ -29,7 +30,7 @@ const sellos = [
     id: 4,
     name: "EMI Records",
     description: "EMI Records, ahora parte de Universal, fue uno de los sellos más influyentes del siglo XX.",
-    image: "assets/images/emi.jpeg",
+    image: "assets/images/emi.png",
     url: "sellos.html?id=4",
     albumIds: [16, 17, 18, 19, 20]
   },
@@ -87,34 +88,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
-// Función para cargar álbumes desde albumes.js
-function loadAlbums(albumIds) {
-  const albumsContainer = document.getElementById("recent-albums");
-  if (!albumsContainer) return;
-
-  albumsContainer.innerHTML = "";
-  
-  albumIds.forEach(albumId => {
-    // Aquí asumimos que albumes.js está cargado y tiene el array 'albumes'
-    const album = albumes.find(a => a.id === albumId);
-    if (album) {
-      const card = document.createElement("a");
-      card.href = `album.html?id=${album.id}`;
-      card.classList.add("card");
-
-      const img = document.createElement("img");
-      img.src = album.image;
-      img.alt = album.name;
-      img.classList.add("card-img");
-
-      const caption = document.createElement("div");
-      caption.classList.add("card-caption");
-      caption.textContent = album.name;
-
-      card.appendChild(img);
-      card.appendChild(caption);
-      albumsContainer.appendChild(card);
-    }
-  });
-}

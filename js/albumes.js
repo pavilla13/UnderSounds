@@ -71,7 +71,7 @@ const albumes = [
     name: "Parachutes",
     artist: "Coldplay",
     genre: "Rock",
-    image: "assets/images/parachutes.jpeg",
+    image: "assets/images/parachutes.jpg",
     description: "Álbum debut de Coldplay (2000), reconocido por el éxito mundial 'Yellow'.",
     url: "album.html?id=5",
     tracks: [
@@ -119,7 +119,7 @@ const albumes = [
     name: "18 Months",
     artist: "Calvin Harris",
     genre: "Electrónica",
-    image: "assets/images/18months.jpeg",
+    image: "assets/images/18months.jpg",
     description: "Disco de 2012 que llevó a Calvin Harris al estrellato con colaboraciones pop y EDM.",
     url: "album.html?id=8",
     tracks: [
@@ -135,7 +135,7 @@ const albumes = [
     name: "The Colour and the Shape",
     artist: "Foo Fighters",
     genre: "Rock",
-    image: "assets/images/thecolourandtheshape.jpeg",
+    image: "assets/images/thecolourandtheshape.jpg",
     description: "Álbum de 1997 que contiene éxitos como 'Everlong', catapultando a la banda de Dave Grohl.",
     url: "album.html?id=9",
     tracks: [
@@ -183,7 +183,7 @@ const albumes = [
     name: "A Town Called Paradise",
     artist: "Tiësto",
     genre: "Electrónica",
-    image: "assets/images/atowncalledparadise.jpeg",
+    image: "assets/images/atowncalledparadise.jpg",
     description: "Álbum de 2014 que muestra el lado más mainstream del icónico DJ neerlandés.",
     url: "album.html?id=12",
     tracks: [
@@ -199,7 +199,7 @@ const albumes = [
     name: "AM",
     artist: "Arctic Monkeys",
     genre: "Rock",
-    image: "assets/images/am.jpeg",
+    image: "assets/images/am.jpg",
     description: "Lanzado en 2013, es uno de los trabajos más aclamados de la banda británica.",
     url: "album.html?id=13",
     tracks: [
@@ -296,7 +296,7 @@ const albumes = [
     name: "Led Zeppelin IV",
     artist: "Led Zeppelin",
     genre: "Rock",
-    image: "assets/images/led_IV.jpeg",
+    image: "assets/images/led_IV.jpg",
     description: "Lanzado en 1971, incluye el emblemático 'Stairway to Heaven' y es uno de los álbumes más influyentes del rock.",
     url: "album.html?id=19",
     tracks: [

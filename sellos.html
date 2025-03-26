@@ -38,19 +38,36 @@
       text-align: center;
     }
     
+    #label-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem 0;
+    }
+
     .label-name {
-      font-size: 2.5rem;
-      margin: 0 0 0.5rem;
-      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;           
+      color: var(--primary-color); 
     }
-    
+
+    .label-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      max-height: 400px;
+    }
+
     .label-description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #555;
       max-width: 800px;
-      margin: 0 auto 2rem;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: #555;
     }
+
     
     .section-title {
       font-size: 1.8rem;
@@ -106,24 +123,6 @@
       padding: 2rem;
     }
     
-    .help-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background-color: var(--accent-color);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: all 0.3s;
-    }
-    
     .help-button:hover {
       transform: scale(1.1);
       background-color: #e84393;
@@ -166,8 +165,6 @@
     <p id="label-description" class="label-description"></p>
     <img id="label-image" class="label-image" src="" alt="">
     
-    <h2 class="section-title">Álbumes recientes</h2>
-    <div id="recent-albums" class="cards-container"></div>
   </div>
   
 

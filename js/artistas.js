@@ -7,7 +7,7 @@ const artistas = [
     name: "Queen",
     genre: "Rock",
     description: "Queen es una banda de rock británica, famosa por su estilo único y la voz de Freddie Mercury.",
-    image: "assets/images/queen.jpg",
+    image: "assets/images/queen.jpeg",
     url: "artistas.html?id=1",
     albumIds: [1, 2, 3, 4],
     selloId: 1
@@ -37,7 +37,7 @@ const artistas = [
     name: "David Guetta",
     genre: "Electrónica",
     description: "David Guetta es un DJ y productor francés considerado una de las figuras más influyentes de la música electrónica.",
-    image: "assets/images/david-guetta.jpg",
+    image: "assets/images/david-guetta.jpeg",
     url: "artistas.html?id=4",
     albumIds: [11, 12, 13],
     selloId: 3
@@ -47,7 +47,7 @@ const artistas = [
     name: "Coldplay",
     genre: "Rock",
     description: "Coldplay es una banda británica de rock alternativo conocida por su sonido melódico y emocional.",
-    image: "assets/images/coldplay.jpg",
+    image: "assets/images/coldplay.jpeg",
     url: "artistas.html?id=5",
     albumIds: [14, 15, 16],
     selloId: 4
@@ -67,7 +67,7 @@ const artistas = [
     name: "J Balvin",
     genre: "Reggaetón",
     description: "J Balvin es uno de los artistas más representativos del reggaetón a nivel global.",
-    image: "assets/images/j-balvin.jpg",
+    image: "assets/images/j-balvin.jpeg",
     url: "artistas.html?id=7",
     albumIds: [20, 21, 22],
     selloId: 1
@@ -77,7 +77,7 @@ const artistas = [
     name: "Calvin Harris",
     genre: "Electrónica",
     description: "Calvin Harris es un DJ y productor escocés reconocido por sus colaboraciones en la música electrónica y pop.",
-    image: "assets/images/calvin-harris.jpg",
+    image: "assets/images/calvin-harris.jpeg",
     url: "artistas.html?id=8",
     albumIds: [23, 24, 25],
     selloId: 3
@@ -97,7 +97,7 @@ const artistas = [
     name: "Ariana Grande",
     genre: "Pop",
     description: "Ariana Grande es una cantante y actriz estadounidense conocida por su poderosa voz y estilo pop.",
-    image: "assets/images/ariana-grande.jpg",
+    image: "assets/images/ariana-grande.jpeg",
     url: "artistas.html?id=10",
     albumIds: [29, 30, 31],
     selloId: 2
@@ -107,7 +107,7 @@ const artistas = [
     name: "Karol G",
     genre: "Reggaetón",
     description: "Karol G es una cantante colombiana destacada en la música urbana y reggaetón.",
-    image: "assets/images/karol-g.jpg",
+    image: "assets/images/karol-g.jpeg",
     url: "artistas.html?id=11",
     albumIds: [32, 33, 34],
     selloId: 1
@@ -127,7 +127,7 @@ const artistas = [
     name: "Arctic Monkeys",
     genre: "Rock",
     description: "Arctic Monkeys es una banda de rock alternativo británica con un estilo único y letras ingeniosas.",
-    image: "assets/images/arctic-monkeys.jpg",
+    image: "assets/images/arctic-monkeys.jpeg",
     url: "artistas.html?id=13",
     albumIds: [38, 39, 40],
     selloId: 4
@@ -137,7 +137,7 @@ const artistas = [
     name: "Harry Styles",
     genre: "Pop",
     description: "Harry Styles es un cantante británico que ha desarrollado una exitosa carrera como solista en el pop.",
-    image: "assets/images/harry-styles.jpg",
+    image: "assets/images/harry-styles.webp",
     url: "artistas.html?id=14",
     albumIds: [41, 42, 43],
     selloId: 2
@@ -147,7 +147,7 @@ const artistas = [
     name: "Rauw Alejandro",
     genre: "Reggaetón",
     description: "Rauw Alejandro es una estrella emergente del reggaetón, conocido por su versatilidad musical y estilo innovador.",
-    image: "assets/images/rauw-alejandro.jpg",
+    image: "assets/images/rauw-alejandro.jpeg",
     url: "artistas.html?id=15",
     albumIds: [44, 45, 46],
     selloId: 1
@@ -163,8 +163,6 @@ const artistas = [
     selloId: 3
   }
 ];
-
-// El resto del código (event listeners y funciones) permanece igual...
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Llenar el LISTADO de artistas (artistas.html)
@@ -210,12 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
         imageEl.src = artist.image;
         imageEl.alt = artist.name;
       }
-
-      // Cargar álbumes del artista
-      loadArtistAlbums(artist.albumIds);
-      
-      // Cargar artistas del mismo sello
-      loadLabelArtists(artist.selloId, artist.id);
     } else {
       const content = document.getElementById("artist-content");
       if (content) {
@@ -224,65 +216,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
-// Función para cargar álbumes del artista
-function loadArtistAlbums(albumIds) {
-  const albumsContainer = document.getElementById("artist-albums");
-  if (!albumsContainer) return;
-
-  albumsContainer.innerHTML = "";
-  
-  albumIds.forEach(albumId => {
-    const album = albumes.find(a => a.id === albumId);
-    if (album) {
-      const card = document.createElement("a");
-      card.href = `album.html?id=${album.id}`;
-      card.classList.add("card");
-
-      const img = document.createElement("img");
-      img.src = album.image;
-      img.alt = album.name;
-      img.classList.add("card-img");
-
-      const caption = document.createElement("div");
-      caption.classList.add("card-caption");
-      caption.textContent = album.name;
-
-      card.appendChild(img);
-      card.appendChild(caption);
-      albumsContainer.appendChild(card);
-    }
-  });
-}
-
-// Función para cargar artistas del mismo sello
-function loadLabelArtists(selloId, currentArtistId) {
-  const artistsContainer = document.getElementById("label-artists");
-  if (!artistsContainer) return;
-
-  artistsContainer.innerHTML = "";
-  
-  // Buscar artistas del mismo sello (excluyendo al actual)
-  const labelArtists = artistas.filter(a => 
-    a.selloId === selloId && a.id !== currentArtistId
-  );
-
-  labelArtists.forEach(artist => {
-    const card = document.createElement("a");
-    card.href = `artistas.html?id=${artist.id}`;
-    card.classList.add("card");
-
-    const img = document.createElement("img");
-    img.src = artist.image;
-    img.alt = artist.name;
-    img.classList.add("card-img");
-
-    const caption = document.createElement("div");
-    caption.classList.add("card-caption");
-    caption.textContent = artist.name;
-
-    card.appendChild(img);
-    card.appendChild(caption);
-    artistsContainer.appendChild(card);
-  });
-}
