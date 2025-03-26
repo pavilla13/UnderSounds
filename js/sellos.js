@@ -7,8 +7,7 @@ const sellos = [
     description: "Universal Music es uno de los sellos discográficos más grandes del mundo.",
     image: "assets/images/universal.jpeg",
     url: "sellos.html?id=1",
-    albumIds: [1, 2, 3, 4, 5], // IDs de álbumes en albumes.js
-    artistIds: [1, 2, 3, 4, 5] // IDs de artistas en artistas.js
+    albumIds: [1, 2, 3, 4, 5] // IDs de álbumes en albumes.js
   },
   {
     id: 2,
@@ -16,8 +15,7 @@ const sellos = [
     description: "Sony Music es una de las compañías discográficas más importantes en la industria de la música.",
     image: "assets/images/sony.jpeg",
     url: "sellos.html?id=2",
-    albumIds: [6, 7, 8, 9, 10],
-    artistIds: [6, 7, 8, 9, 10]
+    albumIds: [6, 7, 8, 9, 10]
   },
   {
     id: 3,
@@ -25,8 +23,7 @@ const sellos = [
     description: "Warner Music Group es uno de los tres grandes sellos discográficos a nivel mundial.",
     image: "assets/images/warner.jpeg",
     url: "sellos.html?id=3",
-    albumIds: [11, 12, 13, 14, 15],
-    artistIds: [11, 12, 13, 14, 15]
+    albumIds: [11, 12, 13, 14, 15]
   },
   {
     id: 4,
@@ -34,10 +31,8 @@ const sellos = [
     description: "EMI Records, ahora parte de Universal, fue uno de los sellos más influyentes del siglo XX.",
     image: "assets/images/emi.jpeg",
     url: "sellos.html?id=4",
-    albumIds: [16, 17, 18, 19, 20],
-    artistIds: [16, 17, 18, 19, 20]
+    albumIds: [16, 17, 18, 19, 20]
   },
-  // ... otros sellos con la misma estructura
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -84,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Cargar álbumes y artistas dinámicamente
       loadAlbums(label.albumIds);
-      loadArtists(label.artistIds);
     } else {
       const content = document.getElementById("label-content");
       if (content) {
@@ -121,37 +115,6 @@ function loadAlbums(albumIds) {
       card.appendChild(img);
       card.appendChild(caption);
       albumsContainer.appendChild(card);
-    }
-  });
-}
-
-// Función para cargar artistas desde artistas.js
-function loadArtists(artistIds) {
-  const artistsContainer = document.getElementById("label-artists");
-  if (!artistsContainer) return;
-
-  artistsContainer.innerHTML = "";
-  
-  artistIds.forEach(artistId => {
-    // Aquí asumimos que artistas.js está cargado y tiene el array 'artistas'
-    const artist = artistas.find(a => a.id === artistId);
-    if (artist) {
-      const card = document.createElement("a");
-      card.href = `artistas.html?id=${artist.id}`;
-      card.classList.add("card");
-
-      const img = document.createElement("img");
-      img.src = artist.image;
-      img.alt = artist.name;
-      img.classList.add("card-img");
-
-      const caption = document.createElement("div");
-      caption.classList.add("card-caption");
-      caption.textContent = artist.name;
-
-      card.appendChild(img);
-      card.appendChild(caption);
-      artistsContainer.appendChild(card);
     }
   });
 }

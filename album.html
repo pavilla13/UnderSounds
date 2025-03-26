@@ -244,84 +244,81 @@
   
     
     <script src="js/albumes.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Obtener el ID del álbum de la URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const albumId = urlParams.get("id");
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Obtener el ID del álbum de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const albumId = urlParams.get("id");
 
-      if (albumId) {
-        // Buscar el álbum en los datos de album.js
-        const album = albumes.find(a => a.id === parseInt(albumId));
-        
-        if (album) {
-          // Actualizar la información del álbum
-          document.getElementById("album-name").textContent = album.name;
-          document.getElementById("album-artist").textContent = album.artist;
-          document.getElementById("album-genre").textContent = album.genre;
-          document.getElementById("album-description").textContent = album.description;
-          document.getElementById("album-image").src = album.image;
-          document.getElementById("album-image").alt = album.name;
+        if (albumId) {
+          // Buscar el álbum en los datos de album.js
+          const album = albumes.find(a => a.id === parseInt(albumId));
           
-          // Actualizar el enlace al artista (necesitarías implementar esta función)
-          updateArtistLink(album.artist);
-          
-          // Cargar las pistas del álbum
-          const tracks = tracksData[albumId] || [];
-          const trackList = document.getElementById('track-list');
-          trackList.innerHTML = "";
-          
-          if (tracks.length > 0) {
-            tracks.forEach((track, index) => {
-              const li = document.createElement('li');
-              li.className = 'track';
-              
-              const a = document.createElement('a');
-              a.href = `cancion.html?id=${track.id}&album=${albumId}`;
-              a.className = 'track-link';
-              
-              const numberSpan = document.createElement('span');
-              numberSpan.className = 'track-number';
-              numberSpan.textContent = index + 1;
-              
-              const titleSpan = document.createElement('span');
-              titleSpan.className = 'track-title';
-              titleSpan.textContent = track.title;
-              
-              const durationSpan = document.createElement('span');
-              durationSpan.className = 'track-duration';
-              durationSpan.textContent = track.duration;
-              
-              a.appendChild(numberSpan);
-              a.appendChild(titleSpan);
-              a.appendChild(durationSpan);
-              li.appendChild(a);
-              trackList.appendChild(li);
-            });
+          if (album) {
+            // Actualizar la información del álbum
+            document.getElementById("album-name").textContent = album.name;
+            document.getElementById("album-artist").textContent = album.artist;
+            document.getElementById("album-genre").textContent = album.genre;
+            document.getElementById("album-description").textContent = album.description;
+            document.getElementById("album-image").src = album.image;
+            document.getElementById("album-image").alt = album.name;
+            
+            // Actualizar el enlace al artista (necesitarías implementar esta función)
+            updateArtistLink(album.artist);
+            
+            // Cargar las pistas del álbum
+            const tracks = tracksData[albumId] || [];
+            const trackList = document.getElementById('track-list');
+            trackList.innerHTML = "";
+            
+            if (tracks.length > 0) {
+              tracks.forEach((track, index) => {
+                const li = document.createElement('li');
+                li.className = 'track';
+                
+                const a = document.createElement('a');
+                a.href = `cancion.html?id=${track.id}&album=${albumId}`;
+                a.className = 'track-link';
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'track-number';
+                numberSpan.textContent = index + 1;
+                
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'track-title';
+                titleSpan.textContent = track.title;
+                
+                const durationSpan = document.createElement('span');
+                durationSpan.className = 'track-duration';
+                durationSpan.textContent = track.duration;
+                
+                a.appendChild(numberSpan);
+                a.appendChild(titleSpan);
+                a.appendChild(durationSpan);
+                li.appendChild(a);
+                trackList.appendChild(li);
+              });
+            } else {
+              trackList.innerHTML = "<li>No hay pistas disponibles para este álbum</li>";
+            }
           } else {
-            trackList.innerHTML = "<li>No hay pistas disponibles para este álbum</li>";
+            document.querySelector(".content").innerHTML = `
+              <div class="error-message">
+                <h2>Álbum no encontrado</h2>
+                <p>El álbum que buscas no está disponible.</p>
+                <a href="albumes.html" class="btn">Ver todos los álbumes</a>
+              </div>
+            `;
           }
-        } else {
-          document.querySelector(".content").innerHTML = `
-            <div class="error-message">
-              <h2>Álbum no encontrado</h2>
-              <p>El álbum que buscas no está disponible.</p>
-              <a href="albumes.html" class="btn">Ver todos los álbumes</a>
-            </div>
-          `;
         }
-      }
-    });
+      });
 
-    // Función para actualizar el enlace al artista (necesitarías implementar la lógica)
-    function updateArtistLink(artistName) {
-      // Aquí deberías buscar el ID del artista basado en su nombre
-      // y actualizar el href del botón "IR AL ARTISTA"
-      const artistLink = document.getElementById("artist-link");
-      // Ejemplo básico - necesitarías implementar la lógica real
-      artistLink.href = `artistas.html?name=${encodeURIComponent(artistName)}`;
-    }
-  </script>
+      // Función para actualizar el enlace al artista
+      function updateArtistLink(artistName) {
+        const artistLink = document.getElementById("artist-link");
+        artistLink.href = `artistas.html?name=${encodeURIComponent(artistName)}`;
+      }
+    </script>
   
   <!-- Incluir el archivo album.js -->
   <script src="js/album.js"></script>
