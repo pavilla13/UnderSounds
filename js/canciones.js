@@ -1,42 +1,30 @@
 // canciones.js
 
 const canciones = [
-  {
-    id: 1,
-    name: "Bohemian Rhapsody",
-    album: "A Night at the Opera",
-    artist: "Queen",
-    genre: "Rock",
-    image: "assets/images/bohemian.jpeg",
-    url: "cancion.html?id=1"
-  },
-  {
-    id: 2,
-    name: "Blinding Lights",
-    album: "After Hours",
-    artist: "The Weeknd",
-    genre: "Pop",
-    image: "assets/images/lights.jpeg",
-    url: "cancion.html?id=2"
-  },
-  {
-    id: 3,
-    name: "Animals",
-    album: "Animals",
-    artist: "Pink Floyd",
-    genre: "Rock",
-    image: "assets/images/animals.jpeg",
-    url: "cancion.html?id=3"
-  },
-  {
-    id: 4,
-    name: "Take Five",
-    album: "Time Out",
-    artist: "Dave Brubeck",
-    genre: "Jazz",
-    image: "assets/images/five.jpeg",
-    url: "cancion.html?id=4"
-  }
+  { name: "Bohemian Rhapsody", album: "A Night at the Opera", artist: "Queen", genre: "Rock" },
+  { name: "Blinding Lights", album: "After Hours", artist: "The Weeknd", genre: "Pop" },
+  { name: "Animals", album: "Animals", artist: "Pink Floyd", genre: "Rock" },
+  { name: "Take Five", album: "Time Out", artist: "Dave Brubeck", genre: "Jazz" },
+  { name: "Viva La Vida", album: "Viva La Vida or Death and All His Friends", artist: "Coldplay", genre: "Rock" },
+  { name: "Levitating", album: "Future Nostalgia", artist: "Dua Lipa", genre: "Pop" },
+  { name: "Tusa", album: "KG0516", artist: "Karol G", genre: "Reggaetón" },
+  { name: "Titanium", album: "Nothing but the Beat", artist: "David Guetta ft. Sia", genre: "Electronica" },
+  { name: "Everlong", album: "The Colour and the Shape", artist: "Foo Fighters", genre: "Rock" },
+  { name: "Positions", album: "Positions", artist: "Ariana Grande", genre: "Pop" },
+  { name: "Mi Gente", album: "Vibras", artist: "J Balvin & Willy William", genre: "Reggaetón" },
+  { name: "One Kiss", album: "Single", artist: "Calvin Harris & Dua Lipa", genre: "Electrónica" },
+  { name: "Do I Wanna Know?", album: "AM", artist: "Arctic Monkeys", genre: "Rock" },
+  { name: "As It Was", album: "Harry's House", artist: "Harry Styles", genre: "Pop" },
+  { name: "Todo de Ti", album: "Vice Versa", artist: "Rauw Alejandro", genre: "Reggaetón" },
+  { name: "Friends", album: "Joytime II", artist: "Marshmello & Anne-Marie", genre: "Electrónica" },
+  { name: "Under Pressure", album: "Hot Space", artist: "Queen & David Bowie", genre: "Rock" },
+  { name: "Save Your Tears", album: "After Hours", artist: "The Weeknd", genre: "Pop" },
+  { name: "La Canción", album: "Oasis", artist: "J Balvin & Bad Bunny", genre: "Reggaetón" },
+  { name: "Don't You Worry Child", album: "Until Now", artist: "Swedish House Mafia", genre: "Electrónica" },
+  { name: "The Pretender", album: "Echoes, Silence, Patience & Grace", artist: "Foo Fighters", genre: "Rock" },
+  { name: "Break My Heart", album: "Future Nostalgia", artist: "Dua Lipa", genre: "Pop" },
+  { name: "Bichota", album: "KG0516", artist: "Karol G", genre: "Reggaetón" },
+  { name: "The Business", album: "Drive", artist: "Tiësto", genre: "Electrónica" }
 ];
 
 
@@ -101,6 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function mostrarMensajeError(mensaje) {
   const content = document.getElementById("song-content");
   if (content) {
-    content.innerHTML = `<p>${mensaje}</p>`;
-  }
+    content.innerHTML = <p>${mensaje}</p>;
+  }
 }
