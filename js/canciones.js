@@ -8,7 +8,7 @@ const canciones = [
   { name: "Viva La Vida", album: "Viva La Vida or Death and All His Friends", artist: "Coldplay", genre: "Rock" },
   { name: "Levitating", album: "Future Nostalgia", artist: "Dua Lipa", genre: "Pop" },
   { name: "Tusa", album: "KG0516", artist: "Karol G", genre: "Reggaetón" },
-  { name: "Titanium", album: "Nothing but the Beat", artist: "David Guetta ft. Sia", genre: "Electronica" },
+  { name: "Titanium", album: "Nothing but the Beat", artist: "David Guetta ft. Sia", genre: "Electrónica" },
   { name: "Everlong", album: "The Colour and the Shape", artist: "Foo Fighters", genre: "Rock" },
   { name: "Positions", album: "Positions", artist: "Ariana Grande", genre: "Pop" },
   { name: "Mi Gente", album: "Vibras", artist: "J Balvin & Willy William", genre: "Reggaetón" },
@@ -89,6 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function mostrarMensajeError(mensaje) {
   const content = document.getElementById("song-content");
   if (content) {
-    content.innerHTML = <p>${mensaje}</p>;
-  }
+    content.innerHTML = `<p>${mensaje}</p>`;
+  }
 }
