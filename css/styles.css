@@ -273,13 +273,11 @@ header {
   text-decoration: underline;
 }
 
-/* Agrega espacio entre el título y el formulario */
 .login-page h2.logo {
   margin-top: 15px;
   margin-bottom: 40px;
 }
 
-/* Agrega espacio justo antes y después del botón de iniciar sesión */
 .login-page .form button.btn {
   margin-top: 15px;
   margin-bottom: 20px;
@@ -347,19 +345,19 @@ input[type="checkbox"] {
 .store-tabs .tabs {
   display: flex;
   width: 100%;
-  padding: 0;    /* Elimina padding para que ocupe todo el ancho */
-  margin: 0;     /* Elimina márgenes extra */
+  padding: 0;
+  margin: 0;
   background-color: #333;
 }
 
 .store-tabs .tabs .tab {
-  flex: 1;           /* Cada botón ocupa la misma cantidad de espacio */
-  margin: 0;         /* Quita los márgenes para que se junten */
-  border-radius: 0;  /* Elimina bordes redondeados para un aspecto rectangular */
-  padding: 0.6rem 0; /* Ajusta el padding vertical; el horizontal ya no es necesario */
+  flex: 1; 
+  margin: 0;         
+  border-radius: 0;  
+  padding: 0.6rem 0; 
   text-align: center;
   background-color: #f39c12;
-  border: 1px solid #f39c12;  /* Agrega un borde para definir los botones */
+  border: 1px solid #f39c12; 
   transition: background-color 0.3s;
 }
 
@@ -430,7 +428,7 @@ input[type="checkbox"] {
 
 /* Estilo para el carrito */
 .cart-btn {
-  position: relative;  /* Evita que el cambio de margin-left afecte a otros elementos */
+  position: relative;
   margin-top: 5px;
 }
 .cart-btn img {
@@ -465,10 +463,10 @@ input[type="checkbox"] {
 
 .profile-dropdown a {
   display: block;
-  padding: 5px 10px;  /* Ajusta el padding para reducir el alto de las opciones */
+  padding: 5px 10px;
   text-decoration: none;
   color: #333;
-  width: 100%;  /* Asegura que las opciones se ajusten al ancho del dropdown */
+  width: 100%; 
   border-radius: 10px;
 }
 
@@ -581,8 +579,8 @@ input[type="checkbox"] {
   gap: 5rem;
   margin: 5rem auto 0;
   display: flex;
-  flex-direction: column; /* Cada tarjeta en su propia fila */
-  align-items: center; /* Centra los elementos hijos */
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -678,11 +676,10 @@ input[type="checkbox"] {
   color: #f0f0f0;
   font-weight: bold;
   text-align: center;
-  display: block;       /* Para que acepte margen automático */
-  margin: 0 auto;       /* Centra el elemento horizontalmente */
+  display: block;       
+  margin: 0 auto;      
   width: max-content;
 }
-
 
 /*======================================
 =       Páginas de carrito y favoritos =
@@ -720,7 +717,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* Mejorar la visibilidad del dropdown del carrito */
 .cart-dropdown {
   display: none;
   position: absolute;
@@ -778,9 +774,8 @@ input[type="checkbox"] {
 
 /* Botón para eliminar (cubo de basura) */
 .btn-remove {
-  background: #e74c3c;         /* Fondo rojo */
-  border: none;
-  border-radius: 50%;          /* Forma circular */
+  background: #e74c3c;         
+  border-radius: 50%;          
   width: 32px;
   height: 32px;
   font-size: 1.2rem;           
@@ -799,7 +794,7 @@ input[type="checkbox"] {
 /* Botones para incrementar y decrementar */
 .btn-decrement,
 .btn-increment {
-  background: #3498db;         /* Fondo azul */
+  background: #3498db;         
   border: none;
   border-radius: 4px;
   padding: 0.2rem 0.8rem;
@@ -841,7 +836,6 @@ input[type="checkbox"] {
 =          SECCIÓN DE MÚSICA           =
 ======================================*/
 
-/* Reglas comunes para las filas de tarjetas */
 .music-section .row,
 .bestofs-songs .row,
 .album-section .row,
@@ -854,7 +848,6 @@ input[type="checkbox"] {
   justify-content: center;
 }
 
-/* Reglas comunes para las tarjetas */
 .music-section .card,
 .bestofs-songs .card,
 .album-section .card,
@@ -875,7 +868,6 @@ input[type="checkbox"] {
   text-align: center;
 }
 
-/* Imágenes uniformes, sin fondo blanco visible */
 .music-section .card-img,
 .bestofs-songs .card-img,
 .album-section .card-img,
@@ -887,7 +879,6 @@ input[type="checkbox"] {
   display: block;
 }
 
-/* Texto debajo de la imagen */
 .music-section .card-caption,
 .bestofs-songs .card-caption,
 .album-section .card-caption,
@@ -960,13 +951,13 @@ input[type="checkbox"] {
   border: none;
   cursor: pointer;
   font-size: 15px;
-  text-decoration: none; /* Eliminar el subrayado si lo hay */
+  text-decoration: none;
   position: relative;
   margin-top: 10px;
 }
 
 /*======================================
-=   TÉRMINOS Y CONDICIONES PAGE STYLE   =
+=   TÉRMINOS Y CONDICIONES PAGE STYLE  =
 ======================================*/
 .terms-page {
   padding: 2rem;
