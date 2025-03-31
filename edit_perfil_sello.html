@@ -9,9 +9,9 @@
 </head>
 <body>
   <!-- Inyección del header -->
-  <div id="header-placeholder" data-header="header_usuario.html"></div>
+  <div id="header-placeholder" data-header="header_sello.html"></div>
   <script>
-    fetch('header_usuario.html')
+    fetch('header.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
@@ -44,6 +44,11 @@
       <div class="form-group">
         <label for="profilePic">Imagen de perfil:</label>
         <input type="file" id="profilePic" name="profilePic" accept="image/*">
+      </div>
+
+      <div class="form-group">
+        <!-- Boton que lleva a una pagina para añadir album -->
+        <a href="gestion_sello.html" class="edit-btn">Gestionar sello</a>
       </div>
       
       <!-- Sección para actualizar contraseña -->

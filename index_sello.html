@@ -13,19 +13,31 @@
 
 <body>
   <!-- Inyección del header -->
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>
+    <div id="header-placeholder" data-header="header_sello.html"></div>
+    <script>
+      const headerPlaceholder = document.getElementById('header-placeholder');
+      const headerFile = headerPlaceholder.getAttribute('data-header') || 'header.html';
+      console.log("Cargando el header desde:", headerFile);
+      
+      fetch(headerFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('No se pudo cargar el header: ' + response.status);
+          }
+          return response.text();
+        })
+        .then(data => {
+          headerPlaceholder.innerHTML = data;
+          setTimeout(() => {
+            updateCartCount();
+            updateCartDropdown();
+          }, 100);
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+    
+    
+
 
   <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
   <div class="tabs">
@@ -194,29 +206,5 @@
   <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>
-
-  <!--
-  <script>
-
-    // Función para inicializar o verificar la sesión
-    function iniciarOValidarSesion() {
-      const sessionStart = localStorage.getItem('sessionStart');
-
-      if (!document.referrer) {
-        localStorage.clear();
-        console.log("localStorage borrado: acceso directo a index.html.");
-        // Se establece la hora de inicio de sesión
-        localStorage.setItem('sessionStart', Date.now());
-      } else {
-        console.log("index.html accedido desde otra página, no se borra localStorage.");
-      }
-    }
-
-    // Ejecutar la verificación al cargar la página
-    document.addEventListener('DOMContentLoaded', function() {
-      iniciarOValidarSesion();
-    });
-  </script>
-  -->
 </body>
 </html>

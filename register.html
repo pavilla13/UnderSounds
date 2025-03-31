@@ -57,6 +57,13 @@
       <label for="password2">Repetir contraseña:</label>
       <input type="password" id="password2" name="password2" required>
 
+      <select id="register-type">
+        <option value="" disabled selected>Tipo de registro</option>
+        <option value="user">Usuario</option>
+        <option value="artist">Artista</option>
+        <option value="sello">Sello discográfico</option>
+      </select>
+
       <!-- Campo: Fecha de nacimiento -->
       <label for="birthdate">Fecha de nacimiento:</label>
       <input type="date" id="birthdate" name="birthdate" required>
@@ -137,6 +144,43 @@
     });
   </script>
   
+  <!-- Script para guardar el usuario y la contraseña en localStorage -->
+  <script>
+    // Evento que se activa al enviar el formulario de registro
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+      // Obtener los valores de los campos
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const password2 = document.getElementById('password2').value;
+      const userType = document.getElementById('register-type').value;
+
+      // Verificar si las contraseñas coinciden
+      if (password !== password2) {
+        document.getElementById('passwordError').textContent = 'Las contraseñas no coinciden';
+        return; // Detener la ejecución si las contraseñas no coinciden
+      }
+
+      // Crear un objeto con los datos del usuario
+      const newUser = {
+        username: username,
+        email: email,
+        password: password,
+        type: userType
+      };
+
+      // Guardar el objeto de usuario en localStorage (se convierte a formato JSON)
+      localStorage.setItem('user', JSON.stringify(newUser));
+
+      // Redirigir al login después de guardar
+      alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+      window.location.href = 'login.html'; // Redirige a la página de login
+    });
+  </script>
+
   <!-- Incluir el script principal de la aplicación -->
   <script src="js/main.js"></script>
 </body>

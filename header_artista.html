@@ -1,0 +1,42 @@
+<header>
+    <div class="nav-left">
+      <a href="index.html" class="logo" title="Inicio">UnderSounds</a>
+    </div>
+    <div class="nav-center">
+      <a href="generos.html" id="btnGeneros" class="btn-icon" title="Buscar por géneros">💡</a>
+  
+  
+      <div class="search-container">
+        <form action="search.html" method="get">
+          <input type="text" id="searchInput" name="q" placeholder="Buscar artista, álbum,...">
+          <button type="submit" class="search-btn">🔍</button>
+        </form>
+      </div>
+  
+    </div>
+    <div class="nav-right">
+      <div class="cart-btn" id="cart-btn">
+        <img src="assets/images/carrito.png" alt="Carrito" id="cartIcon">
+        <!-- Nuevo contador -->
+        <span id="cart-count" class="cart-count">0</span>
+        <!-- Dropdown que se mostrará al pasar el ratón -->
+        <div class="cart-dropdown" id="cart-dropdown">
+          <!-- El contenido se inyecta dinámicamente -->
+        </div>
+      </div>    
+      <!-- Perfil de usuario con dropdown -->
+      <div class="profile-container" id="profileContainer">
+        <img src="assets/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
+        <div class="profile-dropdown" id="profileDropdown">
+          <a href="edit_perfil_artista.html">Editar perfil</a>
+          <a href="favoritos.html">Lista de Me gusta</a>
+          <a href="mis_compras.html">Mis compras</a>
+          <a href="albumes_subidos">Albumes subidos</a>
+          <a href="amigos.html">Gestionar amigos</a>
+          <a href="index.html" class="logout-link">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  

@@ -403,38 +403,38 @@ const productCatalog = {
       });
     }
 
-      // Renderizar carrito y actualizar contador en el panel de pedido
-      renderCart();
-      updateCartCount();
+    // Renderizar carrito y actualizar contador en el panel de pedido
+    renderCart();
+    updateCartCount();
 
-      // Confirmar el pedido: vaciar el carrito
-      const confirmOrder = document.getElementById('confirm-order');
-      confirmOrder.addEventListener('click', () => {
-        emptyCart();
-        showNotification("Pedido confirmado. El carrito ha sido vaciado.");
-      });
+    // Confirmar el pedido: vaciar el carrito
+    const confirmOrder = document.getElementById('confirm-order');
+    confirmOrder.addEventListener('click', () => {
+      emptyCart();
+      showNotification("Pedido confirmado. El carrito ha sido vaciado.");
+    });
 
-      // Transición al método de pago: validar que el formulario de cliente esté completo
-      const toPaymentBtn = document.getElementById('to-payment');
-      toPaymentBtn.addEventListener('click', () => {
-        const customerForm = document.getElementById('customer-form');
-        if (customerForm.checkValidity()) {
-          // Si el formulario es válido, ocultamos la sección de información del cliente
-          // y mostramos la sección del método de pago.
-          document.getElementById('customer-info').classList.add('hidden');
-          document.getElementById('payment-method').classList.remove('hidden');
-        } else {
-          customerForm.reportValidity();
-        }
-      });
+    // Transición al método de pago: validar que el formulario de cliente esté completo
+    const toPaymentBtn = document.getElementById('to-payment');
+    toPaymentBtn.addEventListener('click', () => {
+      const customerForm = document.getElementById('customer-form');
+      if (customerForm.checkValidity()) {
+        // Si el formulario es válido, ocultamos la sección de información del cliente
+        // y mostramos la sección del método de pago.
+        document.getElementById('customer-info').classList.add('hidden');
+        document.getElementById('payment-method').classList.remove('hidden');
+      } else {
+        customerForm.reportValidity();
+      }
+    });
 
-      // Manejo del pago (simulación)
-      const paymentForm = document.getElementById('payment-form');
-      paymentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        showNotification("Pago confirmado. Gracias por su compra.");
-        emptyCart();
-      });
+    // Manejo del pago (simulación)
+    const paymentForm = document.getElementById('payment-form');
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      showNotification("Pago confirmado. Gracias por su compra.");
+      emptyCart();
+    });
 
   });
   
