@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+  
+    .btn {
+      display: block;
+      margin: 10px auto;
+      width: 200px;
+      height: 50px;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+  
+    #listaArtistas {
+      display: none;
+      margin-top: 20px;
+    }
+  
+    #artistasContainer, #artistasEliminadosContainer, #artistasBajoSelloContainer {
+      list-style: none;
+      padding: 0;
+    }
+  
+    #artistasContainer li, #artistasEliminadosContainer li, #artistasBajoSelloContainer li {
+      margin: 10px 0;
+    }
+  
+    #artistasContainer a, #artistasEliminadosContainer a, #artistasBajoSelloContainer a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+  
+    #artistasContainer a:hover, #artistasEliminadosContainer a:hover, #artistasBajoSelloContainer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>
+
+<main class="content upload-album">
+  <h2 class="logo">Gestión Sello Discográfico</h2>
+  
+
+  <button type="button" class="btn" id="mostrarArtistas">Añadir Artista</button>
+  <div class="separator"></div>
+
+  <!-- Contenedor para la lista de artistas -->
+  <div id="listaArtistas" style="display: none;">
+    <ul id="artistasContainer"></ul>
+  </div>
+  <!-- Botón para eliminar artista -->
+  <button type="button" class="btn" id="eliminarArtista">Eliminar Artista</button>
+  <div class="separator"></div>
+
+   <!-- Lista de artistas eliminados (o bajo sello) -->
+    <div id="artistasEliminados" style="display: none;">
+      <ul id="artistasEliminadosContainer"></ul>
+    </div>
+    
+    <button type="button" class="btn" id="verBajoSello">Ver Artistas Bajo Sello</button>
+    <div class="separator"></div>
+    
+    <div id="artistasBajoSello" style="display: none;">
+      <h3>Artistas Bajo Sello</h3>
+      <ul id="artistasBajoSelloContainer"></ul>
+    </div>
+
+
+  <button type="button" class="btn">Estadísticas</button>
+  <div class="separator"></div>
+  <button type="button" class="btn" onclick="location.href='tienda.html'">Tienda</button>
+  <div class="separator"></div>
+  <button type="button" class="btn">Suscripciones</button>
+
+  <script src="js/artistas.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnMostrar = document.getElementById("mostrarArtistas");
+      const btnEliminar = document.getElementById("eliminarArtista");
+      const btnVerBajoSello = document.getElementById("verBajoSello");
+
+      const listaArtistas = document.getElementById("listaArtistas");
+      const artistasContainer = document.getElementById("artistasContainer");
+      const artistasEliminadosContainer = document.getElementById("artistasEliminadosContainer");
+      const artistasBajoSelloContainer = document.getElementById("artistasBajoSelloContainer");
+
+      const artistasEliminados = document.getElementById("artistasEliminados");
+      const artistasBajoSello = document.getElementById("artistasBajoSello");
+
+      let artistas = [
+        { name: "Artista 1" },
+        { name: "Artista 2" },
+        { name: "Artista 3" }
+      ];
+      let artistasBajoSelloList = [];
+
+      btnMostrar.addEventListener("click", () => {
+        listaArtistas.style.display = listaArtistas.style.display === "none" ? "block" : "none";
+        cargarArtistas();
+      });
+
+      btnEliminar.addEventListener("click", () => {
+        artistasEliminados.style.display = artistasEliminados.style.display === "none" ? "block" : "none";
+      });
+
+      btnVerBajoSello.addEventListener("click", () => {
+        artistasBajoSello.style.display = artistasBajoSello.style.display === "none" ? "block" : "none";
+      });
+
+      function cargarArtistas() {
+        artistasContainer.innerHTML = "";
+        artistas.forEach(artista => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = artista.name;
+          link.addEventListener("click", () => moverArtista(artista));
+          li.appendChild(link);
+          artistasContainer.appendChild(li);
+        });
+      }
+
+      function moverArtista(artista) {
+        artistasBajoSelloList.push(artista);
+        artistas = artistas.filter(a => a !== artista);
+        actualizarListas();
+      }
+
+      function restaurarArtista(artista) {
+        artistas.push(artista);
+        artistasBajoSelloList = artistasBajoSelloList.filter(a => a !== artista);
+        actualizarListas();
+      }
+
+      function actualizarListas() {
+        artistasContainer.innerHTML = "";
+        artistas.forEach(artista => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = artista.name;
+          link.addEventListener("click", () => moverArtista(artista));
+          li.appendChild(link);
+          artistasContainer.appendChild(li);
+        });
+
+        artistasEliminadosContainer.innerHTML = "";
+        artistasBajoSelloList.forEach(artista => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = artista.name;
+          link.addEventListener("click", () => restaurarArtista(artista));
+          li.appendChild(link);
+          artistasEliminadosContainer.appendChild(li);
+        });
+
+        artistasBajoSelloContainer.innerHTML = "";
+        artistasBajoSelloList.forEach(artista => {
+          const li = document.createElement("li");
+          li.textContent = artista.name;
+          artistasBajoSelloContainer.appendChild(li);
+        });
+      }
+
+      cargarArtistas();
+    });
+  </script>
+
+
+
+</main>
+
+</body>
+<footer>
+  <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
+</footer>
+</html>
