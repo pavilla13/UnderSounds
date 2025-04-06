@@ -28,10 +28,22 @@
     <div class="genres-container"></div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 UnderSounds. Todos los derechos reservados.</p>
-  </footer>
+  <!-- Contenedor para insertar el footer dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar footer.html -->
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>
 
   <!-- Carga de scripts -->
   <script src="js/generos.js"></script>
