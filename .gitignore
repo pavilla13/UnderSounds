@@ -1,0 +1,45 @@
+# Entornos virtuales
+venv/
+env/
+Lib/
+ENV/
+.venv/
+
+# Cachés de Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Archivos de logs y bases de datos temporales
+*.log
+*.sqlite3
+
+# Configs y datos temporales
+*.env
+*.DS_Store
+*.bak
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de pruebas
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.pytest_cache/
+
+# Configuración de mypy y pyright
+.mypy_cache/
+.pyright/
+
+# Configuración de IDEs
+.idea/
+
+# Docker
+**/docker-compose.override.yml
