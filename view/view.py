@@ -8,3 +8,5 @@ class View():
         pass
     def get_index_view(self, request: Request):
         return templates.TemplateResponse("index.html", {"request" : request})
+    def get_tienda_view(self, request: Request):
+        return templates.TemplateResponse("tienda.html", {"request" : request})
