@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Inicio</title>
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Aquí enlazamos el CSS con la nueva maquetación y efectos -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Inyección del header -->
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>
+
+  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <div class="tabs">
+    <button class="tab active" data-tab="recientes">Recientes</button>
+    <button class="tab" data-tab="bestofs">Best Of's</button>
+    <a href="tienda.html" class="tab">Tienda</a>
+    <a href="amigos.html" class="tab">Amigos</a>
+  </div>
+
+  <!-- Sección: Recientes (visible por defecto) -->
+  <section id="recientes" class="tab-content active">
+    <h2 class="logo">Recientes</h2>
+    <div class="music-section">
+      <!-- Canciones Recientes -->
+      <h3>Canciones Recientes</h3>
+      <div class="row">
+        <a href="cancion.html?id=1" class="card">
+          <img src="assets/images/bohemian.jpeg" alt="Bohemian Rhapsody" class="card-img">
+          <div class="card-caption">Bohemian Rhapsody</div>
+        </a>
+        <a href="cancion.html?id=2" class="card">
+          <img src="assets/images/lights.jpeg" alt="Blinding Lights" class="card-img">
+          <div class="card-caption">Blinding Lights</div>
+        </a>
+        <a href="cancion.html?id=3" class="card">
+          <img src="assets/images/animals.jpeg" alt="Animals" class="card-img">
+          <div class="card-caption">Animals</div>
+        </a>
+        <a href="cancion.html?id=4" class="card">
+          <img src="assets/images/five.jpeg" alt="Take Five" class="card-img">
+          <div class="card-caption">Take Five</div>
+        </a>
+      </div>
+    </div>
+    <div class="album-section">
+      <h3>Álbumes Recientes</h3>
+      <div class="row">
+        <a href="album.html?id=1" class="card">
+          <img src="assets/images/opera.jpeg" alt="A Night at the Opera" class="card-img">
+          <div class="card-caption">A Night at the Opera</div>
+        </a>
+        <a href="album.html?id=6" class="card">
+          <img src="assets/images/futuro.jpeg" alt="Future Nostalgia" class="card-img">
+          <div class="card-caption">Future Nostalgia</div>
+        </a>
+        <a href="album.html?id=17" class="card">
+          <img src="assets/images/discovery.jpeg" alt="Discovery" class="card-img">
+          <div class="card-caption">Discovery</div>
+        </a>
+        <a href="album.html?id=18" class="card">
+          <img src="assets/images/blue.jpeg" alt="Kind of Blue" class="card-img">
+          <div class="card-caption">Kind of Blue</div>
+        </a>
+      </div>
+    </div>
+    
+
+    <!-- Géneros Recientes -->
+    <div class="genres-section">
+      <h3>Géneros Recientes</h3>
+      <div class="row">
+        <a href="generos especifico.html?id=rock" class="card">
+          <img src="assets/images/rock.jpeg" alt="Rock" class="card-img">
+          <div class="card-caption">Rock</div>
+        </a>
+        <a href="generos especifico.html?id=pop" class="card">
+          <img src="assets/images/pop.jpeg" alt="Pop" class="card-img">
+          <div class="card-caption">Pop</div>
+        </a>
+        <a href="generos especifico.html?id=electronica" class="card">
+          <img src="assets/images/electro.jpeg" alt="Electrónica" class="card-img">
+          <div class="card-caption">Electrónica</div>
+        </a>
+        <a href="generos especifico.html?id=jazz" class="card">
+          <img src="assets/images/jazz.png" alt="Jazz" class="card-img">
+          <div class="card-caption">Jazz</div>
+        </a>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Sección: Best Of's -->
+  <section id="bestofs" class="tab-content">
+    <h2 class="logo">Best Of's</h2>
+    
+    <!-- Mejores Canciones -->
+    <div class="bestofs-songs">
+      <h3>Mejores Canciones</h3>
+      <div class="row">
+        <a href="cancion.html?id=9" class="card">
+          <img src="assets/images/heaven.jpeg" alt="Stairway to Heaven" class="card-img">
+          <div class="card-caption">Stairway to Heaven</div>
+        </a>
+        <a href="cancion.html?id=10" class="card">
+          <img src="assets/images/prayer.jpg" alt="Like a Prayer" class="card-img">
+          <div class="card-caption">Like a Prayer</div>
+        </a>
+        <a href="cancion.html?id=11" class="card">
+          <img src="assets/images/more_time.jpg" alt="One More Time" class="card-img">
+          <div class="card-caption">One More Time</div>
+        </a>
+        <a href="cancion.html?id=12" class="card">
+          <img src="assets/images/so_what.jpg" alt="So What" class="card-img">
+          <div class="card-caption">So What</div>
+        </a>
+      </div>
+    </div>
+    
+    
+    <!-- Mejores Álbumes -->
+    <div class="album-section">
+      <h3>Mejores Álbumes</h3>
+      <div class="row">
+        <a href="album.html?id=19" class="card">
+          <img src="assets/images/led_IV.jpg" alt="Led Zeppelin IV" class="card-img">
+          <div class="card-caption">Led Zeppelin IV</div>
+        </a>
+        <a href="album.html?id=20" class="card">
+          <img src="assets/images/thriller.jpeg" alt="Thriller" class="card-img">
+          <div class="card-caption">Thriller</div>
+        </a>
+        <a href="album.html?id=21" class="card">
+          <img src="assets/images/ram.jpeg" alt="Random Access Memories" class="card-img">
+          <div class="card-caption">Random Access Memories</div>
+        </a>
+        <a href="album.html?id=22" class="card">
+          <img src="assets/images/blue_train.jpg" alt="Blue Train" class="card-img">
+          <div class="card-caption">Blue Train</div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="genres-section">
+      <h3>Mejores Géneros</h3>
+      <div class="row">
+        <a href="generos especifico.html?id=reggaeton" class="card">
+          <img src="assets/images/reggaeton.jpeg" alt="Reggaeton" class="card-img">
+          <div class="card-caption">Reggaeton</div>
+        </a>
+        <a href="generos especifico.html?id=techno" class="card">
+          <img src="assets/images/techno.jpg" alt="Techno" class="card-img">
+          <div class="card-caption">Techno</div>
+        </a>
+        <a href="generos especifico.html?id=hiphop" class="card">
+          <img src="assets/images/hip_hop.jpg" alt="Hip Hop" class="card-img">
+          <div class="card-caption">Hip Hop</div>
+        </a>
+        <a href="generos especifico.html?id=salsa" class="card">
+          <img src="assets/images/salsa.jpg" alt="Salsa" class="card-img">
+          <div class="card-caption">Salsa</div>
+        </a>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Contenedor para insertar el footer dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar footer.html -->
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+
+    // Función para inicializar o verificar la sesión
+    function iniciarOValidarSesion() {
+      const sessionStart = localStorage.getItem('sessionStart');
+
+      if (!document.referrer) {
+        localStorage.clear();
+        console.log("localStorage borrado: acceso directo a index.html.");
+        // Se establece la hora de inicio de sesión
+        localStorage.setItem('sessionStart', Date.now());
+      } else {
+        console.log("index.html accedido desde otra página, no se borra localStorage.");
+      }
+    }
+
+    // Ejecutar la verificación al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      iniciarOValidarSesion();
+    });
+  </script>
+
+</body>
+</html>
