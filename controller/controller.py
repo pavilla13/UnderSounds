@@ -5,7 +5,11 @@ from view.view import View
 app = FastAPI()
 
 view = View()
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+app.mount("/partials", StaticFiles(directory="view/partials"), name="partials")
+
 
 @app.get("/")
 def index(request: Request):

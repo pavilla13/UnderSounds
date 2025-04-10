@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <!-- Inyección del header -->
+  <!-- Inyección del header 
   <div id="header-placeholder"></div>
   <script>
     fetch('header.html')
@@ -21,7 +21,16 @@
           updateCartDropdown();
         }, 100);
       });
-  </script>
+  </script> -->
+
+{% include "header.html" %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
+    updateCartDropdown();
+  });
+</script>
 
   <!-- Pestañas de la tienda -->
   <div class="store-tabs">
