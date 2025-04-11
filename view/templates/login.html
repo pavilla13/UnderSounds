@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Iniciar Sesión</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
   <!-- Inyección del header -->
   <div id="header-placeholder"></div>
   
-  <!-- Script para cargar header y ejecutar funciones dependientes -->
+
+
+  <!-- Script para cargar header y ejecutar funciones dependientes 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       fetch('header.html')
@@ -24,7 +26,17 @@
         })
         .catch(error => console.error('Error al cargar el header:', error));
     });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
   </script>
+
+
   
   <!-- Contenido principal: Iniciar sesión -->
   <main class="content login-page">
@@ -39,18 +51,22 @@
       <button type="submit" class="btn">Iniciar sesión</button>
     </form>
     <div class="login-options">
-      <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
-      <p><a href="recover.html">¿Olvidaste tu contraseña?</a></p>
+      <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>
+      <p><a href="/recover">¿Olvidaste tu contraseña?</a></p>
     </div>
   </main>
 
-  <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
 
-  <!-- Contenedor para insertar el footer dinámicamente -->
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
   <div id="footer"></div>
 
-  <!-- Script para cargar footer.html -->
+   Script para cargar footer.html 
   <script>
     // Esta función "fetch" trae el contenido de footer.html
     // y lo inyecta dentro del div con id="footer"
@@ -62,7 +78,10 @@
       .catch(error => {
         console.error('Error al cargar el footer:', error);
       });
-  </script>
+  </script>-->
+  {% include "footer.html" %}
+
+
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {

@@ -22,3 +22,12 @@ class View():
     
     def get_terminos_view(self, request: Request):
         return templates.TemplateResponse("terminos.html", {"request" : request})
+    
+    def get_login_view(self, request: Request):
+        return templates.TemplateResponse("login.html", {"request" : request})
+    
+    def get_register_view(self, request: Request):
+        return templates.TemplateResponse("register.html", {"request" : request})
+    
+    def get_recover_view(self, request: Request):
+        return templates.TemplateResponse("recover.html", {"request" : request})

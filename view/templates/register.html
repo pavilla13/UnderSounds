@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Registro</title>
+  
+  <!-- Fuente personalizada desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Incluir CSS de Select2 para estilizar el select con búsqueda -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+
+
+  <!-- CONTENIDO PRINCIPAL: Formulario de Registro -->
+  <main class="content login-page">
+    <!-- Título del formulario -->
+    <h2 class="logo">Registro</h2>
+    <!-- Formulario de registro -->
+    <form id="registerForm" class="form">
+      <!-- Campo: Nombre completo -->
+      <label for="name">Nombre completo:</label>
+      <input type="text" id="name" name="name" required>
+
+      <!-- Campo: Usuario -->
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required>
+
+      <!-- Campo: Correo electrónico -->
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <!-- Campo: Contraseña -->
+      <label for="password">Contraseña (mínimo 8 caracteres):</label>
+      <input type="password" id="password" name="password" required>
+      <span id="passwordError" style="color:red;"></span>
+
+      <!-- Campo: Repetir contraseña -->
+      <label for="password2">Repetir contraseña:</label>
+      <input type="password" id="password2" name="password2" required>
+
+      <select id="register-type">
+        <option value="" disabled selected>Tipo de registro</option>
+        <option value="user">Usuario</option>
+        <option value="artist">Artista</option>
+        <option value="sello">Sello discográfico</option>
+      </select>
+
+      <!-- Campo: Fecha de nacimiento -->
+      <label for="birthdate">Fecha de nacimiento:</label>
+      <input type="date" id="birthdate" name="birthdate" required>
+
+      <!-- Campo: Selección de país -->
+      <label for="country">País:</label>
+      <select id="country" name="country" required>
+        <!-- Las opciones se llenarán dinámicamente con datos de la API RestCountries -->
+      </select>
+
+      <!-- Campo: Aceptación de términos y condiciones -->
+      <label for="terms">
+        Acepto los <a href="/terminos">términos y condiciones</a>
+        <input type="checkbox" id="terms" name="terms" required>
+      </label>
+
+      <!-- Botón para enviar el formulario -->
+      <button type="submit" class="btn">Registrarse</button>
+    </form>
+    <!-- Opciones adicionales para usuarios ya registrados -->
+    <div class="login-options">
+      <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+    </div>
+  </main>
+
+  <!-- BOTÓN DE AYUDA: Botón flotante para acceder a la ayuda -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+  <!-- Incluir jQuery para facilitar la manipulación del DOM y realizar peticiones AJAX -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Incluir Select2 JS para transformar el <select> en un componente con búsqueda -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  
+  <!-- Script para cargar dinámicamente los países desde la API de RestCountries y aplicar Select2 -->
+  <script>
+    $(document).ready(function() {
+      // Realiza una petición AJAX a la API de RestCountries para obtener la lista de países
+      $.ajax({
+        url: 'https://restcountries.com/v3.1/all', // URL de la API
+        method: 'GET', // Método HTTP de la petición
+        success: function(data) {
+          // Ordena la lista de países alfabéticamente por su nombre común
+          data.sort(function(a, b) {
+            return a.name.common.localeCompare(b.name.common);
+          });
+          // Selecciona el elemento <select> por su ID
+          var $select = $('#country');
+          // Limpia el contenido actual del <select>
+          $select.empty();
+          // Agrega una opción placeholder
+          $select.append($('<option>', {
+            value: '',
+            text: 'Selecciona tu país'
+          }));
+          // Itera sobre cada país recibido de la API y lo añade como opción en el <select>
+          $.each(data, function(index, country) {
+            $select.append($('<option>', {
+              value: country.cca2,  // Usa el código del país (por ejemplo, "US" o "ES")
+              text: country.name.common // Muestra el nombre común del país
+            }));
+          });
+          // Inicializa Select2 en el <select> para habilitar la funcionalidad de búsqueda y filtrado
+          $select.select2({
+            placeholder: "Selecciona tu país"
+          });
+        },
+        error: function(err) {
+          // En caso de error, se muestra un mensaje en la consola
+          console.error("Error al obtener los países:", err);
+        }
+      });
+    });
+  </script>
+  
+  <!-- Script para guardar el usuario y la contraseña en localStorage -->
+  <script>
+    // Evento que se activa al enviar el formulario de registro
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+      // Obtener los valores de los campos
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const password2 = document.getElementById('password2').value;
+      const userType = document.getElementById('register-type').value;
+
+      // Verificar si las contraseñas coinciden
+      if (password !== password2) {
+        document.getElementById('passwordError').textContent = 'Las contraseñas no coinciden';
+        return; // Detener la ejecución si las contraseñas no coinciden
+      }
+
+      // Crear un objeto con los datos del usuario
+      const newUser = {
+        username: username,
+        email: email,
+        password: password,
+        type: userType
+      };
+
+      // Guardar el objeto de usuario en localStorage (se convierte a formato JSON)
+      localStorage.setItem('user', JSON.stringify(newUser));
+
+      // Redirigir al login después de guardar
+      alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+      window.location.href = '/login'; // Redirige a la página de login
+    });
+  </script>
+
+  <!-- Incluir el script principal de la aplicación -->
+  <script src="js/main.js"></script>
+</body>
+</html>

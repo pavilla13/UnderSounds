@@ -27,3 +27,15 @@ def ayuda(request: Request):
 @app.get("/terminos")
 def terminos(request: Request):
     return view.get_terminos_view(request)
+
+@app.get("/login")
+def login(request: Request):
+    return view.get_login_view(request)
+
+@app.get("/register")
+def register(request: Request):
+    return view.get_register_view(request)
+
+@app.get("/recover")
+def recover(request: Request):
+    return view.get_recover_view(request)
