@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Álbum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    :root {
+      --primary-color: #6c5ce7;
+      --secondary-color: #a29bfe;
+      --dark-color: #2d3436;
+      --light-color: #f5f6fa;
+      --accent-color: #fd79a8;
+    }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f8f9fa;
+      color: var(--dark-color);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .content {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .album-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    @media (min-width: 768px) {
+      .album-header {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+    
+    .album-cover {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      margin-right: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .album-info {
+      flex: 1;
+    }
+    
+    .album-title {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .album-artist {
+      font-size: 1.5rem;
+      color: var(--dark-color);
+      margin: 0 0 1rem;
+    }
+    
+    .album-genre {
+      display: inline-block;
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .album-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+      max-width: 800px;
+    }
+    
+    .track-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .track {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
+    }
+    
+    .track:last-child {
+      border-bottom: none;
+    }
+    
+    .track:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .track-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .track-number {
+      color: #777;
+      width: 30px;
+      text-align: center;
+    }
+    
+    .track-title {
+      flex: 1;
+      font-weight: 600;
+      margin: 0 1rem;
+    }
+    
+    .track-duration {
+      color: #777;
+    }
+    
+    .artist-link {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .btn:hover {
+      background-color: #5649d1;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+    }
+    
+    .help-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .help-button:hover {
+      transform: scale(1.1);
+      background-color: #e84393;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--dark-color);
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // Después de cargar el header, inicializamos el carrito
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+
+
+
+  <!-- Contenido principal: Detalles del Álbum -->
+  <main class="content">
+    <div class="album-header">
+      <img id="album-image" src="" alt="Portada del álbum" class="album-cover">
+      <div class="album-info">
+        <h1 id="album-name" class="album-title">Cargando álbum...</h1>
+        <h2 id="album-artist" class="album-artist"></h2>
+        <span id="album-genre" class="album-genre"></span>
+        <p id="album-description" class="album-description"></p>
+      </div>
+    </div>
+
+    <!-- Lista de pistas -->
+    <h2>Pistas</h2>
+    <ul class="track-list" id="track-list">
+      <li>Cargando pistas...</li>
+    </ul>
+
+    <!-- Botón para ir al artista -->
+    <div class="artist-link">
+      <a href="artistas.html" id="artist-link" class="btn">IR AL ARTISTA</a>
+    </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+  
+  
+    <script src="js/albumes.js"></script>
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Obtener el ID del álbum de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const albumId = urlParams.get("id");
+
+        if (albumId) {
+          // Buscar el álbum en los datos de album.js
+          const album = albumes.find(a => a.id === parseInt(albumId));
+          
+          if (album) {
+            // Actualizar la información del álbum
+            document.getElementById("album-name").textContent = album.name;
+            document.getElementById("album-artist").textContent = album.artist;
+            document.getElementById("album-genre").textContent = album.genre;
+            document.getElementById("album-description").textContent = album.description;
+            document.getElementById("album-image").src = album.image;
+            document.getElementById("album-image").alt = album.name;
+            
+            // Actualizar el enlace al artista (necesitarías implementar esta función)
+            updateArtistLink(album.artist);
+            
+            // Cargar las pistas del álbum
+            const tracks = tracksData[albumId] || [];
+            const trackList = document.getElementById('track-list');
+            trackList.innerHTML = "";
+            
+            if (tracks.length > 0) {
+              tracks.forEach((track, index) => {
+                const li = document.createElement('li');
+                li.className = 'track';
+                
+                const a = document.createElement('a');
+                a.href = `/cancion?id=${track.id}&album=${albumId}`;
+                a.className = 'track-link';
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'track-number';
+                numberSpan.textContent = index + 1;
+                
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'track-title';
+                titleSpan.textContent = track.title;
+                
+                const durationSpan = document.createElement('span');
+                durationSpan.className = 'track-duration';
+                durationSpan.textContent = track.duration;
+                
+                a.appendChild(numberSpan);
+                a.appendChild(titleSpan);
+                a.appendChild(durationSpan);
+                li.appendChild(a);
+                trackList.appendChild(li);
+              });
+            } else {
+              trackList.innerHTML = "<li>No hay pistas disponibles para este álbum</li>";
+            }
+          } else {
+            document.querySelector(".content").innerHTML = `
+              <div class="error-message">
+                <h2>Álbum no encontrado</h2>
+                <p>El álbum que buscas no está disponible.</p>
+                <a href="albumes.html" class="btn">Ver todos los álbumes</a>
+              </div>
+            `;
+          }
+        }
+      });
+
+      // Función para actualizar el enlace al artista
+      function updateArtistLink(artistName) {
+        const artistLink = document.getElementById("artist-link");
+        artistLink.href = `artistas.html?name=${encodeURIComponent(artistName)}`;
+      }
+    </script>
+
+    <!-- Contenedor para insertar el footer dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar footer.html -->
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>
+  
+  <!-- Incluir el archivo album.js -->
+  <script src="js/album.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

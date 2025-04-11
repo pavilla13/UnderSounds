@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Lista de Amigos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    /* Ejemplo de estilos para la sección de amigos */
+    .friends-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .friend-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      padding: 1rem;
+    }
+    .friend-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .friend-avatar {
+      width: 44%;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .friend-info {
+      margin: 1rem 0;
+    }
+    .friend-name {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .friend-description {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .friend-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #0077cc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .friend-link:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+ 
+
+  <!-- Menú de pestañas -->
+  <div class="tabs">
+    <a href="/" class="tab">Recientes</a>
+    <a href="/#bestofs" class="tab">Best Of's</a>
+    <a href="/tienda" class="tab">Tienda</a>
+    <a href="/amigos" class="tab active">Amigos</a>
+  </div>
+
+  <!-- Contenido principal: Lista de amigos -->
+  <main class="content">
+    <h1>Lista de Amigos</h1>
+    <div class="friends-list" id="friends-list">
+      <!-- Los friend-cards se insertarán dinámicamente -->
+    </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+
+  <script>
+    // Datos de ejemplo de amigos
+    const friends = [
+      {
+        id: 1,
+        name: "Amigo 1",
+        description: "Apasionado por el rock y pop, siempre buscando nuevos sonidos.",
+        avatar: "static/images/amigo1.jpg"
+      },
+      {
+        id: 2,
+        name: "Amigo 2",
+        description: "Amante de la electrónica y el jazz, explorador de ritmos.",
+        avatar: "static/images/amiga2.jpg"
+      },
+      {
+        id: 3,
+        name: "Amigo 3",
+        description: "Fanático de los clásicos y siempre actualizado en novedades.",
+        avatar: "static/images/amiga4.jpg"
+      },
+      {
+        id: 4,
+        name: "Amigo 4",
+        description: "Seguidor de lo indie y alternativo, con gusto por lo experimental.",
+        avatar: "static/images/amigo3.jpg"
+      }
+    ];
+
+    // Renderizar la lista de amigos dinámicamente
+    const friendsList = document.getElementById("friends-list");
+    friends.forEach(friend => {
+      const friendCard = document.createElement("div");
+      friendCard.classList.add("friend-card");
+      friendCard.innerHTML = `
+        <img src="${friend.avatar}" alt="${friend.name}" class="friend-avatar">
+        <div class="friend-info">
+          <h2 class="friend-name">${friend.name}</h2>
+          <p class="friend-description">${friend.description}</p>
+        </div>
+        <a href="/amigoLista?id=${friend.id}" class="friend-link">Ver perfil</a>
+      `;
+      friendsList.appendChild(friendCard);
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

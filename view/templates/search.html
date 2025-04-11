@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Buscador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+
+  <!--
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          if (typeof updateCartCount === 'function') updateCartCount();
+          if (typeof updateCartDropdown === 'function') updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+
+{% include "header.html" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
+    updateCartDropdown();
+  });
+</script>
+
+
+
+
+
+
+
+
+  <h2>Mostrando resultados para "<span id="search-query"></span>"</h2>
+  <div class="store-tabs">
+    <div class="tabs">
+      <button class="tab active" data-tab="todo">Todo</button>
+      <button class="tab" data-tab="artistas">Artistas</button>
+      <button class="tab" data-tab="sellos">Sellos</button>
+      <button class="tab" data-tab="albumes">Álbumes</button>
+      <button class="tab" data-tab="canciones">Canciones</button>
+      <button class="tab" data-tab="amigos">Amigos</button>
+    </div>
+  </div>
+
+  <main class="content">
+    <section id="todo" class="tab-content active">
+      <h2>Todos</h2>
+      <div id="todo-results"></div>
+    </section>
+
+    <section id="artistas" class="tab-content">
+      <h2>Artistas</h2>
+      <div id="artistas-results" class="row"></div>
+    </section>
+
+    <section id="sellos" class="tab-content">
+      <h2>Sellos</h2>
+      <div id="sellos-results" class="row"></div>
+    </section>
+
+    <section id="albumes" class="tab-content">
+      <h2>Álbumes</h2>
+      <div id="albumes-results" class="row"></div>
+    </section>
+
+    <section id="canciones" class="tab-content">
+      <h2>Canciones</h2>
+      <div id="canciones-results" class="row"></div>
+    </section>
+
+    <section id="amigos" class="tab-content">
+      <h2>Amigos</h2>
+      <div id="amigos-results" class="row"></div>
+    </section>
+  </main>
+
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+
+
+  <!-- Carga de archivos JS con la información -->
+  <script src="js/artistas.js"></script>
+  <script src="js/sellos.js"></script>
+  <script src="js/albumes.js"></script>
+  <script src="js/canciones.js"></script>
+  <script src="js/amigos.js"></script>
+
+  <!-- Lógica del buscador -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Obtener el término de búsqueda desde la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchTerm = urlParams.get('q') || '';
+      document.getElementById('search-query').textContent = searchTerm;
+
+      const tabs = document.querySelectorAll(".tabs .tab");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // Mapeo de datos por categoría (se asume que estas variables son globales)
+      const dataMapping = {
+        artistas: artistas,
+        sellos: sellos,
+        albumes: albumes,
+        canciones: canciones,
+        amigos: amigos
+      };
+
+      // Función auxiliar para capitalizar la primera letra
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      // Renderiza los resultados en la pestaña indicada
+      function renderResults(query, tab) {
+        const resultsContainer = document.getElementById(`${tab}-results`);
+        // Si es la pestaña "Todo", se separan por categorías
+        if (tab === 'todo') {
+          let html = "";
+          Object.entries(dataMapping).forEach(([key, data]) => {
+            const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+            html += `<h3>${capitalize(key)}</h3>`;
+            if (filtered.length) {
+              html += `<div class="row">` +
+                filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("") +
+                `</div>`;
+            } else {
+              html += `<p>No se encontraron resultados en ${capitalize(key)} para "${query}".</p>`;
+            }
+          });
+          resultsContainer.innerHTML = html;
+        } else {
+          // Para otras pestañas
+          const data = dataMapping[tab] || [];
+          const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+          resultsContainer.innerHTML = filtered.length
+            ? filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("")
+            : `<p>No se encontraron resultados para "${query}".</p>`;
+        }
+      }
+
+      // Manejo de las pestañas
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tabContents.forEach(c => c.classList.remove("active"));
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-tab");
+          document.getElementById(target).classList.add("active");
+          renderResults(searchTerm, target);
+        });
+      });
+
+      // Inicializar con la pestaña "Todo"
+      renderResults(searchTerm, "todo");
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

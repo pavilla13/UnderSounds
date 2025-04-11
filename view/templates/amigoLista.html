@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Perfil de Amigo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    /* Estilos para el perfil de amigo */
+    .fan-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .fan-avatar {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #0077cc;
+    }
+    .fan-details {
+      flex: 1;
+    }
+    .fan-details h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .fan-details p {
+      font-size: 1.1rem;
+      margin: 0.3rem 0;
+      color: #555;
+    }
+    /* Secciones de favoritos y actividad */
+    .section {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      border-bottom: 2px solid #0077cc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #0077cc;
+    }
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .section li {
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #0077cc;
+      background-color: #f0f8ff;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+
+  <!-- Menú de pestañas -->
+  <div class="tabs">
+    <a href="/" class="tab">Recientes</a>
+    <a href="/#bestofs" class="tab">Best Of's</a>
+    <a href="/tienda" class="tab">Tienda</a>
+    <a href="/amigos" class="tab active">Amigos</a>
+  </div>
+
+  <!-- Contenido principal: Perfil del amigo -->
+  <main class="content">
+    <h1>Perfil de Amigo</h1>
+
+    <!-- Información del amigo -->
+    <section class="fan-info">
+      <img src="" alt="Avatar del Fan" class="fan-avatar" id="fan-avatar">
+      <div class="fan-details">
+        <h2 id="fan-name">Nombre del Amigo</h2>
+        <p id="fan-description">Descripción del amigo...</p>
+        <p><strong>Géneros favoritos:</strong> <span id="fan-genres">Rock, Pop</span></p>
+        <p><strong>Última conexión:</strong> <span id="fan-last-seen">Hace 2 días</span></p>
+      </div>
+    </section>
+
+    <!-- Sección de canciones favoritas -->
+    <section class="section favorite-songs">
+      <h2>Canciones Favoritas</h2>
+      <ul id="favorite-songs-list">
+        <!-- Se llenará dinámicamente -->
+      </ul>
+    </section>
+
+    <!-- Sección de álbumes favoritos -->
+    <section class="section favorite-albums">
+      <h2>Álbumes Favoritos</h2>
+      <ul id="favorite-albums-list">
+        <!-- Se llenará dinámicamente -->
+      </ul>
+    </section>
+
+    <!-- Sección de actividad reciente -->
+    <section class="section recent-activity">
+      <h2>Actividad Reciente</h2>
+      <ul id="fan-activity">
+        <!-- Se llenará dinámicamente -->
+      </ul>
+    </section>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+
+
+  <!-- Script para cargar dinámicamente los datos del amigo -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Obtener el ID del amigo desde la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const fanId = urlParams.get('id');
+
+      // Datos de ejemplo del amigo con ejemplos reales
+      const friendData = {
+        1: {
+          name: "Carlos Rodríguez",
+          description: "Apasionado por el rock y pop, siempre en búsqueda de nuevos sonidos y experiencias musicales.",
+          genres: "Rock, Pop",
+          lastSeen: "Hace 2 días",
+          avatar: "static/images/amigo1.jpg",
+          favoriteSongs: [
+            "Bohemian Rhapsody - Queen",
+            "Stairway to Heaven - Led Zeppelin",
+            "Imagine - John Lennon"
+          ],
+          favoriteAlbums: [
+            "A Night at the Opera - Queen",
+            "Led Zeppelin IV - Led Zeppelin",
+            "Abbey Road - The Beatles"
+          ],
+          activity: [
+            "Escuchó 'Bohemian Rhapsody' de Queen",
+            "Agregó 'Abbey Road' a su lista de favoritos",
+            "Compró 'Thriller' en la tienda"
+          ]
+        },
+        2: {
+          name: "María González",
+          description: "Apasionada por la electrónica y el jazz, exploradora de ritmos y sonidos innovadores.",
+          genres: "Electrónica, Jazz",
+          lastSeen: "Hace 5 días",
+          avatar: "static/images/amiga2.jpg",
+          favoriteSongs: [
+            "Billie Jean - Michael Jackson",
+            "Uptown Funk - Mark Ronson ft. Bruno Mars",
+            "Shape of You - Ed Sheeran"
+          ],
+          favoriteAlbums: [
+            "Thriller - Michael Jackson",
+            "1989 - Taylor Swift",
+            "Divide - Ed Sheeran"
+          ],
+          activity: [
+            "Escuchó 'Billie Jean' de Michael Jackson",
+            "Agregó '1989' a su lista de favoritos",
+            "Compartió 'Shape of You' en redes sociales"
+          ]
+        },
+        3: {
+          name: "Lucía Fernández",
+          description: "Fanática del indie y el folk, siempre descubriendo nuevas bandas y letras profundas.",
+          genres: "Indie, Folk",
+          lastSeen: "Hace 1 día",
+          avatar: "static/images/amiga4.jpg",
+          favoriteSongs: [
+            "Skinny Love - Bon Iver",
+            "Riptide - Vance Joy",
+            "Holocene - Bon Iver"
+          ],
+          favoriteAlbums: [
+            "For Emma, Forever Ago - Bon Iver",
+            "Dream Your Life Away - Vance Joy",
+            "Punisher - Phoebe Bridgers"
+          ],
+          activity: [
+            "Escuchó 'Riptide' de Vance Joy",
+            "Comentó sobre 'Punisher' en el foro de fans",
+            "Agregó 'Skinny Love' a su playlist de favoritos"
+          ]
+        },
+        4: {
+          name: "David Martínez",
+          description: "Aficionado al rap y al hip hop clásico. Cree que la música puede cambiar el mundo.",
+          genres: "Hip Hop, Rap",
+          lastSeen: "Hace 6 horas",
+          avatar: "static/images/amigo3.jpg",
+          favoriteSongs: [
+            "Lose Yourself - Eminem",
+            "Juicy - The Notorious B.I.G.",
+            "N.Y. State of Mind - Nas"
+          ],
+          favoriteAlbums: [
+            "The Marshall Mathers LP - Eminem",
+            "Ready to Die - The Notorious B.I.G.",
+            "Illmatic - Nas"
+          ],
+          activity: [
+            "Escuchó 'Juicy' de The Notorious B.I.G.",
+            "Agregó 'Illmatic' como su álbum favorito",
+            "Publicó una reseña sobre 'Lose Yourself'"
+          ]
+        }
+
+      };
+
+      // Actualizar la página con los datos del amigo
+      if (friendData[fanId]) {
+        const fan = friendData[fanId];
+        document.getElementById("fan-name").textContent = fan.name;
+        document.getElementById("fan-description").textContent = fan.description;
+        document.getElementById("fan-genres").textContent = fan.genres;
+        document.getElementById("fan-last-seen").textContent = fan.lastSeen;
+        document.getElementById("fan-avatar").src = fan.avatar;
+        document.getElementById("fan-avatar").alt = `Avatar de ${fan.name}`;
+
+        const songsList = document.getElementById("favorite-songs-list");
+        songsList.innerHTML = fan.favoriteSongs.map(song => `<li>${song}</li>`).join("");
+
+        const albumsList = document.getElementById("favorite-albums-list");
+        albumsList.innerHTML = fan.favoriteAlbums.map(album => `<li>${album}</li>`).join("");
+
+        const activityList = document.getElementById("fan-activity");
+        activityList.innerHTML = fan.activity.map(act => `<li>${act}</li>`).join("");
+      } else {
+        document.querySelector(".content").innerHTML = "<p>Fan no encontrado</p>";
+      }
+    });
+  </script>
+
+    <!-- Contenedor para insertar el footer dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar footer.html -->
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Género</title>
+  
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+  <style>
+    .genre-header {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .genre-content {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .songs-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px; 
+      padding: 30px; 
+      max-width: 1200px; 
+      margin: 0 auto;
+      height: auto;
+    }
+    .card {
+      display: flex;               /* Para usar flexbox */
+      flex-direction: column;      /* Apilar hijos en columna */
+      align-items: center;         /* Centrar contenido horizontalmente */
+      text-decoration: none;
+      color: inherit;
+      border-radius: 12px;
+      width: 400px;                /* Ancho fijo */
+      background-color: transparent;
+      margin-top: 100px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      background-color: transparent; /* Mantiene el fondo blanco al pasar el ratón */
+    }
+
+    .card img {
+      max-width: 400px; /* La imagen no será más ancha que 400px */
+      max-height: 300px; /* La imagen no será más alta que 300px */
+      width: auto;
+      height: auto; /* Elimina espacios extra abajo de la imagen */
+    }
+
+    .card-caption {
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const headerPlaceholder = document.getElementById("header-placeholder");
+      if (headerPlaceholder) {
+        fetch('header.html')
+          .then(response => response.text())
+          .then(data => {
+            headerPlaceholder.innerHTML = data;
+            setTimeout(() => {
+              updateCartCount();
+              updateCartDropdown();
+            }, 100);
+          });
+      }
+    });
+  </script>-->
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+
+  <!-- Contenido específico del género -->
+  <main class="genre-content" id="genre-content">
+    <div class="genre-header">
+      <h1 id="genre-name">Nombre del Género</h1>
+      <img id="genre-image" src="" alt="Imagen del Género" style="max-width: 300px;">
+    </div>
+    <p id="genre-description">Descripción del género.</p>
+  </main>
+
+  <!-- Sección de canciones del género -->
+  <section style="margin-bottom: 50px;">
+    <h2 style="text-align: center;">Canciones de este género</h2>
+    <div id="songs-container" class="songs-container"></div>
+  </section>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+
+  {% include "footer.html" %}
+
+
+
+
+  
+
+  <!-- Carga de scripts -->
+  <script src="js/generos.js"></script>
+  <script src="js/canciones.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
