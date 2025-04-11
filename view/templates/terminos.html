@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y Condiciones</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="terms-page">
+  <h1>Términos y Condiciones</h1>
+  <section>
+    <h2>1. Introducción</h2>
+    <p>
+      Bienvenido a UnderSounds, la plataforma de música en línea. Al utilizar este sitio, aceptas cumplir con estos términos y condiciones.
+    </p>
+  </section>
+  <section>
+    <h2>2. Uso del Sitio</h2>
+    <p>
+      UnderSounds permite explorar, reproducir, comprar y descargar música en diversos formatos. Nos reservamos el derecho de modificar o interrumpir el servicio en cualquier momento.
+    </p>
+  </section>
+  <section>
+    <h2>3. Propiedad Intelectual</h2>
+    <p>
+      Todos los contenidos, incluyendo textos, imágenes, logos y demás elementos, son propiedad de sus respectivos dueños. Queda prohibida su reproducción o uso sin autorización.
+    </p>
+  </section>
+  <section>
+    <h2>4. Responsabilidad</h2>
+    <p>
+      UnderSounds no se hace responsable de daños o perjuicios que pudieran derivarse del uso inadecuado del sitio. Es responsabilidad del usuario mantener la seguridad de su información personal.
+    </p>
+  </section>
+  <section>
+    <h2>5. Cambios en los Términos</h2>
+    <p>
+      Nos reservamos el derecho de actualizar estos términos en cualquier momento. Las modificaciones serán efectivas desde el momento de su publicación en esta página.
+    </p>
+  </section>
+  <section>
+    <h2>6. Legislación Aplicable</h2>
+    <p>
+      Estos términos se rigen por las leyes vigentes en la jurisdicción correspondiente a UnderSounds.
+    </p>
+  </section>
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+
+  {% include "footer.html" %}
+
+
+</body>
+</html>

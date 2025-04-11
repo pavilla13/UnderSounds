@@ -16,3 +16,9 @@ class View():
     
     def get_tienda_view(self, request: Request):
         return templates.TemplateResponse("tienda.html", {"request" : request})
+
+    def get_ayuda_view(self, request: Request):
+        return templates.TemplateResponse("ayuda.html", {"request" : request})
+    
+    def get_terminos_view(self, request: Request):
+        return templates.TemplateResponse("terminos.html", {"request" : request})

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Iniciar Sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Inyección del header -->
+  <div id="header-placeholder"></div>
+  
+  <!-- Script para cargar header y ejecutar funciones dependientes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+          // Después de cargar el header, inicializamos el carrito
+          updateCartCount();
+          updateCartDropdown();
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+    });
+  </script>
+  
+  <!-- Contenido principal: Iniciar sesión -->
+  <main class="content login-page">
+    <h2 class="logo">Iniciar Sesión</h2>
+    <form id="loginForm" class="form">
+      <label for="username">Correo o usuario:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+      <span id="passwordError" style="color: red;"></span>
+      <button type="submit" class="btn">Iniciar sesión</button>
+    </form>
+    <div class="login-options">
+      <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+      <p><a href="recover.html">¿Olvidaste tu contraseña?</a></p>
+    </div>
+  </main>
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+
+  <!-- Contenedor para insertar el footer dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar footer.html -->
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (savedUser && (savedUser.username === username || savedUser.email === username) && savedUser.password === password) {
+        // Dependiendo del campo type, se redirige a una página u otra.
+        if (savedUser.type === 'artist') {
+          window.location.href = 'index_artista.html';
+        } else if (savedUser.type === 'sello') {
+          window.location.href = 'index_sello.html';
+        } else {
+          window.location.href = 'index_usuario.html';
+        }
+      } else {
+        document.getElementById('passwordError').textContent = 'Usuario o contraseña incorrectos.';
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+      }
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

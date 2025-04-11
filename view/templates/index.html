@@ -29,13 +29,15 @@
   -->
 
   {% include "header.html" %}
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       updateCartCount();
       updateCartDropdown();
     });
   </script>
+
+
+
 
   <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
   <div class="tabs">
@@ -194,12 +196,14 @@
   </section>
 
   <!-- Botón de Ayuda Flotante -->
-  <a href="ayuda.html" class="help-button" title="Ayuda">?</a>
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
 
-  <!-- Contenedor para insertar el footer dinámicamente -->
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
   <div id="footer"></div>
 
-  <!-- Script para cargar footer.html -->
+   Script para cargar footer.html 
   <script>
     // Esta función "fetch" trae el contenido de footer.html
     // y lo inyecta dentro del div con id="footer"
@@ -211,7 +215,11 @@
       .catch(error => {
         console.error('Error al cargar el footer:', error);
       });
-  </script>
+  </script>-->
+
+  {% include "footer.html" %}
+
+
 
   <!-- Scripts -->
   <script src="view/templates/main.js"></script>
