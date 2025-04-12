@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Sello Discográfico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    /* Estilos anteriores se mantienen igual */
+    :root {
+      --primary-color: #6c5ce7;
+      --secondary-color: #a29bfe;
+      --dark-color: #2d3436;
+      --light-color: #f5f6fa;
+      --accent-color: #fd79a8;
+    }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f8f9fa;
+      color: var(--dark-color);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .content {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .label-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    #label-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem 0;
+    }
+
+    .label-name {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;           
+      color: var(--primary-color); 
+    }
+
+    .label-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      max-height: 400px;
+    }
+
+    .label-description {
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    
+    .section-title {
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem;
+      color: var(--dark-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .card-caption {
+      padding: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #777;
+    }
+    
+    .error-message {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .help-button:hover {
+      transform: scale(1.1);
+      background-color: #e84393;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--dark-color);
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          updateCartCount();
+          updateCartDropdown();
+        }, 100);
+      });
+  </script>-->
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+
+
+
+  <style>
+
+    #label-content {
+      flex: 1;
+    }
+  </style>
+
+  <!-- Contenido principal: Sello Discográfico -->
+  <div id="label-content">
+    <h1 id="label-name" class="label-name"></h1>
+    <p id="label-description" class="label-description"></p>
+    <img id="label-image" class="label-image" src="" alt="">
+    
+  </div>
+  
+
+  <!-- Botón de Ayuda Flotante -->
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+
+
+
+
+  <!-- Contenedor para insertar el footer dinámicamente 
+  <div id="footer"></div>
+
+   Script para cargar footer.html 
+  <script>
+    // Esta función "fetch" trae el contenido de footer.html
+    // y lo inyecta dentro del div con id="footer"
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error al cargar el footer:', error);
+      });
+  </script>-->
+  {% include "footer.html" %}
+
+
+
+  
+
+  <!-- Incluir los archivos necesarios -->
+  <script src="js/albumes.js"></script>
+  <script src="js/artistas.js"></script>
+  <script src="js/sellos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

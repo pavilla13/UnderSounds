@@ -23,6 +23,9 @@ class View():
     def get_amigos_view(self, request: Request):
         return templates.TemplateResponse("amigos.html", {"request" : request})
     
+    def get_artistas_view(self, request: Request):
+        return templates.TemplateResponse("artistas.html", {"request" : request})
+    
     def get_ayuda_view(self, request: Request):
         return templates.TemplateResponse("ayuda.html", {"request" : request})
     
@@ -64,6 +67,9 @@ class View():
 
     def get_search_view(self, request: Request):
         return templates.TemplateResponse("search.html", {"request" : request})
+    
+    def get_sellos_view(self, request: Request):
+        return templates.TemplateResponse("sellos.html", {"request" : request})
     
     def get_terminos_view(self, request: Request):
         return templates.TemplateResponse("terminos.html", {"request" : request})

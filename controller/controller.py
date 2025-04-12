@@ -28,6 +28,10 @@ def amigoLista(request: Request):
 def amigos(request: Request):
     return view.get_amigos_view(request)
 
+@app.get("/artistas")
+def artistas(request: Request):
+    return view.get_artistas_view(request)
+
 @app.get("/ayuda")
 def ayuda(request: Request):
     return view.get_ayuda_view(request)
@@ -83,6 +87,10 @@ def resumen_compra(request: Request):
 @app.get("/search")
 def search(request: Request):
     return view.get_search_view(request)
+
+@app.get("/sellos")
+def sellos(request: Request):
+    return view.get_sellos_view(request)
 
 @app.get("/terminos")
 def terminos(request: Request):
