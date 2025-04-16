@@ -1,4 +1,4 @@
-from ..dto.GeneroDTO import GeneroDTO
+from ..dto.generoDTO import GeneroDTO
 from ...interfaceDAOGenero import InterfaceDAOGenero
 from typing import List
 

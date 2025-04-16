@@ -15,9 +15,36 @@ Métodos:
 class InterfaceDAOFactory(ABC):
 
     @abstractmethod
-    def getSongDao(self):
+    def get_canciones(self):
         pass
     
+    @abstractmethod
+    def get_albumes(self):
+        pass
+    
+    @abstractmethod
+    def get_usuarios(self):
+        pass
+
+    @abstractmethod
+    def get_amigos(self):
+        pass
+
+    @abstractmethod
+    def get_artistas(self):
+        pass
+
+    @abstractmethod
+    def get_sellos(self):
+        pass
+
+    @abstractmethod
+    def get_productos(self):
+        pass
+
+    @abstractmethod
+    def get_generos(self):
+        pass
     """
     Aquí crear métodos abstractos para obtener otros DAOs, que son los de las interfaces de los modelos.
     """

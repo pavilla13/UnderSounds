@@ -4,5 +4,5 @@ from typing import List, Optional
 class InterfaceDAOCancion(ABC):
 
     @abstractmethod
-    def get_songs(self):
+    def get_canciones(self):
         pass
