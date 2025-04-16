@@ -8,12 +8,9 @@ view = View()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-#app.mount("/partials", StaticFiles(directory="view/partials"), name="partials")
-
 
 @app.get("/")
 def index(request: Request):
-    #return {"message": "Hello World"}
     return view.get_index_view(request)
 
 @app.get("/album")
