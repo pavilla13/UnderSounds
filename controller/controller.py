@@ -15,6 +15,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 
+
 @app.post("/register")
 async def registrar_usuario(
     request: Request,
@@ -101,6 +102,10 @@ def mis_compras(request: Request):
 @app.get("/producto")
 def producto(request: Request):
     return view.get_producto_view(request)
+
+#@app.get("/producto")
+#def producto(request: Request, id: int):
+ #   return view.get_producto_view(request, id)
 
 @app.get("/recover")
 def recover(request: Request):

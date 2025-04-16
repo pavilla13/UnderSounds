@@ -65,6 +65,12 @@ class View():
     def get_producto_view(self, request: Request):
         return templates.TemplateResponse("producto.html", {"request" : request})
     
+    #def get_producto_view(self, request: Request, id: int):
+     #   return templates.TemplateResponse("producto.html", {
+      #      "request": request,
+       #     "id": id
+        #})
+    
     def get_recover_view(self, request: Request):
         return templates.TemplateResponse("recover.html", {"request" : request})
     
