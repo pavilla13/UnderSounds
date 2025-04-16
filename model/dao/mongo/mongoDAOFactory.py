@@ -1,6 +1,15 @@
 # from ...factory.daoFactoryInterface import InterfaceDAOFactory
 # from .collection.firebaseDAOSong import FirebaseSongDAO
 # from firebase_admin import credentials, firestore, initialize_app, auth
+from pymongo import MongoClient
+from pydantic import BaseModel
+
+uri = "mongodb+srv://palonsov:xEkhXFmK7SaCzqbe@cluster0.fpq1ac3.mongodb.net/undersounds"
+
+client = MongoClient(uri)
+
+for u in client.undersounds.USUARIO.find():
+    print(u)
 
 # class MongoDAOFactory(InterfaceDAOFactory):
 
