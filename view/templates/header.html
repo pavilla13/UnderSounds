@@ -23,9 +23,42 @@
       <div class="cart-dropdown" id="cart-dropdown">
         <!-- El contenido se inyecta dinámicamente -->
       </div>
-    </div>    
+    </div>   
+    
+    
+    <!-- Perfil de usuario con dropdown -->
+    <div class="profile-container" id="profileContainer">
+      <img src="/static/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
+  
+      <div class="profile-dropdown" id="profileDropdown">
+
+        {% if tipo_usuario == "user" %}
+          <a href="/edit_perfil">Editar perfil</a>
+          <a href="/favoritos">Lista de Me gusta</a>
+          <a href="/mis_compras">Mis compras</a>
+          <a href="/amigos">Gestionar amigos</a>
+          <a href="/" class="logout-link">Cerrar sesión</a>
+
+        {% elif tipo_usuario in ["artist", "sello"] %}
+          <a href="/edit_perfil">Editar perfil</a>
+          <a href="/favoritos">Lista de Me gusta</a>
+          <a href="/mis_compras">Mis compras</a>
+          <a href="/albumes_subidos">Albumes subidos</a>
+          <a href="/amigos">Gestionar amigos</a>
+          <a href="/" class="logout-link">Cerrar sesión</a>
+
+        <!--{% else %}
+        <a href="/login" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>-->
+
+        {% endif %}
+      </div>
+    </div>
+
+
+
     <!-- Botón de Iniciar Sesión -->
     <a href="/login" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>
+
   </div>
 </header>
 

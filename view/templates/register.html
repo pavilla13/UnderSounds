@@ -52,7 +52,7 @@
     <!-- Título del formulario -->
     <h2 class="logo">Registro</h2>
     <!-- Formulario de registro -->
-    <form id="registerForm" class="form">
+    <form id="registerForm" class="form" method="post">
       <!-- Campo: Nombre completo -->
       <label for="name">Nombre completo:</label>
       <input type="text" id="name" name="name" required>
@@ -74,7 +74,7 @@
       <label for="password2">Repetir contraseña:</label>
       <input type="password" id="password2" name="password2" required>
 
-      <select id="register-type">
+      <select name="register_type" id="register_type" required>
         <option value="" disabled selected>Tipo de registro</option>
         <option value="user">Usuario</option>
         <option value="artist">Artista</option>
@@ -190,7 +190,7 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const password2 = document.getElementById('password2').value;
-      const userType = document.getElementById('register-type').value;
+      const userType = document.getElementById('register_type').value;
 
       // Verificar si las contraseñas coinciden
       if (password !== password2) {
@@ -216,6 +216,6 @@
   </script>
 
   <!-- Incluir el script principal de la aplicación -->
-  <script src="js/main.js"></script>
+  <script src="/static/js/main.js"></script>
 </body>
 </html>

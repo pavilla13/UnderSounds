@@ -1,14 +1,47 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
 from view.view import View
+from fastapi.responses import RedirectResponse
+from starlette.middleware.sessions import SessionMiddleware
 
 app = FastAPI()
+
+app.add_middleware(SessionMiddleware, secret_key="clave-secreta-super-segura")
 
 view = View()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 #app.mount("/partials", StaticFiles(directory="view/partials"), name="partials")
+
+
+
+
+@app.post("/register")
+async def registrar_usuario(
+    request: Request,
+    name: str = Form(...),
+    username: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...),
+    password2: str = Form(...),
+    register_type: str = Form(...)  # este valor viene del <select>
+):
+    # 🔐 Acá deberías guardar el nuevo usuario en la base de datos...
+    # 🧠 También podés guardar en sesión el tipo de cuenta
+    request.session["register_type"] = register_type  # "usuario", "artista" o "sello"
+
+    # Podés guardar más datos si querés:
+    # request.session["nombre"] = nombre
+
+    # Redirigir al home o al dashboard que corresponda
+    return RedirectResponse(url="/", status_code=303)
+
+
+
+
+
+
 
 
 @app.get("/")

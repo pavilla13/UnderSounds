@@ -83,7 +83,7 @@
 
 
 
-  <script>
+  <!--<script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
@@ -105,8 +105,32 @@
         document.getElementById('password').value = '';
       }
     });
+  </script>-->
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (savedUser && (savedUser.username === username || savedUser.email === username) && savedUser.password === password) {
+        // Dependiendo del campo type, se redirige a una página u otra.
+        if (savedUser.type === 'artist') {
+          window.location.href = '/';
+        } else if (savedUser.type === 'sello') {
+          window.location.href = '/';
+        } else {
+          window.location.href = '/';
+        }
+      } else {
+        document.getElementById('passwordError').textContent = 'Usuario o contraseña incorrectos.';
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+      }
+    });
   </script>
 
-  <script src="js/main.js"></script>
+  <script src="/static/js/main.js"></script>
 </body>
 </html>

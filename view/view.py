@@ -11,8 +11,17 @@ class View():
     def __init__(self):
         pass
 
+    #def get_index_view(self, request: Request):
+     #   tipo_usuario = request.session.get("register_type")
+      #  return templates.TemplateResponse("index.html", {
+       #     "request": request,
+        #    "tipo_usuario": tipo_usuario}) 
+
     def get_index_view(self, request: Request):
-        return templates.TemplateResponse("index.html", {"request" : request})
+        tipo_usuario = request.session.get("register_type") 
+        return templates.TemplateResponse("index.html", {
+            "request": request,
+            "tipo_usuario": tipo_usuario })
     
     def get_album_view(self, request: Request):
         return templates.TemplateResponse("album.html", {"request" : request})
@@ -60,7 +69,8 @@ class View():
         return templates.TemplateResponse("recover.html", {"request" : request})
     
     def get_register_view(self, request: Request):
-        return templates.TemplateResponse("register.html", {"request" : request}) 
+        return templates.TemplateResponse("register.html", {
+            "request": request}) 
 
     def get_resumen_compra_view(self, request: Request):
         return templates.TemplateResponse("resumen_compra.html", {"request" : request})  
