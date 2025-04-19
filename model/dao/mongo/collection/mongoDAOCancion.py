@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 from ...interfaceDAOCancion import InterfaceDAOCancion
-from ..dto.songDTO import SongDTO
+from dto.cancionDTO import SongDTO
 
 class MongoDAOCancion(InterfaceDAOCancion):
 
