@@ -349,8 +349,8 @@ const productCatalog = {
           if (e.target.closest('.add-to-cart') || e.target.closest('.add-to-favorites')) {
             return;
           }
-          // De lo contrario, redirige a producto.html pasando el id del producto  
-          window.location.href = `/producto?id="${key}"`;
+          // De lo contrario, redirige a producto.html pasando el id del producto  `/producto?id=${key}`;
+          window.location.href = `/producto?id=${key}`;
         });
         
         container.appendChild(card);

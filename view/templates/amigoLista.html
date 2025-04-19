@@ -115,7 +115,7 @@
 
   <!-- Menú de pestañas -->
   <div class="tabs">
-    <a href="/" class="tab">Recientes</a>
+    <a href="/#recientes" class="tab">Recientes</a>
     <a href="/#bestofs" class="tab">Best Of's</a>
     <a href="/tienda" class="tab">Tienda</a>
     <a href="/amigos" class="tab active">Amigos</a>
@@ -315,22 +315,24 @@
     });
   </script>
 
-    <!-- Contenedor para insertar el footer dinámicamente -->
-  <div id="footer"></div>
 
-  <!-- Script para cargar footer.html -->
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>
+
+
+<!-- Cambios de pantalla entre recientes y bestof, de esto se ocupa el index.html -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash;
+
+    if (hash === "#bestofs" || hash === "#recientes") {
+      // Redirigir al index con el hash, sin recargar dos veces
+      window.location.href = "/" + hash;
+    }
+  });
+</script>
+
+
+
+
 
   <script src="/static/js/app.js"></script>
 </body>
