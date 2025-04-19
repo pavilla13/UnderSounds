@@ -33,7 +33,7 @@ function saveOrder() {
         saveOrder();
         showNotification("Pago confirmado. Gracias por su compra.");
         emptyCart();
-        window.location.href = "mis_compras.html";
+        window.location.href = "/mis_compras";
       });
     }
   });

@@ -11,7 +11,7 @@ const albumes = [
     genre: "Rock",
     image: "static/images/opera.jpeg",
     description: "Lanzado en 1975, este álbum incluye temas icónicos como 'Bohemian Rhapsody'.",
-    url: "album.html?id=1",
+    url: "/album?id=1",
     tracks: [
       { id: 1, title: "Death on Two Legs", duration: "3:43" },
       { id: 2, title: "Lazing on a Sunday Afternoon", duration: "1:08" },
@@ -28,7 +28,7 @@ const albumes = [
     genre: "Pop",
     image: "static/images/afterhours.jpeg",
     description: "Publicado en 2020, consolidó a The Weeknd como un referente del pop y R&B contemporáneo.",
-    url: "album.html?id=2",
+    url: "/album?id=2",
     tracks: [
       { id: 1, title: "Alone Again", duration: "4:10" },
       { id: 2, title: "Too Late", duration: "3:59" },
@@ -43,7 +43,7 @@ const albumes = [
     genre: "Reggaetón",
     image: "static/images/x100pre.jpeg",
     description: "Álbum debut de Bad Bunny, lanzado en 2018, con el que redefinió el reggaetón moderno.",
-    url: "album.html?id=3",
+    url: "/album?id=3",
     tracks: [
       { id: 1, title: "NI BIEN NI MAL", duration: "3:56" },
       { id: 2, title: "200 MPH", duration: "2:50" },
@@ -57,7 +57,7 @@ const albumes = [
     genre: "Electrónica",
     image: "static/images/nothingbutthebeat.jpeg",
     description: "Publicado en 2011, cuenta con colaboraciones de destacados artistas del pop y la electrónica.",
-    url: "album.html?id=4",
+    url: "/album?id=4",
     tracks: [
       { id: 1, title: "Where Them Girls At", duration: "3:14" },
       { id: 2, title: "Little Bad Girl", duration: "3:11" },
@@ -73,7 +73,7 @@ const albumes = [
     genre: "Rock",
     image: "static/images/parachutes.jpg",
     description: "Álbum debut de Coldplay (2000), reconocido por el éxito mundial 'Yellow'.",
-    url: "album.html?id=5",
+    url: "/album?id=5",
     tracks: [
       { id: 1, title: "Don't Panic", duration: "2:17" },
       { id: 2, title: "Shiver", duration: "4:59" },
@@ -89,7 +89,7 @@ const albumes = [
     genre: "Pop",
     image: "static/images/futuro.jpeg",
     description: "Lanzado en 2020, destaca el estilo dance-pop fresco que impulsó la fama de Dua Lipa.",
-    url: "album.html?id=6",
+    url: "/album?id=6",
     tracks: [
       { id: 1, title: "Future Nostalgia", duration: "3:04" },
       { id: 2, title: "Don't Start Now", duration: "3:03" },
@@ -105,7 +105,7 @@ const albumes = [
     genre: "Reggaetón",
     image: "static/images/vibras.jpeg",
     description: "Estrenado en 2018, fusiona ritmos latinos con un sonido urbano moderno.",
-    url: "album.html?id=7",
+    url: "/album?id=7",
     tracks: [
       { id: 1, title: "Vibras", duration: "3:09" },
       { id: 2, title: "Mi Gente", duration: "3:05" },
@@ -121,7 +121,7 @@ const albumes = [
     genre: "Electrónica",
     image: "static/images/18months.jpg",
     description: "Disco de 2012 que llevó a Calvin Harris al estrellato con colaboraciones pop y EDM.",
-    url: "album.html?id=8",
+    url: "/album?id=8",
     tracks: [
       { id: 1, title: "Green Valley", duration: "1:49" },
       { id: 2, title: "Bounce", duration: "3:42" },
@@ -137,7 +137,7 @@ const albumes = [
     genre: "Rock",
     image: "static/images/thecolourandtheshape.jpg",
     description: "Álbum de 1997 que contiene éxitos como 'Everlong', catapultando a la banda de Dave Grohl.",
-    url: "album.html?id=9",
+    url: "/album?id=9",
     tracks: [
       { id: 1, title: "Doll", duration: "1:23" },
       { id: 2, title: "Monkey Wrench", duration: "3:51" },
@@ -153,7 +153,7 @@ const albumes = [
     genre: "Pop",
     image: "static/images/dangerouswoman.jpeg",
     description: "Lanzado en 2016, mezclando pop, R&B y dance, consolidando a Ariana como estrella global.",
-    url: "album.html?id=10",
+    url: "/album?id=10",
     tracks: [
       { id: 1, title: "Moonlight", duration: "3:22" },
       { id: 2, title: "Dangerous Woman", duration: "3:55" },
@@ -169,7 +169,7 @@ const albumes = [
     genre: "Reggaetón",
     image: "static/images/kg0516.jpeg",
     description: "Estrenado en 2021, se convirtió en un éxito comercial y crítico del género urbano.",
-    url: "album.html?id=11",
+    url: "/album?id=11",
     tracks: [
       { id: 1, title: "Déjalos Que Miren", duration: "3:27" },
       { id: 2, title: "El Makinon", duration: "3:09" },
@@ -185,7 +185,7 @@ const albumes = [
     genre: "Electrónica",
     image: "static/images/atowncalledparadise.jpg",
     description: "Álbum de 2014 que muestra el lado más mainstream del icónico DJ neerlandés.",
-    url: "album.html?id=12",
+    url: "/album?id=12",
     tracks: [
       { id: 1, title: "Red Lights", duration: "4:22" },
       { id: 2, title: "Footprints", duration: "3:28" },
@@ -201,7 +201,7 @@ const albumes = [
     genre: "Rock",
     image: "static/images/am.jpg",
     description: "Lanzado en 2013, es uno de los trabajos más aclamados de la banda británica.",
-    url: "album.html?id=13",
+    url: "/album?id=13",
     tracks: [
       { id: 1, title: "Do I Wanna Know?", duration: "4:32" },
       { id: 2, title: "R U Mine?", duration: "3:21" },
@@ -217,7 +217,7 @@ const albumes = [
     genre: "Pop",
     image: "static/images/harryshouse.jpeg",
     description: "Publicado en 2022, este álbum reafirma la versatilidad y estilo personal del ex One Direction.",
-    url: "album.html?id=14",
+    url: "/album?id=14",
     tracks: [
       { id: 1, title: "Music for a Sushi Restaurant", duration: "3:13" },
       { id: 2, title: "Late Night Talking", duration: "2:57" },
@@ -233,7 +233,7 @@ const albumes = [
     genre: "Reggaetón",
     image: "static/images/viceversa.jpeg",
     description: "Estrenado en 2021, demuestra la mezcla de ritmos latinos y pop de Rauw Alejandro.",
-    url: "album.html?id=15",
+    url: "/album?id=15",
     tracks: [
       { id: 1, title: "Todo de Ti", duration: "3:19" },
       { id: 2, title: "Sexo Virtual", duration: "3:28" },
@@ -249,7 +249,7 @@ const albumes = [
     genre: "Electrónica",
     image: "static/images/joytime.jpeg",
     description: "Álbum debut de Marshmello (2016), mezcla de EDM, trap y futuros beats característicos.",
-    url: "album.html?id=16",
+    url: "/album?id=16",
     tracks: [
       { id: 1, title: "Keep It Mello", duration: "4:18" },
       { id: 2, title: "Summer", duration: "3:53" },
@@ -266,7 +266,7 @@ const albumes = [
     genre: "Electronic",
     image: "static/images/discovery.jpeg",
     description: "Lanzado en 2001, este álbum redefinió la música electrónica con éxitos como 'One More Time'.",
-    url: "album.html?id=17",
+    url: "/album?id=17",
     tracks: [
       { id: 1, title: "One More Time", duration: "5:20" },
       { id: 2, title: "Digital Love", duration: "4:58" },
@@ -282,7 +282,7 @@ const albumes = [
     genre: "Jazz",
     image: "static/images/blue.jpeg",
     description: "Lanzado en 1959, es considerado una obra maestra del jazz y un pilar del modal jazz.",
-    url: "album.html?id=18",
+    url: "/album?id=18",
     tracks: [
       { id: 1, title: "So What", duration: "9:22" },
       { id: 2, title: "Freddie Freeloader", duration: "9:46" },
@@ -298,7 +298,7 @@ const albumes = [
     genre: "Rock",
     image: "static/images/led_IV.jpg",
     description: "Lanzado en 1971, incluye el emblemático 'Stairway to Heaven' y es uno de los álbumes más influyentes del rock.",
-    url: "album.html?id=19",
+    url: "/album?id=19",
     tracks: [
       { id: 1, title: "Black Dog", duration: "4:55" },
       { id: 2, title: "Rock and Roll", duration: "3:40" },
@@ -314,7 +314,7 @@ const albumes = [
     genre: "Pop",
     image: "static/images/thriller.jpeg",
     description: "Lanzado en 1982, Thriller se convirtió en el álbum más vendido de la historia, fusionando pop, rock y R&B.",
-    url: "album.html?id=20",
+    url: "/album?id=20",
     tracks: [
       { id: 1, title: "Wanna Be Startin' Somethin'", duration: "6:03" },
       { id: 2, title: "Thriller", duration: "5:57" },
@@ -330,7 +330,7 @@ const albumes = [
     genre: "Electronic",
     image: "static/images/ram.jpeg",
     description: "Lanzado en 2013, este álbum combina electrónica con sonidos retro y funk, destacando el éxito 'Get Lucky'.",
-    url: "album.html?id=21",
+    url: "/album?id=21",
     tracks: [
       { id: 1, title: "Give Life Back to Music", duration: "4:35" },
       { id: 2, title: "Instant Crush", duration: "5:37" },
@@ -346,7 +346,7 @@ const albumes = [
     genre: "Jazz",
     image: "static/images/blue_train.jpg",
     description: "Lanzado en 1957, es considerado un clásico del jazz que muestra el virtuosismo de John Coltrane.",
-    url: "album.html?id=22",
+    url: "/album?id=22",
     tracks: [
       { id: 1, title: "Blue Train", duration: "10:43" },
       { id: 2, title: "Moment's Notice", duration: "9:10" },
@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
             li.className = "track";
             
             const a = document.createElement("a");
-            a.href = `cancion.html?id=${track.id}&album=${album.id}`;
+            a.href = `/cancion?id=${track.id}&album=${album.id}`;
             a.className = "track-link";
             
             const numberSpan = document.createElement("span");

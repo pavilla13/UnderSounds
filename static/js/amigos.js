@@ -6,25 +6,25 @@ const amigos = [
     id: 1,
     name: "Carlos Rodríguez",
     description: "Apasionado por el rock y pop, siempre en búsqueda de nuevos sonidos y experiencias musicales.",
-    url: "amigoLista.html?id=1"
+    url: "/amigoLista?id=1"
   },
   {
     id: 2,
     name: "María González",
     description: "Apasionada por la electrónica y el jazz, exploradora de ritmos y sonidos innovadores.",
-    url: "amigoLista.html?id=2"
+    url: "/amigoLista?id=2"
   },
   {
     id: 3,
     name: "Lucía Fernández",
     description: "Fanática del indie y el folk, siempre descubriendo nuevas bandas y letras profundas.",
-    url: "amigoLista.html?id=3"
+    url: "/amigoLista?id=3"
   },
   {
     id: 4,
     name: "David Martínez",
     description: "Aficionado al rap y al hip hop clásico. Cree que la música puede cambiar el mundo.",
-    url: "amigoLista.html?id=4"
+    url: "/amigoLista?id=4"
   }
 ];
 

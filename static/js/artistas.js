@@ -8,7 +8,7 @@ const artistas = [
     genre: "Rock",
     description: "Queen es una banda de rock británica, famosa por su estilo único y la voz de Freddie Mercury.",
     image: "static/images/queen.jpeg",
-    url: "artistas.html?id=1",
+    url: "/artistas?id=1",
     albumIds: [1, 2, 3, 4],
     selloId: 1
   },
@@ -18,7 +18,7 @@ const artistas = [
     genre: "Pop",
     description: "The Weeknd es un cantante canadiense conocido por su estilo de R&B y pop experimental.",
     image: "static/images/the-weeknd.jpg",
-    url: "artistas.html?id=2",
+    url: "/artistas?id=2",
     albumIds: [5, 6, 7],
     selloId: 2
   },
@@ -28,7 +28,7 @@ const artistas = [
     genre: "Reggaetón",
     description: "Bad Bunny es un artista puertorriqueño que ha revolucionado el reggaetón y la música urbana.",
     image: "static/images/bad-bunny.jpg",
-    url: "artistas.html?id=3",
+    url: "/artistas?id=3",
     albumIds: [8, 9, 10],
     selloId: 1
   },
@@ -38,7 +38,7 @@ const artistas = [
     genre: "Electrónica",
     description: "David Guetta es un DJ y productor francés considerado una de las figuras más influyentes de la música electrónica.",
     image: "static/images/david-guetta.jpeg",
-    url: "artistas.html?id=4",
+    url: "/artistas?id=4",
     albumIds: [11, 12, 13],
     selloId: 3
   },
@@ -48,7 +48,7 @@ const artistas = [
     genre: "Rock",
     description: "Coldplay es una banda británica de rock alternativo conocida por su sonido melódico y emocional.",
     image: "static/images/coldplay.jpeg",
-    url: "artistas.html?id=5",
+    url: "/artistas?id=5",
     albumIds: [14, 15, 16],
     selloId: 4
   },
@@ -58,7 +58,7 @@ const artistas = [
     genre: "Pop",
     description: "Dua Lipa es una cantante británica de pop que ha ganado reconocimiento mundial por su estilo y voz.",
     image: "static/images/dua-lipa.jpg",
-    url: "artistas.html?id=6",
+    url: "/artistas?id=6",
     albumIds: [17, 18, 19],
     selloId: 2
   },
@@ -68,7 +68,7 @@ const artistas = [
     genre: "Reggaetón",
     description: "J Balvin es uno de los artistas más representativos del reggaetón a nivel global.",
     image: "static/images/j-balvin.jpeg",
-    url: "artistas.html?id=7",
+    url: "/artistas?id=7",
     albumIds: [20, 21, 22],
     selloId: 1
   },
@@ -78,7 +78,7 @@ const artistas = [
     genre: "Electrónica",
     description: "Calvin Harris es un DJ y productor escocés reconocido por sus colaboraciones en la música electrónica y pop.",
     image: "static/images/calvin-harris.jpeg",
-    url: "artistas.html?id=8",
+    url: "/artistas?id=8",
     albumIds: [23, 24, 25],
     selloId: 3
   },
@@ -88,7 +88,7 @@ const artistas = [
     genre: "Rock",
     description: "Foo Fighters es una banda de rock estadounidense fundada por Dave Grohl, exbatería de Nirvana.",
     image: "static/images/foo-fighters.jpg",
-    url: "artistas.html?id=9",
+    url: "/artistas?id=9",
     albumIds: [26, 27, 28],
     selloId: 4
   },
@@ -98,7 +98,7 @@ const artistas = [
     genre: "Pop",
     description: "Ariana Grande es una cantante y actriz estadounidense conocida por su poderosa voz y estilo pop.",
     image: "static/images/ariana-grande.jpeg",
-    url: "artistas.html?id=10",
+    url: "/artistas?id=10",
     albumIds: [29, 30, 31],
     selloId: 2
   },
@@ -108,7 +108,7 @@ const artistas = [
     genre: "Reggaetón",
     description: "Karol G es una cantante colombiana destacada en la música urbana y reggaetón.",
     image: "static/images/karol-g.jpeg",
-    url: "artistas.html?id=11",
+    url: "/artistas?id=11",
     albumIds: [32, 33, 34],
     selloId: 1
   },
@@ -118,7 +118,7 @@ const artistas = [
     genre: "Electrónica",
     description: "Tiësto es un DJ neerlandés considerado una leyenda en la música electrónica y trance.",
     image: "static/images/tiesto.jpg",
-    url: "artistas.html?id=12",
+    url: "/artistas?id=12",
     albumIds: [35, 36, 37],
     selloId: 3
   },
@@ -128,7 +128,7 @@ const artistas = [
     genre: "Rock",
     description: "Arctic Monkeys es una banda de rock alternativo británica con un estilo único y letras ingeniosas.",
     image: "static/images/arctic-monkeys.jpeg",
-    url: "artistas.html?id=13",
+    url: "/artistas?id=13",
     albumIds: [38, 39, 40],
     selloId: 4
   },
@@ -138,7 +138,7 @@ const artistas = [
     genre: "Pop",
     description: "Harry Styles es un cantante británico que ha desarrollado una exitosa carrera como solista en el pop.",
     image: "static/images/harry-styles.webp",
-    url: "artistas.html?id=14",
+    url: "/artistas?id=14",
     albumIds: [41, 42, 43],
     selloId: 2
   },
@@ -148,7 +148,7 @@ const artistas = [
     genre: "Reggaetón",
     description: "Rauw Alejandro es una estrella emergente del reggaetón, conocido por su versatilidad musical y estilo innovador.",
     image: "static/images/rauw-alejandro.jpeg",
-    url: "artistas.html?id=15",
+    url: "/artistas?id=15",
     albumIds: [44, 45, 46],
     selloId: 1
   },
@@ -158,7 +158,7 @@ const artistas = [
     genre: "Electrónica",
     description: "Marshmello es un DJ y productor estadounidense famoso por su estilo EDM y su icónica máscara.",
     image: "static/images/marshmello.jpg",
-    url: "artistas.html?id=16",
+    url: "/artistas?id=16",
     albumIds: [47, 48, 49],
     selloId: 3
   }

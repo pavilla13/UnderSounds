@@ -7,7 +7,7 @@ const sellos = [
     name: "Universal Music",
     description: "Universal Music es uno de los sellos discográficos más grandes del mundo.",
     image: "static/images/universal.jpeg",
-    url: "sellos.html?id=1",
+    url: "/sellos?id=1",
     albumIds: [1, 2, 3, 4, 5] // IDs de álbumes en albumes.js
   },
   {
@@ -15,7 +15,7 @@ const sellos = [
     name: "Sony Music",
     description: "Sony Music es una de las compañías discográficas más importantes en la industria de la música.",
     image: "static/images/sony.png",
-    url: "sellos.html?id=2",
+    url: "/sellos?id=2",
     albumIds: [6, 7, 8, 9, 10]
   },
   {
@@ -23,7 +23,7 @@ const sellos = [
     name: "Warner Music Group",
     description: "Warner Music Group es uno de los tres grandes sellos discográficos a nivel mundial.",
     image: "static/images/warner.webp",
-    url: "sellos.html?id=3",
+    url: "/sellos?id=3",
     albumIds: [11, 12, 13, 14, 15]
   },
   {
@@ -31,7 +31,7 @@ const sellos = [
     name: "EMI Records",
     description: "EMI Records, ahora parte de Universal, fue uno de los sellos más influyentes del siglo XX.",
     image: "static/images/emi.png",
-    url: "sellos.html?id=4",
+    url: "/sellos?id=4",
     albumIds: [16, 17, 18, 19, 20]
   },
 ];
