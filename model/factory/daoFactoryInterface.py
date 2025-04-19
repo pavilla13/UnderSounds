@@ -18,6 +18,7 @@ class InterfaceDAOFactory(ABC):
     def get_canciones(self):
         pass
     
+    """
     @abstractmethod
     def get_albumes(self):
         pass
@@ -45,6 +46,4 @@ class InterfaceDAOFactory(ABC):
     @abstractmethod
     def get_generos(self):
         pass
-    """
-    Aquí crear métodos abstractos para obtener otros DAOs, que son los de las interfaces de los modelos.
     """

@@ -1,4 +1,4 @@
-from dto.usuarioDTO import UsuarioDTO
+from ....dto.usuarioDTO import UsuarioDTO
 from ...interfaceDAOUsuario import InterfaceDAOUsuario
 from typing import List
 

@@ -8,7 +8,19 @@ class SongsDTO():
         self.songlist.append(elem)
 
     def songlist_to_json(self):
-        return json.dumps(self.songlist)
+        #return json.dumps(self.songlist)
+        from bson import ObjectId
+        clean_list = []
+        for song in self.songlist:
+            song = dict(song)  # por si viene como objeto tipo pymongo.cursor.Cursor
+            if "_id" in song:
+                song["_id"] = str(song["_id"])
+            for k, v in song.items():
+                if isinstance(v, ObjectId): 
+                    song[k] = str(v)
+            clean_list.append(song)
+        return json.dumps(clean_list)
+
 
 
 class SongDTO():
@@ -86,7 +98,7 @@ class SongDTO():
         return {
             "album": self.album,
             "author": self.author,
-            "id": self.id,
+            "id": str(self.id) if self.id is not None else None,
             "duration": self.duration,
             "musicgenre": self.musicgenre,
             "price": self.price,

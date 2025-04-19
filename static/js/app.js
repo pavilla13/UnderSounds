@@ -350,7 +350,7 @@ const productCatalog = {
             return;
           }
           // De lo contrario, redirige a producto.html pasando el id del producto  
-          window.location.href = `/producto?id="${key}"`;
+          window.location.href = `/producto?id=${key}`;
         });
         
         container.appendChild(card);

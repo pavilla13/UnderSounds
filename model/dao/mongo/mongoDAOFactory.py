@@ -25,8 +25,8 @@ class MongoDAOFactory(InterfaceDAOFactory):
             print("Error in connecting with MongoDB")
             print(e)
 
-    def get_cancion_dao(self):
-        collection = self.db["canciones"]
+    def get_canciones(self):
+        collection = self.db["CANCION"]
         return MongoDAOCancion(collection)
 
     def get_album_dao(self):
