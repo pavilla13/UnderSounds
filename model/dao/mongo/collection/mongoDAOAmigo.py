@@ -1,4 +1,4 @@
-from dto.amigoDTO import AmigoDTO
+from ....dto.amigoDTO import AmigoDTO
 from ...interfaceDAOAmigo import InterfaceDAOAmigo
 from typing import List
 

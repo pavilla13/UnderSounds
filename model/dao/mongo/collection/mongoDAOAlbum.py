@@ -1,4 +1,4 @@
-from dto.albumDTO import AlbumDTO
+from ....dto.albumDTO import AlbumDTO
 from ...interfaceDAOAlbum import InterfaceDAOAlbum
 from typing import List
 

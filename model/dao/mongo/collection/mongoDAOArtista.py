@@ -1,4 +1,4 @@
-from dto.artistaDTO import ArtistaDTO
+from ....dto.artistaDTO import ArtistaDTO
 from ...interfaceDAOArtista import InterfaceDAOArtista
 from typing import List
 

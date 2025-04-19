@@ -93,3 +93,7 @@ class View():
     def get_tienda_view(self, request: Request):
         return templates.TemplateResponse("tienda.html", {"request" : request})
     
+    def get_prueba_view(self, request: Request, canciones):
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("prueba.html", {"request" : request, "canciones": canciones_list})
+    
