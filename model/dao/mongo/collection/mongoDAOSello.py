@@ -1,4 +1,4 @@
-from ..dto.selloDTO import SelloDTO
+from dto.selloDTO import SelloDTO
 from ...interfaceDAOSello import InterfaceDAOSello
 from typing import List, Optional
 

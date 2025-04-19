@@ -1,4 +1,4 @@
-from ..dto.productoDTO import ProductoDTO
+from dto.productoDTO import ProductoDTO
 from ...interfaceDAOProducto import InterfaceDAOProducto
 from typing import List, Optional
 
