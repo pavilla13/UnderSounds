@@ -25,20 +25,16 @@ class SongsDTO():
 
 class SongDTO():
     def __init__(self):
-        self.album = None
-        self.author = None
-        self.id = None
-        self.duration = None  # Corregido (antes length)
-        self.musicgenre = None
-        self.price = None
-        self.rating = None
-        self.release = None
-        self.title = None
+        self.idCancion = None
+        self.nombreCancion = None
+        self.idAlbum = None
+        self.idArtista = None
+        self.idGenero = None
+        self.url = None
 
     def is_Empty(self):
-        return (self.album is None and self.author is None and self.id is None and
-                self.duration is None and self.musicgenre is None and self.price is None and
-                self.rating is None and self.release is None and self.title is None)
+        return (self.idCancion is None and self.nombreCancion is None and self.idAlbum is None and
+                self.idArtista is None and self.idGenero is None and self.url is None)
 
     def get_album(self):
         return self.album
@@ -52,11 +48,45 @@ class SongDTO():
     def set_author(self, author):
         self.author = author
 
-    def get_id(self):
-        return self.id
+    def get_idCancion(self):
+        return self.idCancion
 
-    def set_id(self, id):
-        self.id = id
+    def set_idCancion(self, idCancion):
+        self.idCancion = idCancion
+
+    ###
+
+    def get_nombreCancion(self):
+        return self.nombreCancion
+
+    def set_nombreCancion(self, nombreCancion):
+        self.nombreCancion = nombreCancion
+
+    def get_idAlbum(self):
+        return self.idAlbum
+
+    def set_idAlbum(self, idAlbum):
+        self.idAlbum = idAlbum
+
+    def get_idArtista(self):
+        return self.idArtista
+
+    def set_idArtista(self, idArtista):
+        self.idArtista = idArtista
+
+    def get_idGenero(self):
+        return self.idGenero
+
+    def set_idGenero(self, idGenero):
+        self.idGenero = idGenero
+
+    def get_url(self):
+        return self.url
+
+    def set_url(self, url):
+        self.url = url
+
+    ###
 
     def get_duration(self):
         return self.duration
@@ -96,14 +126,11 @@ class SongDTO():
 
     def songdto_to_dict(self):
         return {
-            "album": self.album,
-            "author": self.author,
-            "id": str(self.id) if self.id is not None else None,
-            "duration": self.duration,
-            "musicgenre": self.musicgenre,
-            "price": self.price,
-            "rating": self.rating,
-            "release": str(self.release),
-            "title": self.title
+            "idCancion": str(self.idCancion) if self.idCancion is not None else None,
+            "nombreCancion": self.nombreCancion,
+            "idAlbum": str(self.idAlbum) if self.idAlbum is not None else None,
+            "idArtista": str(self.idArtista) if self.idArtista is not None else None,
+            "idGenero": str(self.idGenero) if self.idGenero is not None else None,
+            "url": self.url
         }
     

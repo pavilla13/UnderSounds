@@ -10,7 +10,14 @@
     <h1>Lista de Canciones</h1>
     <ul>
         {% for cancion in canciones %}
-            <li>{{ cancion.title }} - {{ cancion.author }}</li>
+            <li>
+            <strong>ID:</strong> {{ cancion.idCancion }}<br>
+            <strong>Nombre:</strong> {{ cancion.nombreCancion }}<br>
+            <strong>Álbum ID:</strong> {{ cancion.idAlbum }}<br>
+            <strong>Artista ID:</strong> {{ cancion.idArtista }}<br>
+            <strong>Género ID:</strong> {{ cancion.idGenero }}<br>
+            <strong>URL:</strong> <a href="{{ cancion.url }}" target="_blank">{{ cancion.url }}</a>
+            </li>
         {% endfor %}
     </ul>
 </body>
