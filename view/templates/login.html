@@ -8,11 +8,12 @@
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <!-- Inyección del header -->
-  <div id="header-placeholder"></div>
+
+
+
+  <!-- Inyección del header 
+  <div id="header-placeholder"></div>-->
   
-
-
   <!-- Script para cargar header y ejecutar funciones dependientes 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -107,7 +108,7 @@
     });
   </script>-->
 
-  <script>
+  <!--<script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
@@ -129,7 +130,43 @@
         document.getElementById('password').value = '';
       }
     });
+  </script>-->
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe normalmente
+  
+      // Captura los valores de entrada del usuario
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+  
+      // Obtiene el usuario guardado desde localStorage
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+  
+      // Verifica que el usuario existe y que las credenciales coinciden
+      if (savedUser &&
+          (savedUser.username === username || savedUser.email === username) &&
+          savedUser.password === password) {
+  
+        // 💡 Guarda el estado de sesión activa
+        localStorage.setItem('loggedIn', 'true');
+  
+        // 💡 Guarda el tipo de usuario por si se necesita en otra parte
+        localStorage.setItem('tipo_usuario', savedUser.type);
+  
+        // ✅ Redirige según el tipo de usuario (puedes cambiar los destinos si lo necesitas)
+        window.location.href = '/';
+  
+      } else {
+        // ❌ Muestra error si las credenciales no coinciden
+        document.getElementById('passwordError').textContent = 'Usuario o contraseña incorrectos.';
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+      }
+    });
   </script>
+
+
 
   <script src="/static/js/main.js"></script>
 </body>

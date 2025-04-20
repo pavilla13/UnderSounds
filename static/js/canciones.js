@@ -1,7 +1,7 @@
 // canciones.js
 
 const canciones = [
-  { name: "Bohemian Rhapsody", album: "A Night at the Opera", artist: "Queen", genre: "Rock" },
+  { name: "Bohemian Rhapsody", album: "A Night at the Opera", artist: "Queen", genre: "Rock"},
   { name: "Blinding Lights", album: "After Hours", artist: "The Weeknd", genre: "Pop" },
   { name: "Animals", album: "Animals", artist: "Pink Floyd", genre: "Rock" },
   { name: "Take Five", album: "Time Out", artist: "Dave Brubeck", genre: "Jazz" },

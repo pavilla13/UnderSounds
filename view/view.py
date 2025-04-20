@@ -26,6 +26,9 @@ class View():
     def get_album_view(self, request: Request):
         return templates.TemplateResponse("album.html", {"request" : request})
     
+    def get_albumes_subidos_view(self, request: Request):
+        return templates.TemplateResponse("albumes_subidos.html", {"request" : request})
+    
     def get_amigoLista_view(self, request: Request):
         return templates.TemplateResponse("amigoLista.html", {"request" : request})
     
@@ -55,6 +58,9 @@ class View():
     
     def get_generos_view(self, request: Request):
         return templates.TemplateResponse("generos.html", {"request" : request}) 
+    
+    def get_gestion_sello_view(self, request: Request):
+        return templates.TemplateResponse("gestion_sello.html", {"request" : request}) 
 
     def get_login_view(self, request: Request):
         return templates.TemplateResponse("login.html", {"request" : request})
@@ -86,6 +92,9 @@ class View():
     
     def get_sellos_view(self, request: Request):
         return templates.TemplateResponse("sellos.html", {"request" : request})
+    
+    def get_subir_album_view(self, request: Request):
+        return templates.TemplateResponse("subir_album.html", {"request" : request})
     
     def get_terminos_view(self, request: Request):
         return templates.TemplateResponse("terminos.html", {"request" : request})

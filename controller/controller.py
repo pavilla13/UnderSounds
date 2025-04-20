@@ -5,6 +5,12 @@ from model.model import Model
 from view.view import View
 from fastapi.responses import RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request, Form
+from fastapi.staticfiles import StaticFiles
+
+
 
 app = FastAPI()
 
@@ -42,6 +48,49 @@ async def registrar_usuario(
 
 
 
+#@app.get("/login", response_class=HTMLResponse)
+#def show_login(request: Request):
+ #   return templates.TemplateResponse("login.html", {"request": request})
+
+
+#@app.post("/login")
+#def login_user(request: Request, username: str = Form(...), password: str = Form(...)):
+    # Simulamos obtener usuario (esto deberías conectarlo a tu base de datos real)
+ #   dummy_user = {"username": "juan", "password": "1234", "type": "artist"}
+
+  #  if username == dummy_user["username"] and password == dummy_user["password"]:
+   #     request.session["user"] = {
+    #        "username": dummy_user["username"],
+     #       "type": dummy_user["type"]
+      #  }
+       # return RedirectResponse(url="/", status_code=303)
+
+    # Si las credenciales no coinciden
+#    return templates.TemplateResponse("login.html", {
+ #       "request": request,
+  #      "error": "Credenciales incorrectas"
+   # })
+
+
+@app.get("/logout")
+def logout(request: Request):
+    request.session.clear()
+    return RedirectResponse(url="/login", status_code=303)
+
+
+
+#@app.get("/", response_class=HTMLResponse)
+#def home(request: Request):
+ #   user = request.session.get("user")
+  #  return templates.TemplateResponse("index.html", {
+   #     "request": request,
+    #    "user": user
+    #})
+
+
+
+
+
 
 
 
@@ -53,6 +102,10 @@ async def index(request: Request):
 @app.get("/album")
 async def album(request: Request):
     return view.get_album_view(request)
+
+@app.get("/albumes_subidos")
+async def albumes_subidos(request: Request):
+    return view.get_albumes_subidos_view(request)
 
 @app.get("/amigoLista")
 async def amigoLista(request: Request):
@@ -94,6 +147,10 @@ async def generos_especifico(request: Request):
 async def generos(request: Request):
     return view.get_generos_view(request)
 
+@app.get("/gestion_sello")
+async def gestion_sello(request: Request):
+    return view.get_gestion_sello_view(request)
+
 @app.get("/login")
 async def login(request: Request):
     return view.get_login_view(request)
@@ -129,6 +186,10 @@ async def search(request: Request):
 @app.get("/sellos")
 async def sellos(request: Request):
     return view.get_sellos_view(request)
+
+@app.get("/subir_album")
+async def subir_album(request: Request):
+    return view.get_subir_album_view(request)
 
 @app.get("/terminos")
 async def terminos(request: Request):
