@@ -38,8 +38,9 @@ class View():
     def get_ayuda_view(self, request: Request):
         return templates.TemplateResponse("ayuda.html", {"request" : request})
     
-    def get_cancion_view(self, request: Request):
-        return templates.TemplateResponse("cancion.html", {"request" : request})
+    def get_cancion_view(self, request: Request, canciones):
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("cancion.html", {"request" : request, "canciones": canciones_list})
     
     def get_checkout_view(self, request: Request):
         return templates.TemplateResponse("checkout.html", {"request" : request})

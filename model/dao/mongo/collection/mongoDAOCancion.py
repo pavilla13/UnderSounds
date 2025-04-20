@@ -14,15 +14,14 @@ class MongoDAOCancion(InterfaceDAOCancion):
             results = self.collection.find({})
             for doc in results:
                 cancion = SongDTO()
-                cancion.set_idCancion(doc.get('idCancion'))
-                cancion.set_nombreCancion(doc.get('nombreCancion'))
-                cancion.set_idAlbum(doc.get('idAlbum'))
-                cancion.set_idArtista(doc.get('idArtista'))
-                cancion.set_idGenero(doc.get('idGenero'))
-                cancion.set_url(doc.get('url'))
-                #cancion.set_price(doc.get('price'))
-                #cancion.set_rating(doc.get('rating'))
-                #cancion.set_release(doc.get('release'))
+                cancion.set_id(doc.get('id'))
+                cancion.set_title(doc.get('title'))
+                cancion.set_artist(doc.get('artist'))
+                cancion.set_album(doc.get('album'))
+                cancion.set_genre(doc.get('genre'))
+                cancion.set_duration(doc.get('duration'))
+                cancion.set_cover(doc.get('cover'))
+                cancion.set_lyrics(doc.get('lyrics'))
                 canciones.append(cancion)
             return canciones
         except Exception as e:

@@ -25,16 +25,38 @@ class SongsDTO():
 
 class SongDTO():
     def __init__(self):
-        self.idCancion = None
-        self.nombreCancion = None
-        self.idAlbum = None
-        self.idArtista = None
-        self.idGenero = None
-        self.url = None
+        self.idn = None
+        self.title = None
+        self.artist = None
+        self.album = None
+        self.genre = None
+        self.duration = None
+        self.cover = None
+        self.lyrics = None
 
     def is_Empty(self):
-        return (self.idCancion is None and self.nombreCancion is None and self.idAlbum is None and
-                self.idArtista is None and self.idGenero is None and self.url is None)
+        return (self.id is None and self.title is None and self.artist is None and
+                self.album is None and self.genre is None and self.duration is None and
+                self.cover is None and self.lyrics is None)
+
+    def get_id(self):
+        return self.id
+
+    def set_id(self, id):
+        self.id = id
+
+    
+    def get_title(self):
+        return self.title
+
+    def set_title(self, title):
+        self.title = title
+
+    def get_artist(self):
+        return self.artist
+
+    def set_artist(self, artist):
+        self.artist = artist
 
     def get_album(self):
         return self.album
@@ -42,51 +64,11 @@ class SongDTO():
     def set_album(self, album):
         self.album = album
 
-    def get_author(self):
-        return self.author
+    def get_genre(self):
+        return self.genre
 
-    def set_author(self, author):
-        self.author = author
-
-    def get_idCancion(self):
-        return self.idCancion
-
-    def set_idCancion(self, idCancion):
-        self.idCancion = idCancion
-
-    ###
-
-    def get_nombreCancion(self):
-        return self.nombreCancion
-
-    def set_nombreCancion(self, nombreCancion):
-        self.nombreCancion = nombreCancion
-
-    def get_idAlbum(self):
-        return self.idAlbum
-
-    def set_idAlbum(self, idAlbum):
-        self.idAlbum = idAlbum
-
-    def get_idArtista(self):
-        return self.idArtista
-
-    def set_idArtista(self, idArtista):
-        self.idArtista = idArtista
-
-    def get_idGenero(self):
-        return self.idGenero
-
-    def set_idGenero(self, idGenero):
-        self.idGenero = idGenero
-
-    def get_url(self):
-        return self.url
-
-    def set_url(self, url):
-        self.url = url
-
-    ###
+    def set_genre(self, genre):
+        self.genre = genre
 
     def get_duration(self):
         return self.duration
@@ -94,43 +76,27 @@ class SongDTO():
     def set_duration(self, duration):
         self.duration = duration
 
-    def get_musicgenre(self):
-        return self.musicgenre
+    def get_cover(self):
+        return self.cover
 
-    def set_musicgenre(self, musicgenre):
-        self.musicgenre = musicgenre
+    def set_cover(self, cover):
+        self.cover = cover
 
-    def get_price(self):
-        return self.price
+    def get_lyrics(self):
+        return self.lyrics
 
-    def set_price(self, price):
-        self.price = price
-
-    def get_rating(self):
-        return self.rating
-
-    def set_rating(self, rating):
-        self.rating = rating
-
-    def get_release(self):
-        return self.release
-
-    def set_release(self, release):
-        self.release = release
-
-    def get_title(self):
-        return self.title
-
-    def set_title(self, title):
-        self.title = title
+    def set_lyrics(self, lyrics):
+        self.lyrics = lyrics
 
     def songdto_to_dict(self):
         return {
-            "idCancion": str(self.idCancion) if self.idCancion is not None else None,
-            "nombreCancion": self.nombreCancion,
-            "idAlbum": str(self.idAlbum) if self.idAlbum is not None else None,
-            "idArtista": str(self.idArtista) if self.idArtista is not None else None,
-            "idGenero": str(self.idGenero) if self.idGenero is not None else None,
-            "url": self.url
+            "id": str(self.id) if self.id is not None else None,
+            "title": self.title,
+            "artist": self.artist,
+            "album": self.album,
+            "genre": self.genre,
+            "duration": self.duration,
+            "cover": self.cover,
+            "lyrics": self.lyrics
         }
     

@@ -72,7 +72,8 @@ async def ayuda(request: Request):
 
 @app.get("/cancion")
 async def cancion(request: Request):
-    return view.get_cancion_view(request)
+    canciones = model.get_canciones()
+    return view.get_cancion_view(request, canciones)
 
 @app.get("/checkout")
 async def checkout(request: Request):
