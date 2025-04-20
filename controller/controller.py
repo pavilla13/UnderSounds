@@ -125,7 +125,8 @@ async def ayuda(request: Request):
 
 @app.get("/cancion")
 async def cancion(request: Request):
-    return view.get_cancion_view(request)
+    canciones = model.get_canciones()
+    return view.get_cancion_view(request, canciones)
 
 @app.get("/checkout")
 async def checkout(request: Request):
@@ -141,7 +142,8 @@ async def favoritos(request: Request):
 
 @app.get("/generos_especifico")
 async def generos_especifico(request: Request):
-    return view.get_generos_especifico_view(request)
+    generos = model.get_generos()
+    return view.get_generos_especifico_view(request, generos)
 
 @app.get("/generos")
 async def generos(request: Request):
@@ -161,7 +163,8 @@ async def mis_compras(request: Request):
 
 @app.get("/producto")
 async def producto(request: Request):
-    return view.get_producto_view(request)
+    productos = model.get_productos()
+    return view.get_producto_view(request, productos)
 
 #@app.get("/producto")
 #def producto(request: Request, id: int):
@@ -197,7 +200,8 @@ async def terminos(request: Request):
 
 @app.get("/tienda")
 async def tienda(request: Request):
-    return view.get_tienda_view(request)
+    productos = model.get_productos()
+    return view.get_tienda_view(request, productos)
 
 @app.get("/prueba")
 async def prueba(request: Request):

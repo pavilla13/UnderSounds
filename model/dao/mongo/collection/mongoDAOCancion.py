@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 from ...interfaceDAOCancion import InterfaceDAOCancion
 from ....dto.cancionDTO import SongDTO  # Adjust the import path to where SongDTO is defined
+from ....dto.generoDTO import GeneroDTO
 
 class MongoDAOCancion(InterfaceDAOCancion):
 
@@ -14,17 +15,33 @@ class MongoDAOCancion(InterfaceDAOCancion):
             results = self.collection.find({})
             for doc in results:
                 cancion = SongDTO()
-                cancion.set_id(doc.get('_id'))
+                cancion.set_id(doc.get('id'))
                 cancion.set_title(doc.get('title'))
-                cancion.set_author(doc.get('author'))
+                cancion.set_artist(doc.get('artist'))
                 cancion.set_album(doc.get('album'))
+                cancion.set_genre(doc.get('genre'))
                 cancion.set_duration(doc.get('duration'))
-                cancion.set_musicgenre(doc.get('musicgenre'))
-                cancion.set_price(doc.get('price'))
-                cancion.set_rating(doc.get('rating'))
-                cancion.set_release(doc.get('release'))
+                cancion.set_cover(doc.get('cover'))
+                cancion.set_lyrics(doc.get('lyrics'))
                 canciones.append(cancion)
             return canciones
         except Exception as e:
             print(f"Error getting songs: {e}")
+            return []
+        
+    def get_generos(self) -> List[GeneroDTO]:
+        try:
+            generos = []
+            results = self.collection.find({})
+            for doc in results:
+                genero = GeneroDTO()
+                genero.set_id(doc.get('id'))
+                genero.set_url(doc.get('url'))
+                genero.set_description(doc.get('description'))
+                genero.set_image(doc.get('image'))
+                genero.set_name(doc.get('name'))
+                generos.append(genero)
+            return generos
+        except Exception as e:
+            print(f"Error getting genres: {e}")
             return []

@@ -41,8 +41,9 @@ class View():
     def get_ayuda_view(self, request: Request):
         return templates.TemplateResponse("ayuda.html", {"request" : request})
     
-    def get_cancion_view(self, request: Request):
-        return templates.TemplateResponse("cancion.html", {"request" : request})
+    def get_cancion_view(self, request: Request, canciones):
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("cancion.html", {"request" : request, "canciones": canciones_list})
     
     def get_checkout_view(self, request: Request):
         return templates.TemplateResponse("checkout.html", {"request" : request})
@@ -53,8 +54,9 @@ class View():
     def get_favoritos_view(self, request: Request):
         return templates.TemplateResponse("favoritos.html", {"request" : request})
     
-    def get_generos_especifico_view(self, request: Request):
-        return templates.TemplateResponse("generos especifico.html", {"request" : request})
+    def get_generos_especifico_view(self, request: Request, generos):
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("generos especifico.html", {"request" : request, "generos": generos_list})
     
     def get_generos_view(self, request: Request):
         return templates.TemplateResponse("generos.html", {"request" : request}) 
@@ -68,8 +70,9 @@ class View():
     def get_mis_compras_view(self, request: Request):
         return templates.TemplateResponse("mis_compras.html", {"request" : request})
     
-    def get_producto_view(self, request: Request):
-        return templates.TemplateResponse("producto.html", {"request" : request})
+    def get_producto_view(self, request: Request, productos):
+        productos_list = json.loads(productos)
+        return templates.TemplateResponse("producto.html", {"request" : request, "productos": productos_list})
     
     #def get_producto_view(self, request: Request, id: int):
      #   return templates.TemplateResponse("producto.html", {
@@ -99,8 +102,9 @@ class View():
     def get_terminos_view(self, request: Request):
         return templates.TemplateResponse("terminos.html", {"request" : request})
     
-    def get_tienda_view(self, request: Request):
-        return templates.TemplateResponse("tienda.html", {"request" : request})
+    def get_tienda_view(self, request: Request, productos):
+        productos_list = json.loads(productos)
+        return templates.TemplateResponse("tienda.html", {"request" : request, "productos": productos_list})
     
     def get_prueba_view(self, request: Request, canciones):
         canciones_list = json.loads(canciones)

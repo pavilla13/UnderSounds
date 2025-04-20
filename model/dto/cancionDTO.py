@@ -25,32 +25,19 @@ class SongsDTO():
 
 class SongDTO():
     def __init__(self):
-        self.album = None
-        self.author = None
-        self.id = None
-        self.duration = None  # Corregido (antes length)
-        self.musicgenre = None
-        self.price = None
-        self.rating = None
-        self.release = None
+        self.idn = None
         self.title = None
+        self.artist = None
+        self.album = None
+        self.genre = None
+        self.duration = None
+        self.cover = None
+        self.lyrics = None
 
     def is_Empty(self):
-        return (self.album is None and self.author is None and self.id is None and
-                self.duration is None and self.musicgenre is None and self.price is None and
-                self.rating is None and self.release is None and self.title is None)
-
-    def get_album(self):
-        return self.album
-
-    def set_album(self, album):
-        self.album = album
-
-    def get_author(self):
-        return self.author
-
-    def set_author(self, author):
-        self.author = author
+        return (self.id is None and self.title is None and self.artist is None and
+                self.album is None and self.genre is None and self.duration is None and
+                self.cover is None and self.lyrics is None)
 
     def get_id(self):
         return self.id
@@ -58,52 +45,58 @@ class SongDTO():
     def set_id(self, id):
         self.id = id
 
-    def get_duration(self):
-        return self.duration
-
-    def set_duration(self, duration):
-        self.duration = duration
-
-    def get_musicgenre(self):
-        return self.musicgenre
-
-    def set_musicgenre(self, musicgenre):
-        self.musicgenre = musicgenre
-
-    def get_price(self):
-        return self.price
-
-    def set_price(self, price):
-        self.price = price
-
-    def get_rating(self):
-        return self.rating
-
-    def set_rating(self, rating):
-        self.rating = rating
-
-    def get_release(self):
-        return self.release
-
-    def set_release(self, release):
-        self.release = release
-
+    
     def get_title(self):
         return self.title
 
     def set_title(self, title):
         self.title = title
 
+    def get_artist(self):
+        return self.artist
+
+    def set_artist(self, artist):
+        self.artist = artist
+
+    def get_album(self):
+        return self.album
+
+    def set_album(self, album):
+        self.album = album
+
+    def get_genre(self):
+        return self.genre
+
+    def set_genre(self, genre):
+        self.genre = genre
+
+    def get_duration(self):
+        return self.duration
+
+    def set_duration(self, duration):
+        self.duration = duration
+
+    def get_cover(self):
+        return self.cover
+
+    def set_cover(self, cover):
+        self.cover = cover
+
+    def get_lyrics(self):
+        return self.lyrics
+
+    def set_lyrics(self, lyrics):
+        self.lyrics = lyrics
+
     def songdto_to_dict(self):
         return {
-            "album": self.album,
-            "author": self.author,
             "id": str(self.id) if self.id is not None else None,
+            "title": self.title,
+            "artist": self.artist,
+            "album": self.album,
+            "genre": self.genre,
             "duration": self.duration,
-            "musicgenre": self.musicgenre,
-            "price": self.price,
-            "rating": self.rating,
-            "release": str(self.release),
-            "title": self.title
+            "cover": self.cover,
+            "lyrics": self.lyrics
         }
     

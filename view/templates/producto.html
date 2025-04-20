@@ -103,9 +103,9 @@
   </script>-->
   {% include "footer.html" %}
 
-
- 
-
+  <div id="data-productos"
+   data-productos='{{ productos | tojson }}'>
+  </div>
   
   <!-- Carga del archivo JS con la funcionalidad -->
   <script src="/static/js/app.js"></script>

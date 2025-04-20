@@ -8,10 +8,6 @@
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-
-
-
-
   <!-- Inyección del header 
   <div id="header-placeholder"></div>
   <script>
@@ -100,80 +96,87 @@
   <!-- Script para cargar la información de la canción -->
   <script>
     // Datos de ejemplo para las canciones (en una aplicación real estos datos vendrían de una API o base de datos)
-    const canciones = {
-      "1": {
-        title: "Bohemian Rhapsody",
-        artist: "Queen",
-        album: "A Night at the Opera",
-        genre: "Rock",
-        duration: "5:55",
-        cover: "static/images/bohemian.jpeg",
-        lyrics: "Is this the real life? Is this just fantasy?..."
-      },
-      "2": {
-        title: "Blinding Lights",
-        artist: "The Weeknd",
-        album: "After Hours",
-        genre: "Pop",
-        duration: "3:20",
-        cover: "static/images/lights.jpeg",
-        lyrics: "I said, ooh, I'm blinded by the lights..."
-      },
-      "3": {
-        title: "Animals",
-        artist: "Martin Garrix",
-        album: "Animals",
-        genre: "Electrónica",
-        duration: "5:03",
-        cover: "static/images/animals.jpeg",
-        lyrics: "The club is full of energy..."
-      },
-      "4": {
-        title: "Take Five",
-        artist: "The Dave Brubeck Quartet",
-        album: "Time Out",
-        genre: "Jazz",
-        duration: "5:24",
-        cover: "static/images/five.jpeg",
-        lyrics: "Instrumental..."
-      },
-      "9": {
-        title: "Stairway to Heaven",
-        artist: "Led Zeppelin",
-        album: "Untitled",
-        genre: "Rock",
-        duration: "8:02",
-        cover: "static/images/heaven.jpeg",
-        lyrics: "There's a lady who's sure all that glitters is gold..."
-      },
-      "10": {
-        title: "Like a Prayer",
-        artist: "Madonna",
-        album: "Like a Prayer",
-        genre: "Pop",
-        duration: "5:42",
-        cover: "static/images/prayer.jpg",
-        lyrics: "Life is a mystery, everyone must stand alone..."
-      },
-      "11": {
-        title: "One More Time",
-        artist: "Daft Punk",
-        album: "Discovery",
-        genre: "Electrónica",
-        duration: "5:20",
-        cover: "static/images/more_time.jpg",
-        lyrics: "One more time, we're gonna celebrate..."
-      },
-      "12": {
-        title: "So What",
-        artist: "Pink",
-        album: "Kind of Blue",
-        genre: "Pop - Rock",
-        duration: "3:40",
-        cover: "static/images/so_what.jpg",
-        lyrics: "So, so what? I'm still a rock star"
-      }
-    };
+    const canciones = {{ canciones|tojson }};
+    console.log("Canciones importadas:", canciones);
+
+    //console.log("Canciones importadas:", canciones);
+
+    // const canciones = {
+    //   "1": {
+    //     title: "Bohemian Rhapsody",
+    //     artist: "Queen",
+    //     album: "A Night at the Opera",
+    //     genre: "Rock",
+    //     duration: "5:55",
+    //     cover: "static/images/bohemian.jpeg",
+    //     lyrics: "Is this the real life? Is this just fantasy?..."
+    //   },
+    //   "2": {
+    //     title: "Blinding Lights",
+    //     artist: "The Weeknd",
+    //     album: "After Hours",
+    //     genre: "Pop",
+    //     duration: "3:20",
+    //     cover: "static/images/lights.jpeg",
+    //     lyrics: "I said, ooh, I'm blinded by the lights..."
+    //   },
+    //   "3": {
+    //     title: "Animals",
+    //     artist: "Martin Garrix",
+    //     album: "Animals",
+    //     genre: "Electrónica",
+    //     duration: "5:03",
+    //     cover: "static/images/animals.jpeg",
+    //     lyrics: "The club is full of energy..."
+    //   },
+    //   "4": {
+    //     title: "Take Five",
+    //     artist: "The Dave Brubeck Quartet",
+    //     album: "Time Out",
+    //     genre: "Jazz",
+    //     duration: "5:24",
+    //     cover: "static/images/five.jpeg",
+    //     lyrics: "Instrumental..."
+    //   },
+    //   "9": {
+    //     title: "Stairway to Heaven",
+    //     artist: "Led Zeppelin",
+    //     album: "Untitled",
+    //     genre: "Rock",
+    //     duration: "8:02",
+    //     cover: "static/images/heaven.jpeg",
+    //     lyrics: "There's a lady who's sure all that glitters is gold..."
+    //   },
+    //   "10": {
+    //     title: "Like a Prayer",
+    //     artist: "Madonna",
+    //     album: "Like a Prayer",
+    //     genre: "Pop",
+    //     duration: "5:42",
+    //     cover: "static/images/prayer.jpg",
+    //     lyrics: "Life is a mystery, everyone must stand alone..."
+    //   },
+    //   "11": {
+    //     title: "One More Time",
+    //     artist: "Daft Punk",
+    //     album: "Discovery",
+    //     genre: "Electrónica",
+    //     duration: "5:20",
+    //     cover: "static/images/more_time.jpg",
+    //     lyrics: "One more time, we're gonna celebrate..."
+    //   },
+    //   "12": {
+    //     title: "So What",
+    //     artist: "Pink",
+    //     album: "Kind of Blue",
+    //     genre: "Pop - Rock",
+    //     duration: "3:40",
+    //     cover: "static/images/so_what.jpg",
+    //     lyrics: "So, so what? I'm still a rock star"
+    //   }
+    // };
+
+    
 
 
     // Función para obtener parámetros de la URL
@@ -186,8 +189,8 @@
     const songId = getQueryParam('id');
 
     // Actualizar la página con la información correspondiente
-    if (songId && canciones[songId]) {
-      const song = canciones[songId];
+    if (songId && canciones.find(c => c.id === songId)) {
+      const song = canciones.find(c => c.id === songId);
       document.getElementById('song-title').textContent = song.title;
       document.getElementById('song-artist').textContent = "Artista: " + song.artist;
       document.getElementById('song-album').textContent = "Álbum: " + song.album;
