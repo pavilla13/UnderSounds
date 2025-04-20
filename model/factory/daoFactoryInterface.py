@@ -18,6 +18,10 @@ class InterfaceDAOFactory(ABC):
     def get_canciones(self):
         pass
     
+    @abstractmethod
+    def get_generos(self):
+        pass
+    
     """
     @abstractmethod
     def get_albumes(self):

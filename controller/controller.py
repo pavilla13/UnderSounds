@@ -89,7 +89,8 @@ async def favoritos(request: Request):
 
 @app.get("/generos_especifico")
 async def generos_especifico(request: Request):
-    return view.get_generos_especifico_view(request)
+    generos = model.get_generos()
+    return view.get_generos_especifico_view(request, generos)
 
 @app.get("/generos")
 async def generos(request: Request):

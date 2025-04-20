@@ -51,8 +51,9 @@ class View():
     def get_favoritos_view(self, request: Request):
         return templates.TemplateResponse("favoritos.html", {"request" : request})
     
-    def get_generos_especifico_view(self, request: Request):
-        return templates.TemplateResponse("generos especifico.html", {"request" : request})
+    def get_generos_especifico_view(self, request: Request, generos):
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("generos especifico.html", {"request" : request, "generos": generos_list})
     
     def get_generos_view(self, request: Request):
         return templates.TemplateResponse("generos.html", {"request" : request}) 

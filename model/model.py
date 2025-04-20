@@ -1,5 +1,6 @@
 from .dao.mongo.mongoDAOFactory import MongoDAOFactory
 from .dto.cancionDTO import SongsDTO, SongDTO
+from .dto.generoDTO import GenerosDTO, GeneroDTO
 
 class Model ():
 
@@ -7,14 +8,13 @@ class Model ():
          #pass
          self.factory = MongoDAOFactory()
          self.daoSong = self.factory.get_canciones()
+         self.daoGenero = self.factory.get_generos()
 
 
      def get_canciones(self):
         mySongsDTO = SongsDTO()
         songs = self.daoSong.get_canciones()
         for s in songs:
-            song_data = s # (Local)
-           # Crear un objeto SongDTO con los datos de la canción
             song_dto = SongDTO()
             song_dto.id = s.get_id()  
             song_dto.title = s.get_title()  
@@ -24,17 +24,20 @@ class Model ():
             song_dto.duration = s.get_duration()  
             song_dto.cover = s.get_cover()  
             song_dto.lyrics = s.get_lyrics() 
-            
-            #song_dto.id = song_data.get_id() # (Local)
-            #song_dto.title = song_data.get_title()
-            #song_dto.author = song_data.get_author()
-            #song_dto.album = song_data.get_album()
-            #song_dto.musicgenre = song_data.get_musicgenre()
-            #song_dto.duration = song_data.get_duration()
-            #song_dto.price = song_data.get_price()
-            #song_dto.rating = song_data.get_rating()
-            #song_dto.release = song_data.get_release()
             song_dto = song_dto.songdto_to_dict()
             mySongsDTO.insertSong(song_dto)  # Agregar la canción a la lista
         return mySongsDTO.songlist_to_json()
-        
+    
+     def get_generos(self):
+        myGenerosDTO = GenerosDTO()
+        generos = self.daoGenero.get_generos()
+        for s in generos:
+            genero_dto = GeneroDTO()
+            genero_dto.id = s.get_id()
+            genero_dto.name = s.get_name()
+            genero_dto.description = s.get_description()
+            genero_dto.image = s.get_image()
+            genero_dto.url = s.get_url()
+            genero_dto = genero_dto.generodto_to_dict()
+            myGenerosDTO.insertGenero(genero_dto)
+        return myGenerosDTO.genrelist_to_json()

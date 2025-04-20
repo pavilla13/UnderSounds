@@ -12,9 +12,6 @@ uri = "mongodb+srv://palonsov:xEkhXFmK7SaCzqbe@cluster0.fpq1ac3.mongodb.net/unde
 
 client = MongoClient(uri)
 
-
- 
-
 class MongoDAOFactory(InterfaceDAOFactory):
 
     def __init__(self):
@@ -49,8 +46,8 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["productos"]
         return MongoDAOProducto(collection)
 
-    def get_genero_dao(self):
-        collection = self.db["generos"]
+    def get_generos(self):
+        collection = self.db["GENERO"]
         return MongoDAOGenero(collection)
 
     def get_amigo_dao(self):
