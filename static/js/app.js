@@ -349,7 +349,7 @@ const productCatalog = {
           if (e.target.closest('.add-to-cart') || e.target.closest('.add-to-favorites')) {
             return;
           }
-          // De lo contrario, redirige a producto.html pasando el id del producto  
+          // De lo contrario, redirige a producto.html pasando el id del producto
           window.location.href = `/producto?id=${key}`;
         });
         

@@ -95,7 +95,7 @@
 
   <!-- Menú de pestañas -->
   <div class="tabs">
-    <a href="/" class="tab">Recientes</a>
+    <a href="/#recientes" class="tab">Recientes</a>
     <a href="/#bestofs" class="tab">Best Of's</a>
     <a href="/tienda" class="tab">Tienda</a>
     <a href="/amigos" class="tab active">Amigos</a>
@@ -181,6 +181,24 @@
       friendsList.appendChild(friendCard);
     });
   </script>
+
+
+
+<!-- Cambios de pantalla entre recientes y bestof, de esto se ocupa el index.html -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash;
+
+    if (hash === "#bestofs" || hash === "#recientes") {
+      // Redirigir al index con el hash, sin recargar dos veces
+      window.location.href = "/" + hash;
+    }
+  });
+</script>
+
+
+
+
 
   <script src="/static/js/main.js"></script>
   <script src="/static/js/app.js"></script>
