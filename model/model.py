@@ -1,6 +1,7 @@
 from .dao.mongo.mongoDAOFactory import MongoDAOFactory
 from .dto.cancionDTO import SongsDTO, SongDTO
 from .dto.generoDTO import GenerosDTO, GeneroDTO
+from .dto.productoDTO import ProductosDTO, ProductoDTO
 
 class Model ():
 
@@ -9,6 +10,7 @@ class Model ():
          self.factory = MongoDAOFactory()
          self.daoSong = self.factory.get_canciones()
          self.daoGenero = self.factory.get_generos()
+         self.daoProducto = self.factory.get_productos()
 
 
      def get_canciones(self):
@@ -41,3 +43,18 @@ class Model ():
             genero_dto = genero_dto.generodto_to_dict()
             myGenerosDTO.insertGenero(genero_dto)
         return myGenerosDTO.genrelist_to_json()
+    
+     def get_productos(self):
+        myProductosDTO = ProductosDTO()
+        productos = self.daoProducto.get_productos()
+        for s in productos:
+            producto_dto = ProductoDTO()
+            producto_dto.id = s.get_id()
+            producto_dto.title = s.get_title()
+            producto_dto.price = s.get_price()
+            producto_dto.image = s.get_image()
+            producto_dto.category = s.get_category()
+            producto_dto.description = s.get_description()
+            producto_dto = producto_dto.productdto_to_dict()
+            myProductosDTO.insertProducto(producto_dto)
+        return myProductosDTO.productlist_to_json()

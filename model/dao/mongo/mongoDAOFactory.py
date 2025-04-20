@@ -42,8 +42,8 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["sellos"]
         return MongoDAOSello(collection)
 
-    def get_producto_dao(self):
-        collection = self.db["productos"]
+    def get_productos(self):
+        collection = self.db["PRODUCTO"]
         return MongoDAOProducto(collection)
 
     def get_generos(self):

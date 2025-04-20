@@ -1,7 +1,7 @@
 /* js/app.js */
 
 // Catálogo de productos
-const productCatalog = {
+const productCatalog2 = {
   1: {
     title: "Thriller - Michael Jackson (CD)",
     price: 15.99,
@@ -108,6 +108,9 @@ const productCatalog = {
     description: "Mochila de Led Zeppelin.",
   },
 };
+
+const holder = document.getElementById("data-productos");
+const productCatalog = JSON.parse(holder.dataset.productos);
   
   // Función para mostrar notificaciones en la parte superior
   function showNotification(message) {

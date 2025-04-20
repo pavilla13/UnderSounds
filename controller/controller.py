@@ -106,7 +106,8 @@ async def mis_compras(request: Request):
 
 @app.get("/producto")
 async def producto(request: Request):
-    return view.get_producto_view(request)
+    productos = model.get_productos()
+    return view.get_producto_view(request, productos)
 
 #@app.get("/producto")
 #def producto(request: Request, id: int):
@@ -138,7 +139,8 @@ async def terminos(request: Request):
 
 @app.get("/tienda")
 async def tienda(request: Request):
-    return view.get_tienda_view(request)
+    productos = model.get_productos()
+    return view.get_tienda_view(request, productos)
 
 @app.get("/prueba")
 async def prueba(request: Request):

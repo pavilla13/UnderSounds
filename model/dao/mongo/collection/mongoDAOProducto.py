@@ -13,14 +13,12 @@ class MongoDAOProducto(InterfaceDAOProducto):
             results = self.collection.find({})
             for doc in results:
                 producto = ProductoDTO()
-                producto.id = doc.get('_id')
-                producto.name = doc.get('name')
-                producto.type = doc.get('type')
+                producto.id = doc.get('id')
+                producto.title = doc.get('title')
                 producto.price = doc.get('price')
+                producto.image = doc.get('image')
+                producto.category = doc.get('category')
                 producto.description = doc.get('description')
-                producto.stock = doc.get('stock')
-                producto.release_date = doc.get('release_date')
-                producto.related_artist = doc.get('related_artist')
                 productos.append(producto)
             return productos
         except Exception as e:

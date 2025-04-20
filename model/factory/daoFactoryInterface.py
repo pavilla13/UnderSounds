@@ -22,6 +22,10 @@ class InterfaceDAOFactory(ABC):
     def get_generos(self):
         pass
     
+    @abstractmethod
+    def get_productos(self):
+        pass
+    
     """
     @abstractmethod
     def get_albumes(self):
