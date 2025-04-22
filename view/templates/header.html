@@ -28,7 +28,7 @@
     
     <!-- Perfil de usuario con dropdown -->
 
-    {% if tipo_usuario %}
+    {% if user %}
     <!-- Si el usuario ha iniciado sesión, se muestra el perfil -->
     <div class="profile-container" id="profileContainer">
       <img src="/static/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
@@ -39,7 +39,7 @@
         <a href="/favoritos">Lista de Me gusta</a>
         <a href="/mis_compras">Mis compras</a>
 
-        {% if tipo_usuario in ["artist", "sello"] %}
+        {% if user.tipo_usuario in ["artist", "sello"] %}
           <a href="/albumes_subidos">Álbumes subidos</a>
         {% endif %}
 

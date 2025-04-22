@@ -10,10 +10,12 @@ from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
 
-
+from fastapi.responses import JSONResponse
+from view.view import USERS_DB
 
 app = FastAPI()
 
+# Middleware para manejar sesiones
 app.add_middleware(SessionMiddleware, secret_key="clave-secreta-super-segura")
 
 model = Model()
@@ -25,32 +27,26 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 
-@app.post("/register")
-async def registrar_usuario(
-    request: Request,
-    name: str = Form(...),
-    username: str = Form(...),
-    email: str = Form(...),
-    password: str = Form(...),
-    password2: str = Form(...),
-    register_type: str = Form(...)  # este valor viene del <select>
-):
+#@app.post("/register")
+#async def registrar_usuario(
+ #   request: Request,
+  #  name: str = Form(...),
+   # username: str = Form(...),
+#    email: str = Form(...),
+ #   password: str = Form(...),
+  #  password2: str = Form(...),
+   # register_type: str = Form(...)  # este valor viene del <select>
+#):
     # 🔐 Acá deberías guardar el nuevo usuario en la base de datos...
     # 🧠 También podés guardar en sesión el tipo de cuenta
-    request.session["register_type"] = register_type  # "usuario", "artista" o "sello"
+ #   request.session["register_type"] = register_type  # "usuario", "artista" o "sello"
 
     # Podés guardar más datos si querés:
     # request.session["nombre"] = nombre
 
     # Redirigir al home o al dashboard que corresponda
-    return RedirectResponse(url="/", status_code=303)
+  #  return RedirectResponse(url="/", status_code=303)
 
-
-
-
-#@app.get("/login", response_class=HTMLResponse)
-#def show_login(request: Request):
- #   return templates.TemplateResponse("login.html", {"request": request})
 
 
 #@app.post("/login")
@@ -72,32 +68,64 @@ async def registrar_usuario(
    # })
 
 
+
+
+
+
+
+
+@app.get("/register")
+async def register(request: Request):
+    return view.get_register_view(request)
+
+@app.post("/register")
+async def procesar_registro(
+    request: Request,
+    name: str = Form(...),
+    username: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...),
+    password2: str = Form(...),
+    tipo_usuario: str = Form(...),
+    birthdate: str = Form(...),
+    country: str = Form(...),
+    terms: bool = Form(...)
+):
+    return await view.procesar_registro_view(
+        request, name, username, email, password, password2,
+        tipo_usuario, birthdate, country, terms)
+
+@app.get("/login")
+async def login(request: Request):
+    return view.get_login_view(request)
+
+# RUTA: Procesar login (POST)
+@app.post("/login")
+async def procesar_login(request: Request, username: str = Form(...), password: str = Form(...)):
+    return await view.procesar_login_view(request, username, password)
+
 @app.get("/logout")
-def logout(request: Request):
+async def logout(request: Request):
     request.session.clear()
-    return RedirectResponse(url="/login", status_code=303)
+    return RedirectResponse("/", status_code=303)
 
-
-
-#@app.get("/", response_class=HTMLResponse)
-#def home(request: Request):
- #   user = request.session.get("user")
-  #  return templates.TemplateResponse("index.html", {
-   #     "request": request,
-    #    "user": user
-    #})
-
-
-
-
-
-
-
-
-
+# RUTA: Página principal (requiere saber si está logueado)
 @app.get("/")
 async def index(request: Request):
     return view.get_index_view(request)
+
+
+@app.get("/debug_users")
+async def debug_users(request: Request):
+    return JSONResponse(content=USERS_DB)
+
+@app.get("/clear_users")
+async def clear_users():
+    USERS_DB.clear()  # Esto vacía la lista de usuarios
+    return JSONResponse(content={"message": "Usuarios vaciados correctamente."})
+
+
+
 
 @app.get("/album")
 async def album(request: Request):
@@ -153,9 +181,6 @@ async def generos(request: Request):
 async def gestion_sello(request: Request):
     return view.get_gestion_sello_view(request)
 
-@app.get("/login")
-async def login(request: Request):
-    return view.get_login_view(request)
 
 @app.get("/mis_compras")
 async def mis_compras(request: Request):
@@ -174,9 +199,6 @@ async def producto(request: Request):
 async def recover(request: Request):
     return view.get_recover_view(request)
 
-@app.get("/register")
-async def register(request: Request):
-    return view.get_register_view(request)
 
 @app.get("/resumen_compra")
 async def resumen_compra(request: Request):
