@@ -24,14 +24,3 @@ class MongoDAOProducto(InterfaceDAOProducto):
         except Exception as e:
             print(f"Error getting products: {e}")
             return []
-    
-    def update_producto_stock(self, product_id: str, new_stock: int) -> bool:
-        try:
-            result = self.collection.update_one(
-                {'_id': product_id},
-                {'$set': {'stock': new_stock}}
-            )
-            return result.modified_count > 0
-        except Exception as e:
-            print(f"Error updating product stock: {e}")
-            return False

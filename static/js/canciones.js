@@ -1,6 +1,6 @@
 // canciones.js
 
-const canciones = [
+const canciones2 = [
   { name: "Bohemian Rhapsody", album: "A Night at the Opera", artist: "Queen", genre: "Rock" },
   { name: "Blinding Lights", album: "After Hours", artist: "The Weeknd", genre: "Pop" },
   { name: "Animals", album: "Animals", artist: "Pink Floyd", genre: "Rock" },
@@ -27,7 +27,8 @@ const canciones = [
   { name: "The Business", album: "Drive", artist: "Tiësto", genre: "Electrónica" }
 ];
 
-
+const holder = document.getElementById("data-search");
+const canciones = JSON.parse(holder.dataset.canciones);
 
 document.addEventListener("DOMContentLoaded", () => {
   // ----------------------

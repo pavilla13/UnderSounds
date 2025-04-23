@@ -13,14 +13,15 @@ class MongoDAOUsuario(InterfaceDAOUsuario):
             results = self.collection.find({})
             for doc in results:
                 usuario = UsuarioDTO()
-                usuario.id = doc.get('_id')
-                usuario.username = doc.get('username')
-                usuario.email = doc.get('email')
-                usuario.password = doc.get('password')  # En producción esto debería estar hasheado
-                usuario.friends = doc.get('friends', [])
-                usuario.favorite_songs = doc.get('favorite_songs', [])
-                usuario.favorite_albums = doc.get('favorite_albums', [])
-                usuario.purchases = doc.get('purchases', [])
+                usuario.id = doc.get('id')
+                usuario.nickname = doc.get('nickname')
+                usuario.correo = doc.get('correo')
+                usuario.country = doc.get('country')
+                usuario.date = doc.get('date')
+                usuario.name = doc.get('name')
+                usuario.password = doc.get('password')
+                usuario.userType = doc.get('userType')
+               
                 usuarios.append(usuario)
             return usuarios
         except Exception as e:

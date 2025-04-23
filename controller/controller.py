@@ -52,7 +52,10 @@ async def index(request: Request):
 
 @app.get("/album")
 async def album(request: Request):
-    return view.get_album_view(request)
+    albumes = model.get_albumes()
+    tracklist = model.get_canciones()
+    artistas = model.get_artistas()
+    return view.get_album_view(request, albumes, tracklist, artistas)
 
 @app.get("/amigoLista")
 async def amigoLista(request: Request):
@@ -64,7 +67,8 @@ async def amigos(request: Request):
 
 @app.get("/artistas")
 async def artistas(request: Request):
-    return view.get_artistas_view(request)
+    artistas = model.get_artistas()
+    return view.get_artistas_view(request, artistas)
 
 @app.get("/ayuda")
 async def ayuda(request: Request):
@@ -90,11 +94,14 @@ async def favoritos(request: Request):
 @app.get("/generos_especifico")
 async def generos_especifico(request: Request):
     generos = model.get_generos()
-    return view.get_generos_especifico_view(request, generos)
+    canciones = model.get_canciones()
+    return view.get_generos_especifico_view(request, generos, canciones)
 
 @app.get("/generos")
 async def generos(request: Request):
-    return view.get_generos_view(request)
+    generos = model.get_generos()
+    canciones = model.get_canciones()
+    return view.get_generos_view(request, generos, canciones)
 
 @app.get("/login")
 async def login(request: Request):
@@ -127,7 +134,12 @@ async def resumen_compra(request: Request):
 
 @app.get("/search")
 async def search(request: Request):
-    return view.get_search_view(request)
+    albumes = model.get_albumes()
+    artistas = model.get_artistas()
+    canciones = model.get_canciones()
+    sellos = model.get_sellos()
+    amigos = model.get_amigos()
+    return view.get_search_view(request, albumes, artistas, canciones, sellos, amigos)
 
 @app.get("/sellos")
 async def sellos(request: Request):

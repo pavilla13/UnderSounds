@@ -110,7 +110,19 @@ const productCatalog2 = {
 };
 
 const holder = document.getElementById("data-productos");
-const productCatalog = JSON.parse(holder.dataset.productos);
+let productCatalog = [];
+if (holder) {
+  productCatalog = JSON.parse(holder.dataset.productos);
+  
+}
+
+
+
+//const holder2 = document.getElementById("data-search");
+//const canciones = JSON.parse(holder2.dataset.canciones);
+//const artistas = JSON.parse(holder2.dataset.artistas);
+//const sellos = JSON.parse(holder2.dataset.sellos);
+//const albums = JSON.parse(holder2.dataset.albums);
   
   // Función para mostrar notificaciones en la parte superior
   function showNotification(message) {
@@ -331,37 +343,47 @@ const productCatalog = JSON.parse(holder.dataset.productos);
   
   // Función para poblar dinámicamente los productos en la tienda
   function populateProducts() {
-    Object.keys(productCatalog).forEach(function(key) {
-      const product = productCatalog[key];
-      const container = document.getElementById(product.category + '-row');
-      if (container) {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.title}">
-          <h3>${product.title}</h3>
-          <p>${product.description}</p>
-          <p class="price">$${product.price}</p>
-          <button class="add-to-cart" data-id="${key}">Añadir al Carrito</button>
-          <button class="add-to-favorites" data-id="${key}">♡ Favorito</button>
-        `;
-        
-        // Agregar un event listener al contenedor del producto
-        card.addEventListener('click', function(e) {
-          // Si el clic se produjo en un botón (o en un elemento dentro del botón), no redirigir
-          if (e.target.closest('.add-to-cart') || e.target.closest('.add-to-favorites')) {
-            return;
-          }
-          // De lo contrario, redirige a producto.html pasando el id del producto
-          window.location.href = `/producto?id=${key}`;
-        });
-        
-        container.appendChild(card);
+    const catalog = productCatalog.length ? productCatalog : productCatalog2;
+    Object.keys(catalog).forEach(key => {
+      const product = catalog[key];
+// esto te da el section, no el row
+const section = document.getElementById(product.category);
+      if (!section) {
+        console.warn(`No existe sección para categoría ${product.category}`);
+        return;
       }
+      const container = section.querySelector('.row');
+      if (!container) {
+        console.warn(`No encontré el .row dentro de la sección ${product.category}`);
+        return;
+      }
+      if (!container) {
+        console.warn(`No encontré el .row dentro de la sección ${product.category}`);
+        return;
+      }
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p>${product.description}</p>
+        <p class="price">$${product.price.toFixed(2)}</p>
+        <button class="add-to-cart" data-id="${key}">Añadir al carrito</button>
+        <button class="add-to-favorites" data-id="${key}">♡ Favorito</button>
+      `;
+       // Agregar un event listener al contenedor del producto
+      card.addEventListener('click', function(e) {
+        // Si el clic se produjo en un botón (o en un elemento dentro del botón), no redirigir
+        if (e.target.closest('.add-to-cart') || e.target.closest('.add-to-favorites')) {
+          return;
+        }
+        // De lo contrario, redirige a producto.html pasando el id del producto
+        window.location.href = `/producto?id=${key}`;
+      });
+      container.appendChild(card);
     });
   }
-  
-  
+
   // Al cargar el DOM, primero se poblan los productos y luego se asignan los eventos
   document.addEventListener('DOMContentLoaded', () => {
 

@@ -1,7 +1,7 @@
 // amigos.js
 // amigos.js
 
-const amigos = [
+const amigo2s = [
   {
     id: 1,
     name: "Carlos Rodríguez",
@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
       friendsContainer.appendChild(card);
     });
   }
+
+  const holder = document.getElementById("data-search");
+  const amigos = JSON.parse(holder.dataset.amigos);
 
   // ----------------------
   // 2) Mostrar el DETALLE de un amigo (amigoLista.html)

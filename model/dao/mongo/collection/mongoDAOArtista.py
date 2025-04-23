@@ -13,12 +13,14 @@ class MongoDAOArtista(InterfaceDAOArtista):
             results = self.collection.find({})
             for doc in results:
                 artista = ArtistaDTO()
-                artista.id = doc.get('_id')
+                artista.id = doc.get('id')
                 artista.name = doc.get('name')
-                artista.genres = doc.get('genres', [])
-                artista.biography = doc.get('biography')
-                artista.active_years = doc.get('active_years')
-                # Los álbumes podrían cargarse aquí o en una consulta separada
+                artista.genre = doc.get('genre')
+                artista.description = doc.get('description')
+                artista.image = doc.get('image')
+                artista.url = doc.get('url')
+                artista.selloId = doc.get('selloId')
+                
                 artistas.append(artista)
             return artistas
         except Exception as e:

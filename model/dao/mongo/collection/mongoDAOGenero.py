@@ -13,12 +13,11 @@ class MongoDAOGenero(InterfaceDAOGenero):
             results = self.collection.find({})
             for doc in results:
                 genero = GeneroDTO()
-                genero.id = doc.get('id')
-                genero.name = doc.get('name')
-                genero.description = doc.get('description')
-                genero.related_genres = doc.get('related_genres', [])
-                genero.popular_artists = doc.get('popular_artists', [])
-                genero.popular_songs = doc.get('popular_songs', [])
+                genero.id = doc.get('idGenero')
+                genero.name = doc.get('nombreGenero')
+                genero.description = doc.get('descripcion')
+                genero.url = doc.get('url')
+                genero.image = doc.get('image')
                 generos.append(genero)
             return generos
         except Exception as e:

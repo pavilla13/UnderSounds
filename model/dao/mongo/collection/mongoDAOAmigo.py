@@ -13,11 +13,10 @@ class MongoDAOAmigo(InterfaceDAOAmigo):
             results = self.collection.find({})
             for doc in results:
                 amigo = AmigoDTO()
-                amigo.id = doc.get('_id')
-                amigo.username = doc.get('username')
-                amigo.friendship_date = doc.get('friendship_date')
-                amigo.common_interests = doc.get('common_interests', [])
-                amigo.last_interaction = doc.get('last_interaction')
+                amigo.id = doc.get('id')
+                amigo.name = doc.get('name')
+                amigo.description = doc.get('description')
+                amigo.url = doc.get('url')
                 amigos.append(amigo)
             return amigos
         except Exception as e:

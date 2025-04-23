@@ -107,7 +107,13 @@
   </script>-->
   {% include "footer.html" %}
 
-
+  <div id="data-search"
+       data-artistas='{{ artistas | tojson }}'
+       data-sellos='{{ sellos | tojson }}'
+       data-albumes='{{ albumes | tojson }}'
+       data-canciones='{{ canciones | tojson }}'
+       data-amigos='{{ amigos | tojson }}'
+ </div>
 
 
 

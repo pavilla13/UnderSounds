@@ -62,7 +62,10 @@
   </script>-->
   {% include "footer.html" %}
 
-  
+  <div id="data-generos"
+       data-generos='{{ generos | tojson }}'
+       data-canciones='{{ canciones | tojson }}'>
+  </div>
 
 
   <!-- Carga de scripts -->

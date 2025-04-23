@@ -13,15 +13,13 @@ class MongoDAOAlbum(InterfaceDAOAlbum):
             results = self.collection.find({})
             for doc in results:
                 album = AlbumDTO()
-                album.id = doc.get('_id')
-                album.title = doc.get('title')
+                album.id = doc.get('id')
                 album.artist = doc.get('artist')
-                album.release_date = doc.get('release_date')
-                album.label = doc.get('label')
+                album.name = doc.get('name')
                 album.genre = doc.get('genre')
-                album.rating = doc.get('rating')
-                album.price = doc.get('price')
-                # Aquí podrías cargar las canciones si están embebidas o hacer una consulta separada
+                album.description = doc.get('description')
+                album.image = doc.get('image')
+                album.url = doc.get('url')
                 albumes.append(album)
             return albumes
         except Exception as e:

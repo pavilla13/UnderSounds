@@ -23,8 +23,14 @@ class View():
             "request": request,
             "tipo_usuario": tipo_usuario })
     
-    def get_album_view(self, request: Request):
-        return templates.TemplateResponse("album.html", {"request" : request})
+    def get_album_view(self, request: Request, albumes, tracklist, artistas):
+        albumes_list = json.loads(albumes)
+        tracklist_list = json.loads(tracklist)
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("album.html", {"request" : request,
+                                                         "albumes": albumes_list,
+                                                         "tracklist": tracklist_list,
+                                                         "artistas": artistas_list})
     
     def get_amigoLista_view(self, request: Request):
         return templates.TemplateResponse("amigoLista.html", {"request" : request})
@@ -32,8 +38,9 @@ class View():
     def get_amigos_view(self, request: Request):
         return templates.TemplateResponse("amigos.html", {"request" : request})
     
-    def get_artistas_view(self, request: Request):
-        return templates.TemplateResponse("artistas.html", {"request" : request})
+    def get_artistas_view(self, request: Request, artistas):
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("artistas.html", {"request" : request, "artistas": artistas_list})
     
     def get_ayuda_view(self, request: Request):
         return templates.TemplateResponse("ayuda.html", {"request" : request})
@@ -51,12 +58,15 @@ class View():
     def get_favoritos_view(self, request: Request):
         return templates.TemplateResponse("favoritos.html", {"request" : request})
     
-    def get_generos_especifico_view(self, request: Request, generos):
+    def get_generos_especifico_view(self, request: Request, generos, canciones):
         generos_list = json.loads(generos)
-        return templates.TemplateResponse("generos especifico.html", {"request" : request, "generos": generos_list})
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("generos especifico.html", {"request" : request, "generos": generos_list, "canciones": canciones_list})
     
-    def get_generos_view(self, request: Request):
-        return templates.TemplateResponse("generos.html", {"request" : request}) 
+    def get_generos_view(self, request: Request, generos, canciones):
+        generos_list = json.loads(generos)
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("generos.html", {"request" : request, "generos": generos_list, "canciones": canciones_list}) 
 
     def get_login_view(self, request: Request):
         return templates.TemplateResponse("login.html", {"request" : request})
@@ -84,8 +94,13 @@ class View():
     def get_resumen_compra_view(self, request: Request):
         return templates.TemplateResponse("resumen_compra.html", {"request" : request})  
 
-    def get_search_view(self, request: Request):
-        return templates.TemplateResponse("search.html", {"request" : request})
+    def get_search_view(self, request: Request, albumes, artistas, canciones, amigos, sellos):
+        albumes_list = json.loads(albumes)
+        artistas_list = json.loads(artistas)
+        canciones_list = json.loads(canciones)
+        amigos_list = json.loads(amigos)
+        sellos_list = json.loads(sellos)
+        return templates.TemplateResponse("search.html", {"request" : request, "albumes": albumes_list, "artistas": artistas_list, "canciones": canciones_list, "amigos": amigos_list, "sellos": sellos_list})
     
     def get_sellos_view(self, request: Request):
         return templates.TemplateResponse("sellos.html", {"request" : request})

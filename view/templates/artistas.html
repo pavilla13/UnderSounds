@@ -94,11 +94,10 @@
   <!-- Contenido principal: Artista -->
   <main class="content">
     <div class="artist-header">
-      <img id="artist-image" class="artist-image" src="" alt="">
+      <img id="artist-image" class="artist-image" src="" alt=""/>
       <h1 id="artist-name" class="artist-name"></h1>
       <p id="artist-genre" class="artist-genre"></p>
       <p id="artist-description" class="artist-description"></p>
-    </div>
     
   </main>
 
@@ -127,13 +126,15 @@
   {% include "footer.html" %}
 
 
-  
-
-
+  <div id="data-artistas"
+       data-artistas='{{ artistas | tojson }}'>
+  </div>
+  <script src="/static/js/artistas.js"></script>
+  <!--
   <script src="/static/js/albumes.js"></script>
   <script src="/static/js/sellos.js"></script>
-  <script src="/static/js/artistas.js"></script>
   <script src="/static/js/main.js"></script>
   <script src="/static/js/app.js"></script>
+  -->
 </body>
 </html>

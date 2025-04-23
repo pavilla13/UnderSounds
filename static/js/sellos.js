@@ -1,7 +1,7 @@
 // Objetivo: Cargar la información de los sellos discográficos en la página sellos.html
 //           y mostrar el detalle de un sello en particular.
 
-const sellos = [
+const sellos2 = [
   {
     id: 1,
     name: "Universal Music",
@@ -35,6 +35,9 @@ const sellos = [
     albumIds: [16, 17, 18, 19, 20]
   },
 ];
+
+const holder = document.getElementById("data-search");
+const sellos = JSON.parse(holder.dataset.sellos);
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Llenar el LISTADO de sellos (sellos.html)

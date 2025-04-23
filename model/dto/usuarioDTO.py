@@ -1,38 +1,98 @@
+import json
+
+class UsuariosDTO():
+    def __init__(self):
+        self.userlist = []
+
+    def insertUser(self, elem):
+        self.userlist.append(elem)
+
+    def userlist_to_json(self):
+        from bson import ObjectId
+        clean_list = []
+        for user in self.userlist:
+            user = dict(user)  # por si viene como objeto tipo pymongo.cursor.Cursor
+            if "_id" in user:
+                user["_id"] = str(user["_id"])
+            for k, v in user.items():
+                if isinstance(v, ObjectId): 
+                    user[k] = str(v)
+            clean_list.append(user)
+        return json.dumps(clean_list)
+
+
 class UsuarioDTO():
     def __init__(self):
         self.id = None
-        self.username = None
-        self.email = None
+        self.nickname = None
+        self.correo = None
+        self.country = None
+        self.date = None
+        self.name = None
         self.password = None
-        self.friends = []
-        self.favorite_songs = []
-        self.favorite_albums = []
-        self.purchases = []
+        self.userType = None
 
-    def is_empty(self):
-        return (self.id is None and self.username is None and self.email is None and
-                self.password is None and not self.friends and not self.favorite_songs and
-                not self.favorite_albums and not self.purchases)
+    def is_Empty(self):
+        return (self.id is None and self.nickname is None and self.correo is None and
+                self.country is None and self.date is None and self.name is None and
+                self.password is None and self.userType is None)
 
-    def add_friend(self, friend):
-        self.friends.append(friend)
+    def get_id(self):
+        return self.id
 
-    def add_favorite_song(self, song):
-        self.favorite_songs.append(song)
+    def set_id(self, id):
+        self.id = id
 
-    def add_favorite_album(self, album):
-        self.favorite_albums.append(album)
+    def get_nickname(self):
+        return self.nickname
 
-    def add_purchase(self, purchase):
-        self.purchases.append(purchase)
+    def set_nickname(self, nickname):
+        self.nickname = nickname
 
-    def usuariodto_to_dict(self):
+    def get_correo(self):
+        return self.correo
+
+    def set_correo(self, correo):
+        self.correo = correo
+
+    def get_country(self):
+        return self.country
+
+    def set_country(self, country):
+        self.country = country
+
+    def get_date(self):
+        return self.date
+
+    def set_date(self, date):
+        self.date = date
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, name):
+        self.name = name
+
+    def get_password(self):
+        return self.password
+
+    def set_password(self, password):
+        self.password = password
+
+    def get_userType(self):
+        return self.userType
+
+    def set_userType(self, userType):
+        self.userType = userType
+
+    def userdto_to_dict(self):
         return {
-            "id": self.id,
-            "username": self.username,
-            "email": self.email,
-            "friends": [friend.amigodto_to_dict() if hasattr(friend, 'amigodto_to_dict') else friend for friend in self.friends],
-            "favorite_songs": [song.songdto_to_dict() if hasattr(song, 'songdto_to_dict') else song for song in self.favorite_songs],
-            "favorite_albums": [album.albumdto_to_dict() if hasattr(album, 'albumdto_to_dict') else album for album in self.favorite_albums],
-            "purchases": [purchase.productodto_to_dict() if hasattr(purchase, 'productodto_to_dict') else purchase for purchase in self.purchases]
+            "id": str(self.id) if self.id is not None else None,
+            "nickname": self.nickname,
+            "correo": self.correo,
+            "country": self.country,
+            "date": self.date,
+            "name": self.name,
+            "password": self.password,
+            "userType": self.userType
         }

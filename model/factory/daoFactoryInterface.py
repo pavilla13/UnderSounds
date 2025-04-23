@@ -26,7 +26,6 @@ class InterfaceDAOFactory(ABC):
     def get_productos(self):
         pass
     
-    """
     @abstractmethod
     def get_albumes(self):
         pass
@@ -47,11 +46,6 @@ class InterfaceDAOFactory(ABC):
     def get_sellos(self):
         pass
 
-    @abstractmethod
-    def get_productos(self):
-        pass
 
-    @abstractmethod
-    def get_generos(self):
-        pass
-    """
+
+

@@ -13,12 +13,11 @@ class MongoDAOSello(InterfaceDAOSello):
             results = self.collection.find({})
             for doc in results:
                 sello = SelloDTO()
-                sello.id = doc.get('_id')
+                sello.id = doc.get('id')
                 sello.name = doc.get('name')
-                sello.foundation_year = doc.get('foundation_year')
-                sello.country = doc.get('country')
-                sello.artists = doc.get('artists', [])
-                sello.albums = doc.get('albums', [])
+                sello.description = doc.get('description')
+                sello.image = doc.get('image')
+                sello.url = doc.get('url')
                 sellos.append(sello)
             return sellos
         except Exception as e:

@@ -1,28 +1,73 @@
+import json
+
+class SellosDTO():
+    def __init__(self):
+        self.selloslist = []
+
+    def insertSello(self, elem):
+        self.selloslist.append(elem)
+
+    def selloslist_to_json(self):
+        from bson import ObjectId
+        clean_list = []
+        for sello in self.selloslist:
+            sello = dict(sello)  # por si viene como objeto tipo pymongo.cursor.Cursor
+            if "_id" in sello:
+                sello["_id"] = str(sello["_id"])
+            for k, v in sello.items():
+                if isinstance(v, ObjectId): 
+                    sello[k] = str(v)
+            clean_list.append(sello)
+        return json.dumps(clean_list)
+
+
 class SelloDTO():
     def __init__(self):
         self.id = None
         self.name = None
-        self.foundation_year = None
-        self.country = None
-        self.artists = []
-        self.albums = []
+        self.description = None
+        self.image = None
+        self.url = None
 
-    def is_empty(self):
-        return (self.id is None and self.name is None and self.foundation_year is None and
-                self.country is None and not self.artists and not self.albums)
+    def is_Empty(self):
+        return (self.id is None and self.name is None and self.description is None and
+                self.image is None and self.url is None)
 
-    def add_artist(self, artist):
-        self.artists.append(artist)
+    def get_id(self):
+        return self.id
 
-    def add_album(self, album):
-        self.albums.append(album)
+    def set_id(self, id):
+        self.id = id
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, name):
+        self.name = name
+
+    def get_description(self):
+        return self.description
+
+    def set_description(self, description):
+        self.description = description
+
+    def get_image(self):
+        return self.image
+
+    def set_image(self, image):
+        self.image = image
+
+    def get_url(self):
+        return self.url
+
+    def set_url(self, url):
+        self.url = url
 
     def sellodto_to_dict(self):
         return {
-            "id": self.id,
+            "id": str(self.id) if self.id is not None else None,
             "name": self.name,
-            "foundation_year": self.foundation_year,
-            "country": self.country,
-            "artists": [artist.artistadto_to_dict() if hasattr(artist, 'artistadto_to_dict') else artist for artist in self.artists],
-            "albums": [album.albumdto_to_dict() if hasattr(album, 'albumdto_to_dict') else album for album in self.albums]
+            "description": self.description,
+            "image": self.image,
+            "url": self.url
         }

@@ -26,20 +26,20 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["CANCION"]
         return MongoDAOCancion(collection)
 
-    def get_album_dao(self):
-        collection = self.db["albumes"]
+    def get_albumes(self):
+        collection = self.db["ALBUM"]
         return MongoDAOAlbum(collection)
 
-    def get_artista_dao(self):
-        collection = self.db["artistas"]
+    def get_artistas(self):
+        collection = self.db["ARTISTA"]
         return MongoDAOArtista(collection)
 
-    def get_usuario_dao(self):
-        collection = self.db["usuarios"]
+    def get_usuarios(self):
+        collection = self.db["USUARIO"]
         return MongoDAOUsuario(collection)
 
-    def get_sello_dao(self):
-        collection = self.db["sellos"]
+    def get_sellos(self):
+        collection = self.db["SELLO"]
         return MongoDAOSello(collection)
 
     def get_productos(self):
@@ -50,6 +50,6 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["GENERO"]
         return MongoDAOGenero(collection)
 
-    def get_amigo_dao(self):
-        collection = self.db["amigos"]
+    def get_amigos(self):
+        collection = self.db["AMIGO"]
         return MongoDAOAmigo(collection)
