@@ -247,7 +247,11 @@
 
   {% include "footer.html" %}
 
-
+  <div id="data-albumes"
+       data-albumes='{{ albumes | tojson }}'
+       data-tracklist='{{ tracklist | tojson }}'
+       data-artistas='{{ artistas | tojson }}'>
+  </div>
 
 
   
