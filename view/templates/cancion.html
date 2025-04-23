@@ -370,7 +370,7 @@
       document.querySelector('#song-duration span').textContent = song.duration;
       document.getElementById('song-lyrics-text').textContent = song.lyrics;
       document.querySelector('.play-btn').addEventListener('click', () => {
-        window.open(song.url, '_blank');
+        window.open(song.urlImg, '_blank');
       });
     } else {
       document.querySelector('.song-details').innerHTML = "<p>La canción no se encontró.</p>";
