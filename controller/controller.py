@@ -222,7 +222,8 @@ async def search(request: Request):
 
 @app.get("/sellos")
 async def sellos(request: Request):
-    return view.get_sellos_view(request)
+    sellos = model.get_sellos()
+    return view.get_sellos_view(request, sellos)
 
 @app.get("/subir_album")
 async def subir_album(request: Request):
@@ -237,8 +238,4 @@ async def tienda(request: Request):
     productos = model.get_productos()
     return view.get_tienda_view(request, productos)
 
-@app.get("/prueba")
-async def prueba(request: Request):
-    canciones = model.get_canciones()
-    return view.get_prueba_view(request, canciones)
 

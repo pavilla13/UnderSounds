@@ -1,114 +1,5 @@
 /* js/app.js */
 
-// Catálogo de productos
-const productCatalog2 = {
-  1: {
-    title: "Thriller - Michael Jackson (CD)",
-    price: 15.99,
-    image: "static/images/thriller.jpeg",
-    category: "cds",
-    description: "Álbum icónico de Michael Jackson.",
-  },
-  2: {
-    title: "Back in Black - AC/DC (CD)",
-    price: 14.99,
-    image: "static/images/acdc.png",
-    category: "cds",
-    description: "Un clásico del rock.",
-  },
-  3: {
-    title: "Rumours - Fleetwood Mac (CD)",
-    price: 16.99,
-    image: "static/images/rumours.jpeg",
-    category: "cds",
-    description: "Uno de los álbumes más vendidos.",
-  },
-  4: {
-    title: "Nevermind - Nirvana (Cassette)",
-    price: 9.99,
-    image: "static/images/nirvana.jpeg",
-    category: "cassettes",
-    description: "El álbum que definió una era.",
-  },
-  5: {
-    title: "Abbey Road - The Beatles (Cassette)",
-    price: 8.99,
-    image: "static/images/beatles.jpg",
-    category: "cassettes",
-    description: "Un icono de la música.",
-  },
-  6: {
-    title: "The Joshua Tree - U2 (Cassette)",
-    price: 10.99,
-    image: "static/images/u2.jpg",
-    category: "cassettes",
-    description: "Álbum legendario de U2.",
-  },
-  7: {
-    title: "The Dark Side of the Moon - Pink Floyd (Vinilo)",
-    price: 20.99,
-    image: "static/images/pink_floyd.jpeg",
-    category: "vinilos",
-    description: "Una obra maestra del rock progresivo.",
-  },
-  8: {
-    title: "Led Zeppelin IV - Led Zeppelin (Vinilo)",
-    price: 22.99,
-    image: "static/images/led_IV.jpg",
-    category: "vinilos",
-    description: "Álbum emblemático de Led Zeppelin.",
-  },
-  9: {
-    title: "Sgt. Pepper's Lonely Hearts Club Band - The Beatles (Vinilo)",
-    price: 21.99,
-    image: "static/images/beatles_vinilo.jpg",
-    category: "vinilos",
-    description: "Un hito en la historia de la música.",
-  },
-  10: {
-    title: "Camiseta - Metallica",
-    price: 25.99,
-    image: "static/images/cami_metalica.jpeg",
-    category: "merchandising",
-    description: "Camiseta oficial de Metallica.",
-  },
-  11: {
-    title: "Poster - Queen",
-    price: 12.99,
-    image: "static/images/queen.jpeg",
-    category: "merchandising",
-    description: "Poster de la legendaria banda Queen.",
-  },
-  12: {
-    title: "Taza - The Rolling Stones",
-    price: 8.99,
-    image: "static/images/rolling.jpeg",
-    category: "merchandising",
-    description: "Taza oficial de The Rolling Stones.",
-  },
-  13: {
-    title: "Gorra - Nirvana",
-    price: 18.99,
-    image: "static/images/gorra.jpeg",
-    category: "otros",
-    description: "Gorra con diseño de Nirvana.",
-  },
-  14: {
-    title: "Llavero - Pink Floyd",
-    price: 19.99,
-    image: "static/images/llavero.jpeg",
-    category: "otros",
-    description: "Llavero de Pink Floyd.",
-  },
-  15: {
-    title: "Mochila - Led Zeppelin",
-    price: 17.99,
-    image: "static/images/mochila_led.jpeg",
-    category: "otros",
-    description: "Mochila de Led Zeppelin.",
-  },
-};
-
 const holder = document.getElementById("data-productos");
 let productCatalog = [];
 if (holder) {
@@ -116,13 +7,19 @@ if (holder) {
   
 }
 
-
-
-//const holder2 = document.getElementById("data-search");
-//const canciones = JSON.parse(holder2.dataset.canciones);
-//const artistas = JSON.parse(holder2.dataset.artistas);
-//const sellos = JSON.parse(holder2.dataset.sellos);
-//const albums = JSON.parse(holder2.dataset.albums);
+// const holder2 = document.getElementById("data-search");
+// let canciones = [];
+// let artistas = [];
+// let albumes = [];
+// let sellos = [];
+// let amigos = [];
+// if (holder2) {
+//   canciones = JSON.parse(holder2.dataset.canciones);
+//   artistas = JSON.parse(holder2.dataset.artistas);
+//   albumes = JSON.parse(holder2.dataset.albumes);
+//   sellos = JSON.parse(holder2.dataset.sellos);
+//   amigos = JSON.parse(holder2.dataset.amigos);
+// }
   
   // Función para mostrar notificaciones en la parte superior
   function showNotification(message) {

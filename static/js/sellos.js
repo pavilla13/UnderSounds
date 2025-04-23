@@ -1,43 +1,11 @@
 // Objetivo: Cargar la información de los sellos discográficos en la página sellos.html
 //           y mostrar el detalle de un sello en particular.
 
-const sellos2 = [
-  {
-    id: 1,
-    name: "Universal Music",
-    description: "Universal Music es uno de los sellos discográficos más grandes del mundo.",
-    image: "static/images/universal.jpeg",
-    url: "/sellos?id=1",
-    albumIds: [1, 2, 3, 4, 5] // IDs de álbumes en albumes.js
-  },
-  {
-    id: 2,
-    name: "Sony Music",
-    description: "Sony Music es una de las compañías discográficas más importantes en la industria de la música.",
-    image: "static/images/sony.png",
-    url: "/sellos?id=2",
-    albumIds: [6, 7, 8, 9, 10]
-  },
-  {
-    id: 3,
-    name: "Warner Music Group",
-    description: "Warner Music Group es uno de los tres grandes sellos discográficos a nivel mundial.",
-    image: "static/images/warner.webp",
-    url: "/sellos?id=3",
-    albumIds: [11, 12, 13, 14, 15]
-  },
-  {
-    id: 4,
-    name: "EMI Records",
-    description: "EMI Records, ahora parte de Universal, fue uno de los sellos más influyentes del siglo XX.",
-    image: "static/images/emi.png",
-    url: "/sellos?id=4",
-    albumIds: [16, 17, 18, 19, 20]
-  },
-];
-
-const holder = document.getElementById("data-search");
-const sellos = JSON.parse(holder.dataset.sellos);
+const holder = document.getElementById("data-sellos");
+let sellos = [];
+if (holder) {
+  sellos = JSON.parse(holder.dataset.sellos);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Llenar el LISTADO de sellos (sellos.html)
@@ -68,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const labelId = urlParams.get("id");
   if (labelId) {
-    const label = sellos.find(s => s.id === parseInt(labelId));
+    const label = sellos.find(s => s.id === labelId);
     if (label) {
       const nameEl = document.getElementById("label-name");
       const descriptionEl = document.getElementById("label-description");

@@ -21,7 +21,7 @@ class MongoDAOCancion(InterfaceDAOCancion):
                 cancion.set_album(doc.get('album'))
                 cancion.set_genre(doc.get('genre'))
                 cancion.set_duration(doc.get('duration'))
-                cancion.set_cover(doc.get('cover'))
+                cancion.set_url(doc.get('url'))
                 cancion.set_lyrics(doc.get('lyrics'))
                 canciones.append(cancion)
             return canciones

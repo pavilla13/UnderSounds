@@ -178,8 +178,8 @@
     <h1 id="label-name" class="label-name"></h1>
     <p id="label-description" class="label-description"></p>
     <img id="label-image" class="label-image" src="" alt="">
-    
   </div>
+  
   
 
   <!-- Botón de Ayuda Flotante -->
@@ -206,7 +206,9 @@
   </script>-->
   {% include "footer.html" %}
 
-
+  <div id="data-sellos"
+       data-sellos='{{ sellos | tojson }}'>
+  </div>
 
   
 

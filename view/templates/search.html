@@ -112,7 +112,7 @@
        data-sellos='{{ sellos | tojson }}'
        data-albumes='{{ albumes | tojson }}'
        data-canciones='{{ canciones | tojson }}'
-       data-amigos='{{ amigos | tojson }}'
+       data-amigos='{{ amigos | tojson }}'>
  </div>
 
 
@@ -136,19 +136,38 @@
       const tabContents = document.querySelectorAll(".tab-content");
 
       // Mapeo de datos por categoría (se asume que estas variables son globales)
-      const dataMapping = {
-        artistas: artistas,
-        sellos: sellos,
-        albumes: albumes,
-        canciones: canciones,
-        amigos: amigos
-      };
+      //const dataMapping = {
+      //  artistas: artistas,
+      //  sellos: sellos,
+      //  albumes: albumes,
+      //  canciones: canciones,
+      //  amigos: amigos
+      //};
+
+        const ds = document.getElementById("data-search").dataset;
+        const artistas  = JSON.parse(ds.artistas  || "[]");
+        const sellos    = JSON.parse(ds.sellos    || "[]");
+        const albumes   = JSON.parse(ds.albumes   || "[]");
+        const canciones = JSON.parse(ds.canciones || "[]");
+        const amigos    = JSON.parse(ds.amigos    || "[]");
+      
+        const dataMapping = { artistas, sellos, albumes, canciones, amigos };
+        // …el resto de tu lógica (renderResults, tabs, etc.)
+      
 
       // Función auxiliar para capitalizar la primera letra
       function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
       }
 
+      function getLabel(item){
+        return (item.name || item.title ).trim();
+      }
+
+      function getUrl(item){
+        key = item.id
+        return (item.url || `/cancion?id=${key}`).trim();
+      }
       // Renderiza los resultados en la pestaña indicada
       function renderResults(query, tab) {
         const resultsContainer = document.getElementById(`${tab}-results`);
@@ -170,9 +189,11 @@
         } else {
           // Para otras pestañas
           const data = dataMapping[tab] || [];
-          const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
-          resultsContainer.innerHTML = filtered.length
-            ? filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("")
+          const filtered = data.filter(item => 
+          getLabel(item).toLowerCase().includes(query.toLowerCase()));
+          resultsContainer.innerHTML = filtered.length ? filtered
+                .map(item => `<a href="${getUrl(item)}" class="card">${ getLabel(item) }</a>`)
+                .join("")
             : `<p>No se encontraron resultados para "${query}".</p>`;
         }
       }
@@ -192,6 +213,10 @@
       // Inicializar con la pestaña "Todo"
       renderResults(searchTerm, "todo");
     });
+
+   
+   
+
   </script>
 
   <script src="/static/js/main.js"></script>

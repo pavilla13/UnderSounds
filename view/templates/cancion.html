@@ -42,7 +42,7 @@
     <h2>Detalles de la Canción</h2>
     <div class="song-details">
       <div class="song-info">
-        <img id="song-cover" src="" alt="Portada de la canción" class="song-cover">
+        <img src="https://www.moonmagazine.info/wp-content/uploads/2015/09/Bohemian_Rhapsody.jpg" alt="Portada de la canción"/>
         <div class="song-metadata">
           <h3 class="song-title" id="song-title"></h3>
           <p class="song-artist" id="song-artist"></p>
@@ -53,8 +53,6 @@
       </div>
       <div class="song-controls">
         <button class="btn play-btn">Reproducir</button>
-        <button class="btn pause-btn">Pausar</button>
-        <button class="btn add-to-playlist">Añadir a Playlist</button>
       </div>
       <div class="song-lyrics">
         <h4>Letra de la Canción</h4>
@@ -95,88 +93,7 @@
 
   <!-- Script para cargar la información de la canción -->
   <script>
-    // Datos de ejemplo para las canciones (en una aplicación real estos datos vendrían de una API o base de datos)
     const canciones = {{ canciones|tojson }};
-    console.log("Canciones importadas:", canciones);
-
-    //console.log("Canciones importadas:", canciones);
-
-    // const canciones = {
-    //   "1": {
-    //     title: "Bohemian Rhapsody",
-    //     artist: "Queen",
-    //     album: "A Night at the Opera",
-    //     genre: "Rock",
-    //     duration: "5:55",
-    //     cover: "static/images/bohemian.jpeg",
-    //     lyrics: "Is this the real life? Is this just fantasy?..."
-    //   },
-    //   "2": {
-    //     title: "Blinding Lights",
-    //     artist: "The Weeknd",
-    //     album: "After Hours",
-    //     genre: "Pop",
-    //     duration: "3:20",
-    //     cover: "static/images/lights.jpeg",
-    //     lyrics: "I said, ooh, I'm blinded by the lights..."
-    //   },
-    //   "3": {
-    //     title: "Animals",
-    //     artist: "Martin Garrix",
-    //     album: "Animals",
-    //     genre: "Electrónica",
-    //     duration: "5:03",
-    //     cover: "static/images/animals.jpeg",
-    //     lyrics: "The club is full of energy..."
-    //   },
-    //   "4": {
-    //     title: "Take Five",
-    //     artist: "The Dave Brubeck Quartet",
-    //     album: "Time Out",
-    //     genre: "Jazz",
-    //     duration: "5:24",
-    //     cover: "static/images/five.jpeg",
-    //     lyrics: "Instrumental..."
-    //   },
-    //   "9": {
-    //     title: "Stairway to Heaven",
-    //     artist: "Led Zeppelin",
-    //     album: "Untitled",
-    //     genre: "Rock",
-    //     duration: "8:02",
-    //     cover: "static/images/heaven.jpeg",
-    //     lyrics: "There's a lady who's sure all that glitters is gold..."
-    //   },
-    //   "10": {
-    //     title: "Like a Prayer",
-    //     artist: "Madonna",
-    //     album: "Like a Prayer",
-    //     genre: "Pop",
-    //     duration: "5:42",
-    //     cover: "static/images/prayer.jpg",
-    //     lyrics: "Life is a mystery, everyone must stand alone..."
-    //   },
-    //   "11": {
-    //     title: "One More Time",
-    //     artist: "Daft Punk",
-    //     album: "Discovery",
-    //     genre: "Electrónica",
-    //     duration: "5:20",
-    //     cover: "static/images/more_time.jpg",
-    //     lyrics: "One more time, we're gonna celebrate..."
-    //   },
-    //   "12": {
-    //     title: "So What",
-    //     artist: "Pink",
-    //     album: "Kind of Blue",
-    //     genre: "Pop - Rock",
-    //     duration: "3:40",
-    //     cover: "static/images/so_what.jpg",
-    //     lyrics: "So, so what? I'm still a rock star"
-    //   }
-    // };
-
-    
 
 
     // Función para obtener parámetros de la URL
@@ -196,8 +113,11 @@
       document.getElementById('song-album').textContent = "Álbum: " + song.album;
       document.getElementById('song-genre').textContent = "Género: " + song.genre;
       document.getElementById('song-duration').textContent = "Duración: " + song.duration;
-      document.getElementById('song-cover').src = song.cover;
-      document.getElementById('song-cover').alt = "Portada de " + song.title;
+      const playBtn = document.querySelector('.play-btn');
+      // 2) le metemos el evento click
+      playBtn.addEventListener('click', function () {
+        window.open(song.url, '_blank');
+      });
       document.getElementById('song-lyrics-text').textContent = song.lyrics;
     } else {
       document.querySelector('.content').innerHTML = "<p>La canción no se encontró.</p>";
