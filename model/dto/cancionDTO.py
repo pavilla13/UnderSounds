@@ -31,13 +31,13 @@ class SongDTO():
         self.album = None
         self.genre = None
         self.duration = None
-        self.url = None
+        self.urlImg = None
         self.lyrics = None
 
     def is_Empty(self):
         return (self.id is None and self.title is None and self.artist is None and
                 self.album is None and self.genre is None and self.duration is None and
-                self.url is None and self.lyrics is None)
+                self.urlImg is None and self.lyrics is None)
 
     def get_id(self):
         return self.id
@@ -76,11 +76,11 @@ class SongDTO():
     def set_duration(self, duration):
         self.duration = duration
 
-    def get_url(self):
-        return self.url
+    def get_urlImg(self):
+        return self.urlImg
 
-    def set_url(self, url):
-        self.url = url
+    def set_urlImg(self, urlImg):
+        self.urlImg = urlImg
 
     def get_lyrics(self):
         return self.lyrics
@@ -96,7 +96,7 @@ class SongDTO():
             "album": self.album,
             "genre": self.genre,
             "duration": self.duration,
-            "url": self.url,
+            "urlImg": self.urlImg,
             "lyrics": self.lyrics
         }
     
