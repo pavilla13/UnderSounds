@@ -26,6 +26,18 @@ class View():
     
     async def procesar_registro_view(self, request: Request, name, username, email, password, password2,
                                     tipo_usuario, birthdate, country, terms):
+        if len(password) < 8:
+            return templates.TemplateResponse("register.html", {
+                "request": request,
+                "error": "La contraseña debe tener al menos 8 caracteres.",
+                "name": name,
+                "username": username,
+                "email": email,
+                "tipo_usuario": tipo_usuario,
+                "birthdate": birthdate,
+                "country": country
+            })
+        
         # Validación simple: contraseñas deben coincidir
         if password != password2:
             return templates.TemplateResponse("register.html", {
