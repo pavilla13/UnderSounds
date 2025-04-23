@@ -27,37 +27,31 @@
     
     
     <!-- Perfil de usuario con dropdown -->
+
+    {% if user %}
+    <!-- Si el usuario ha iniciado sesión, se muestra el perfil -->
     <div class="profile-container" id="profileContainer">
       <img src="/static/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
-  
+
       <div class="profile-dropdown" id="profileDropdown">
+      
+        <a href="/edit_perfil">Editar perfil</a>
+        <a href="/favoritos">Lista de Me gusta</a>
+        <a href="/mis_compras">Mis compras</a>
 
-        {% if tipo_usuario == "user" %}
-          <a href="/edit_perfil">Editar perfil</a>
-          <a href="/favoritos">Lista de Me gusta</a>
-          <a href="/mis_compras">Mis compras</a>
-          <a href="/amigos">Gestionar amigos</a>
-          <a href="/" class="logout-link">Cerrar sesión</a>
-
-        {% elif tipo_usuario in ["artist", "sello"] %}
-          <a href="/edit_perfil">Editar perfil</a>
-          <a href="/favoritos">Lista de Me gusta</a>
-          <a href="/mis_compras">Mis compras</a>
-          <a href="/albumes_subidos">Albumes subidos</a>
-          <a href="/amigos">Gestionar amigos</a>
-          <a href="/" class="logout-link">Cerrar sesión</a>
-
-        <!--{% else %}
-        <a href="/login" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>-->
-
+        {% if user.tipo_usuario in ["artist", "sello"] %}
+          <a href="/albumes_subidos">Álbumes subidos</a>
         {% endif %}
+
+        <a href="/amigos">Gestionar amigos</a>
+        <a href="/logout" class="logout-link">Cerrar sesión</a>
       </div>
     </div>
-
-
-
-    <!-- Botón de Iniciar Sesión -->
-    <a href="/login" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>
+    
+    {% else %}
+      <!-- Si NO ha iniciado sesión, se muestra el botón de login -->
+      <a href="/login" id="loginLink" class="login-btn" title="Iniciar sesión">Iniciar sesión</a>
+    {% endif %}
 
   </div>
 </header>

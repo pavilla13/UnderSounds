@@ -238,8 +238,7 @@
 
     <!-- Botón para ir al artista -->
     <div class="artist-link">
-      <!-- href inicial vacío, JS lo rellenará -->
-      <a href="#" id="artist-link" class="btn">IR AL ARTISTA</a>
+      <a href="/artistas" id="artist-link" class="btn">IR AL ARTISTA</a>
     </div>
   </main>
 
@@ -250,29 +249,8 @@
 
 
 
-    <!-- Contenedor para insertar el footer dinámicamente -->
-  <div id="footer"></div>
 
-  <!-- Script para cargar footer.html -->
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>
   
-  <div id="data-albumes"
-       data-albumes='{{ albumes | tojson }}'
-       data-tracklist='{{ tracklist | tojson }}'
-       data-artistas='{{ artistas | tojson }}'>
-  </div>
-
   <!-- Incluir el archivo album.js -->
   <script src="/static/js/albumes.js"></script>
   <script src="/static/js/main.js"></script>

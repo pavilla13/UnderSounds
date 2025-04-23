@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Inicio</title>
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Aquí enlazamos el CSS con la nueva maquetación y efectos -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    /* Estilo para listas */
+    #selected-songs, #songs-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    #selected-songs li, #songs-list li {
+      margin: 10px 0;
+    }
+
+    #selected-songs a, #songs-list a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    #selected-songs a:hover, #songs-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilo para el contenedor de canciones */
+    #songs-dropdown {
+      display: none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+
+
+  <body>
+
+
+    {% include "header.html" %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCartCount();
+        updateCartDropdown();
+      });
+    </script>
+
+
+
+
+
+<main class="content upload-album">
+    <h2 class="logo">Añadir Álbum</h2>
+    <form id="AlbumForm" class="form">
+      <label for="Album-Name">Nombre:</label>
+      <input type="text" id="Album-Name" name="Album-Name" required>
+
+      <label for="description">Descripción:</label>
+      <input type="text" id="description" name="description" required style="height: 120px;">
+        
+      <!-- Lista donde se mostrarán las canciones seleccionadas -->
+        <h3>Canciones seleccionadas:</h3>
+        <ul id="selected-songs"></ul>
+
+        <!-- Botón para mostrar las canciones -->
+        <button type="button" id="show-songs-btn" class="btn">Añadir Canciones</button>
+
+        <!-- Desplegable con canciones -->
+        <div id="songs-dropdown">
+        <ul id="songs-list"></ul>
+        </div>
+
+      <button type="submit" class="btn">Confirma y publicar Álbum</button>
+    </form>
+  </main>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const showSongsBtn = document.getElementById("show-songs-btn");
+      const songsDropdown = document.getElementById("songs-dropdown");
+      const songsList = document.getElementById("songs-list");
+      const selectedSongsContainer = document.getElementById("selected-songs");
+      const albumForm = document.getElementById("AlbumForm");
+  
+      // Lista de canciones disponibles (original)
+      const cancionesIniciales = ["Canción 1", "Canción 2", "Canción 3", "Canción 4", "Canción 5"];
+      let availableSongs = [...cancionesIniciales]; // Copia de la lista original
+      let selectedSongs = [];
+  
+      // Mostrar/ocultar la lista de canciones
+      showSongsBtn.addEventListener("click", () => {
+        songsDropdown.style.display = songsDropdown.style.display === "none" ? "block" : "none";
+        actualizarListas();
+      });
+  
+      function actualizarListas() {
+        // Limpiar listas
+        songsList.innerHTML = "";
+        selectedSongsContainer.innerHTML = "";
+  
+        // Mostrar canciones disponibles
+        availableSongs.forEach(song => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = song;
+          link.addEventListener("click", () => añadirCanción(song));
+          li.appendChild(link);
+          songsList.appendChild(li);
+        });
+  
+        // Mostrar canciones seleccionadas
+        selectedSongs.forEach(song => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = song;
+          link.addEventListener("click", () => quitarCanción(song));
+          li.appendChild(link);
+          selectedSongsContainer.appendChild(li);
+        });
+      }
+  
+      function añadirCanción(song) {
+        if (!selectedSongs.includes(song)) {
+          selectedSongs.push(song);
+          availableSongs = availableSongs.filter(s => s !== song);
+          actualizarListas();
+        }
+      }
+  
+      function quitarCanción(song) {
+        availableSongs.push(song);
+        selectedSongs = selectedSongs.filter(s => s !== song);
+        actualizarListas();
+      }
+  
+      // Función para limpiar todo al enviar el álbum
+      albumForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Evita el envío real del formulario
+  
+        // Resetear inputs
+        document.getElementById("Album-Name").value = "";
+        document.getElementById("description").value = "";
+  
+        // Restaurar la lista original de canciones
+        availableSongs = [...cancionesIniciales];
+        selectedSongs = [];
+        actualizarListas();
+  
+        // Ocultar el menú de selección de canciones
+        songsDropdown.style.display = "none";
+  
+        alert("Álbum publicado con éxito!");
+      });
+  
+      actualizarListas();
+    });
+  </script>
+
+
+{% include "footer.html" %}
+
+  </body>
+</html>

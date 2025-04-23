@@ -51,30 +51,37 @@
   <main class="content login-page">
     <!-- Título del formulario -->
     <h2 class="logo">Registro</h2>
+
+    <!-- Mensaje de error, controlado por el view.py -->
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
     <!-- Formulario de registro -->
     <form id="registerForm" class="form" method="post">
       <!-- Campo: Nombre completo -->
       <label for="name">Nombre completo:</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" value="{{ name or '' }}" required>
 
       <!-- Campo: Usuario -->
       <label for="username">Usuario:</label>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" name="username" value="{{ username or '' }}" required>
 
       <!-- Campo: Correo electrónico -->
       <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" value="{{ email or '' }}" required>
 
       <!-- Campo: Contraseña -->
       <label for="password">Contraseña (mínimo 8 caracteres):</label>
       <input type="password" id="password" name="password" required>
-      <span id="passwordError" style="color:red;"></span>
+      <!-- <span id="passwordError" style="color:red;"></span>-->
 
       <!-- Campo: Repetir contraseña -->
       <label for="password2">Repetir contraseña:</label>
       <input type="password" id="password2" name="password2" required>
 
-      <select name="register_type" id="register_type" required>
+      <!-- register_type -->
+      <select name="tipo_usuario" id="tipo_usuario" value="{{ tipo_usuario or '' }}"  required>
         <option value="" disabled selected>Tipo de registro</option>
         <option value="user">Usuario</option>
         <option value="artist">Artista</option>
@@ -83,11 +90,11 @@
 
       <!-- Campo: Fecha de nacimiento -->
       <label for="birthdate">Fecha de nacimiento:</label>
-      <input type="date" id="birthdate" name="birthdate" required>
+      <input type="date" id="birthdate" name="birthdate" value="{{ birthdate or '' }}" required>
 
       <!-- Campo: Selección de país -->
       <label for="country">País:</label>
-      <select id="country" name="country" required>
+      <select id="country" name="country" value="{{ country or '' }}"required>
         <!-- Las opciones se llenarán dinámicamente con datos de la API RestCountries -->
       </select>
 
@@ -178,7 +185,12 @@
     });
   </script>
   
-  <!-- Script para guardar el usuario y la contraseña en localStorage -->
+
+
+
+
+  <!--
+   Script para guardar el usuario y la contraseña en localStorage 
   <script>
     // Evento que se activa al enviar el formulario de registro
     document.getElementById('registerForm').addEventListener('submit', function(event) {
@@ -190,7 +202,7 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const password2 = document.getElementById('password2').value;
-      const userType = document.getElementById('register_type').value;
+      const userType = document.getElementById('tipo_usuario').value;
 
       // Verificar si las contraseñas coinciden
       if (password !== password2) {
@@ -213,7 +225,20 @@
       alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
       window.location.href = '/login'; // Redirige a la página de login
     });
+  </script>-->
+
+
+
+
+  <!-- Script para mostrar un mensaje de éxito al registrar -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("registro") === "exito") {
+      alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+      window.location.href = '/login'; // Redirige a la página de login
+    }
   </script>
+  
 
   <!-- Incluir el script principal de la aplicación -->
   <script src="/static/js/main.js"></script>
