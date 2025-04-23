@@ -24,9 +24,6 @@ view = View()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-
-
-
 #@app.post("/register")
 #async def registrar_usuario(
  #   request: Request,
@@ -66,11 +63,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
  #       "request": request,
   #      "error": "Credenciales incorrectas"
    # })
-
-
-
-
-
 
 
 

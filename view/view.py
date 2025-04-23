@@ -4,9 +4,6 @@ import json
 from fastapi.responses import HTMLResponse, RedirectResponse
 
 
-
-
-
 # Simulamos una "base de datos" temporal en memoria
 USERS_DB = {}
 
@@ -16,10 +13,6 @@ templates = Jinja2Templates(directory="view/templates")
 class View():
     def __init__(self):
         pass
-
-
-
-
 
     def get_register_view(self, request: Request):
         return templates.TemplateResponse("register.html", {"request": request}) 
@@ -103,17 +96,9 @@ class View():
         return templates.TemplateResponse("index.html", {"request": request, "user": user})
     
 
-    
-
-
-
 # Luego, en cualquier función:
 # user = request.session.get("user")
 
-
-
-
-    
     def get_album_view(self, request: Request,albumes, tracklist, artistas):
         user = request.session.get("user")
         albumes_list = json.loads(albumes)
