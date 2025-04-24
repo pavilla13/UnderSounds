@@ -175,11 +175,11 @@
         if (tab === 'todo') {
           let html = "";
           Object.entries(dataMapping).forEach(([key, data]) => {
-            const filtered = data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+            const filtered = data.filter(item => getLabel(item).toLowerCase().includes(query.toLowerCase()));
             html += `<h3>${capitalize(key)}</h3>`;
             if (filtered.length) {
               html += `<div class="row">` +
-                filtered.map(item => `<a href="${item.url}" class="card">${item.name}</a>`).join("") +
+                filtered.map(item => `<a href="${getUrl(item)}" class="card">${getLabel(item)}</a>`).join("") +
                 `</div>`;
             } else {
               html += `<p>No se encontraron resultados en ${capitalize(key)} para "${query}".</p>`;
