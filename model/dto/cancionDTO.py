@@ -33,11 +33,12 @@ class SongDTO():
         self.duration = None
         self.urlImg = None
         self.lyrics = None
+        self.cover = None
 
     def is_Empty(self):
         return (self.id is None and self.title is None and self.artist is None and
                 self.album is None and self.genre is None and self.duration is None and
-                self.urlImg is None and self.lyrics is None)
+                self.urlImg is None and self.lyrics is None and self.cover is None)
 
     def get_id(self):
         return self.id
@@ -45,7 +46,6 @@ class SongDTO():
     def set_id(self, id):
         self.id = id
 
-    
     def get_title(self):
         return self.title
 
@@ -88,6 +88,12 @@ class SongDTO():
     def set_lyrics(self, lyrics):
         self.lyrics = lyrics
 
+    def get_cover(self):
+        return self.cover
+
+    def set_cover(self, cover):
+        self.cover = cover
+
     def songdto_to_dict(self):
         return {
             "id": str(self.id) if self.id is not None else None,
@@ -97,6 +103,6 @@ class SongDTO():
             "genre": self.genre,
             "duration": self.duration,
             "urlImg": self.urlImg,
-            "lyrics": self.lyrics
+            "lyrics": self.lyrics,
+            "cover": self.cover
         }
-    

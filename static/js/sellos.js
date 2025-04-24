@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (artistasSello.length > 0) {
-          artistasSello.forEach((artista, index) => {
+          artistasSello.forEach((artista) => {
             const li = document.createElement("li");
             li.className = "artista";
             
@@ -71,9 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
             a.href = `${artista.url}`;
             a.className = "artista-link";
             
-            const numberSpan = document.createElement("span");
-            numberSpan.className = "artista-number";
-            numberSpan.textContent = index + 1;
+            const imgSpan = document.createElement("img");
+            imgSpan.src = artista.image;                 
+            imgSpan.alt = artista.name;
+            imgSpan.className = "artista-img";
             
             const nameSpan = document.createElement("span");
             nameSpan.className = "artista-name";
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             genreSpan.className = "artista-genre";
             genreSpan.textContent = artista.genre;
             
-            a.appendChild(numberSpan);
+            a.appendChild(imgSpan);
             a.appendChild(nameSpan);
             a.appendChild(genreSpan);
             li.appendChild(a);
