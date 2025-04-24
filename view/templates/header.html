@@ -14,7 +14,9 @@
     </div>
 
   </div>
+
   <div class="nav-right">
+    {% if user %}
     <div class="cart-btn" id="cart-btn">
       <img src="static/images/carrito.png" alt="Carrito" id="cartIcon">
       <!-- Nuevo contador -->
@@ -28,7 +30,7 @@
     
     <!-- Perfil de usuario con dropdown -->
 
-    {% if user %}
+    
     <!-- Si el usuario ha iniciado sesión, se muestra el perfil -->
     <div class="profile-container" id="profileContainer">
       <img src="/static/images/profile.png" alt="Perfil" class="profile-icon" id="profileIcon" />
