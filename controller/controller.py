@@ -104,7 +104,10 @@ async def logout(request: Request):
 # RUTA: Página principal (requiere saber si está logueado)
 @app.get("/")
 async def index(request: Request):
-    return view.get_index_view(request)
+    canciones = model.get_canciones()
+    albumes = model.get_albumes()
+    generos = model.get_generos()
+    return view.get_index_view(request, canciones, albumes, generos)
 
 
 @app.get("/debug_users")
@@ -189,10 +192,6 @@ async def mis_compras(request: Request):
 async def producto(request: Request):
     productos = model.get_productos()
     return view.get_producto_view(request, productos)
-
-#@app.get("/producto")
-#def producto(request: Request, id: int):
- #   return view.get_producto_view(request, id)
 
 @app.get("/recover")
 async def recover(request: Request):

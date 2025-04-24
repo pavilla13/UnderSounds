@@ -90,10 +90,16 @@ class View():
                 "error": "Usuario o contraseña incorrectos."
             })
 
-    def get_index_view(self, request: Request):
+    def get_index_view(self, request: Request, canciones, albumes, generos):
         # "user" es el diccionario que guardamos en sesión
         user = request.session.get("user")
-        return templates.TemplateResponse("index.html", {"request": request, "user": user})
+        canciones_list = json.loads(canciones)
+        albumes_list = json.loads(albumes)
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("index.html", {"request": request, "user": user, 
+                                                         "canciones": canciones_list,
+                                                        "albumes": albumes_list,
+                                                        "generos": generos_list})
     
 
 # Luego, en cualquier función:

@@ -872,11 +872,10 @@
   .bestofs-songs .card-img,
   .album-section .card-img,
   .genres-section .card-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
+    width: 250px ;
+    height: 180px ;
+    border-radius: 8px ;
+    display: block ;
   }
   
   .music-section .card-caption,
