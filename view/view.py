@@ -209,10 +209,11 @@ class View():
                                                           "sellos": sellos_list,
                                                           "amigos": amigos_list})
     
-    def get_sellos_view(self, request: Request, sellos):
+    def get_sellos_view(self, request: Request, sellos, artistas):
         user = request.session.get("user")
         sellos_list = json.loads(sellos)
-        return templates.TemplateResponse("sellos.html", {"request" : request, "user": user, "sellos": sellos_list})
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("sellos.html", {"request" : request, "user": user, "sellos": sellos_list, "artistas": artistas_list})
     
     def get_subir_album_view(self, request: Request):
         user = request.session.get("user")

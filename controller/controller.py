@@ -215,7 +215,8 @@ async def search(request: Request):
 @app.get("/sellos")
 async def sellos(request: Request):
     sellos = model.get_sellos()
-    return view.get_sellos_view(request, sellos)
+    artistas = model.get_artistas()
+    return view.get_sellos_view(request, sellos, artistas)
 
 @app.get("/subir_album")
 async def subir_album(request: Request):
