@@ -189,7 +189,3 @@ class View():
     def get_privacidad_view(self, request: Request):
         user = request.session.get("user")
         return templates.TemplateResponse("privacidad.html", {"request" : request, "user": user})
-    
-    def get_contacto_view(self, request: Request):
-        user = request.session.get("user")
-        return templates.TemplateResponse("contacto.html", {"request" : request, "user": user})

@@ -7,11 +7,14 @@
 
 
     <div class="search-container">
-      <form action="/search" method="get">
+      <form action="/search" method="get" class="search-form">
         <input type="text" id="searchInput" name="q" placeholder="Buscar artista, álbum,...">
-        <button type="submit" class="search-btn">🔍</button>
+        <button type="submit" class="search-btn">
+          <img src="/static/images/lupa.png" alt="Buscar" class="search-icon">
+        </button>
       </form>
     </div>
+    
 
   </div>
 
@@ -57,4 +60,3 @@
 
   </div>
 </header>
-

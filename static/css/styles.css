@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   line-height: 1.6;
   color: #1a202c;
   display: flex;
@@ -20,7 +20,8 @@ body {
   background-color: #ffffff;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -57,7 +58,7 @@ header {
 }
 
 .nav-left .logo {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.8rem;
   text-decoration: none;
   color: #2563eb;
@@ -72,7 +73,9 @@ header {
 .nav-center {
   display: flex;
   align-items: center;
-  margin-left: -120px;
+  justify-content: center;
+  flex: 1;
+  max-width: 700px;
 }
 
 .btn-icon {
@@ -104,10 +107,18 @@ header {
   overflow: hidden;
   border: 1px solid #e2e8f0;
   transition: box-shadow 0.3s;
+  width: 100%;
+  max-width: 700px;
 }
 
 .search-container:focus-within {
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .search-container input[type="text"],
@@ -122,8 +133,14 @@ header {
   padding: 0 1rem;
   border: none;
   outline: none;
-  width: 700px;
+  width: 100%;
   font-size: 0.95rem;
+}
+
+.search-icon {
+  display: block;
+  width: 24px;   /* Ajuste al tamaño que desee */
+  height: 24px;
 }
 
 .search-container .btn-icon,
@@ -138,6 +155,7 @@ header {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.2s;
+  flex-shrink: 0;
 }
 
 .search-container .btn-icon:hover,
@@ -168,7 +186,8 @@ header {
 =            HERO SECTION              =
 ======================================*/
 .hero {
-  background: linear-gradient(rgba(37, 99, 235, 0.8), rgba(29, 78, 216, 0.9)), url('assets/images/hero.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(37, 99, 235, 0.8), rgba(29, 78, 216, 0.9)), url("assets/images/hero.jpg") no-repeat
+    center center / cover;
   height: 60vh;
   display: flex;
   align-items: center;
@@ -242,7 +261,7 @@ header {
 /* Contenedor de tarjetas */
 .genres-page .genres-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 3rem;
   padding: 0 2rem;
@@ -441,7 +460,7 @@ input[type="checkbox"] {
 }
 
 .tab-content h2.logo:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -475,13 +494,13 @@ input[type="checkbox"] {
 }
 
 .store-tabs .tabs .tab {
-  flex: 1; 
-  margin: 0;         
-  border-radius: 0;  
-  padding: 0.75rem 0; 
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+  padding: 0.75rem 0;
   text-align: center;
   background-color: transparent;
-  border-bottom: 3px solid transparent; 
+  border-bottom: 3px solid transparent;
   transition: all 0.3s;
 }
 
@@ -532,7 +551,7 @@ input[type="checkbox"] {
 }
 
 .logo {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: #2563eb;
@@ -607,7 +626,7 @@ input[type="checkbox"] {
   padding: 0.75rem 1.25rem;
   text-decoration: none;
   color: #4b5563;
-  width: 100%; 
+  width: 100%;
   transition: all 0.2s;
   font-weight: 500;
 }
@@ -702,7 +721,7 @@ input[type="checkbox"] {
 
 .card h3 {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   color: #1a202c;
 }
@@ -758,7 +777,7 @@ input[type="checkbox"] {
 
 /* Ajuste de tipografía para la tienda */
 .store-content .card h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   margin: 0;
   color: #1a202c;
@@ -851,8 +870,8 @@ input[type="checkbox"] {
   color: #fff;
   font-weight: 600;
   text-align: center;
-  display: block;       
-  margin: 2rem auto;      
+  display: block;
+  margin: 2rem auto;
   width: max-content;
   transition: all 0.2s;
 }
@@ -865,7 +884,8 @@ input[type="checkbox"] {
 /*======================================
 =       Páginas de carrito y favoritos =
 ======================================*/
-.cart, .favorites {
+.cart,
+.favorites {
   padding: 2rem;
   background: #fff;
   margin: 2rem;
@@ -873,11 +893,13 @@ input[type="checkbox"] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-#cart-items, #favorite-items {
+#cart-items,
+#favorite-items {
   margin-top: 1.5rem;
 }
 
-.cart-item, .favorite-item {
+.cart-item,
+.favorite-item {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -885,7 +907,8 @@ input[type="checkbox"] {
   padding: 1.5rem 0;
 }
 
-.cart-item img, .favorite-item img {
+.cart-item img,
+.favorite-item img {
   width: 80px;
   border-radius: 8px;
   object-fit: cover;
@@ -963,11 +986,11 @@ input[type="checkbox"] {
 
 /* Botón para eliminar (cubo de basura) */
 .btn-remove {
-  background: #ef4444;         
-  border-radius: 50%;          
+  background: #ef4444;
+  border-radius: 50%;
   width: 32px;
   height: 32px;
-  font-size: 1.1rem;           
+  font-size: 1.1rem;
   color: #fff;
   display: flex;
   align-items: center;
@@ -985,7 +1008,7 @@ input[type="checkbox"] {
 /* Botones para incrementar y decrementar */
 .btn-decrement,
 .btn-increment {
-  background: #2563eb;         
+  background: #2563eb;
   border: none;
   border-radius: 6px;
   padding: 0.3rem 0.8rem;
@@ -1203,9 +1226,15 @@ input[type="checkbox"] {
 }
 
 @keyframes floatButton {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .edit-btn {
@@ -1236,7 +1265,7 @@ input[type="checkbox"] {
   background-color: #f8fafc;
   color: #1a202c;
   padding: 1.5rem 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   border-top: 1px solid #e2e8f0;
 }
 
@@ -1303,10 +1332,10 @@ input[type="checkbox"] {
 }
 
 .social-buttons img {
-  width: 30px;
+  width: 40px;
   height: auto;
   transition: transform 0.2s;
-  filter: grayscale(100%);
+  border-radius: 20%;
 }
 
 .social-buttons img:hover {
@@ -1316,7 +1345,7 @@ input[type="checkbox"] {
 
 /* Bandera de España: anclada a la derecha */
 .flag-spain {
-  width: 36px;
+  width: 50px;
   height: auto;
   margin-left: 1.5rem;
   border-radius: 4px;

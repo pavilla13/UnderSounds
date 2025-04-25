@@ -226,8 +226,3 @@ async def tienda(request: Request):
 async def privacidad(request: Request):
     return view.get_privacidad_view(request)
 
-@app.get("/contacto")
-async def contacto(request: Request):
-    return view.get_contacto_view(request)
-
-
