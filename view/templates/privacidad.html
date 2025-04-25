@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidad | Undersounds</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,7 +63,9 @@
   </style>
 </head>
 <body>
+  {% include "header.html" %}
   <!-- Inyección del header -->
+   <!--
   <div id="header-placeholder" data-header="header_usuario.html"></div>
   <script>
     const headerPlaceholder = document.getElementById('header-placeholder');
@@ -85,7 +87,7 @@
         }, 100);
       })
       .catch(error => console.error('Error al cargar el header:', error));
-  </script>
+  </script>-->
 
   <main>
     <section>
@@ -142,11 +144,11 @@
       <p>Si tienes preguntas sobre esta política, puedes contactarnos en: <a href="mailto:privacidad@undersounds.com">privacidad@undersounds.com</a></p>
     </section>
   </main>
-
-  <!-- Contenedor para insertar el footer dinámicamente -->
+ <!--
+  <footer>
+    <p>&copy; 2023 Undersounds. Todos los derechos reservados.</p>
   <div id="footer"></div>
 
-  <!-- Script para cargar footer.html -->
   <script>
     // Esta función "fetch" trae el contenido de footer.html
     // y lo inyecta dentro del div con id="footer"
@@ -158,6 +160,7 @@
       .catch(error => {
         console.error('Error al cargar el footer:', error);
       });
-  </script>
+  </script>-->
+  {% include "footer.html" %}
 </body>
 </html>

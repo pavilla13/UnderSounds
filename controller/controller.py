@@ -230,4 +230,12 @@ async def tienda(request: Request):
     productos = model.get_productos()
     return view.get_tienda_view(request, productos)
 
+@app.get("/privacidad")
+async def privacidad(request: Request):
+    return view.get_privacidad_view(request)
+
+@app.get("/contacto")
+async def contacto(request: Request):
+    return view.get_contacto_view(request)
+
 
