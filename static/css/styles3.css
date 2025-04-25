@@ -1,0 +1,1087 @@
+/*======================================
+=           RESET & GLOBAL             =
+======================================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    flex: 1; /* Este contenedor ocupa el espacio restante */
+  }
+  
+  .footer {
+    background-color: #ccc;
+    padding: 1rem;
+  }
+  
+  main.favorites {
+    flex: 1; /* Este contenedor se expande para ocupar el espacio disponible */
+  }
+  
+  /*======================================
+  =         HEADER & NAVIGATION          =
+  ======================================*/
+  header {
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .nav-left .logo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .nav-left .logo:hover {
+    color: #f39c12;
+  }
+  
+  .nav-center {
+    display: flex;
+    align-items: center;
+    margin-left: -120px;
+  }
+  
+  .btn-icon {
+    background-color: #f39c12;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    text-decoration: none;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: stretch;    /* estira hijos a la misma altura */
+    height: 40px;            /* altura deseada */
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  
+  /* Hijos ocupan el 100% de la altura del contenedor */
+  .search-container input[type="text"],
+  .search-container .btn-icon,
+  .search-container .search-btn {
+    height: 100%;
+    box-sizing: border-box;  /* incluye padding en la altura */
+  }
+  
+  /* Ajuste de padding sólo horizontal */
+  .search-container input[type="text"] {
+    flex: 1;
+    padding: 0 1rem;
+    border: none;
+    outline: none;
+    width: 700px;
+  }
+  
+
+  .search-container .btn-icon,
+  .search-container .search-btn {
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .search-btn {
+    font-size: 1rem; /* Aumenta el tamaño del icono */
+  }
+
+  .nav-right .login-btn {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-right .login-btn:hover {
+    background-color: #e67e22;
+  }
+  
+  /*======================================
+  =            HERO SECTION              =
+  ======================================*/
+  .hero {
+    background: url('assets/images/hero.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #e67e22;
+  }
+  
+  /*======================================
+  =           MAIN CONTENT               =
+  ======================================*/
+  .content {
+    padding: 5rem;
+    text-align: center;
+  }
+  
+  /* Géneros */
+  .genres-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+    margin-top: 1rem;
+  }
+  
+  .genre {
+    background-color: #f4f4f4;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+  }
+  
+  /* Contenedor de tarjetas */
+  .genres-page .genres-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+    padding: 0 40px;
+  }
+  
+  /* Carta del género */
+  .genres-page .card {
+    display: flex;
+    flex-direction: column;   /* Hace que imagen y caption estén uno debajo del otro */
+    align-items: center;
+    height: auto;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 100%;
+  }
+  
+  /* Hover efecto */
+  .genres-page .card:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Imagen más pequeña */
+  .genres-page .card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Pie de foto debajo de la imagen */
+  .genres-page .card-caption {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 16px;
+    color: #222;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* Formularios */
+  .form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .form label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+  }
+  
+  .form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+  }
+  
+  .form button.btn {
+    width: 100%;
+  }
+  
+  .select2-container {
+    margin-bottom: 40px;
+  }
+  
+  /* Opciones en el login */
+  .login-options {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .login-options a {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-options a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-page h2.logo {
+    margin-top: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .login-page .form button.btn {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Checkbox */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    vertical-align: top;
+  }
+  
+  /*======================================
+  =         TABS & TAB CONTENT           =
+  ======================================*/
+  /* Contenedor de pestañas */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 0.5rem;
+  }
+  
+  /* Botones de pestaña */
+  .tab {
+    background-color: #f39c12;
+    border: none;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    margin: 0 0.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  /* Quitar subrayado en el botón de Tienda */
+  .tabs a.tab {
+    text-decoration: none;
+  }
+  
+  .tab.active,
+  .tab:hover {
+    background-color: #e67e22;
+  }
+  
+  /* Secciones de contenido de las pestañas */
+  .tab-content {
+    display: none;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  /* Títulos dentro de las secciones alineados a la izquierda */
+  .tab-content h3 {
+    text-align: left;
+  }
+  
+  /* Estilos específicos para las pestañas de la tienda */
+  .store-tabs .tabs {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #333;
+  }
+  
+  .store-tabs .tabs .tab {
+    flex: 1; 
+    margin: 0;         
+    border-radius: 0;  
+    padding: 0.6rem 0; 
+    text-align: center;
+    background-color: #f39c12;
+    border: 1px solid #f39c12; 
+    transition: background-color 0.3s;
+  }
+  
+  .store-tabs .tabs .tab:not(:last-child) {
+    border-right: none;
+  }
+  
+  /* Estados activo y hover */
+  .store-tabs .tabs .tab.active,
+  .store-tabs .tabs .tab:hover {
+    background-color: #e67e22;
+  }
+  
+  
+  /*======================================
+  =         ROWS & CARDS (ELEMENTOS)     =
+  ======================================*/
+  /* Fila de elementos (ej. canciones, álbumes, géneros) */
+  .row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  /* Tarjetas para cada elemento */
+  .card {
+    background-color: transparent;
+    width: 150px;
+    height: 70px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: left;
+  }
+  
+  .card:hover {
+    background-color: transparent;
+  }
+  
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .artist-link{
+    margin-top: 50px;
+  }
+  
+  /*======================================
+  =        MENU DESPLEGABLE PERFIL       =
+  ======================================*/
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Estilo para el carrito */
+  .cart-btn {
+    position: relative;
+    margin-top: 5px;
+  }
+  .cart-btn img {
+    width: 40px;
+    height: auto;
+  }
+  
+  /* Perfil de usuario */
+  .profile-container {
+    position: relative;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    min-width: 170px;  /* Ajusta el ancho de las opciones del dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border-radius: 10px;
+  }
+  
+  .profile-dropdown a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    width: 100%; 
+    border-radius: 10px;
+  }
+  
+  .profile-dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Mostrar dropdown al pasar el cursor o cuando tenga la clase 'active' */
+  .profile-container:hover .profile-dropdown,
+  .profile-container.active .profile-dropdown {
+    display: block;
+  }
+  
+  .logout-link {
+    color: red;
+  }
+  
+  .logout-link:hover {
+    color: darkred;
+  }
+  
+  .recover-btn{
+    background-color: #f39c12;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none; /* Eliminar el subrayado si lo hay */
+    position: relative;
+    margin-left: 120px;
+  }
+  
+  /*======================================
+  =          TIENDA - PRODUCTOS          =
+  ======================================*/
+  
+  /* Contenido principal y tarjetas de producto */
+  .content {
+    padding: 1rem;
+  }
+  
+  /* Mostramos cada producto en una fila */
+  .row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background-color: #f4f4f4;
+    width: 150px;
+    height: 70px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: left;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card img {
+    width: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .card .info {
+    flex: 1;
+  }
+  
+  .card h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+  }
+  
+  .card p {
+    margin: 0.3rem 0;
+    font-size: 0.8rem;
+    font-family: 'Merriweather', serif;
+  }
+  
+  .card .price {
+    font-weight: bold;
+    margin: 0.3rem 0;
+  }
+  
+  .card button {
+    border: transparent;
+    padding: 0.6rem 1.2rem;
+    margin: 0.3rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
+    color: #e67e22;
+  }
+  
+  .store-content .row {
+    gap: 5rem;
+    margin: 5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  .store-content .card {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Ajuste de tipografía para la tienda */
+  .store-content .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .store-content .card p {
+    font-family: 'Merriweather', serif;
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+  
+  
+  /* Botón para añadir al carrito */
+  .btn-cart {
+    background: linear-gradient(45deg, #4a90e2, #357ab8);
+  }
+  
+  .btn-cart:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #357ab8, #4a90e2);
+  }
+  
+  /* Botón para Favoritos */
+  .btn-favorite {
+    background: linear-gradient(45deg, #e94e77, #d73c66);
+  }
+  
+  .btn-favorite:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #d73c66, #e94e77);
+  }
+  
+  /*======================================
+  =     Página de detalle de producto    =
+  ======================================*/
+  .product-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+  .product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 60px;
+  }
+  
+  .product-image {
+    flex: 1;
+  }
+  .product-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .product-description {
+    flex: 2;
+    padding: 0 20px;
+    font-size: 18px;
+  }
+  .product-price {
+    flex: 1;
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    align-self: center;
+  }
+  
+  .btn-back-store {
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border-radius: 8px;
+    background-color: #e67e22;
+    color: #f0f0f0;
+    font-weight: bold;
+    text-align: center;
+    display: block;       
+    margin: 0 auto;      
+    width: max-content;
+  }
+  
+  /*======================================
+  =       Páginas de carrito y favoritos =
+  ======================================*/
+  .cart, .favorites {
+    padding: 2rem;
+    background: #fff;
+    margin: 2rem;
+    border-radius: 8px;
+  }
+  
+  #cart-items, #favorite-items {
+    margin-top: 1rem;
+  }
+  
+  .cart-item, .favorite-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+  }
+  
+  .cart-item img, .favorite-item img {
+    width: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  /*======================================
+  =         Dropdown del Carrito         =
+  ======================================*/
+  .cart-btn {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .cart-dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    z-index: 100;
+    color: #000;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .cart-btn:hover .cart-dropdown {
+    display: block;
+  }
+  
+  .cart-dropdown .cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+  }
+  
+  .cart-dropdown .cart-item:last-child {
+    border-bottom: none;
+  }
+  
+  .cart-dropdown img {
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  
+  .cart-dropdown .dropdown-footer {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  
+  .cart-dropdown .dropdown-footer button {
+    background: #e67e22;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Botón para eliminar (cubo de basura) */
+  .btn-remove {
+    background: #e74c3c;         
+    border-radius: 50%;          
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;           
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-remove:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+  }
+  
+  /* Botones para incrementar y decrementar */
+  .btn-decrement,
+  .btn-increment {
+    background: #3498db;         
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.8rem;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 0 0.2rem;
+  }
+  .btn-decrement:hover,
+  .btn-increment:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  /* ---------------------------- */
+  /* Notificación emergente       */
+  /* ---------------------------- */
+  #notification {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: top 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+  }
+  
+  #notification.show {
+    top: 20px;
+    opacity: 1;
+  }
+  
+  /*======================================
+  =          SECCIÓN DE MÚSICA           =
+  ======================================*/
+  
+  .music-section .row,
+  .bestofs-songs .row,
+  .album-section .row,
+  .genres-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    justify-content: center;
+  }
+  
+  .music-section .card,
+  .bestofs-songs .card,
+  .album-section .card,
+  .genres-section .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 calc(25% - 2rem);
+    max-width: 300px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  .music-section .card-img,
+  .bestofs-songs .card-img,
+  .album-section .card-img,
+  .genres-section .card-img {
+    width: 250px ;
+    height: 180px ;
+    border-radius: 8px ;
+    display: block ;
+  }
+  
+  .music-section .card-caption,
+  .bestofs-songs .card-caption,
+  .album-section .card-caption,
+  .genres-section .card-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+  }
+  
+  /* Efecto hover */
+  .music-section .card:hover,
+  .bestofs-songs .card:hover,
+  .album-section .card:hover,
+  .genres-section .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  
+  .song-cover {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .tab-content .card {
+    text-decoration: none;
+  }
+  
+  /*======================================
+  =           BOTÓN DE AYUDA             =
+  ======================================*/
+  .help-button {
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #f39c12;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    animation: floatButton 2s infinite ease-in-out;
+  }
+  
+  .help-button:hover {
+    background-color: #e67e22;
+  }
+  
+  @keyframes floatButton {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+  }
+  
+  .edit-btn{
+    background-color: #f39c12;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    position: relative;
+    margin-top: 10px;
+  }
+  
+  /*======================================
+  =               FOOTER                 =
+  ======================================*/
+  /* Estilos del Footer */
+  .footer {
+    background-color: #181818;
+    color: #fff;
+    padding: 10px 20px; /* Mínimo para mantenerlo compacto */
+    font-family: sans-serif;
+    border-top: 1px solid #444; /* Delimitación sutil en la parte superior */
+  }
+  
+  /* Contenedor principal: distribuye elementos en fila */
+  .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Adaptable a pantallas pequeñas */
+  }
+  
+  /* Sección Izquierda: Título y descripción */
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-right {
+    /* Para que íconos + bandera estén en la misma fila, alineados a la derecha */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Empuja todo al borde derecho */
+    gap: 16px;                 /* Espacio entre iconos y bandera */
+  }
+  
+  .footer-title {
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #f1c40f; /* Color destacado */
+  }
+  
+  .footer-description {
+    font-size: 0.9rem;
+    margin: 4px 0;
+    opacity: 0.8;
+  }
+  
+  /* Enlaces principales (centro) */
+  .footer-links {
+    display: flex;
+    gap: 16px; /* Separación entre enlaces */
+    margin: 8px 0;
+  }
+  
+  .footer-links a {
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #f1c40f;
+  }
+  
+  /* Redes sociales */
+  .social-buttons {
+    display: flex;
+    gap: 16px; /* Mayor separación entre íconos */
+  }
+  
+  .social-buttons img {
+    width: 30px;  /* Íconos más grandes */
+    height: auto;
+    transition: transform 0.2s;
+  }
+  
+  .social-buttons img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Bandera de España: anclada a la derecha */
+  .flag-spain {
+    width: 36px;
+    height: auto;
+    margin-left: 16px; /* Separación respecto a los íconos */
+  }
+  
+  /* Leyenda inferior */
+  .footer-copy {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin: 6px 0 0 0;
+  }
+  
+  .icon-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain; /* Asegura que no se distorsionen */
+    transition: transform 0.2s;
+  }
+  
+  .icon-img:hover {
+    transform: scale(1.1);
+  }
+  
