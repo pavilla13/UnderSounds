@@ -8,10 +8,11 @@ class GeneroDTO():
         self.description = None
         self.image = None
         self.url = None
+        self.valoracion = None  
 
     def is_empty(self):
         return (self.id is None and self.name is None and self.description is None and
-                self.image is None and self.url is None)
+                self.image is None and self.url is None and self.valoracion is None)
 
     def get_id(self):
         return self.id
@@ -43,13 +44,20 @@ class GeneroDTO():
     def set_url(self, url):
         self.url = url
 
+    def get_valoracion(self):
+        return self.valoracion
+
+    def set_valoracion(self, valoracion):
+        self.valoracion = valoracion
+
     def generodto_to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
             "description": self.description,
             "image": self.image,
-            "url": self.url
+            "url": self.url,
+            "valoracion": self.valoracion  
         }
         
 class GenerosDTO():

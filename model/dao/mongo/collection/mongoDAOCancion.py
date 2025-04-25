@@ -24,6 +24,7 @@ class MongoDAOCancion(InterfaceDAOCancion):
                 cancion.set_urlImg(doc.get('url'))
                 cancion.set_lyrics(doc.get('lyrics'))
                 cancion.set_cover(doc.get('cover'))
+                cancion.set_valoracion(doc.get('valoracion')) 
                 canciones.append(cancion)
             return canciones
         except Exception as e:

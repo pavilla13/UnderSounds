@@ -37,6 +37,7 @@ class Model ():
             song_dto.urlImg = s.get_urlImg()  
             song_dto.lyrics = s.get_lyrics() 
             song_dto.cover = s.get_cover()
+            song_dto.valoracion = s.get_valoracion()
             song_dto = song_dto.songdto_to_dict()
             mySongsDTO.insertSong(song_dto)  # Agregar la canción a la lista
         return mySongsDTO.songlist_to_json()
@@ -51,6 +52,7 @@ class Model ():
             genero_dto.description = s.get_description()
             genero_dto.image = s.get_image()
             genero_dto.url = s.get_url()
+            genero_dto.valoracion = s.get_valoracion()
             genero_dto = genero_dto.generodto_to_dict()
             myGenerosDTO.insertGenero(genero_dto)
         return myGenerosDTO.genrelist_to_json()
@@ -82,6 +84,7 @@ class Model ():
             album_dto.description = a.get_description()
             album_dto.image = a.get_image()
             album_dto.url = a.get_url()
+            album_dto.valoracion = a.get_valoracion()
             album_dto = album_dto.albumdto_to_dict()
             myAlbumsDTO.insertAlbum(album_dto)
         return myAlbumsDTO.albumlist_to_json()

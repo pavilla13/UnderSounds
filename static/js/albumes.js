@@ -57,11 +57,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const genreEl = document.getElementById("album-genre");
       const descriptionEl = document.getElementById("album-description");
       const imageEl = document.getElementById("album-image");
-
+      const ratingEl = document.getElementById("album-rating");
+      
       if (nameEl) nameEl.textContent = album.name;
       if (artistEl) artistEl.textContent = album.artist;
       if (genreEl) genreEl.textContent = album.genre;
       if (descriptionEl) descriptionEl.textContent = album.description;
+      
+      if (ratingEl) {
+        ratingEl.innerHTML = "";  // limpiar cualquier contenido previo
+        const rating = Number(album.valoracion) || 0;  // de 0 a 5
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement("span");
+          star.className = "star";
+          star.textContent = i <= rating ? "★" : "☆";
+          ratingEl.appendChild(star);
+        }
+      }
       if (imageEl) {
         imageEl.src = album.image;
         imageEl.alt = album.name;

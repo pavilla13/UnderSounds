@@ -18,6 +18,7 @@ class MongoDAOGenero(InterfaceDAOGenero):
                 genero.description = doc.get('descripcion')
                 genero.url = doc.get('url')
                 genero.image = doc.get('image')
+                genero.valoracion = doc.get('valoracion')
                 generos.append(genero)
             return generos
         except Exception as e:

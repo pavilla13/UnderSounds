@@ -34,11 +34,13 @@ class SongDTO():
         self.urlImg = None
         self.lyrics = None
         self.cover = None
+        self.valoracion = None  # Nuevo campo añadido
 
     def is_Empty(self):
         return (self.id is None and self.title is None and self.artist is None and
                 self.album is None and self.genre is None and self.duration is None and
-                self.urlImg is None and self.lyrics is None and self.cover is None)
+                self.urlImg is None and self.lyrics is None and self.cover is None and
+                self.valoracion is None)
 
     def get_id(self):
         return self.id
@@ -94,6 +96,12 @@ class SongDTO():
     def set_cover(self, cover):
         self.cover = cover
 
+    def get_valoracion(self):
+        return self.valoracion
+
+    def set_valoracion(self, valoracion):
+        self.valoracion = valoracion
+
     def songdto_to_dict(self):
         return {
             "id": str(self.id) if self.id is not None else None,
@@ -104,5 +112,6 @@ class SongDTO():
             "duration": self.duration,
             "urlImg": self.urlImg,
             "lyrics": self.lyrics,
-            "cover": self.cover
+            "cover": self.cover,
+            "valoracion": self.valoracion  # Nuevo campo añadido al diccionario
         }

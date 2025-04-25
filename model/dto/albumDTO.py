@@ -30,11 +30,12 @@ class AlbumDTO():
         self.description = None
         self.image = None
         self.url = None
+        self.valoracion = None  
 
     def is_Empty(self):
         return (self.id is None and self.name is None and self.artist is None and
                 self.genre is None and self.description is None and
-                self.image is None and self.url is None)
+                self.image is None and self.url is None and self.valoracion is None)
 
     def get_id(self):
         return self.id
@@ -78,6 +79,12 @@ class AlbumDTO():
     def set_url(self, url):
         self.url = url
 
+    def get_valoracion(self):
+        return self.valoracion
+
+    def set_valoracion(self, valoracion):
+        self.valoracion = valoracion
+
     def albumdto_to_dict(self):
         return {
             "id": str(self.id) if self.id is not None else None,
@@ -86,5 +93,6 @@ class AlbumDTO():
             "genre": self.genre,
             "description": self.description,
             "image": self.image,
-            "url": self.url
+            "url": self.url,
+            "valoracion": self.valoracion  
         }

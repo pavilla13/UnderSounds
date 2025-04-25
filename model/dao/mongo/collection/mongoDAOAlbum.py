@@ -20,6 +20,7 @@ class MongoDAOAlbum(InterfaceDAOAlbum):
                 album.description = doc.get('description')
                 album.image = doc.get('image')
                 album.url = doc.get('url')
+                album.valoracion = doc.get('valoracion')
                 albumes.append(album)
             return albumes
         except Exception as e:

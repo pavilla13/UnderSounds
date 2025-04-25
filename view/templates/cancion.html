@@ -332,6 +332,10 @@
             <i class="fas fa-clock"></i>
             <span></span>
           </div>
+          <!-- Valoración: de 1 a 4 estrellas -->
+          <div class="metadata-item" id="song-rating">
+            <span id="song-rating-stars"></span>
+          </div>
         </div>
       </div>
       <div class="song-controls">
@@ -368,6 +372,16 @@
       document.querySelector('#song-album span').textContent = song.album;
       document.querySelector('#song-genre span').textContent = song.genre;
       document.querySelector('#song-duration span').textContent = song.duration;
+      const rating = song.valoracion || 0; // Asegúrese de que song.rating exista
+      let starsHtml = '';
+      for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+          starsHtml += '<i class="fas fa-star"></i>';
+        } else {
+          starsHtml += '<i class="far fa-star"></i>';
+        }
+      }
+      document.getElementById('song-rating-stars').innerHTML = starsHtml;
       document.getElementById('song-lyrics-text').textContent = song.lyrics;
       const coverImg = document.getElementById('song-cover');
       coverImg.src = song.cover;
