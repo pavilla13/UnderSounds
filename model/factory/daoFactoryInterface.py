@@ -30,9 +30,6 @@ class InterfaceDAOFactory(ABC):
     def get_albumes(self):
         pass
     
-    @abstractmethod
-    def get_usuarios(self):
-        pass
 
     @abstractmethod
     def get_amigos(self):
@@ -44,6 +41,12 @@ class InterfaceDAOFactory(ABC):
 
     @abstractmethod
     def get_sellos(self):
+        pass
+
+    
+    
+    @abstractmethod
+    def get_usuarios(self):
         pass
 
 

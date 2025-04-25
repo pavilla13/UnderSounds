@@ -14,16 +14,29 @@ class MongoDAOUsuario(InterfaceDAOUsuario):
             for doc in results:
                 usuario = UsuarioDTO()
                 usuario.id = doc.get('id')
-                usuario.nickname = doc.get('nickname')
-                usuario.correo = doc.get('correo')
-                usuario.country = doc.get('country')
-                usuario.date = doc.get('date')
                 usuario.name = doc.get('name')
+                usuario.username = doc.get('uesrname')
+                usuario.email = doc.get('email')
                 usuario.password = doc.get('password')
-                usuario.userType = doc.get('userType')
+                usuario.tipo_usuario = doc.get('tipo_usuario')
+                usuario.birthdate = doc.get('birthdate')
+                usuario.country = doc.get('country')
                
                 usuarios.append(usuario)
             return usuarios
         except Exception as e:
             print(f"Error getting users: {e}")
             return []
+        
+    def add_usuario(self, usuario_dto):
+        return self.collection.insert_one(usuario_dto.userdto_to_dict())
+    
+    def get_usuario_by_username(self, username):
+        return self.collection.find_one({
+            "$or": [{"username": username}, {"email": username}]
+        })
+    
+    def get_usuario_by_username_email(self, username, email):
+        return self.collection.find_one({
+            "$or": [{"username": username}, {"email": email}]
+        })

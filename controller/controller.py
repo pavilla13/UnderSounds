@@ -9,60 +9,19 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
+from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 
-from fastapi.responses import JSONResponse
-from view.view import USERS_DB
 
 app = FastAPI()
 
 # Middleware para manejar sesiones
-app.add_middleware(SessionMiddleware, secret_key="clave-secreta-super-segura")
+app.add_middleware(SessionMiddleware, secret_key="password")
 
 model = Model()
 view = View()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
-#@app.post("/register")
-#async def registrar_usuario(
- #   request: Request,
-  #  name: str = Form(...),
-   # username: str = Form(...),
-#    email: str = Form(...),
- #   password: str = Form(...),
-  #  password2: str = Form(...),
-   # register_type: str = Form(...)  # este valor viene del <select>
-#):
-    # 🔐 Acá deberías guardar el nuevo usuario en la base de datos...
-    # 🧠 También podés guardar en sesión el tipo de cuenta
- #   request.session["register_type"] = register_type  # "usuario", "artista" o "sello"
-
-    # Podés guardar más datos si querés:
-    # request.session["nombre"] = nombre
-
-    # Redirigir al home o al dashboard que corresponda
-  #  return RedirectResponse(url="/", status_code=303)
-
-
-
-#@app.post("/login")
-#def login_user(request: Request, username: str = Form(...), password: str = Form(...)):
-    # Simulamos obtener usuario (esto deberías conectarlo a tu base de datos real)
- #   dummy_user = {"username": "juan", "password": "1234", "type": "artist"}
-
-  #  if username == dummy_user["username"] and password == dummy_user["password"]:
-   #     request.session["user"] = {
-    #        "username": dummy_user["username"],
-     #       "type": dummy_user["type"]
-      #  }
-       # return RedirectResponse(url="/", status_code=303)
-
-    # Si las credenciales no coinciden
-#    return templates.TemplateResponse("login.html", {
- #       "request": request,
-  #      "error": "Credenciales incorrectas"
-   # })
 
 
 
@@ -83,9 +42,42 @@ async def procesar_registro(
     country: str = Form(...),
     terms: bool = Form(...)
 ):
-    return await view.procesar_registro_view(
-        request, name, username, email, password, password2,
-        tipo_usuario, birthdate, country, terms)
+    
+    if len(password) < 8:
+        return view.render_register(
+            request,
+            error="La contraseña debe tener al menos 8 caracteres.",
+            name=name,
+            username=username,
+            email=email,
+            birthdate=birthdate
+        )
+
+    if password != password2:
+        return view.render_register(
+            request,
+            error="Las contraseñas no coinciden.",
+            name=name,
+            username=username,
+            email=email,
+            birthdate=birthdate
+        )
+
+    if model.buscar_usuario_register(username, email):
+        return view.render_register(
+            request,
+            error="El usuario o correo ya está registrado.",
+            name=name,
+            username=username,
+            email=email,
+            birthdate=birthdate
+        )
+
+    usuario =  UsuarioDTO(name, username, email, password, tipo_usuario, birthdate, country)
+    model.registrar_usuario(usuario)
+    return RedirectResponse("/login", status_code=303)
+    
+
 
 @app.get("/login")
 async def login(request: Request):
@@ -94,7 +86,16 @@ async def login(request: Request):
 # RUTA: Procesar login (POST)
 @app.post("/login")
 async def procesar_login(request: Request, username: str = Form(...), password: str = Form(...)):
-    return await view.procesar_login_view(request, username, password)
+    user = model.buscar_usuario_login(username)
+
+    if user and user["password"] == password:
+        request.session["user"] = {
+            "username": user["username"],
+            "tipo_usuario": user["tipo_usuario"]
+        }
+        return RedirectResponse("/", status_code=303)
+    return view.render_login(request, error="Usuario o contraseña incorrectos.")
+
 
 @app.get("/logout")
 async def logout(request: Request):
@@ -106,15 +107,6 @@ async def logout(request: Request):
 async def index(request: Request):
     return view.get_index_view(request)
 
-
-@app.get("/debug_users")
-async def debug_users(request: Request):
-    return JSONResponse(content=USERS_DB)
-
-@app.get("/clear_users")
-async def clear_users():
-    USERS_DB.clear()  # Esto vacía la lista de usuarios
-    return JSONResponse(content={"message": "Usuarios vaciados correctamente."})
 
 
 

@@ -34,10 +34,6 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["ARTISTA"]
         return MongoDAOArtista(collection)
 
-    def get_usuarios(self):
-        collection = self.db["USUARIO"]
-        return MongoDAOUsuario(collection)
-
     def get_sellos(self):
         collection = self.db["SELLO"]
         return MongoDAOSello(collection)
@@ -53,3 +49,8 @@ class MongoDAOFactory(InterfaceDAOFactory):
     def get_amigos(self):
         collection = self.db["AMIGO"]
         return MongoDAOAmigo(collection)
+    
+
+    def get_usuarios(self):
+        collection = self.db["USUARIO"]
+        return MongoDAOUsuario(collection)

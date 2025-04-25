@@ -4,9 +4,6 @@ import json
 from fastapi.responses import HTMLResponse, RedirectResponse
 
 
-# Simulamos una "base de datos" temporal en memoria
-USERS_DB = {}
-
 
 templates = Jinja2Templates(directory="view/templates")
 
@@ -14,81 +11,35 @@ class View():
     def __init__(self):
         pass
 
+
+
     def get_register_view(self, request: Request):
         return templates.TemplateResponse("register.html", {"request": request}) 
     
-    async def procesar_registro_view(self, request: Request, name, username, email, password, password2,
-                                    tipo_usuario, birthdate, country, terms):
-        if len(password) < 8:
-            return templates.TemplateResponse("register.html", {
-                "request": request,
-                "error": "La contraseña debe tener al menos 8 caracteres.",
-                "name": name,
-                "username": username,
-                "email": email,
-                "tipo_usuario": tipo_usuario,
-                "birthdate": birthdate,
-                "country": country
-            })
-        
-        # Validación simple: contraseñas deben coincidir
-        if password != password2:
-            return templates.TemplateResponse("register.html", {
-                "request": request,
-                "error": "Las contraseñas no coinciden.",
-                "name": name,
-                "username": username,
-                "email": email,
-                "tipo_usuario": tipo_usuario,
-                "birthdate": birthdate,
-                "country": country
-            })
-
-        # Validar que el usuario o email no exista ya
-        for user in USERS_DB.values():
-            if user["username"] == username or user["email"] == email:
-                return templates.TemplateResponse("register.html", {
-                    "request": request,
-                    "error": "El usuario o correo ya está registrado.",
-                    "name": name,
-                    "username": username,
-                    "email": email,
-                    "tipo_usuario": tipo_usuario,
-                    "birthdate": birthdate,
-                    "country": country
-                })
-
-        # Si todo bien, guardar el nuevo usuario
-        USERS_DB[username] = {
+    def render_register(self, request: Request, error: str = "", name: str = "", username: str = "",
+        email: str = "", birthdate: str = ""
+    ):
+        return templates.TemplateResponse("register.html", {
+            "request": request,
+            "error": error,
             "name": name,
             "username": username,
             "email": email,
-            "password": password,
-            "tipo_usuario": tipo_usuario,
-            "birthdate": birthdate,
-            "country": country
-        }
-        # Redirigir al login si todo es correcto
-        return RedirectResponse("/register?registro=exito", status_code=303)
+            "birthdate": birthdate})
+    
+
+
 
     def get_login_view(self, request: Request):
         return templates.TemplateResponse("login.html", {"request" : request})
     
-    async def procesar_login_view(self, request: Request, username: str, password: str):
-        user = USERS_DB.get(username) or next((u for u in USERS_DB.values() if u["email"] == username), None)
+    def render_login(self, request: Request, error: str = ""):
+        return templates.TemplateResponse("login.html", {
+            "request": request,
+            "error": error
+        })
+    
 
-        if user and user["password"] == password:
-            # Guardamos en sesión usando clave: tipo_usuario
-            request.session["user"] = {
-                "username": user["username"],
-                "tipo_usuario": user["tipo_usuario"]
-            }
-            return RedirectResponse("/", status_code=303)
-        else:
-            return templates.TemplateResponse("login.html", {
-                "request": request,
-                "error": "Usuario o contraseña incorrectos."
-            })
 
     def get_index_view(self, request: Request):
         # "user" es el diccionario que guardamos en sesión
@@ -98,6 +49,7 @@ class View():
 
 # Luego, en cualquier función:
 # user = request.session.get("user")
+
 
     def get_album_view(self, request: Request,albumes, tracklist, artistas):
         user = request.session.get("user")

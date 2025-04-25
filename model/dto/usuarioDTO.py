@@ -21,51 +21,23 @@ class UsuariosDTO():
         return json.dumps(clean_list)
 
 
+
+
 class UsuarioDTO():
-    def __init__(self):
-        self.id = None
-        self.nickname = None
-        self.correo = None
-        self.country = None
-        self.date = None
-        self.name = None
-        self.password = None
-        self.userType = None
-
-    def is_Empty(self):
-        return (self.id is None and self.nickname is None and self.correo is None and
-                self.country is None and self.date is None and self.name is None and
-                self.password is None and self.userType is None)
-
-    def get_id(self):
-        return self.id
-
-    def set_id(self, id):
-        self.id = id
-
-    def get_nickname(self):
-        return self.nickname
-
-    def set_nickname(self, nickname):
-        self.nickname = nickname
-
-    def get_correo(self):
-        return self.correo
-
-    def set_correo(self, correo):
-        self.correo = correo
-
-    def get_country(self):
-        return self.country
-
-    def set_country(self, country):
+    def __init__(self, name, username, email, password, tipo_usuario, birthdate, country):
+        self.name = name
+        self.username = username
+        self.email = email
+        self.password = password
+        self.tipo_usuario = tipo_usuario
+        self.birthdate = birthdate
         self.country = country
 
-    def get_date(self):
-        return self.date
+    def is_Empty(self):
+        return (self.name is None and self.username is None and
+                self.email is None and self.password is None and self.tipo_usuario is None and
+                self.birthdate is None and self.country is None)
 
-    def set_date(self, date):
-        self.date = date
 
     def get_name(self):
         return self.name
@@ -73,26 +45,51 @@ class UsuarioDTO():
     def set_name(self, name):
         self.name = name
 
+    def get_username(self):
+        return self.username
+
+    def set_username(self, username):
+        self.username = username
+
+    def get_email(self):
+        return self.email
+
+    def set_email(self, email):
+        self.email = email
+
     def get_password(self):
         return self.password
 
     def set_password(self, password):
         self.password = password
 
-    def get_userType(self):
-        return self.userType
+    def get_tipo_usuario(self):
+        return self.tipo_usuario
 
-    def set_userType(self, userType):
-        self.userType = userType
+    def set_tipo_usuario(self, tipo_usuario):
+        self.tipo_usuario = tipo_usuario
+
+    def get_birthdate(self):
+        return self.birthdate
+
+    def set_birthdate(self, birthdate):
+        self.birthdate = birthdate
+
+    def get_country(self):
+        return self.country
+
+    def set_country(self, country):
+        self.country = country
+
+
 
     def userdto_to_dict(self):
         return {
-            "id": str(self.id) if self.id is not None else None,
-            "nickname": self.nickname,
-            "correo": self.correo,
-            "country": self.country,
-            "date": self.date,
             "name": self.name,
+            "username": self.username,
+            "email": self.email,
             "password": self.password,
-            "userType": self.userType
+            "tipo_usuario": self.tipo_usuario,
+            "birthdate": self.birthdate,
+            "country": self.country,
         }

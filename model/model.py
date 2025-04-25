@@ -5,8 +5,8 @@ from .dto.productoDTO import ProductosDTO, ProductoDTO
 from .dto.albumDTO import AlbumDTO, AlbumesDTO
 from .dto.artistaDTO import ArtistaDTO, ArtistasDTO
 from .dto.amigoDTO import AmigosDTO, AmigoDTO
-from .dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 from .dto.selloDTO import SelloDTO, SellosDTO
+from .dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 
 class Model ():
 
@@ -19,8 +19,8 @@ class Model ():
          self.daoAlbum = self.factory.get_albumes()
          self.daoArtista = self.factory.get_artistas()
          self.daoAmigo = self.factory.get_amigos()
-         self.daoUsuario = self.factory.get_usuarios()
          self.daoSello = self.factory.get_sellos()
+         self.daoUsuario = self.factory.get_usuarios()
 
 
      def get_canciones(self):
@@ -114,23 +114,6 @@ class Model ():
             myAmigosDTO.insertAmigo(amigo_dto)
         return myAmigosDTO.amigolist_to_json()
 
-     def get_usuarios(self):
-        myUsuariosDTO = UsuariosDTO()
-        usuarios = self.daoUsuario.get_usuarios()
-        for u in usuarios:
-            usuario_dto = UsuarioDTO()
-            usuario_dto.id = u.get_id()
-            usuario_dto.name = u.get_name()
-            usuario_dto.correo = u.get_correo()
-            usuario_dto.password = u.get_password()
-            usuario_dto.nickname = u.get_nickname()
-            usuario_dto.country = u.get_country()
-            usuario_dto.userType = u.get_userType()
-            usuario_dto.date = u.get_date()
-            usuario_dto = usuario_dto.userdto_to_dict()
-            myUsuariosDTO.insertUsuario(usuario_dto)
-        return myUsuariosDTO.userlist_to_json()
-
      def get_sellos(self):
         mySellosDTO = SellosDTO()
         sellos = self.daoSello.get_sellos()
@@ -144,3 +127,33 @@ class Model ():
             sello_dto = sello_dto.sellodto_to_dict()
             mySellosDTO.insertSello(sello_dto)
         return mySellosDTO.selloslist_to_json()
+     
+
+
+     def get_usuarios(self):
+        myUsuariosDTO = UsuariosDTO()
+        usuarios = self.daoUsuario.get_usuarios()
+        for u in usuarios:
+            usuario_dto = UsuarioDTO()
+            usuario_dto.name = u.get_name()
+            usuario_dto.username = u.get_username
+            usuario_dto.email = u.get_email()
+            usuario_dto.password = u.get_password()
+            usuario_dto.tipo_usuario = u.get_tipo_usuario()
+            usuario_dto.birthdate = u.get_birthdate()
+            usuario_dto.country = u.get_country()
+            usuario_dto = usuario_dto.userdto_to_dict()
+            myUsuariosDTO.insertUsuario(usuario_dto)
+        return myUsuariosDTO.userlist_to_json()
+     
+     def registrar_usuario(self, usuario_dto):
+        return self.daoUsuario.add_usuario(usuario_dto)
+
+     def buscar_usuario_login(self, username):
+        return self.daoUsuario.get_usuario_by_username(username)
+     
+     def buscar_usuario_register(self, username, email):
+         return self.daoUsuario.get_usuario_by_username_email(username, email)
+     
+
+     
