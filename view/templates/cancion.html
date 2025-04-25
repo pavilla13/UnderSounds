@@ -311,7 +311,7 @@
     <div class="song-details">
       <div class="song-info">
         <div class="cover-container">
-          <img src="https://www.moonmagazine.info/wp-content/uploads/2015/09/Bohemian_Rhapsody.jpg" alt="Portada de la canción" />
+          <img  id="song-cover" src="" alt="Portada de la canción" />
           <div class="cover-overlay"></div>
         </div>
         <div class="song-metadata">
@@ -369,6 +369,9 @@
       document.querySelector('#song-genre span').textContent = song.genre;
       document.querySelector('#song-duration span').textContent = song.duration;
       document.getElementById('song-lyrics-text').textContent = song.lyrics;
+      const coverImg = document.getElementById('song-cover');
+      coverImg.src = song.cover;
+      coverImg.alt = `Portada de ${song.title}`;
       document.querySelector('.play-btn').addEventListener('click', () => {
         window.open(song.urlImg, '_blank');
       });

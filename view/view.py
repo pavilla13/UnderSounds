@@ -41,10 +41,16 @@ class View():
     
 
 
-    def get_index_view(self, request: Request):
+    def get_index_view(self, request: Request, canciones, albumes, generos):
         # "user" es el diccionario que guardamos en sesión
         user = request.session.get("user")
-        return templates.TemplateResponse("index.html", {"request": request, "user": user})
+        canciones_list = json.loads(canciones)
+        albumes_list = json.loads(albumes)
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("index.html", {"request": request, "user": user, 
+                                                         "canciones": canciones_list,
+                                                        "albumes": albumes_list,
+                                                        "generos": generos_list})
     
 
 # Luego, en cualquier función:
@@ -161,10 +167,11 @@ class View():
                                                           "sellos": sellos_list,
                                                           "amigos": amigos_list})
     
-    def get_sellos_view(self, request: Request, sellos):
+    def get_sellos_view(self, request: Request, sellos, artistas):
         user = request.session.get("user")
         sellos_list = json.loads(sellos)
-        return templates.TemplateResponse("sellos.html", {"request" : request, "user": user, "sellos": sellos_list})
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("sellos.html", {"request" : request, "user": user, "sellos": sellos_list, "artistas": artistas_list})
     
     def get_subir_album_view(self, request: Request):
         user = request.session.get("user")
@@ -179,4 +186,10 @@ class View():
         productos_list = json.loads(productos)
         return templates.TemplateResponse("tienda.html", {"request" : request, "user": user, "productos": productos_list})
     
+    def get_privacidad_view(self, request: Request):
+        user = request.session.get("user")
+        return templates.TemplateResponse("privacidad.html", {"request" : request, "user": user})
     
+    def get_contacto_view(self, request: Request):
+        user = request.session.get("user")
+        return templates.TemplateResponse("contacto.html", {"request" : request, "user": user})

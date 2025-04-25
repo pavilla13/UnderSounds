@@ -135,6 +135,60 @@
       color: white;
       margin-top: 2rem;
     }
+   
+    
+    #label-content {
+      flex: 1;
+    }
+    .artista-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .artista {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
+    }
+    
+    .artista:last-child {
+      border-bottom: none;
+    }
+    
+    .artista:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .artista-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .artista-img {
+      max-width: 100px; 
+      max-height: 100px; 
+      border-radius: 12px;
+      width: auto;
+      height: auto; 
+    }
+    
+    .artista-name {
+      flex: 1;
+      font-weight: 600;
+      margin: 0 1rem;
+    }
+    
+    .artista-genre {
+      color: #777;
+    }
   </style>
 </head>
 <body>
@@ -163,25 +217,18 @@
     });
   </script>
 
-
-
-
-  <style>
-
-    #label-content {
-      flex: 1;
-    }
-  </style>
-
   <!-- Contenido principal: Sello Discográfico -->
+   <main class="content">
   <div id="label-content">
     <h1 id="label-name" class="label-name"></h1>
     <p id="label-description" class="label-description"></p>
     <img id="label-image" class="label-image" src="" alt="">
   </div>
-  
-  
-
+  <h2>Artistas</h2>
+    <ul class="artista-list" id="artista-list">
+      <li>Cargando artistas...</li>
+    </ul>
+  </main>
   <!-- Botón de Ayuda Flotante -->
   <a href="/ayuda" class="help-button" title="Ayuda">?</a>
 
@@ -207,16 +254,17 @@
   {% include "footer.html" %}
 
   <div id="data-sellos"
-       data-sellos='{{ sellos | tojson }}'>
+       data-sellos='{{ sellos | tojson }}'
+       data-artistas='{{ artistas | tojson }}'>
   </div>
 
   
-
-  <!-- Incluir los archivos necesarios -->
+  <script src="/static/js/sellos.js"></script>
+  <!-- Incluir los archivos necesarios 
   <script src="/static/js/albumes.js"></script>
   <script src="/static/js/artistas.js"></script>
-  <script src="/static/js/sellos.js"></script>
+  
   <script src="/static/js/main.js"></script>
-  <script src="/static/js/app.js"></script>
+  <script src="/static/js/app.js"></script>-->
 </body>
 </html>

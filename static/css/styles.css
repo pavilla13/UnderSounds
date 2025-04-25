@@ -65,6 +65,7 @@
   .nav-center {
     display: flex;
     align-items: center;
+    margin-left: -120px;
   }
   
   .btn-icon {
@@ -84,28 +85,47 @@
   
   .search-container {
     display: flex;
-    align-items: center;
+    align-items: stretch;    /* estira hijos a la misma altura */
+    height: 40px;            /* altura deseada */
+    border-radius: 50px;
+    overflow: hidden;
   }
   
+  /* Hijos ocupan el 100% de la altura del contenedor */
+  .search-container input[type="text"],
+  .search-container .btn-icon,
+  .search-container .search-btn {
+    height: 100%;
+    box-sizing: border-box;  /* incluye padding en la altura */
+  }
+  
+  /* Ajuste de padding sólo horizontal */
   .search-container input[type="text"] {
-    padding: 0.5rem;
+    flex: 1;
+    padding: 0 1rem;
     border: none;
-    border-radius: 50px 0 0 50px;
     outline: none;
-    width: 250px;
+    width: 700px;
   }
   
-  .search-btn {
-    padding: 0.5rem 1rem;
-    border: none;
+
+  .search-container .btn-icon,
+  .search-container .search-btn {
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: #f39c12;
     color: #fff;
+    border: none;
     cursor: pointer;
-    border-radius: 0 50px 50px 0;
-    font-size: 1rem;
     text-decoration: none;
   }
   
+  .search-btn {
+    font-size: 1rem; /* Aumenta el tamaño del icono */
+  }
+
   .nav-right .login-btn {
     background-color: #f39c12;
     color: #fff;
@@ -872,11 +892,10 @@
   .bestofs-songs .card-img,
   .album-section .card-img,
   .genres-section .card-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
+    width: 250px ;
+    height: 180px ;
+    border-radius: 8px ;
+    display: block ;
   }
   
   .music-section .card-caption,

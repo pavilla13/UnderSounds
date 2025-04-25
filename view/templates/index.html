@@ -12,22 +12,6 @@
 </head>
 
 <body>
-  <!-- Inyección del header 
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('/partials/header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>
-  -->
-
   {% include "header.html" %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -50,83 +34,34 @@
 
 
 
-  <!-- Menú de pestañas: Recientes, Best Of's, Tienda, Amigos -->
+  <!-- Menú de pestañas: Sugerencias, Best Of's, Tienda, Amigos -->
   <div class="tabs">
-    <button class="tab active" data-tab="recientes">Recientes</button>
+    <button class="tab active" data-tab="sugerencias">Sugerencias</button>
     <button class="tab" data-tab="bestofs">Best Of's</button>
     <a href="/tienda" class="tab">Tienda</a>
     <a href="/amigos" class="tab">Amigos</a>
   </div>
 
   <main class="index">
-  <!-- Sección: Recientes (visible por defecto) -->
-    <section id="recientes" class="tab-content active">
-      <h2 class="logo">Recientes</h2>
+  <!-- Sección: Sugerencias (visible por defecto) -->
+    <section id="sugerencias" class="tab-content active">
+      <h2 class="logo">Sugerencias</h2>
       <div class="music-section">
-        <!-- Canciones Recientes -->
-        <h3>Canciones Recientes</h3>
+        <!-- Canciones Sugerencias -->
+        <h3>Canciones Sugeridas</h3>
         <div class="row">
-          <a href="/cancion?id=1" class="card">
-            <img src="static/images/bohemian.jpeg" alt="Bohemian Rhapsody" class="card-img">
-            <div class="card-caption">Bohemian Rhapsody</div>
-          </a>
-          <a href="/cancion?id=2" class="card">
-            <img src="static/images/lights.jpeg" alt="Blinding Lights" class="card-img">
-            <div class="card-caption">Blinding Lights</div>
-          </a>
-          <a href="/cancion?id=3" class="card">
-            <img src="static/images/animals.jpeg" alt="Animals" class="card-img">
-            <div class="card-caption">Animals</div>
-          </a>
-          <a href="/cancion?id=4" class="card">
-            <img src="static/images/five.jpeg" alt="Take Five" class="card-img">
-            <div class="card-caption">Take Five</div>
-          </a>
         </div>
       </div>
       <div class="album-section">
-        <h3>Álbumes Recientes</h3>
+        <!-- Albumes Sugerencias -->
+        <h3>Álbumes Sugeridos</h3>
         <div class="row">
-          <a href="/album?id=1" class="card">
-            <img src="static/images/opera.jpeg" alt="A Night at the Opera" class="card-img">
-            <div class="card-caption">A Night at the Opera</div>
-          </a>
-          <a href="/album?id=6" class="card">
-            <img src="static/images/futuro.jpeg" alt="Future Nostalgia" class="card-img">
-            <div class="card-caption">Future Nostalgia</div>
-          </a>
-          <a href="/album?id=16" class="card">
-            <img src="static/images/yhlqmdlg.jpg" alt="YHLQMDLG" class="card-img">
-            <div class="card-caption">YHLQMDLG</div>
-          </a>
-          <a href="/album?id=17" class="card">
-            <img src="static/images/colores.jpg" alt="Colores" class="card-img">
-            <div class="card-caption">Colores</div>
-          </a>
         </div>
       </div>
-      
-
-      <!-- Géneros Recientes -->
+      <!-- Géneros Sugerencias -->
       <div class="genres-section">
-        <h3>Géneros Recientes</h3>
+        <h3>Géneros Sugeridos</h3>
         <div class="row">
-          <a href="/generos_especifico?id=rock" class="card">
-            <img src="static/images/rock.jpeg" alt="Rock" class="card-img">
-            <div class="card-caption">Rock</div>
-          </a>
-          <a href="/generos_especifico?id=pop" class="card">
-            <img src="static/images/pop.jpeg" alt="Pop" class="card-img">
-            <div class="card-caption">Pop</div>
-          </a>
-          <a href="/generos_especifico?id=electronica" class="card">
-            <img src="static/images/electro.jpeg" alt="Electrónica" class="card-img">
-            <div class="card-caption">Electrónica</div>
-          </a>
-          <a href="/generos_especifico?id=jazz" class="card">
-            <img src="static/images/jazz.png" alt="Jazz" class="card-img">
-            <div class="card-caption">Jazz</div>
-          </a>
         </div>
       </div>
       
@@ -210,26 +145,16 @@
   <a href="/ayuda" class="help-button" title="Ayuda">?</a>
 
 
-
-  <!-- Contenedor para insertar el footer dinámicamente 
-  <div id="footer"></div>
-
-   Script para cargar footer.html 
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>-->
-
   {% include "footer.html" %}
 
+      <!-- Datos para Sugerencias -->
+  <div id="data-sugerencias"
+  data-canciones='{{ canciones | tojson }}'
+  data-albumes='{{ albumes  | tojson }}'
+  data-generos='{{ generos  | tojson }}'>
+</div>
+<!-- Script que selecciona y renderiza al azar -->
+<script src="/static/js/index.js"></script>
 
 
   <!-- Scripts -->
@@ -238,7 +163,7 @@
 
 
 
-<!-- Cambios de pantalla entre recientes y bestof-->
+<!-- Cambios de pantalla entre sugerencias y bestof-->
 <script>
   // Esperar a que el DOM esté completamente cargado
   document.addEventListener('DOMContentLoaded', () => {
@@ -265,9 +190,9 @@
       });
     }
 
-    // Al cargar la página, detectar si hay un hash (#bestofs, #recientes, etc.)
-    // Si no hay, por defecto se muestra 'recientes'
-    const initialTab = window.location.hash.replace('#', '') || 'recientes';
+    // Al cargar la página, detectar si hay un hash (#bestofs, #sugerencias, etc.)
+    // Si no hay, por defecto se muestra 'sugerencias'
+    const initialTab = window.location.hash.replace('#', '') || 'sugerencias';
     showTab(initialTab); // Mostrar pestaña inicial
 
     // IMPORTANTE: reemplazar el hash en la URL sin hacer scroll

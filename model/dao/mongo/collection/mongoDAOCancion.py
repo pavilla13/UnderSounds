@@ -23,6 +23,7 @@ class MongoDAOCancion(InterfaceDAOCancion):
                 cancion.set_duration(doc.get('duration'))
                 cancion.set_urlImg(doc.get('url'))
                 cancion.set_lyrics(doc.get('lyrics'))
+                cancion.set_cover(doc.get('cover'))
                 canciones.append(cancion)
             return canciones
         except Exception as e:

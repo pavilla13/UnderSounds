@@ -36,6 +36,7 @@ class Model ():
             song_dto.duration = s.get_duration()  
             song_dto.urlImg = s.get_urlImg()  
             song_dto.lyrics = s.get_lyrics() 
+            song_dto.cover = s.get_cover()
             song_dto = song_dto.songdto_to_dict()
             mySongsDTO.insertSong(song_dto)  # Agregar la canción a la lista
         return mySongsDTO.songlist_to_json()

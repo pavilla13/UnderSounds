@@ -105,7 +105,10 @@ async def logout(request: Request):
 # RUTA: Página principal (requiere saber si está logueado)
 @app.get("/")
 async def index(request: Request):
-    return view.get_index_view(request)
+    canciones = model.get_canciones()
+    albumes = model.get_albumes()
+    generos = model.get_generos()
+    return view.get_index_view(request, canciones, albumes, generos)
 
 
 
@@ -182,10 +185,6 @@ async def producto(request: Request):
     productos = model.get_productos()
     return view.get_producto_view(request, productos)
 
-#@app.get("/producto")
-#def producto(request: Request, id: int):
- #   return view.get_producto_view(request, id)
-
 @app.get("/recover")
 async def recover(request: Request):
     return view.get_recover_view(request)
@@ -207,7 +206,8 @@ async def search(request: Request):
 @app.get("/sellos")
 async def sellos(request: Request):
     sellos = model.get_sellos()
-    return view.get_sellos_view(request, sellos)
+    artistas = model.get_artistas()
+    return view.get_sellos_view(request, sellos, artistas)
 
 @app.get("/subir_album")
 async def subir_album(request: Request):
@@ -221,5 +221,13 @@ async def terminos(request: Request):
 async def tienda(request: Request):
     productos = model.get_productos()
     return view.get_tienda_view(request, productos)
+
+@app.get("/privacidad")
+async def privacidad(request: Request):
+    return view.get_privacidad_view(request)
+
+@app.get("/contacto")
+async def contacto(request: Request):
+    return view.get_contacto_view(request)
 
 
