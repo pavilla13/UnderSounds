@@ -18,3 +18,7 @@ class InterfaceDAOUsuario(ABC):
     @abstractmethod
     def get_usuario_by_username_email(self, username, email):
         pass
+
+    @abstractmethod
+    def actualizar_usuario(self, user_id, nuevos_datos):
+        pass

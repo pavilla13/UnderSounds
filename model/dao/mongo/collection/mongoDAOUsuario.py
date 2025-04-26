@@ -1,6 +1,7 @@
 from ....dto.usuarioDTO import UsuarioDTO
 from ...interfaceDAOUsuario import InterfaceDAOUsuario
 from typing import List
+from bson import ObjectId
 
 class MongoDAOUsuario(InterfaceDAOUsuario):
 
@@ -40,3 +41,9 @@ class MongoDAOUsuario(InterfaceDAOUsuario):
         return self.collection.find_one({
             "$or": [{"username": username}, {"email": email}]
         })
+    
+    def actualizar_usuario(self, user_id, nuevos_datos):
+        return self.collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {"$set": nuevos_datos}
+        )

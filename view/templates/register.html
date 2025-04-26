@@ -35,6 +35,15 @@
       <p style="color:red;">{{ error }}</p>
     {% endif %}
 
+    <!-- Mostrar mensaje de éxito si existe -->
+    {% if success_message %}
+      <script>
+        // Muestra la alerta si existe el mensaje de éxito
+        alert('{{ success_message }}');
+        window.location.href = '/login';  
+      </script>
+    {% endif %}
+
     <!-- Formulario de registro -->
     <form id="registerForm" class="form" method="post">
       <!-- Campo: Nombre completo -->
@@ -143,14 +152,6 @@
     });
   </script>
   
-  <!-- Script para mostrar un mensaje de éxito al registrar -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("registro") === "exito") {
-      alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-      window.location.href = '/login'; // Redirige a la página de login
-    }
-  </script>
 
   <!-- Incluir el script principal de la aplicación -->
   <script src="/static/js/main.js"></script>

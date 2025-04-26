@@ -134,6 +134,9 @@ class Model ():
      
 
 
+
+
+
      def get_usuarios(self):
         myUsuariosDTO = UsuariosDTO()
         usuarios = self.daoUsuario.get_usuarios()
@@ -158,6 +161,9 @@ class Model ():
      
      def buscar_usuario_register(self, username, email):
          return self.daoUsuario.get_usuario_by_username_email(username, email)
+     
+     def actualizar_usuario(self, user_id, nuevos_datos):
+         return self.daoUsuario.actualizar_usuario(user_id, nuevos_datos)
      
 
      

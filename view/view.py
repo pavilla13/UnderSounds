@@ -16,12 +16,13 @@ class View():
     def get_register_view(self, request: Request):
         return templates.TemplateResponse("register.html", {"request": request}) 
     
-    def render_register(self, request: Request, error: str = "", name: str = "", username: str = "",
+    def render_register(self, request: Request, error: str = "", success_message: str = "", name: str = "", username: str = "",
         email: str = "", birthdate: str = ""
     ):
         return templates.TemplateResponse("register.html", {
             "request": request,
             "error": error,
+            "success_message": success_message,
             "name": name,
             "username": username,
             "email": email,
@@ -37,6 +38,20 @@ class View():
         return templates.TemplateResponse("login.html", {
             "request": request,
             "error": error
+        })
+    
+
+
+    def get_edit_perfil_view(self, request: Request):
+        user = request.session.get("user")
+        return templates.TemplateResponse("edit_perfil.html", {"request" : request, "user": user})
+    
+    def render_edit_profile(self, request: Request, user: dict, error: str = "", success_message: str = ""):
+        return templates.TemplateResponse("edit_perfil.html", {
+            "request": request,
+            "user": user,
+            "error": error,  # Aquí pasas el mensaje de error, si lo hay
+            "success_message": success_message  # Aquí pasas el mensaje de éxito, si lo hay
         })
     
 
@@ -97,9 +112,6 @@ class View():
         user = request.session.get("user")
         return templates.TemplateResponse("checkout.html", {"request" : request, "user": user})
     
-    def get_edit_perfil_view(self, request: Request):
-        user = request.session.get("user")
-        return templates.TemplateResponse("edit_perfil.html", {"request" : request, "user": user})
     
     def get_favoritos_view(self, request: Request):
         user = request.session.get("user")

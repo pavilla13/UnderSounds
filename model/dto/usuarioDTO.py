@@ -32,6 +32,7 @@ class UsuarioDTO():
         self.tipo_usuario = tipo_usuario
         self.birthdate = birthdate
         self.country = country
+        self.profilePic = "/static/images/profile.png"  # Siempre imagen por defecto
 
     def is_Empty(self):
         return (self.name is None and self.username is None and
@@ -92,4 +93,5 @@ class UsuarioDTO():
             "tipo_usuario": self.tipo_usuario,
             "birthdate": self.birthdate,
             "country": self.country,
+            "profilePic": self.profilePic
         }

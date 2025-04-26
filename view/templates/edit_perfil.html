@@ -43,20 +43,34 @@
   <!-- Contenido principal: Editar Perfil -->
   <main class="content edit-profile-page">
     <h2 class="logo">Editar Perfil</h2>
-    <form id="profileForm" class="form" enctype="multipart/form-data">
+
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Mostrar mensaje de éxito si existe -->
+    {% if success_message %}
+      <script>
+        // Muestra la alerta si existe el mensaje de éxito
+        alert('{{ success_message }}');
+        window.location.href = '/';  
+      </script>
+    {% endif %}
+
+    <form id="profileForm" class="form" action="/editar_perfil" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="firstName">Nombre completo:</label>
-        <input type="text" id="firstName" name="firstName" required>
+        <input type="text" id="firstName" name="firstName" placeholder="{{ user.name }}" >
       </div>
       
       <div class="form-group">
         <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder="{{ user.email }}" >
       </div>
       
       <div class="form-group">
         <label for="username">Nombre de usuario:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" placeholder="{{ user.username }}" >
       </div>
       
       <div class="form-group">
@@ -95,8 +109,7 @@
         
         <span id="passwordError" style="color: red;"></span>
 
-      
-        <a href="/" class="edit-btn">Guardar cambios</a>
+        <button type="submit" class="edit-btn">Guardar cambios</button>
     </form>
   </main>
 
