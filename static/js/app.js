@@ -38,6 +38,18 @@ if (holder) {
   
   // Función para añadir producto al carrito
   function addToCart(id) {
+    const userData = document.getElementById('data-usuario');
+    const userJson = userData ? userData.getAttribute('data-usuario') : '{}';
+    const user = JSON.parse(userJson);
+  
+    if (!user|| !user.username) {
+      showNotification("Debes iniciar sesión para añadir productos al carrito.");
+      setTimeout(() => {
+        window.location.href = "/login"; // Redirigir si no hay usuario logueado
+      }, 2000);
+      return;
+    }
+
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = productCatalog[id];
     if (!product) return;
@@ -105,6 +117,18 @@ if (holder) {
   
   // Función para añadir o quitar de favoritos
   function toggleFavorite(id) {
+    const userData = document.getElementById('data-usuario');
+    const userJson = userData ? userData.getAttribute('data-usuario') : '{}';
+    const user = JSON.parse(userJson);
+  
+    if (!user|| !user.username) {
+      showNotification("Debes iniciar sesión para añadir productos a favoritos.");
+      setTimeout(() => {
+        window.location.href = "/login"; // Redirigir si no hay usuario logueado
+      }, 2000);
+      return;
+    }
+
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const product = productCatalog[id];
     if (!product) return;

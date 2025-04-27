@@ -105,6 +105,13 @@
   <div id="data-productos"
    data-productos='{{ productos | tojson }}'>
   </div>
+
+  <!-- Inyectar si el usuario está logueado -->
+  {% if user %}
+    <div id="data-usuario" data-usuario='{{ user | tojson }}'></div>
+  {% else %}
+    <div id="data-usuario" data-usuario='{}'></div>
+  {% endif %}
  
 
   <!-- Carga del archivo JS con la funcionalidad -->
