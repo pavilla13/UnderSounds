@@ -10,6 +10,7 @@ from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
 from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
+import os
 
 
 app = FastAPI()
@@ -154,17 +155,15 @@ async def editar_perfil(
             return view.render_edit_profile(request, user, error="El nombre de usuario ya está en uso.")
         user["username"] = username
 
-    # guardar la imagen (profilePic) 
-    #if profilePic:
-     #   image_bytes = await profilePic.read()  # <- Así tienes el contenido en binario
-      #  user["profilePic"] = image_bytes  # Lo guardas directamente en MongoDB
 
-    if profilePic:
+    if profilePic and profilePic.filename:
+        # Asegurar que la carpeta existe
+        os.makedirs("static/images", exist_ok=True)
         # Guardamos el archivo en el directorio 'static/images/'
         file_location = f"static/images/{profilePic.filename}"
         with open(file_location, "wb") as f:
-            f.write(await profilePic.read())  # Guardamos el archivo en el disco
-        user["profilePic"] = file_location  # Guarda la ruta del archivo en la base de datos
+            f.write(await profilePic.read()) # Guardamos el archivo en el disco
+        user["profilePic"] = file_location # Guarda la ruta del archivo en la base de datos
 
     model.actualizar_usuario(user["_id"], user)
        
@@ -211,7 +210,8 @@ async def amigos(request: Request):
 @app.get("/artistas")
 async def artistas(request: Request):
     artistas = model.get_artistas()
-    return view.get_artistas_view(request, artistas)
+    canciones = model.get_canciones()
+    return view.get_artistas_view(request, artistas, canciones)
 
 @app.get("/ayuda")
 async def ayuda(request: Request):

@@ -82,7 +82,11 @@ class UsuarioDTO():
     def set_country(self, country):
         self.country = country
 
-
+    def get_profilePic(self):
+        return self.profilePic
+    
+    def set_profilePic(self, profilePic):
+        self.profilePic = profilePic
 
     def userdto_to_dict(self):
         return {

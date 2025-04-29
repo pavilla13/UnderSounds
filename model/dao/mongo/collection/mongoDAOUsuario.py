@@ -22,6 +22,7 @@ class MongoDAOUsuario(InterfaceDAOUsuario):
                 usuario.tipo_usuario = doc.get('tipo_usuario')
                 usuario.birthdate = doc.get('birthdate')
                 usuario.country = doc.get('country')
+                usuario.profilePic = doc.get('profilePic')
                
                 usuarios.append(usuario)
             return usuarios

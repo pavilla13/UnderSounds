@@ -94,10 +94,11 @@ class View():
         user = request.session.get("user")
         return templates.TemplateResponse("amigos.html", {"request" : request, "user": user})
     
-    def get_artistas_view(self, request: Request, artistas):
+    def get_artistas_view(self, request: Request, artistas, canciones):
         user = request.session.get("user")
         artistas_list = json.loads(artistas)
-        return templates.TemplateResponse("artistas.html", {"request" : request, "user": user, "artistas": artistas_list})
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("artistas.html", {"request" : request, "user": user, "artistas": artistas_list, "canciones": canciones_list})
     
     def get_ayuda_view(self, request: Request):
         user = request.session.get("user")

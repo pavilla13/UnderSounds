@@ -149,8 +149,9 @@ class Model ():
             usuario_dto.tipo_usuario = u.get_tipo_usuario()
             usuario_dto.birthdate = u.get_birthdate()
             usuario_dto.country = u.get_country()
+            usuario_dto.profilePic = u.get_profilePic()
             usuario_dto = usuario_dto.userdto_to_dict()
-            myUsuariosDTO.insertUsuario(usuario_dto)
+            myUsuariosDTO.insertUser(usuario_dto)
         return myUsuariosDTO.userlist_to_json()
      
      def registrar_usuario(self, usuario_dto):
