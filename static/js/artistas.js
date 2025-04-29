@@ -3,8 +3,10 @@
 
 const holder = document.getElementById("data-artistas");
 let artistas = [];
+let canciones = [];
 if (holder) {
   artistas = JSON.parse(holder.dataset.artistas);
+  canciones = JSON.parse(holder.dataset.canciones);
 }
 
 console.log(artistas);
@@ -53,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         imageEl.src = artist.image;
         imageEl.alt = artist.name;
       }
+
+      cargarCancionesPorArtista(artist.name);
+
     } else {
       const content = document.getElementById("artist-content");
       if (content) {
@@ -61,3 +66,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+
+
+
+
+function cargarCancionesPorArtista(artistName) {
+  const songsContainer = document.getElementById("songs-container");
+  if (!songsContainer) return;
+  songsContainer.innerHTML = "";
+
+  // Filtrar canciones por el nombre del artista
+  const songsByArtist = canciones.filter(
+    song => song.artistName.toLowerCase() === artistName.toLowerCase()
+  );
+
+  if (songsByArtist.length === 0) {
+    songsContainer.innerHTML = "<p>Este artista no tiene canciones disponibles.</p>";
+    return;
+  }
+
+  // Crear la lista UL
+  const trackList = document.createElement("ul");
+  trackList.classList.add("track-list");
+
+  songsByArtist.forEach((song) => {
+    const li = document.createElement("li");
+    li.className = "track";
+
+    const a = document.createElement("a");
+    a.href = `/cancion?id=${song.id}`;
+    a.className = "track-link";
+
+    const img = document.createElement("img");
+    img.src = song.cover;
+    img.alt = song.title;
+    img.className = "track-img";
+
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "track-title";
+    titleSpan.textContent = song.title;
+
+    const durationSpan = document.createElement("span");
+    durationSpan.className = "track-duration";
+    durationSpan.textContent = song.duration;
+
+    a.append(img, titleSpan, durationSpan);
+    li.appendChild(a);
+    trackList.appendChild(li);
+  });
+
+  songsContainer.appendChild(trackList);
+}

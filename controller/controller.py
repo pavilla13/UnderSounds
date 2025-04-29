@@ -211,7 +211,8 @@ async def amigos(request: Request):
 @app.get("/artistas")
 async def artistas(request: Request):
     artistas = model.get_artistas()
-    return view.get_artistas_view(request, artistas)
+    canciones = model.get_canciones()
+    return view.get_artistas_view(request, artistas, canciones)
 
 @app.get("/ayuda")
 async def ayuda(request: Request):
