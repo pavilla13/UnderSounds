@@ -48,6 +48,18 @@ class InterfaceDAOFactory(ABC):
     @abstractmethod
     def get_usuarios(self):
         pass
+    
+    @abstractmethod
+    def create_calbum(self):
+        pass
+    
+    @abstractmethod
+    def update_album(self):
+        pass
+    
+    @abstractmethod
+    def delete_album(self):
+        pass
 
 
 

@@ -22,15 +22,18 @@ class AlbumesDTO():
 
 
 class AlbumDTO():
-    def __init__(self):
-        self.id = None
-        self.name = None
-        self.artist = None
-        self.genre = None
-        self.description = None
-        self.image = None
-        self.url = None
-        self.valoracion = None  
+        
+    def __init__(self, id, name, artist, genre, description, image, url, valoracion):
+        self.id = id
+        self.name = name
+        self.artist = artist
+        self.genre = genre
+        self.description = description
+        if(image==""):
+            self.image = "https://img.freepik.com/fotos-premium/ilustracion-3d-producto-vinilo-portada-album-papel-tapiz-negro_531600-222.jpg"
+        else: self.image=image       
+        self.url = url
+        self.valoracion = valoracion
 
     def is_Empty(self):
         return (self.id is None and self.name is None and self.artist is None and
@@ -87,7 +90,7 @@ class AlbumDTO():
 
     def albumdto_to_dict(self):
         return {
-            "id": str(self.id) if self.id is not None else None,
+            "id": self.id if self.id is not None else None,
             "name": self.name,
             "artist": self.artist,
             "genre": self.genre,

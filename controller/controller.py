@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form, UploadFile, File
+from fastapi import FastAPI, Request, Form, UploadFile, File, HTTPException
 from fastapi.staticfiles import StaticFiles
 from model import model
 from model.model import Model
@@ -10,7 +10,9 @@ from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
 from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
+from model.dto.albumDTO import AlbumDTO
 import os
+import json
 
 
 app = FastAPI()
@@ -197,7 +199,8 @@ async def album(request: Request):
 
 @app.get("/albumes_subidos")
 async def albumes_subidos(request: Request):
-    return view.get_albumes_subidos_view(request)
+    albumes = model.get_albumes()
+    return view.get_albumes_subidos_view(request, albumes)
 
 @app.get("/amigoLista")
 async def amigoLista(request: Request):
@@ -211,7 +214,8 @@ async def amigos(request: Request):
 async def artistas(request: Request):
     artistas = model.get_artistas()
     canciones = model.get_canciones()
-    return view.get_artistas_view(request, artistas, canciones)
+    albumes = model.get_albumes()
+    return view.get_artistas_view(request, artistas, canciones, albumes)
 
 @app.get("/ayuda")
 async def ayuda(request: Request):
@@ -285,6 +289,89 @@ async def sellos(request: Request):
 @app.get("/subir_album")
 async def subir_album(request: Request):
     return view.get_subir_album_view(request)
+
+@app.post("/subir_album")
+async def subir_album_post(
+    request: Request,
+    nombre: str = Form(...),
+    descripcion: str = Form(...),
+    genero: str = Form(...),
+    portada: str = Form(...)):
+    
+    session_user = request.session.get("user")
+    
+    artista = session_user["username"]
+    
+    import random
+    numero = random.randint(1, 5)
+    
+    albumes = model.get_albumes()
+    albums_list = json.loads(albumes)
+    ultimo_album = albums_list[-1]
+    ultimo_id = ultimo_album['id']
+    
+    idAlbum = int(ultimo_id) + 1
+    
+    url = "/album?id="+str(idAlbum)
+    
+    album = AlbumDTO(idAlbum, nombre, artista, genero, descripcion, portada, url, numero)
+    
+    model.create_album(album)
+    return RedirectResponse("/albumes_subidos", status_code=303)
+    
+@app.get("/actualizar_album")    
+async def actualizar_album(request: Request):
+    albumes = model.get_albumes()
+    return view.get_actualizar_album_view(request, albumes)
+
+@app.post("/actualizar_album")
+async def actualizar_album(request: Request, id: int, 
+                            nombre: str = Form(None),
+                            descripcion: str = Form(None),
+                            genero: str = Form(None),
+                            portada: str = Form(None)):
+    # Obtener el álbum existente
+    albumes = model.get_albumes()
+    albums_list = json.loads(albumes)
+    
+    album = next((a for a in albums_list if a["id"] == id), None)
+    if not album:
+        raise HTTPException(status_code=404, detail="Álbum no encontrado")
+    
+    if nombre != "":
+        album["name"] = nombre
+    if descripcion != "":
+        album["description"] = descripcion
+    if genero != "":
+        album["genre"] = genero
+    if portada != "":
+        album["image"] = portada
+    
+    # Crear un nuevo objeto AlbumDTO con los datos actualizados
+    updated_album = AlbumDTO(id, 
+                             album["name"], 
+                             album["artist"], 
+                             album["genre"], 
+                             album["description"],
+                             album["image"], 
+                             album["url"],
+                             album["valoracion"])
+    
+    # Guardar el álbum actualizado en la base de datos
+    model.update_album(updated_album)
+    
+    return RedirectResponse("/albumes_subidos", status_code=303)
+
+@app.get("/eliminar_album")
+async def eliminar_album(request: Request):
+    albumes = model.get_albumes()
+    return view.get_eliminar_album_view(request, albumes)
+
+@app.post("/eliminar_album")
+async def eliminar_album_post(request: Request, id: int = Form(...)):
+    # Asumimos que model.delete_album existe y borra por id
+    model.delete_album(id)
+    return RedirectResponse("/albumes_subidos", status_code=303)
 
 @app.get("/terminos")
 async def terminos(request: Request):

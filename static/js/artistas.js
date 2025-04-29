@@ -4,9 +4,11 @@
 const holder = document.getElementById("data-artistas");
 let artistas = [];
 let canciones = [];
+let albumes = [];
 if (holder) {
   artistas = JSON.parse(holder.dataset.artistas);
   canciones = JSON.parse(holder.dataset.canciones);
+  albumes = JSON.parse(holder.dataset.albumes);
 }
 
 console.log(artistas);
@@ -57,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       cargarCancionesPorArtista(artist.name);
+      cargarAlbumesPorArtista(artist.name);
 
     } else {
       const content = document.getElementById("artist-content");
@@ -78,7 +81,7 @@ function cargarCancionesPorArtista(artistName) {
 
   // Filtrar canciones por el nombre del artista
   const songsByArtist = canciones.filter(
-    song => song.artistName.toLowerCase() === artistName.toLowerCase()
+    song => song.artist.toLowerCase() === artistName.toLowerCase()
   );
 
   if (songsByArtist.length === 0) {
@@ -117,4 +120,52 @@ function cargarCancionesPorArtista(artistName) {
   });
 
   songsContainer.appendChild(trackList);
+}
+
+function cargarAlbumesPorArtista(artistName) {
+  const albumsContainer = document.getElementById("albums-container");
+  if (!albumsContainer) return;
+  albumsContainer.innerHTML = "";
+
+  // Filtrar canciones por el nombre del artista
+  const albumsByArtist = albumes.filter(
+    album => album.artist.toLowerCase() === artistName.toLowerCase()
+  );
+
+  if (albumsByArtist.length === 0) {
+    albumsContainer.innerHTML = "<p>Este artista no tiene albumes disponibles.</p>";
+    return;
+  }
+
+  // Crear la lista UL
+  const albumlist = document.createElement("ul");
+  albumlist.classList.add("track-list");
+
+  albumsByArtist.forEach((album) => {
+    const li = document.createElement("li");
+    li.className = "track";
+
+    const a = document.createElement("a");
+    a.href = `/album?id=${album.id}`;
+    a.className = "track-link";
+
+    const img = document.createElement("img");
+    img.src = album.image;
+    img.alt = album.name;
+    img.className = "track-img";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "track-title";
+    nameSpan.textContent = album.name;
+
+    const genreSpan = document.createElement("span");
+    genreSpan.className = "track-duration";
+    genreSpan.textContent = album.genre;
+
+    a.append(img, nameSpan, genreSpan);
+    li.appendChild(a);
+    albumlist.appendChild(li);
+  });
+
+  albumsContainer.appendChild(albumlist);
 }

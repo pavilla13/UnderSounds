@@ -60,6 +60,63 @@
       gap: 1.5rem;
       margin: 1.5rem 0;
     }
+
+    #songs-container {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .track-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem auto;    /* auto a los lados centra */
+      width: 80%;           /* ajústalo al % que quieras */
+      max-width: 600px;     /* opcional */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .track {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
+    }
+    
+    .track:last-child {
+      border-bottom: none;
+    }
+    
+    .track:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .track-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .track-img {
+      max-width: 100px; 
+      max-height: 100px; 
+      border-radius: 12px;
+      width: auto;
+      height: auto; 
+    }
+    
+    .track-title {
+      flex: 1;
+      font-weight: 600;
+      margin: 0 1rem;
+    }
+    
+    .track-duration {
+      color: #777;
+    }
   </style>
 </head>
 <body>
@@ -81,10 +138,15 @@
       <p id="artist-description" class="artist-description"></p>
     </div>
 
-      <section style="margin-bottom: 50px;">
-        <h2 style="text-align: center;">Canciones de este artista</h2>
-        <div id="songs-container" class="songs-container"></div>
-      </section>
+    <section style="margin-bottom: 50px;">
+      <h2 style="text-align: center;">Canciones de este artista</h2>
+      <div id="songs-container" class="songs-container"></div>
+    </section>
+
+    <section style="margin-bottom: 50px;">
+      <h2 style="text-align: center;">Albumes de este artista</h2>
+      <div id="albums-container" class="songs-container"></div>
+    </section>
     
   </main>
 
@@ -97,7 +159,8 @@
 
   <div id="data-artistas"
        data-artistas='{{ artistas | tojson }}'
-       data-canciones='{{ canciones | tojson }}'>
+       data-canciones='{{ canciones | tojson }}'
+       data-albumes='{{ albumes | tojson }}'>
   </div>
   <script src="/static/js/artistas.js"></script>
 </body>

@@ -8,10 +8,12 @@ const holder = document.getElementById("data-albumes");
 let albumes = [];
 let tracklist = [];
 let artistas = []
+let user = [];
 if (holder) {
   albumes = JSON.parse(holder.dataset.albumes);
   tracklist = JSON.parse(holder.dataset.tracklist);
   artistas = JSON.parse(holder.dataset.artistas);
+  user = JSON.parse(holder.dataset.user);
 }
 
 // ----------------------
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const albumId = urlParams.get("id");
   if (albumId) {
-    const album = albumes.find(a => a.id === albumId);
+    const album = albumes.find(a => a.id === parseInt(albumId));
     if (album) {
       // Actualizar información básica del álbum
       const nameEl = document.getElementById("album-name");
@@ -124,9 +126,19 @@ document.addEventListener("DOMContentLoaded", () => {
           trackList.innerHTML = "<li>No hay pistas disponibles para este álbum</li>";
         }
         const art = artistas.find(a => a.name === album.artist);
-        if (art) {
-          const btn = document.getElementById("artist-link");
-          btn && (btn.href = `/artistas?id=${art.id}`);
+        const container = document.querySelector(".artist-link");
+        const usuario = user[0];
+        console.log(usuario)
+        if (usuario.tipo_usuario === "artist" && album.artist === usuario.username) {
+            container.innerHTML = `
+              <a href="/actualizar_album?id=${album.id}" class="btn">
+                ACTUALIZAR ÁLBUM
+              </a>`;
+        } else {
+          container.innerHTML = `
+            <a href="/artistas?id=${art.id}" class="btn">
+              IR AL ARTISTA
+            </a>`;
         }
       }
     } else {

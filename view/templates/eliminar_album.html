@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Eliminar Álbum</title>
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Enlace al CSS principal -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+  
+  <!-- Estilos específicos para la página de eliminar álbum -->
+  <style>
+    .eliminar-album {
+      padding: 4rem 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .eliminar-album h2.logo {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .eliminar-album h2.logo:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: #2563eb;
+    }
+    
+    .select-album {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .select-album label {
+      display: block;
+      margin: 0.75rem 0 0.25rem;
+      font-weight: 500;
+      color: #4b5563;
+    }
+    
+    .select-album select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
+      background-color: #fff;
+    }
+    
+    .select-album select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-danger {
+      background-color: #ef4444;
+      color: #fff;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: background-color 0.3s, transform 0.2s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .btn-danger:hover {
+      background-color: #dc2626;
+      transform: translateY(-2px);
+    }
+    
+    /* Estilo para la alerta de éxito */
+    .alert-success {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: #2563eb;  
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .alert-success.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+  <main class="content eliminar-album">
+    <h2 class="logo">Eliminar Álbum</h2>
+
+    <form method="post" action="/eliminar_album" class="select-album form" id="AlbumForm">
+      <label for="albumSelect">Seleccione un álbum:</label>
+      <select id="albumSelect" name="id" required>
+        <option value="" disabled selected>— Elija uno —</option>
+        {% for album in albumes|selectattr("artist", "equalto", user.username) %}
+          <option value="{{ album.id }}">{{ album.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    
+    <!-- Alerta de éxito -->
+    <div id="successAlert" class="alert-success">
+      Álbum eliminado correctamente!
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const albumForm = document.getElementById("AlbumForm");
+      const successDiv = document.getElementById("successAlert");
+    
+      albumForm.addEventListener("submit", (e) => {
+        e.preventDefault();                      
+        successDiv.classList.add("show");
+        setTimeout(() => {
+          successDiv.classList.remove("show");
+          albumForm.submit();                
+        }, 1000);
+      });
+    });
+  </script>
+
+  {% include "footer.html" %}
+</body>
+</html>

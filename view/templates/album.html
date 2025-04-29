@@ -209,9 +209,7 @@
     </ul>
 
     <!-- Botón para ir al artista -->
-    <div class="artist-link">
-      <a href="/artistas" id="artist-link" class="btn">IR AL ARTISTA</a>
-    </div>
+    <div class="artist-link"></div>
   </main>
 
   <!-- Botón de Ayuda Flotante -->
@@ -222,7 +220,8 @@
   <div id="data-albumes"
        data-albumes='{{ albumes | tojson }}'
        data-tracklist='{{ tracklist | tojson }}'
-       data-artistas='{{ artistas | tojson }}'>
+       data-artistas='{{ artistas | tojson }}'
+       data-user='[{{ user | tojson }}]'>
   </div>
 
 

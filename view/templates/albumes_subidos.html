@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UnderSounds - Albumes subidos</title>
+  <title>UnderSounds - Álbumes subidos</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/styles.css">
+
+  <style>
+    /* Separa el botón de los álbumes y lo centra */
+    .content.genres-page .form-group {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+
 </head>
 <body>
-
 
   {% include "header.html" %}
   <script>
@@ -18,18 +26,57 @@
     });
   </script>
 
+  
+
+  <main class="content genres-page">
+    <h2>Albumes Subidos</h2>
+    <div class="genres-container"></div>
+
+    <div class="form-group">
+      <a href="/subir_album" class="edit-btn">Subir álbum</a>
+    </div>
+
+    <div class="form-group">
+      <a href="/eliminar_album" class="edit-btn">Eliminar álbum</a>
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+  <script>
+
+    const albumesTotal = {{ albumes|tojson }};
+    const user = {{ user|tojson }};
+    const albumes = albumesTotal.filter(
+      album => album.artist.toLowerCase() === user.username.toLowerCase()
+    );
 
 
-
-
-
-
-
-
-
-
-
-{% include "footer.html" %}
+    document.addEventListener("DOMContentLoaded", () => {
+      const albumContainer = document.querySelector('.genres-container');
+      if (albumContainer) {
+        albumContainer.innerHTML = "";
+        albumes.forEach((album) => {
+          const card = document.createElement("a");
+          card.href = `/album?id=${album.id}`;
+          card.classList.add("card");
+    
+          const img = document.createElement("img");
+          img.src = album.image;
+          img.alt = album.name;
+          img.classList.add("card-img");
+    
+          const caption = document.createElement("div");
+          caption.classList.add("card-caption");
+          caption.textContent = album.name;
+    
+          card.appendChild(img);
+          card.appendChild(caption);
+          albumContainer.appendChild(card);
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>

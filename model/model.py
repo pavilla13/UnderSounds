@@ -76,15 +76,15 @@ class Model ():
         myAlbumsDTO = AlbumesDTO()
         albums = self.daoAlbum.get_albumes()
         for a in albums:
-            album_dto = AlbumDTO()
-            album_dto.id = a.get_id()
-            album_dto.artist = a.get_artist()
-            album_dto.name = a.get_name()
-            album_dto.genre = a.get_genre()
-            album_dto.description = a.get_description()
-            album_dto.image = a.get_image()
-            album_dto.url = a.get_url()
-            album_dto.valoracion = a.get_valoracion()
+            album_dto = AlbumDTO(a.get_id(), 
+                                 a.get_name(), 
+                                 a.get_artist(), 
+                                 a.get_genre(), 
+                                 a.get_description(), 
+                                 a.get_image(), 
+                                 a.get_url(),
+                                 a.get_valoracion())
+            
             album_dto = album_dto.albumdto_to_dict()
             myAlbumsDTO.insertAlbum(album_dto)
         return myAlbumsDTO.albumlist_to_json()
@@ -166,5 +166,13 @@ class Model ():
      def actualizar_usuario(self, user_id, nuevos_datos):
          return self.daoUsuario.actualizar_usuario(user_id, nuevos_datos)
      
+     def create_album(self, album_dto):
+         return self.daoAlbum.add_album(album_dto)
+     
+     def update_album(self, nuevos_datos):
+         return self.daoAlbum.update_album(nuevos_datos)
+     
+     def delete_album(self, album_id):
+         return self.daoAlbum.delete_album(album_id)
 
      

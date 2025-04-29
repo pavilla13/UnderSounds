@@ -82,9 +82,10 @@ class View():
                                                          "tracklist": tracklist_list, 
                                                          "artistas": artistas_list})
     
-    def get_albumes_subidos_view(self, request: Request):
+    def get_albumes_subidos_view(self, request: Request, albumes):
         user = request.session.get("user")
-        return templates.TemplateResponse("albumes_subidos.html", {"request" : request, "user": user })
+        albumes_list = json.loads(albumes)
+        return templates.TemplateResponse("albumes_subidos.html", {"request" : request, "user": user , "albumes": albumes_list})
     
     def get_amigoLista_view(self, request: Request):
         user = request.session.get("user")
@@ -94,11 +95,15 @@ class View():
         user = request.session.get("user")
         return templates.TemplateResponse("amigos.html", {"request" : request, "user": user})
     
-    def get_artistas_view(self, request: Request, artistas, canciones):
+    def get_artistas_view(self, request: Request, artistas, canciones, albumes):
         user = request.session.get("user")
         artistas_list = json.loads(artistas)
         canciones_list = json.loads(canciones)
-        return templates.TemplateResponse("artistas.html", {"request" : request, "user": user, "artistas": artistas_list, "canciones": canciones_list})
+        albumes_list = json.loads(albumes)
+        return templates.TemplateResponse("artistas.html", {"request" : request, "user": user,
+                                                            "artistas": artistas_list,
+                                                            "canciones": canciones_list,
+                                                            "albumes": albumes_list})
     
     def get_ayuda_view(self, request: Request):
         user = request.session.get("user")
@@ -191,6 +196,10 @@ class View():
         user = request.session.get("user")
         return templates.TemplateResponse("subir_album.html", {"request" : request, "user": user})
     
+    def get_actualizar_album_view(self, request: Request, albumes):
+        user = request.session.get("user")
+        return templates.TemplateResponse("actualizar_album.html", {"request" : request, "user": user})
+    
     def get_terminos_view(self, request: Request):
         user = request.session.get("user")
         return templates.TemplateResponse("terminos.html", {"request" : request, "user": user})
@@ -203,3 +212,19 @@ class View():
     def get_privacidad_view(self, request: Request):
         user = request.session.get("user")
         return templates.TemplateResponse("privacidad.html", {"request" : request, "user": user})
+    
+    def render_subir_album(self, request: Request, error: str = "", success_message: str = "", nombre: str = "", descripcion: str = "",
+        genero: str = "", portada: str = ""):
+        return templates.TemplateResponse("subir_album.html", {
+            "request": request,
+            "error": error,
+            "success_message": success_message,
+            "nombre": nombre,
+            "descripcion": descripcion,
+            "genero": genero,
+            "portada": portada})
+        
+    def get_eliminar_album_view(self, request: Request, albumes):
+        user = request.session.get("user")
+        albumes_list = json.loads(albumes)
+        return templates.TemplateResponse("eliminar_album.html", {"request" : request, "user": user, "albumes": albumes_list})
