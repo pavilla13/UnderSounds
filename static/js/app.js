@@ -7,19 +7,10 @@ if (holder) {
   
 }
 
-// const holder2 = document.getElementById("data-search");
-// let canciones = [];
-// let artistas = [];
-// let albumes = [];
-// let sellos = [];
-// let amigos = [];
-// if (holder2) {
-//   canciones = JSON.parse(holder2.dataset.canciones);
-//   artistas = JSON.parse(holder2.dataset.artistas);
-//   albumes = JSON.parse(holder2.dataset.albumes);
-//   sellos = JSON.parse(holder2.dataset.sellos);
-//   amigos = JSON.parse(holder2.dataset.amigos);
-// }
+const holder2 = document.getElementById("data-checkout");
+if (holder2) {
+  productCatalog = JSON.parse(holder2.dataset.checkout);
+}
   
   // Función para mostrar notificaciones en la parte superior
   function showNotification(message) {

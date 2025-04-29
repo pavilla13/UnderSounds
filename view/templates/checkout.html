@@ -56,16 +56,15 @@
     }
     /* Botones */
     .btn-remove {
-      padding: 10px 20px;
+      padding: 20px 20px;
       border: none;
-      border-radius: 4px;
-      background:rgb(194, 23, 23);
+      background:rgb(255, 2, 2);
       color: #fff;
       cursor: pointer;
       margin-top: 20px;
     }
     .btn-remove:hover {
-      background:rgb(255, 0, 0);
+      background:rgb(205, 41, 41);
     }
     /* Flecha de navegación */
     .nav-arrow {
@@ -138,6 +137,10 @@
   </main>
 
   {% include "footer.html" %}
+
+  <div id="data-checkout"
+   data-checkout='{{ checkout | tojson }}'>
+  </div>
 
   <!-- Se incluye el script con la lógica del carrito -->
   <script src="/static/js/app.js"></script>

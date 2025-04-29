@@ -637,7 +637,6 @@ input[type="checkbox"] {
 }
 
 /* Mostrar dropdown al pasar el cursor o cuando tenga la clase 'active' */
-.profile-container:hover .profile-dropdown,
 .profile-container.active .profile-dropdown {
   display: block;
 }
@@ -940,7 +939,7 @@ input[type="checkbox"] {
   overflow-y: auto;
 }
 
-.cart-btn:hover .cart-dropdown {
+.cart-btn.active .cart-dropdown {
   display: block;
 }
 

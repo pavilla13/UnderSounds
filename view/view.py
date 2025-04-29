@@ -109,9 +109,10 @@ class View():
         canciones_list = json.loads(canciones)
         return templates.TemplateResponse("cancion.html", {"request" : request, "user": user, "canciones": canciones_list})
     
-    def get_checkout_view(self, request: Request):
+    def get_checkout_view(self, request: Request, checkout):
         user = request.session.get("user")
-        return templates.TemplateResponse("checkout.html", {"request" : request, "user": user})
+        checkout_list = json.loads(checkout)
+        return templates.TemplateResponse("checkout.html", {"request" : request, "user": user, "checkout": checkout_list})
     
     
     def get_favoritos_view(self, request: Request):

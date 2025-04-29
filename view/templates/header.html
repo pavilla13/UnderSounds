@@ -60,4 +60,36 @@
 
   </div>
   
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // — Perfil de usuario —
+      const profileContainer = document.getElementById('profileContainer');
+      const profileIcon      = document.getElementById('profileIcon');
+      profileIcon.addEventListener('click', e => {
+        e.stopPropagation();
+        profileContainer.classList.toggle('active');
+      });
+  
+      // — Carrito —
+      const cartContainer = document.getElementById('cart-btn');
+      const cartIcon      = document.getElementById('cartIcon');
+      cartIcon.addEventListener('click', e => {
+        e.stopPropagation();
+        cartContainer.classList.toggle('active');
+      });
+  
+      // Cerrar cualquiera de los dos al clicar fuera
+      document.addEventListener('click', e => {
+        if (!profileContainer.contains(e.target)) {
+          profileContainer.classList.remove('active');
+        }
+        if (!cartContainer.contains(e.target)) {
+          cartContainer.classList.remove('active');
+        }
+      });
+    });
+  </script>
+  
+  
+
 </header>

@@ -224,7 +224,8 @@ async def cancion(request: Request):
 
 @app.get("/checkout")
 async def checkout(request: Request):
-    return view.get_checkout_view(request)
+    checkout_list = model.get_productos()
+    return view.get_checkout_view(request, checkout_list)
 
 
 @app.get("/favoritos")
