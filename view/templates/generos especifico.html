@@ -130,29 +130,6 @@
 </head>
 <body>
 
-  
-
-
-
-  <!-- Inyección del header 
-  <div id="header-placeholder"></div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const headerPlaceholder = document.getElementById("header-placeholder");
-      if (headerPlaceholder) {
-        fetch('header.html')
-          .then(response => response.text())
-          .then(data => {
-            headerPlaceholder.innerHTML = data;
-            setTimeout(() => {
-              updateCartCount();
-              updateCartDropdown();
-            }, 100);
-          });
-      }
-    });
-  </script>-->
 
   {% include "header.html" %}
   <script>
@@ -161,9 +138,6 @@
       updateCartDropdown();
     });
   </script>
-
-
-
 
   <!-- Contenido específico del género -->
   <main class="genre-content" id="genre-content">
@@ -182,29 +156,6 @@
 
   <!-- Botón de Ayuda Flotante -->
   <a href="/ayuda" class="help-button" title="Ayuda">?</a>
-
-
-
-
-
-
-
-  <!-- Contenedor para insertar el footer dinámicamente 
-  <div id="footer"></div>
-
-   Script para cargar footer.html 
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>-->
 
   {% include "footer.html" %}
 

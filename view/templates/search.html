@@ -4,107 +4,310 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Buscador</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f8f9fa;
+    }
+    
+    .main-container {
+      flex: 1;
+      width: 100%;
+      max-width: 95%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .search-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 20px 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #e1e4e8;
+    }
+    
+    .search-query {
+      font-weight: bold;
+    }
+    
+    .store-tabs {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      padding: 0;
+      border-bottom: 1px solid #e1e4e8;
+    }
+    
+    .tab {
+      padding: 15px 25px;
+      font-size: 16px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      color: #4a5568;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    
+    .tab:hover {
+      color: #3182ce;
+      background-color: #f7fafc;
+    }
+    
+    .tab.active {
+      color: #3182ce;
+      background-color: #ebf8ff;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #3182ce;
+    }
+    
+    .content {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      min-height: 300px;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .tab-content h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #2d3748;
+      display: flex;
+      align-items: center;
+    }
+    
+    .tab-content h2 .emoji {
+      margin-right: 10px;
+      font-size: 24px;
+    }
+    
+    .tab-content h3 {
+      font-size: 18px;
+      margin: 20px 0 10px;
+      color: #4a5568;
+      display: flex;
+      align-items: center;
+    }
+    
+    .tab-content h3 .emoji {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+    
+    .row-with-more {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+      align-items: center;
+    }
+    
+    .card {
+      display: block;
+      padding: 15px;
+      height: 60px;
+      background-color: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #2d3748;
+      transition: all 0.2s ease;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 500;
+      min-width: 0;
+    }
+    
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-color: #cbd5e0;
+      background-color: #f7fafc;
+    }
+    
+    .more-button {
+      display: block;
+      padding: 15px;
+      height: 60px;
+      line-height: 30px;
+      background-color: #f0f4f8;
+      border: 1px dashed #cbd5e0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #4a5568;
+      transition: all 0.2s ease;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .more-button .arrow {
+      margin-left: 5px;
+      font-size: 25px;
+      vertical-align: middle;
+    }
+    
+    .more-button:hover {
+      background-color: #e6f0fb;
+      color: #3182ce;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 30px;
+      color: #718096;
+    }
+    
+    footer {
+      margin-top: auto;
+      width: 100%;
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    @media (max-width: 1200px) {
+      .row, .row-with-more {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .more-button {
+        grid-column: 1 / -1;
+        margin-top: 10px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .tab {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+      
+      .row, .row-with-more {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .search-title {
+        font-size: 20px;
+      }
+      
+      .tab {
+        padding: 10px 15px;
+      }
+      
+      .row, .row-with-more {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-
-
-  <!--
-  <div id="header-placeholder"></div>
+  {% include "header.html" %}
   <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        setTimeout(() => {
-          if (typeof updateCartCount === 'function') updateCartCount();
-          if (typeof updateCartDropdown === 'function') updateCartDropdown();
-        }, 100);
-      });
-  </script>-->
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
 
-{% include "header.html" %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    updateCartCount();
-    updateCartDropdown();
-  });
-</script>
-
-
-
-
-
-
-
-
-  <h2>Mostrando resultados para "<span id="search-query"></span>"</h2>
-  <div class="store-tabs">
-    <div class="tabs">
-      <button class="tab active" data-tab="todo">Todo</button>
-      <button class="tab" data-tab="artistas">Artistas</button>
-      <button class="tab" data-tab="sellos">Sellos</button>
-      <button class="tab" data-tab="albumes">Álbumes</button>
-      <button class="tab" data-tab="canciones">Canciones</button>
-      <button class="tab" data-tab="amigos">Amigos</button>
+  <div class="main-container">
+    <h2 class="search-title">Mostrando resultados para "<span id="search-query" class="search-query"></span>"</h2>
+    
+    <div class="store-tabs">
+      <div class="tabs">
+        <button class="tab active" data-tab="todo">Todo</button>
+        <button class="tab" data-tab="artistas">Artistas</button>
+        <button class="tab" data-tab="sellos">Sellos</button>
+        <button class="tab" data-tab="albumes">Álbumes</button>
+        <button class="tab" data-tab="canciones">Canciones</button>
+        <button class="tab" data-tab="amigos">Amigos</button>
+      </div>
     </div>
+
+    <main class="content">
+      <section id="todo" class="tab-content active">
+        <h2><span class="emoji">🔍</span> Todos</h2>
+        <div id="todo-results"></div>
+      </section>
+
+      <section id="artistas" class="tab-content">
+        <h2><span class="emoji">👨‍🎤</span> Artistas</h2>
+        <div id="artistas-results"></div>
+      </section>
+
+      <section id="sellos" class="tab-content">
+        <h2><span class="emoji">🏷️</span> Sellos</h2>
+        <div id="sellos-results"></div>
+      </section>
+
+      <section id="albumes" class="tab-content">
+        <h2><span class="emoji">💿</span> Álbumes</h2>
+        <div id="albumes-results"></div>
+      </section>
+
+      <section id="canciones" class="tab-content">
+        <h2><span class="emoji">🎵</span> Canciones</h2>
+        <div id="canciones-results"></div>
+      </section>
+
+      <section id="amigos" class="tab-content">
+        <h2><span class="emoji">👥</span> Amigos</h2>
+        <div id="amigos-results"></div>
+      </section>
+    </main>
   </div>
-
-  <main class="content">
-    <section id="todo" class="tab-content active">
-      <h2>Todos</h2>
-      <div id="todo-results"></div>
-    </section>
-
-    <section id="artistas" class="tab-content">
-      <h2>Artistas</h2>
-      <div id="artistas-results" class="row"></div>
-    </section>
-
-    <section id="sellos" class="tab-content">
-      <h2>Sellos</h2>
-      <div id="sellos-results" class="row"></div>
-    </section>
-
-    <section id="albumes" class="tab-content">
-      <h2>Álbumes</h2>
-      <div id="albumes-results" class="row"></div>
-    </section>
-
-    <section id="canciones" class="tab-content">
-      <h2>Canciones</h2>
-      <div id="canciones-results" class="row"></div>
-    </section>
-
-    <section id="amigos" class="tab-content">
-      <h2>Amigos</h2>
-      <div id="amigos-results" class="row"></div>
-    </section>
-  </main>
 
   <a href="/ayuda" class="help-button" title="Ayuda">?</a>
 
-
-
-
-
-  <!-- Contenedor para insertar el footer dinámicamente 
-  <div id="footer"></div>
-
-   Script para cargar footer.html 
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>-->
   {% include "footer.html" %}
 
   <div id="data-search"
@@ -113,9 +316,7 @@
        data-albumes='{{ albumes | tojson }}'
        data-canciones='{{ canciones | tojson }}'
        data-amigos='{{ amigos | tojson }}'>
- </div>
-
-
+  </div>
 
   <!-- Carga de archivos JS con la información -->
   <script src="/static/js/artistas.js"></script>
@@ -135,25 +336,23 @@
       const tabs = document.querySelectorAll(".tabs .tab");
       const tabContents = document.querySelectorAll(".tab-content");
 
-      // Mapeo de datos por categoría (se asume que estas variables son globales)
-      //const dataMapping = {
-      //  artistas: artistas,
-      //  sellos: sellos,
-      //  albumes: albumes,
-      //  canciones: canciones,
-      //  amigos: amigos
-      //};
-
-        const ds = document.getElementById("data-search").dataset;
-        const artistas  = JSON.parse(ds.artistas  || "[]");
-        const sellos    = JSON.parse(ds.sellos    || "[]");
-        const albumes   = JSON.parse(ds.albumes   || "[]");
-        const canciones = JSON.parse(ds.canciones || "[]");
-        const amigos    = JSON.parse(ds.amigos    || "[]");
+      const ds = document.getElementById("data-search").dataset;
+      const artistas  = JSON.parse(ds.artistas  || "[]");
+      const sellos    = JSON.parse(ds.sellos    || "[]");
+      const albumes   = JSON.parse(ds.albumes   || "[]");
+      const canciones = JSON.parse(ds.canciones || "[]");
+      const amigos    = JSON.parse(ds.amigos    || "[]");
+    
+      const dataMapping = { artistas, sellos, albumes, canciones, amigos };
       
-        const dataMapping = { artistas, sellos, albumes, canciones, amigos };
-        // …el resto de tu lógica (renderResults, tabs, etc.)
-      
+      // Emojis para cada categoría
+      const emojiMapping = {
+        artistas: '👨‍🎤',
+        sellos: '🏷️',
+        albumes: '💿',
+        canciones: '🎵',
+        amigos: '👥'
+      };
 
       // Función auxiliar para capitalizar la primera letra
       function capitalize(str) {
@@ -161,13 +360,14 @@
       }
 
       function getLabel(item){
-        return (item.name || item.title ).trim();
+        return (item.name || item.title).trim();
       }
 
       function getUrl(item){
         key = item.id
         return (item.url || `/cancion?id=${key}`).trim();
       }
+      
       // Renderiza los resultados en la pestaña indicada
       function renderResults(query, tab) {
         const resultsContainer = document.getElementById(`${tab}-results`);
@@ -176,25 +376,62 @@
           let html = "";
           Object.entries(dataMapping).forEach(([key, data]) => {
             const filtered = data.filter(item => getLabel(item).toLowerCase().includes(query.toLowerCase()));
-            html += `<h3>${capitalize(key)}</h3>`;
+            html += `<h3><span class="emoji">${emojiMapping[key] || '🔍'}</span> ${capitalize(key)}</h3>`;
             if (filtered.length) {
-              html += `<div class="row">` +
-                filtered.map(item => `<a href="${getUrl(item)}" class="card">${getLabel(item)}</a>`).join("") +
-                `</div>`;
+              html += `<div class="row-with-more">`;
+              // Limitamos a 6 elementos por categoría en la vista "Todo"
+              const displayItems = filtered.slice(0, 6);
+              html += displayItems.map(item => `<a href="${getUrl(item)}" class="card">${getLabel(item)}</a>`).join("");
+              
+              // Añadimos el botón "Más..." que lleva a la pestaña correspondiente
+              html += `<a href="#" class="more-button" data-target="${key}">Más...<span class="arrow">→</span></a>`;
+              
+              html += `</div>`;
             } else {
-              html += `<p>No se encontraron resultados en ${capitalize(key)} para "${query}".</p>`;
+              html += `<div class="no-results">
+                        <p>No se encontraron resultados en ${capitalize(key)} para "${query}".</p>
+                      </div>`;
             }
           });
           resultsContainer.innerHTML = html;
+          
+          // Añadimos los event listeners para los botones "Más..."
+          document.querySelectorAll('.more-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+              e.preventDefault();
+              const targetTab = button.getAttribute('data-target');
+              // Activar la pestaña correspondiente
+              document.querySelector(`.tab[data-tab="${targetTab}"]`).click();
+            });
+          });
         } else {
           // Para otras pestañas
           const data = dataMapping[tab] || [];
-          const filtered = data.filter(item => 
-          getLabel(item).toLowerCase().includes(query.toLowerCase()));
-          resultsContainer.innerHTML = filtered.length ? filtered
-                .map(item => `<a href="${getUrl(item)}" class="card">${ getLabel(item) }</a>`)
-                .join("")
-            : `<p>No se encontraron resultados para "${query}".</p>`;
+          const filtered = data.filter(item => getLabel(item).toLowerCase().includes(query.toLowerCase()));
+          
+          if (filtered.length) {
+            let html = '';
+            // Dividimos los resultados en grupos de 6 para crear filas completas
+            for (let i = 0; i < filtered.length; i += 6) {
+              const rowItems = filtered.slice(i, Math.min(i + 6, filtered.length));
+              html += `<div class="row">`;
+              html += rowItems.map(item => `<a href="${getUrl(item)}" class="card">${getLabel(item)}</a>`).join("");
+              
+              // Si la última fila no está completa, añadimos celdas vacías para mantener el layout
+              const emptySlots = 6 - rowItems.length;
+              for (let j = 0; j < emptySlots; j++) {
+                html += `<div></div>`;
+              }
+              
+              html += `</div>`;
+            }
+            resultsContainer.innerHTML = html;
+          } else {
+            resultsContainer.innerHTML = `
+              <div class="no-results">
+                <p>No se encontraron resultados para "${query}".</p>
+              </div>`;
+          }
         }
       }
 
@@ -213,10 +450,6 @@
       // Inicializar con la pestaña "Todo"
       renderResults(searchTerm, "todo");
     });
-
-   
-   
-
   </script>
 
   <script src="/static/js/main.js"></script>

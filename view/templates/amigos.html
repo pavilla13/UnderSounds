@@ -64,22 +64,6 @@
 <body>
 
 
-
-
-  <!-- Inyección del header 
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>-->
-
   {% include "header.html" %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -87,11 +71,6 @@
       updateCartDropdown();
     });
   </script>
-
-
-
-
- 
 
   <!-- Menú de pestañas -->
   <div class="tabs">
@@ -112,29 +91,7 @@
   <!-- Botón de Ayuda Flotante -->
   <a href="/ayuda" class="help-button" title="Ayuda">?</a>
 
-
-
-
-  <!-- Contenedor para insertar el footer dinámicamente 
-  <div id="footer"></div>
-
-   Script para cargar footer.html 
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>-->
   {% include "footer.html" %}
-
-
-
 
   <script>
     // Datos de ejemplo de amigos
@@ -195,9 +152,6 @@
     }
   });
 </script>
-
-
-
 
 
   <script src="/static/js/main.js"></script>

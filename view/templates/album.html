@@ -181,21 +181,6 @@
 </head>
 <body>
 
-  <!-- Inyección del header 
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        // Después de cargar el header, inicializamos el carrito
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>-->
-
   {% include "header.html" %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -83,22 +83,6 @@
 </head>
 <body>
 
-
-
-  <!-- Inyección del header 
-  <div id="header-placeholder"></div>
-  <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        // Inicializar carrito luego de cargar el header
-        setTimeout(() => {
-          updateCartCount();
-          updateCartDropdown();
-        }, 100);
-      });
-  </script>-->
   {% include "header.html" %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -106,11 +90,6 @@
       updateCartDropdown();
     });
   </script>
-
-
-
-
-
 
   <main class="container">
     <!-- Panel izquierdo: Resumen del Pedido -->
@@ -158,29 +137,7 @@
     </div>
   </main>
 
-  
-
-  <!-- Contenedor para insertar el footer dinámicamente 
-  <div id="footer"></div>
-
-   Script para cargar footer.html 
-  <script>
-    // Esta función "fetch" trae el contenido de footer.html
-    // y lo inyecta dentro del div con id="footer"
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      })
-      .catch(error => {
-        console.error('Error al cargar el footer:', error);
-      });
-  </script>-->
   {% include "footer.html" %}
-
-
-
-
 
   <!-- Se incluye el script con la lógica del carrito -->
   <script src="/static/js/app.js"></script>
