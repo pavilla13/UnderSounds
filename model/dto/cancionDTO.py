@@ -24,22 +24,22 @@ class SongsDTO():
 
 
 class SongDTO():
-    def __init__(self):
-        self.idn = None
-        self.title = None
-        self.artist = None
-        self.album = None
-        self.genre = None
-        self.duration = None
-        self.urlImg = None
-        self.lyrics = None
-        self.cover = None
-        self.valoracion = None  # Nuevo campo añadido
+    def __init__(self, id, title, artist, album, genre, duration, url, lyrics, cover, valoracion):
+        self.id = id
+        self.title = title
+        self.artist = artist
+        self.album = album
+        self.genre = genre
+        self.duration = duration
+        self.lyrics = lyrics if lyrics else "La letra de esta canción todavia no esta disponible"
+        self.url = url
+        self.cover = cover if cover else "https://i.etsystatic.com/13030856/r/il/ed98c2/4944348678/il_570xN.4944348678_kw6j.jpg"
+        self.valoracion = valoracion
 
     def is_Empty(self):
         return (self.id is None and self.title is None and self.artist is None and
                 self.album is None and self.genre is None and self.duration is None and
-                self.urlImg is None and self.lyrics is None and self.cover is None and
+                self.url is None and self.lyrics is None and self.cover is None and
                 self.valoracion is None)
 
     def get_id(self):
@@ -78,11 +78,11 @@ class SongDTO():
     def set_duration(self, duration):
         self.duration = duration
 
-    def get_urlImg(self):
-        return self.urlImg
+    def get_url(self):
+        return self.url
 
-    def set_urlImg(self, urlImg):
-        self.urlImg = urlImg
+    def set_url(self, url):
+        self.url = url
 
     def get_lyrics(self):
         return self.lyrics
@@ -104,13 +104,13 @@ class SongDTO():
 
     def songdto_to_dict(self):
         return {
-            "id": str(self.id) if self.id is not None else None,
+            "id": self.id if self.id is not None else None,
             "title": self.title,
             "artist": self.artist,
             "album": self.album,
             "genre": self.genre,
             "duration": self.duration,
-            "urlImg": self.urlImg,
+            "url": self.url,
             "lyrics": self.lyrics,
             "cover": self.cover,
             "valoracion": self.valoracion  # Nuevo campo añadido al diccionario

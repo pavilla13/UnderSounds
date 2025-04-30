@@ -55,7 +55,7 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["USUARIO"]
         return MongoDAOUsuario(collection)
     
-    def create_calbum(self):
+    def create_album(self):
         collection = self.db["ALBUM"]
         return MongoDAOAlbum(collection)
 
@@ -66,3 +66,15 @@ class MongoDAOFactory(InterfaceDAOFactory):
     def delete_album(self):
         collection = self.db["ALBUM"]
         return MongoDAOAlbum(collection)
+    
+    def create_cancion(self):
+        collection = self.db["CANCION"]
+        return MongoDAOCancion(collection)
+    
+    def update_cancion(self):
+        collection = self.db["CANCION"]
+        return MongoDAOCancion(collection)
+    
+    def delete_cancion(self):
+        collection = self.db["CANCION"]
+        return MongoDAOCancion(collection)

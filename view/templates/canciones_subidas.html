@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Álbumes subidos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+  <style>
+    /* Separa el botón de los álbumes y lo centra */
+    .content.genres-page .form-group {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+  
+
+  <main class="content genres-page">
+    <h2>Canciones Subidas</h2>
+    <div class="genres-container"></div>
+
+    <div class="form-group">
+      <a href="/subir_cancion" class="edit-btn">Subir cancion</a>
+    </div>
+
+    <div class="form-group">
+      <a href="/eliminar_cancion" class="edit-btn">Eliminar cancion</a>
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+  <script>
+
+    const cancionesTotal = {{ canciones|tojson }};
+    const user = {{ user|tojson }};
+    const canciones = cancionesTotal.filter(
+      cancion => cancion.artist.toLowerCase() === user.username.toLowerCase()
+    );
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const cancionContainer = document.querySelector('.genres-container');
+      if (cancionContainer) {
+        cancionContainer.innerHTML = "";
+        canciones.forEach((cancion) => {
+          const card = document.createElement("a");
+          card.href = `/cancion?id=${cancion.id}`;
+          card.classList.add("card");
+    
+          const img = document.createElement("img");
+          img.src = cancion.cover;
+          img.alt = cancion.title;
+          img.classList.add("card-img");
+    
+          const caption = document.createElement("div");
+          caption.classList.add("card-caption");
+          caption.textContent = cancion.title;
+    
+          card.appendChild(img);
+          card.appendChild(caption);
+          cancionContainer.appendChild(card);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -50,7 +50,7 @@ class InterfaceDAOFactory(ABC):
         pass
     
     @abstractmethod
-    def create_calbum(self):
+    def create_album(self):
         pass
     
     @abstractmethod
@@ -59,6 +59,18 @@ class InterfaceDAOFactory(ABC):
     
     @abstractmethod
     def delete_album(self):
+        pass
+    
+    @abstractmethod
+    def create_cancion(self):
+        pass
+    
+    @abstractmethod
+    def update_cancion(self):
+        pass
+    
+    @abstractmethod
+    def delete_cancion(self):
         pass
 
 

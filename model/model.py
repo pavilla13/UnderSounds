@@ -27,17 +27,16 @@ class Model ():
         mySongsDTO = SongsDTO()
         songs = self.daoSong.get_canciones()
         for s in songs:
-            song_dto = SongDTO()
-            song_dto.id = s.get_id()  
-            song_dto.title = s.get_title()  
-            song_dto.artist = s.get_artist()  
-            song_dto.album = s.get_album() 
-            song_dto.genre = s.get_genre() 
-            song_dto.duration = s.get_duration()  
-            song_dto.urlImg = s.get_urlImg()  
-            song_dto.lyrics = s.get_lyrics() 
-            song_dto.cover = s.get_cover()
-            song_dto.valoracion = s.get_valoracion()
+            song_dto = SongDTO(s.get_id(),
+                                 s.get_title(), 
+                                 s.get_artist(), 
+                                 s.get_album(), 
+                                 s.get_genre(), 
+                                 s.get_duration(), 
+                                 s.get_url(), 
+                                 s.get_lyrics(), 
+                                 s.get_cover(),
+                                 s.get_valoracion())
             song_dto = song_dto.songdto_to_dict()
             mySongsDTO.insertSong(song_dto)  # Agregar la canción a la lista
         return mySongsDTO.songlist_to_json()
@@ -174,5 +173,14 @@ class Model ():
      
      def delete_album(self, album_id):
          return self.daoAlbum.delete_album(album_id)
+     
+     def create_cancion(self, cancion_dto):
+         return self.daoSong.add_cancion(cancion_dto)
+     
+     def update_cancion(self, nuevos_datos):
+         return self.daoSong.update_cancion(nuevos_datos)
+     
+     def delete_cancion(self, cancion_id):
+         return self.daoSong.delete_cancion(cancion_id)
 
      

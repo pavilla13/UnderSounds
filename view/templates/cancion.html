@@ -189,6 +189,25 @@
       transform: translateY(-2px);
     }
 
+    .btn.update-btn {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    }
+
+    .btn.update-btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(58, 134, 255, 0.4);
+    }
+
     .song-lyrics {
       flex-basis: 100%;
       margin-top: 2rem;
@@ -338,9 +357,13 @@
           </div>
         </div>
       </div>
-      <div class="song-controls">
+      <div class="song-controls" id="song-controls">
         <button class="btn play-btn">
           <i class="fas fa-play"></i> Reproducir
+        </button>
+
+        <button id="update-btn" class="btn update-btn" style="display: none; margin-top: 10px;">
+          Actualizar
         </button>
       </div>
       <div class="song-lyrics">
@@ -361,18 +384,27 @@
 
   <script>
     const canciones = {{ canciones|tojson }};
+    const user = {{ user|tojson }};
+    const currentUsername = user.username;
+
     function getQueryParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
     const songId = getQueryParam('id');
-    if (songId && canciones.find(c => c.id === songId)) {
-      const song = canciones.find(c => c.id === songId);
+    if (songId && canciones.find(c => c.id === parseInt(songId))) {
+      const song = canciones.find(c => c.id === parseInt(songId));
       document.getElementById('song-title').textContent = song.title;
       document.querySelector('#song-artist span').textContent = song.artist;
-      document.querySelector('#song-album span').textContent = song.album;
+      const albumElem = document.getElementById('song-album');
+
+      if (song.album && song.album.trim() !== '') {
+        albumElem.querySelector('span').textContent = song.album;
+      } else {
+        albumElem.style.display = 'none';
+      }
       document.querySelector('#song-genre span').textContent = song.genre;
       document.querySelector('#song-duration span').textContent = song.duration;
-      const rating = song.valoracion || 0; // Asegúrese de que song.rating exista
+      const rating = song.valoracion || 0;
       let starsHtml = '';
       for (let i = 1; i <= 5; i++) {
         if (i <= rating) {
@@ -387,8 +419,19 @@
       coverImg.src = song.cover;
       coverImg.alt = `Portada de ${song.title}`;
       document.querySelector('.play-btn').addEventListener('click', () => {
-        window.open(song.urlImg, '_blank');
+        window.open(song.url, '_blank');
       });
+
+      if (song.artist === currentUsername) {
+        const updateBtn = document.createElement('button');
+        updateBtn.textContent = 'Actualizar';
+        updateBtn.classList.add('btn', 'update-btn');
+        updateBtn.style.marginTop = '10px';
+        updateBtn.addEventListener('click', () => {
+          window.location.href = `/actualizar_cancion?id=${song.id}`;
+        });
+        document.querySelector('.song-controls').appendChild(updateBtn);
+      }
     } else {
       document.querySelector('.song-details').innerHTML = "<p>La canción no se encontró.</p>";
     }

@@ -128,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const art = artistas.find(a => a.name === album.artist);
         const container = document.querySelector(".artist-link");
         const usuario = user[0];
-        console.log(usuario)
         if (usuario.tipo_usuario === "artist" && album.artist === usuario.username) {
             container.innerHTML = `
               <a href="/actualizar_album?id=${album.id}" class="btn">

@@ -11,6 +11,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
 from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 from model.dto.albumDTO import AlbumDTO
+from model.dto.cancionDTO import SongDTO
 import os
 import json
 
@@ -321,8 +322,7 @@ async def subir_album_post(
     
 @app.get("/actualizar_album")    
 async def actualizar_album(request: Request):
-    albumes = model.get_albumes()
-    return view.get_actualizar_album_view(request, albumes)
+    return view.get_actualizar_album_view(request)
 
 @app.post("/actualizar_album")
 async def actualizar_album(request: Request, id: int, 
@@ -386,3 +386,109 @@ async def tienda(request: Request):
 async def privacidad(request: Request):
     return view.get_privacidad_view(request)
 
+@app.get("/canciones_subidas")
+async def canciones_subidas(request: Request):
+    canciones = model.get_canciones()
+    return view.get_canciones_subidas_view(request, canciones)
+
+@app.get("/subir_cancion")
+async def subir_cancion(request: Request):
+    albumes = model.get_albumes()
+    generos = model.get_generos()
+    return view.get_subir_cancion_view(request, albumes, generos)
+
+@app.post("/subir_cancion")
+async def subir_cancion_post(
+    request: Request,
+    nombre: str = Form(...),
+    album: str = Form(...),
+    genero: str = Form(...),
+    duracion: str = Form(...),
+    lyrics: str = Form(...),
+    url: str = Form(...),
+    cover: str = Form(...)):
+    
+    session_user = request.session.get("user")
+    
+    artista = session_user["username"]
+    
+    import random
+    numero = random.randint(1, 5)
+    
+    canciones = model.get_canciones()
+    canciones_list = json.loads(canciones)
+    ultima_cancion = canciones_list[-1]
+    ultimo_id = ultima_cancion['id']
+    
+    idCancion = int(ultimo_id) + 1
+    
+    cancion = SongDTO(idCancion, nombre, artista, album, genero, duracion, url, lyrics, cover, numero)
+    
+    model.create_cancion(cancion)
+    return RedirectResponse("/canciones_subidas", status_code=303)
+
+@app.get("/actualizar_cancion")    
+async def actualizar_cancion(request: Request):
+    albumes = model.get_albumes()
+    generos = model.get_generos()
+    return view.get_actualizar_cancion_view(request, albumes, generos)
+
+@app.post("/actualizar_cancion")
+async def actualizar_cancion(request: Request,
+                            id: int,
+                            nombre: str = Form(None),
+                            album: str = Form(None),
+                            genero: str = Form(None),
+                            duracion: str = Form(None),
+                            lyrics: str = Form(None),
+                            url: str = Form(None),
+                            cover: str = Form(None)):
+    # Obtener el álbum existente
+    canciones = model.get_canciones()
+    canciones_list = json.loads(canciones)
+    
+    cancion = next((a for a in canciones_list if a["id"] == id), None)
+    if not cancion:
+        raise HTTPException(status_code=404, detail="Canción no encontrada")
+    
+    if nombre != "":
+        cancion["title"] = nombre
+    if album != "":
+        cancion["album"] = album
+    if genero != "":
+        cancion["genre"] = genero
+    if duracion != "":
+        cancion["duration"] = duracion
+    if lyrics != "":
+        cancion["lyrics"] = lyrics
+    if url != "":
+        cancion["url"] = url
+    if cover != "":
+        cancion["cover"] = cover
+    
+    # Crear un nuevo objeto AlbumDTO con los datos actualizados
+    updated_cancion = SongDTO(id, 
+                             cancion["title"], 
+                             cancion["artist"], 
+                             cancion["album"], 
+                             cancion["genre"], 
+                             cancion["duration"], 
+                             cancion["url"],
+                             cancion["lyrics"],
+                             cancion["cover"],
+                             cancion["valoracion"])
+    
+    # Guardar el álbum actualizado en la base de datos
+    model.update_cancion(updated_cancion)
+    
+    return RedirectResponse("/canciones_subidas", status_code=303)
+
+@app.post("/eliminar_cancion")
+async def eliminar_cancion_post(request: Request, id: int = Form(...)):
+    model.delete_cancion(id)
+    return RedirectResponse("/canciones_subidas", status_code=303)
+
+@app.get("/eliminar_cancion")
+async def eliminar_cancion(request: Request):
+    canciones = model.get_canciones()
+    return view.get_eliminar_cancion_view(request, canciones)

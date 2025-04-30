@@ -196,7 +196,7 @@ class View():
         user = request.session.get("user")
         return templates.TemplateResponse("subir_album.html", {"request" : request, "user": user})
     
-    def get_actualizar_album_view(self, request: Request, albumes):
+    def get_actualizar_album_view(self, request: Request):
         user = request.session.get("user")
         return templates.TemplateResponse("actualizar_album.html", {"request" : request, "user": user})
     
@@ -228,3 +228,25 @@ class View():
         user = request.session.get("user")
         albumes_list = json.loads(albumes)
         return templates.TemplateResponse("eliminar_album.html", {"request" : request, "user": user, "albumes": albumes_list})
+    
+    def get_canciones_subidas_view(self, request: Request, canciones):
+        user = request.session.get("user")
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("canciones_subidas.html", {"request" : request, "user": user , "canciones": canciones_list})
+        
+    def get_eliminar_cancion_view(self, request: Request, canciones):
+        user = request.session.get("user")
+        canciones_list = json.loads(canciones)
+        return templates.TemplateResponse("eliminar_cancion.html", {"request" : request, "user": user, "canciones": canciones_list})
+    
+    def get_subir_cancion_view(self, request: Request, albumes, generos):
+        user = request.session.get("user")
+        albumes_list = json.loads(albumes)
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("subir_cancion.html", {"request" : request, "user": user, "albumes": albumes_list, "generos": generos_list})
+    
+    def get_actualizar_cancion_view(self, request: Request, albumes, generos):
+        user = request.session.get("user")
+        albumes_list = json.loads(albumes)
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("actualizar_cancion.html", {"request" : request, "user": user, "albumes": albumes_list, "generos": generos_list})
