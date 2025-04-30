@@ -384,8 +384,8 @@
 
   <script>
     const canciones = {{ canciones|tojson }};
-    const user = {{ user|tojson }};
-    const currentUsername = user.username;
+    const user = {{ user|tojson }} || {} ;
+    const currentUsername = user.username ?? null;
 
     function getQueryParam(param) {
       return new URLSearchParams(window.location.search).get(param);
@@ -421,7 +421,7 @@
       document.querySelector('.play-btn').addEventListener('click', () => {
         window.open(song.url, '_blank');
       });
-
+      
       if (song.artist === currentUsername) {
         const updateBtn = document.createElement('button');
         updateBtn.textContent = 'Actualizar';
