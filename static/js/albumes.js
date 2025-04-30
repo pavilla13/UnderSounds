@@ -127,17 +127,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const art = artistas.find(a => a.name === album.artist);
         const container = document.querySelector(".artist-link");
-        const usuario = user[0];
-        if (usuario.tipo_usuario === "artist" && album.artist === usuario.username) {
+        if(art){
+          const usuario = user[0];
+          if (usuario.tipo_usuario === "artist" && album.artist === usuario.username) {
+              container.innerHTML = `
+                <a href="/actualizar_album?id=${album.id}" class="btn">
+                  ACTUALIZAR ÁLBUM
+                </a>`;
+          } else {
             container.innerHTML = `
-              <a href="/actualizar_album?id=${album.id}" class="btn">
-                ACTUALIZAR ÁLBUM
+              <a href="/artistas?id=${art.id}" class="btn">
+                IR AL ARTISTA
               </a>`;
-        } else {
-          container.innerHTML = `
-            <a href="/artistas?id=${art.id}" class="btn">
-              IR AL ARTISTA
-            </a>`;
+          }
         }
       }
     } else {
