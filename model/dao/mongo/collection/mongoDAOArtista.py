@@ -12,17 +12,25 @@ class MongoDAOArtista(InterfaceDAOArtista):
             artistas = []
             results = self.collection.find({})
             for doc in results:
-                artista = ArtistaDTO()
-                artista.id = doc.get('id')
-                artista.name = doc.get('name')
-                artista.genre = doc.get('genre')
-                artista.description = doc.get('description')
-                artista.image = doc.get('image')
-                artista.url = doc.get('url')
-                artista.selloId = doc.get('selloId')
-                
+                artista = ArtistaDTO(doc.get('id'),
+                                    doc.get('name'), 
+                                    doc.get('genre'), 
+                                    doc.get('description'), 
+                                    doc.get('image'), 
+                                    doc.get('url'), 
+                                    doc.get('selloId'))       
                 artistas.append(artista)
             return artistas
         except Exception as e:
             print(f"Error getting artists: {e}")
             return []
+        
+    def add_artista(self, artista_dto: ArtistaDTO):
+        return self.collection.insert_one(artista_dto.artistdto_to_dict())
+    
+    def delete_artista(self, id: int):
+        results = self.collection.find({})
+        for doc in results:
+            if doc.get('id') == id:
+                _id = doc.get('_id')
+                return self.collection.delete_one({"_id": _id})

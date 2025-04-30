@@ -75,6 +75,13 @@
         id="accion-sello">
         Mi Sello
       </button>
+      <button
+        type="button"
+        class="btn"
+        style="width: 200px; height: 50px; font-size: 16px; margin-top: 20px;"
+        id="accion-sello2">
+        Artistas
+      </button>
     {% else %}
       <button
         type="button"
@@ -99,6 +106,10 @@
     const sello = sellos.find(s => s.name.toLowerCase() === usuario.toLowerCase());
     return sello ? sello.url : null;
   }
+  function getIdSello(usuario) {
+    const sello = sellos.find(s => s.name.toLowerCase() === usuario.toLowerCase());
+    return sello ? sello.id : null;
+  }
   
   // Uso de la función para configurar el botón
   document.getElementById('accion-sello').addEventListener('click', () => {
@@ -106,6 +117,13 @@
     if (urlSello) {
       // redirige a la URL del sello existente
       window.location.href = urlSello;
+    }
+  });
+
+  document.getElementById('accion-sello2').addEventListener('click', () => {
+    const urlArtistas = `/artistas_bajo_sello?id=${getIdSello(username)}`;
+    if (urlArtistas) {
+      window.location.href = urlArtistas;
     }
   });
   </script>

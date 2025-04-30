@@ -80,6 +80,14 @@ class InterfaceDAOFactory(ABC):
     @abstractmethod
     def update_sello(self):
         pass
+    
+    @abstractmethod
+    def create_artista(self):
+        pass
+    
+    @abstractmethod
+    def delete_artista(self):
+        pass
 
 
 

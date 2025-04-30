@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderSounds - Álbumes subidos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+  <style>
+    /* Separa el botón de los álbumes y lo centra */
+    .content.genres-page .form-group {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+  {% include "header.html" %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateCartDropdown();
+    });
+  </script>
+
+  
+
+  <main class="content genres-page">
+    <h2>Artistas Subidos</h2>
+    <div class="genres-container"></div>
+
+    <div class="form-group">
+      <a href="/añadir_artista" class="edit-btn">Añadir Artista</a>
+    </div>
+
+    <div class="form-group">
+      <a id="accion-sello" class="edit-btn">Eliminar Artista</a>
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+  <script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const selloId = urlParams.get("id");
+    const artistasTotal = {{ artistas|tojson }};
+    const user = {{ user|tojson }};
+    const artistas = artistasTotal.filter(
+      artista => artista.selloId === parseInt(selloId)
+    );
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const artistaContainer = document.querySelector('.genres-container');
+      if (artistaContainer) {
+        artistaContainer.innerHTML = "";
+        artistas.forEach((artista) => {
+          const card = document.createElement("a");
+          card.href = `/artistas?id=${artista.id}`;
+          card.classList.add("card");
+    
+          const img = document.createElement("img");
+          img.src = artista.image;
+          img.alt = artista.name;
+          img.classList.add("card-img");
+    
+          const caption = document.createElement("div");
+          caption.classList.add("card-caption");
+          caption.textContent = artista.name;
+    
+          card.appendChild(img);
+          card.appendChild(caption);
+          artistaContainer.appendChild(card);
+        });
+      }
+    });
+
+    document.getElementById('accion-sello').addEventListener('click', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const selloId = urlParams.get("id");
+        const urlArtistas = `/eliminar_artista?id=${selloId}`;
+        if (urlArtistas) {
+            window.location.href = urlArtistas;
+         }
+      });
+  </script>
+
+</body>
+</html>

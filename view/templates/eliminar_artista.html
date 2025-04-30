@@ -14,14 +14,14 @@
   
   <!-- Estilos específicos para la página de eliminar álbum -->
   <style>
-    .eliminar-cancion {
+    .eliminar-artista {
       padding: 4rem 2rem;
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
     }
     
-    .eliminar-cancion h2.logo {
+    .eliminar-artista h2.logo {
       font-size: 2.5rem;
       color: #2563eb;
       margin-bottom: 2.5rem;
@@ -30,7 +30,7 @@
       padding-bottom: 1rem;
     }
     
-    .eliminar-cancion h2.logo:after {
+    .eliminar-artista h2.logo:after {
       content: "";
       position: absolute;
       bottom: 0;
@@ -41,7 +41,7 @@
       background-color: #2563eb;
     }
     
-    .select-cancion {
+    .select-artista {
       max-width: 400px;
       margin: 0 auto;
       text-align: left;
@@ -51,14 +51,14 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
     
-    .select-cancion label {
+    .select-artista label {
       display: block;
       margin: 0.75rem 0 0.25rem;
       font-weight: 500;
       color: #4b5563;
     }
     
-    .select-cancion select {
+    .select-artista select {
       width: 100%;
       padding: 0.75rem 1rem;
       margin-bottom: 1.5rem;
@@ -69,7 +69,7 @@
       background-color: #fff;
     }
     
-    .select-cancion select:focus {
+    .select-artista select:focus {
       outline: none;
       border-color: #2563eb;
       box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
@@ -126,39 +126,59 @@
     });
   </script>
 
-  <main class="content eliminar-cancion">
-    <h2 class="logo">Eliminar Canción</h2>
+  <main class="content eliminar-artista">
+    <h2 class="logo">Eliminar Artista</h2>
 
-    <form method="post" action="/eliminar_cancion" class="select-cancion form" id="cancionForm">
-      <label for="cancionSelect">Seleccione una canción:</label>
-      <select id="cancionSelect" name="id" required>
-        <option value="" disabled selected>— Elija una —</option>
-        {% for cancion in canciones|selectattr("artist", "equalto", user.username) %}
-          <option value="{{ cancion.id }}">{{ cancion.title }}</option>
-        {% endfor %}
+    <form method="post" action="/eliminar_artista" class="select-artista form" id="AlbumForm">
+      <label for="albumSelect">Seleccione un artista:</label>
+      <select id="albumSelect" name="id" required>
+        <option value="" disabled selected>— Elija uno —</option>
       </select>
       <button type="submit" class="btn btn-danger">Eliminar</button>
     </form>
     
     <!-- Alerta de éxito -->
     <div id="successAlert" class="alert-success">
-      Canción eliminada correctamente!
+      Artista eliminado correctamente!
     </div>
   </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const cancionForm = document.getElementById("cancionForm");
+      const albumForm = document.getElementById("AlbumForm");
       const successDiv = document.getElementById("successAlert");
     
-      cancionForm.addEventListener("submit", (e) => {
+      albumForm.addEventListener("submit", (e) => {
         e.preventDefault();                      
         successDiv.classList.add("show");
         setTimeout(() => {
           successDiv.classList.remove("show");
-          cancionForm.submit();                
+          albumForm.submit();                
         }, 500);
       });
+    });
+
+  </script>
+
+  <script>
+    const artistas = {{ artistas | tojson }};     
+    const urlParams = new URLSearchParams(window.location.search);
+    const sello_id = urlParams.get("id");
+  
+    // Referencia al <select>
+    const selectAlbum = document.getElementById('albumSelect');
+  
+    // Filtramos artistas que pertenezcan al sello
+    const artistasFiltrados = artistas.filter(artista => 
+      artista.selloId === parseInt(sello_id)
+    );
+  
+    // Creamos y añadimos las opciones
+    artistasFiltrados.forEach(artista => {
+      const option = document.createElement('option');
+      option.value = artista.id;
+      option.textContent = artista.name;
+      selectAlbum.appendChild(option);
     });
   </script>
 

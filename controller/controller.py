@@ -13,6 +13,7 @@ from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 from model.dto.albumDTO import AlbumDTO
 from model.dto.cancionDTO import SongDTO
 from model.dto.selloDTO import SelloDTO
+from model.dto.artistaDTO import ArtistaDTO
 import os
 import json
 
@@ -555,3 +556,61 @@ async def actualizar_sello(request: Request,
     model.update_sello(updated_sello)
     return RedirectResponse("/gestion_sello", status_code=303)
 
+@app.get("/artistas_bajo_sello")
+async def artistas_bajo_sello(request: Request):
+    artistas = model.get_artistas()
+    return view.get_artistas_bajo_sello_view(request, artistas)
+
+@app.get("/añadir_artista")
+async def añadir_artista(request: Request):
+    generos = model.get_generos()
+    return view.get_añadir_artista_view(request, generos)
+
+@app.post("/añadir_artista")
+async def añadir_artista_post(request: Request, 
+                               name: str = Form(...), 
+                               genero: str = Form(...),
+                               descripcion: str = Form(...),
+                               image: str = Form(...)):
+    
+    artistas = model.get_artistas()
+    artistas_list = json.loads(artistas)
+    ultimo_artista = artistas_list[-1]
+    ultimo_id = ultimo_artista['id']
+    
+    idArtista = int(ultimo_id) + 1
+    
+    session_user = request.session.get("user")
+    
+    sellos = model.get_sellos()
+    sellos_list = json.loads(sellos)
+    sello = next((a for a in sellos_list if a["name"] == session_user["name"]), None)
+    
+    selloId = sello["id"]
+    
+    url = "/artistas?id="+str(idArtista)
+    
+    artista = ArtistaDTO(idArtista, name, genero , descripcion, image, url, selloId)
+    
+    model.create_artista(artista)
+    
+    urlBack = "/artistas_bajo_sello?id="+str(selloId)
+    return RedirectResponse(urlBack, status_code=303)
+
+@app.get("/eliminar_artista")
+async def eliminar_artista(request: Request):
+    artistas = model.get_artistas()
+    return view.get_eliminar_artista_view(request, artistas)
+
+@app.post("/eliminar_artista")
+async def eliminar_artista_post(request: Request, id: int = Form(...)):
+    model.delete_artista(id)
+    session_user = request.session.get("user")
+    
+    sellos = model.get_sellos()
+    sellos_list = json.loads(sellos)
+    sello = next((a for a in sellos_list if a["name"] == session_user["name"]), None)
+    
+    selloId = sello["id"]
+    urlBack = "/artistas_bajo_sello?id="+str(selloId)
+    return RedirectResponse(urlBack, status_code=303)

@@ -259,3 +259,18 @@ class View():
     def get_actualizar_sello_view(self, request: Request):
         user = request.session.get("user")
         return templates.TemplateResponse("actualizar_sello.html", {"request" : request, "user": user})
+    
+    def get_artistas_bajo_sello_view(self, request: Request, artistas):
+        user = request.session.get("user")
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("artistas_bajo_sello.html", {"request" : request, "user": user, "artistas": artistas_list})
+    
+    def get_añadir_artista_view(self, request: Request, generos):
+        user = request.session.get("user")
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("añadir_artista.html", {"request" : request, "user": user, "generos": generos_list})
+    
+    def get_eliminar_artista_view(self, request: Request, artistas):
+        user = request.session.get("user")
+        artistas_list = json.loads(artistas)
+        return templates.TemplateResponse("eliminar_artista.html", {"request" : request, "user": user, "artistas": artistas_list})

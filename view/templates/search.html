@@ -368,7 +368,7 @@
         return (item.name || item.title).trim();
       }
 
-      function getUrl(key, item){
+      function getUrlKey(key, item){
         id = item.id
         if (key === 'canciones'){
           url = `/cancion?id=${id}`;
@@ -379,6 +379,14 @@
         return url.trim();
       }
       
+      function getUrl(item){
+
+        if(item.lyrics){
+          return `/cancion?id=${item.id}`.trim();
+        }
+        return (item.url).trim();
+      }
+
       // Renderiza los resultados en la pestaña indicada
       function renderResults(query, tab) {
         const resultsContainer = document.getElementById(`${tab}-results`);
@@ -392,7 +400,7 @@
               html += `<div class="row-with-more">`;
               // Limitamos a 6 elementos por categoría en la vista "Todo"
               const displayItems = filtered.slice(0, 6);
-              html += displayItems.map(item => `<a href="${getUrl(key, item)}" class="card">${getLabel(item)}</a>`).join("");
+              html += displayItems.map(item => `<a href="${getUrlKey(key, item)}" class="card">${getLabel(item)}</a>`).join("");
               
               // Añadimos el botón "Más..." que lleva a la pestaña correspondiente
               html += `<a href="#" class="more-button" data-target="${key}">Más...<span class="arrow">→</span></a>`;

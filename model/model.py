@@ -92,14 +92,13 @@ class Model ():
         myArtistasDTO = ArtistasDTO()
         artistas = self.daoArtista.get_artistas()
         for a in artistas:
-            artista_dto = ArtistaDTO()
-            artista_dto.id = a.get_id()
-            artista_dto.name = a.get_name()
-            artista_dto.genre = a.get_genre()
-            artista_dto.description = a.get_description()
-            artista_dto.image = a.get_image()
-            artista_dto.url = a.get_url()
-            artista_dto.selloId = a.get_selloId()
+            artista_dto = ArtistaDTO(a.get_id(),
+                                    a.get_name(), 
+                                    a.get_genre(), 
+                                    a.get_description(), 
+                                    a.get_image(), 
+                                    a.get_url(), 
+                                    a.get_selloId())
             artista_dto = artista_dto.artistdto_to_dict()
             myArtistasDTO.insertArtist(artista_dto)
         return myArtistasDTO.artistlist_to_json()
@@ -182,5 +181,11 @@ class Model ():
      
      def update_sello(self, nuevos_datos):
          return self.daoSello.update_sello(nuevos_datos)
+     
+     def create_artista(self, artista_dto):
+         return self.daoArtista.add_artista(artista_dto)
+     
+     def delete_artista(self, artista_id):
+         return self.daoArtista.delete_artista(artista_id)
 
      

@@ -22,14 +22,14 @@ class ArtistasDTO():
 
 
 class ArtistaDTO():
-    def __init__(self):
-        self.id = None
-        self.name = None
-        self.genre = None
-        self.description = None
-        self.image = None
-        self.url = None
-        self.selloId = None
+    def __init__(self, id, name, genre, description, image, url, selloId):
+        self.id = id
+        self.name = name
+        self.genre = genre
+        self.description = description
+        self.image = image if image else "https://i.pinimg.com/originals/16/e3/16/16e31690d95888a1532ea992b8f3ddf4.jpg"
+        self.url = url
+        self.selloId = selloId
 
     def is_Empty(self):
         return (self.id is None and self.name is None and self.genre is None and
