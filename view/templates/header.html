@@ -44,9 +44,12 @@
         <a href="/favoritos">Lista de Me gusta</a>
         <a href="/mis_compras">Mis compras</a>
 
-        {% if user.tipo_usuario in ["artist", "sello"] %}
+        {% if user.tipo_usuario == "artist" %}
           <a href="/albumes_subidos">Álbumes subidos</a>
           <a href="/canciones_subidas">Canciones subidas</a>
+        {% endif %}
+        {% if user.tipo_usuario == "sello" %}
+          <a href="/gestion_sello">Gestionar sello</a>
         {% endif %}
 
         <a href="/amigos">Gestionar amigos</a>

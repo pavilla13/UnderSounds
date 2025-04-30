@@ -22,12 +22,12 @@ class SellosDTO():
 
 
 class SelloDTO():
-    def __init__(self):
-        self.id = None
-        self.name = None
-        self.description = None
-        self.image = None
-        self.url = None
+    def __init__(self, id, name, description, image, url):
+        self.id = id
+        self.name = name
+        self.description = description
+        self.image = image if image else "https://i.etsystatic.com/13030856/r/il/ed98c2/4944348678/il_570xN.4944348678_kw6j.jpg"
+        self.url = url
 
     def is_Empty(self):
         return (self.id is None and self.name is None and self.description is None and
@@ -65,7 +65,7 @@ class SelloDTO():
 
     def sellodto_to_dict(self):
         return {
-            "id": str(self.id) if self.id is not None else None,
+            "id": self.id if self.id is not None else None,
             "name": self.name,
             "description": self.description,
             "image": self.image,

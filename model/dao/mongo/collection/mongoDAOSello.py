@@ -12,42 +12,20 @@ class MongoDAOSello(InterfaceDAOSello):
             sellos = []
             results = self.collection.find({})
             for doc in results:
-                sello = SelloDTO()
-                sello.id = doc.get('id')
-                sello.name = doc.get('name')
-                sello.description = doc.get('description')
-                sello.image = doc.get('image')
-                sello.url = doc.get('url')
+                sello = SelloDTO(doc.get('id'), doc.get('name'), doc.get('description'), doc.get('image'), doc.get('url'))
                 sellos.append(sello)
             return sellos
         except Exception as e:
             print(f"Error getting record labels: {e}")
             return []
+        
+    def add_sello(self, sello_dto: SelloDTO):
+        return self.collection.insert_one(sello_dto.sellodto_to_dict())
     
-    def get_sello_by_name(self, name: str) -> Optional[SelloDTO]:
-        try:
-            doc = self.collection.find_one({'name': name})
-            if doc:
-                sello = SelloDTO()
-                sello.id = doc.get('_id')
-                sello.name = doc.get('name')
-                sello.foundation_year = doc.get('foundation_year')
-                sello.country = doc.get('country')
-                sello.artists = doc.get('artists', [])
-                sello.albums = doc.get('albums', [])
-                return sello
-            return None
-        except Exception as e:
-            print(f"Error getting record label by name: {e}")
-            return None
-    
-    def add_album_to_sello(self, sello_id: str, album_id: str) -> bool:
-        try:
-            result = self.collection.update_one(
-                {'_id': sello_id},
-                {'$addToSet': {'albums': album_id}}
-            )
-            return result.modified_count > 0
-        except Exception as e:
-            print(f"Error adding album to record label: {e}")
-            return False
+    def update_sello(self, sello_dto: SelloDTO):
+        results = self.collection.find({})
+        for doc in results:
+            if doc.get('id') == sello_dto.get_id():
+                _id = doc.get('_id')
+                return self.collection.update_one({"_id": _id}, 
+                                          {"$set": sello_dto.sellodto_to_dict()})

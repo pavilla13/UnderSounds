@@ -138,9 +138,10 @@ class View():
                                                            "generos": generos_list,
                                                            "canciones": canciones_list}) 
     
-    def get_gestion_sello_view(self, request: Request):
+    def get_gestion_sello_view(self, request: Request, sellos):
         user = request.session.get("user")
-        return templates.TemplateResponse("gestion_sello.html", {"request" : request, "user": user}) 
+        sellos_list = json.loads(sellos)
+        return templates.TemplateResponse("gestion_sello.html", {"request" : request, "user": user, "sellos": sellos_list}) 
 
     def get_login_view(self, request: Request):
         user = request.session.get("user")
@@ -250,3 +251,11 @@ class View():
         albumes_list = json.loads(albumes)
         generos_list = json.loads(generos)
         return templates.TemplateResponse("actualizar_cancion.html", {"request" : request, "user": user, "albumes": albumes_list, "generos": generos_list})
+    
+    def get_crear_sello_view(self, request: Request):
+        user = request.session.get("user")
+        return templates.TemplateResponse("crear_sello.html", {"request" : request, "user": user})
+    
+    def get_actualizar_sello_view(self, request: Request):
+        user = request.session.get("user")
+        return templates.TemplateResponse("actualizar_sello.html", {"request" : request, "user": user})

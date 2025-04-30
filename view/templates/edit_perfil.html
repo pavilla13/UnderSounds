@@ -54,13 +54,6 @@
         <label for="profilePic">Imagen de perfil:</label>
         <input type="file" id="profilePic" name="profilePic" accept="image/*">
       </div>
-
-      <!-- Mostrar botón dependiendo del tipo de usuario -->
-      {% if user.tipo_usuario == "sello" %}
-        <div class="form-group">
-          <a href="/gestion_sello" class="edit-btn">Gestionar sello</a>
-        </div>
-      {% endif %}
       
       <!-- Sección para actualizar contraseña -->
         <h2>Actualizar contraseña</h2>

@@ -58,142 +58,57 @@
     });
   </script>
 
-
-
-
-
-
-<main class="content upload-album">
-  <h2 class="logo">Gestión Sello Discográfico</h2>
-  
-
-  <button type="button" class="btn" id="mostrarArtistas">Añadir Artista</button>
-  <div class="separator"></div>
-
-  <!-- Contenedor para la lista de artistas -->
-  <div id="listaArtistas" style="display: none;">
-    <ul id="artistasContainer"></ul>
-  </div>
-  <!-- Botón para eliminar artista -->
-  <button type="button" class="btn" id="eliminarArtista">Eliminar Artista</button>
-  <div class="separator"></div>
-
-   <!-- Lista de artistas eliminados (o bajo sello) -->
-    <div id="artistasEliminados" style="display: none;">
-      <ul id="artistasEliminadosContainer"></ul>
-    </div>
-    
-    <button type="button" class="btn" id="verBajoSello">Ver Artistas Bajo Sello</button>
-    <div class="separator"></div>
-    
-    <div id="artistasBajoSello" style="display: none;">
-      <h3>Artistas Bajo Sello</h3>
-      <ul id="artistasBajoSelloContainer"></ul>
-    </div>
-
-  <div class="separator"></div>
-  <button type="button" class="btn" onclick="location.href='/tienda'">Tienda</button>
-
-  <script src="/static/js/artistas.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const btnMostrar = document.getElementById("mostrarArtistas");
-      const btnEliminar = document.getElementById("eliminarArtista");
-      const btnVerBajoSello = document.getElementById("verBajoSello");
-
-      const listaArtistas = document.getElementById("listaArtistas");
-      const artistasContainer = document.getElementById("artistasContainer");
-      const artistasEliminadosContainer = document.getElementById("artistasEliminadosContainer");
-      const artistasBajoSelloContainer = document.getElementById("artistasBajoSelloContainer");
-
-      const artistasEliminados = document.getElementById("artistasEliminados");
-      const artistasBajoSello = document.getElementById("artistasBajoSello");
-
-      let artistas = [
-        { name: "Artista 1" },
-        { name: "Artista 2" },
-        { name: "Artista 3" }
-      ];
-      let artistasBajoSelloList = [];
-
-      btnMostrar.addEventListener("click", () => {
-        listaArtistas.style.display = listaArtistas.style.display === "none" ? "block" : "none";
-        cargarArtistas();
-      });
-
-      btnEliminar.addEventListener("click", () => {
-        artistasEliminados.style.display = artistasEliminados.style.display === "none" ? "block" : "none";
-      });
-
-      btnVerBajoSello.addEventListener("click", () => {
-        artistasBajoSello.style.display = artistasBajoSello.style.display === "none" ? "block" : "none";
-      });
-
-      function cargarArtistas() {
-        artistasContainer.innerHTML = "";
-        artistas.forEach(artista => {
-          const li = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = "#";
-          link.textContent = artista.name;
-          link.addEventListener("click", () => moverArtista(artista));
-          li.appendChild(link);
-          artistasContainer.appendChild(li);
-        });
-      }
-
-      function moverArtista(artista) {
-        artistasBajoSelloList.push(artista);
-        artistas = artistas.filter(a => a !== artista);
-        actualizarListas();
-      }
-
-      function restaurarArtista(artista) {
-        artistas.push(artista);
-        artistasBajoSelloList = artistasBajoSelloList.filter(a => a !== artista);
-        actualizarListas();
-      }
-
-      function actualizarListas() {
-        artistasContainer.innerHTML = "";
-        artistas.forEach(artista => {
-          const li = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = "#";
-          link.textContent = artista.name;
-          link.addEventListener("click", () => moverArtista(artista));
-          li.appendChild(link);
-          artistasContainer.appendChild(li);
-        });
-
-        artistasEliminadosContainer.innerHTML = "";
-        artistasBajoSelloList.forEach(artista => {
-          const li = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = "#";
-          link.textContent = artista.name;
-          link.addEventListener("click", () => restaurarArtista(artista));
-          li.appendChild(link);
-          artistasEliminadosContainer.appendChild(li);
-        });
-
-        artistasBajoSelloContainer.innerHTML = "";
-        artistasBajoSelloList.forEach(artista => {
-          const li = document.createElement("li");
-          li.textContent = artista.name;
-          artistasBajoSelloContainer.appendChild(li);
-        });
-      }
-
-      cargarArtistas();
-    });
-  </script>
-
-
+  <main class="content upload-album" style="text-align: center; margin-top: 100px;">
+    {% set nombres_sellos = sellos | map(attribute='name') | list %}
+    {% if user.name in nombres_sellos %}
+      <button
+        type="button"
+        class="btn"
+        style="width: 200px; height: 50px; font-size: 16px; margin-top: 20px;"
+        onclick="location.href='/actualizar_sello'">
+        Actualizar Sello
+      </button>
+      <button
+        type="button"
+        class="btn"
+        style="width: 200px; height: 50px; font-size: 16px; margin-top: 20px;"
+        id="accion-sello">
+        Mi Sello
+      </button>
+    {% else %}
+      <button
+        type="button"
+        class="btn"
+        style="width: 200px; height: 50px; font-size: 16px; margin-top: 20px;"
+        onclick="location.href='/crear_sello'">
+        Crear Sello
+      </button>
+    {% endif %}
+  </main>
 
 {% include "footer.html" %}
 
-</main>
+<script>
+  // Inyectamos los datos desde Jinja2 a JS
+  const sellos = {{ sellos | tojson }};
+  const user = {{ user|tojson }};
+  const username = user.name; 
+  
+  // Función que busca el sello por nombre de usuario y devuelve su URL
+  function getSelloUrl(usuario) {
+    const sello = sellos.find(s => s.name.toLowerCase() === usuario.toLowerCase());
+    return sello ? sello.url : null;
+  }
+  
+  // Uso de la función para configurar el botón
+  document.getElementById('accion-sello').addEventListener('click', () => {
+    const urlSello = getSelloUrl(username);
+    if (urlSello) {
+      // redirige a la URL del sello existente
+      window.location.href = urlSello;
+    }
+  });
+  </script>
 
 </body>
 

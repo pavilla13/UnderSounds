@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnderSounds - Inicio</title>
+  <!-- Fuente moderna y redondeada -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Aquí enlazamos el CSS con la nueva maquetación y efectos -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    /* Estilo base, oculto inicialmente */
+    .alert-success {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color:rgb(52, 152, 219);  
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Clase para mostrarlo */
+    .alert-success.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    ground: #f9f9f9;
+  </style>
+</head>
+
+
+  <body>
+
+
+    {% include "header.html" %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCartCount();
+        updateCartDropdown();
+      });
+    </script>
+
+
+
+
+
+<main class="content upload-album">
+    <h2 class="logo">Crear Sello</h2>
+    <form id="selloForm" class="form" method="POST" action="/crear_sello">
+
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" required>
+        
+      <label for="image">Imagen de portada (URL):</label>
+      <input type="text" id="image" name="image">
+
+      <input type="hidden" name="name" value="{{ user.name }}">
+
+      <button type="submit" class="btn">Confirma y Crear Sello</button>
+    </form>
+    <div id="successAlert" class="alert-success">
+      Sello creado con éxito!
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const selloForm   = document.getElementById("selloForm");
+      const successDiv  = document.getElementById("successAlert");
+    
+      selloForm.addEventListener("submit", (e) => {
+        e.preventDefault();                      
+        successDiv.classList.add("show");
+        setTimeout(() => {
+          successDiv.classList.remove("show");
+          selloForm.submit();                // ahora sí hace el POST
+        }, 500);
+      });
+    });
+    </script>
+    
+{% include "footer.html" %}
+
+  </body>
+</html>

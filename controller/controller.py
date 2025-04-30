@@ -12,6 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from model.dto.usuarioDTO import UsuarioDTO, UsuariosDTO
 from model.dto.albumDTO import AlbumDTO
 from model.dto.cancionDTO import SongDTO
+from model.dto.selloDTO import SelloDTO
 import os
 import json
 
@@ -251,7 +252,8 @@ async def generos(request: Request):
 
 @app.get("/gestion_sello")
 async def gestion_sello(request: Request):
-    return view.get_gestion_sello_view(request)
+    sellos = model.get_sellos()
+    return view.get_gestion_sello_view(request, sellos)
 
 
 @app.get("/mis_compras")
@@ -497,3 +499,59 @@ async def eliminar_cancion_post(request: Request, id: int = Form(...)):
 async def eliminar_cancion(request: Request):
     canciones = model.get_canciones()
     return view.get_eliminar_cancion_view(request, canciones)
+
+@app.get("/crear_sello")
+async def crear_sello(request: Request):
+    return view.get_crear_sello_view(request)
+
+@app.post("/crear_sello")
+async def crear_sello_post(request: Request, 
+                           name: str = Form(...), 
+                           descripcion: str = Form(...),
+                           image: str = Form(...)):
+    
+    sellos = model.get_sellos()
+    sellos_list = json.loads(sellos)
+    ultimo_sello = sellos_list[-1]
+    ultimo_id = ultimo_sello['id']
+    
+    idSello = int(ultimo_id) + 1
+    
+    url = "/sellos?id="+str(idSello)
+    
+    sello = SelloDTO(idSello, name, descripcion, image, url)
+    
+    model.create_sello(sello)
+    return RedirectResponse("/gestion_sello", status_code=303)
+
+@app.get("/actualizar_sello")
+async def actualizar_sello(request: Request):
+    return view.get_actualizar_sello_view(request)
+
+@app.post("/actualizar_sello")
+async def actualizar_sello(request: Request, 
+                            name: str = Form(None),
+                            descripcion: str = Form(None),
+                            image: str = Form(None)):
+    
+    sellos = model.get_sellos()
+    sellos_list = json.loads(sellos)
+    sello = next((a for a in sellos_list if a["name"] == name), None)
+    
+    if not sello:
+        raise HTTPException(status_code=404, detail="Sello no encontrado")
+    
+    if descripcion != "":
+        sello["description"] = descripcion
+    if image != "":
+        sello["image"] = image
+    
+    updated_sello = SelloDTO(sello["id"], 
+                             sello["name"], 
+                             sello["description"], 
+                             sello["image"], 
+                             sello["url"])
+    
+    model.update_sello(updated_sello)
+    return RedirectResponse("/gestion_sello", status_code=303)
+

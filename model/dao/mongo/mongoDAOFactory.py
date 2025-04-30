@@ -78,3 +78,11 @@ class MongoDAOFactory(InterfaceDAOFactory):
     def delete_cancion(self):
         collection = self.db["CANCION"]
         return MongoDAOCancion(collection)
+    
+    def create_sello(self):
+        collection = self.db["SELLO"]
+        return MongoDAOSello(collection)
+    
+    def update_sello(self):
+        collection = self.db["SELLO"]
+        return MongoDAOSello(collection)

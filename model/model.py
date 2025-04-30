@@ -121,20 +121,14 @@ class Model ():
         mySellosDTO = SellosDTO()
         sellos = self.daoSello.get_sellos()
         for s in sellos:
-            sello_dto = SelloDTO()
-            sello_dto.id = s.get_id()
-            sello_dto.name = s.get_name()
-            sello_dto.description = s.get_description()
-            sello_dto.image = s.get_image()
-            sello_dto.url = s.get_url()
+            sello_dto = SelloDTO(s.get_id(),
+                                 s.get_name(), 
+                                 s.get_description(), 
+                                 s.get_image(), 
+                                 s.get_url())
             sello_dto = sello_dto.sellodto_to_dict()
             mySellosDTO.insertSello(sello_dto)
         return mySellosDTO.selloslist_to_json()
-     
-
-
-
-
 
      def get_usuarios(self):
         myUsuariosDTO = UsuariosDTO()
@@ -182,5 +176,11 @@ class Model ():
      
      def delete_cancion(self, cancion_id):
          return self.daoSong.delete_cancion(cancion_id)
+     
+     def create_sello(self, sello_dto):
+         return self.daoSello.add_sello(sello_dto)
+     
+     def update_sello(self, nuevos_datos):
+         return self.daoSello.update_sello(nuevos_datos)
 
      

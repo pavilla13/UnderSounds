@@ -72,6 +72,14 @@ class InterfaceDAOFactory(ABC):
     @abstractmethod
     def delete_cancion(self):
         pass
+    
+    @abstractmethod
+    def create_sello(self):
+        pass
+    
+    @abstractmethod
+    def update_sello(self):
+        pass
 
 
 
