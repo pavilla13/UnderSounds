@@ -97,7 +97,7 @@
         {% for album in albumes|selectattr("artist", "equalto", user.username) %}
           <option value="{{ album.name }}">{{ album.name }}</option>
         {% endfor %}
-        <option value="">Sin álbum</option>
+        <option value="noAlbum">Sin álbum</option>
       </select>
 
       <label for="genreSelect">Seleccione un género:</label>

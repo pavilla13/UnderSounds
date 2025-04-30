@@ -415,6 +415,9 @@ async def subir_cancion_post(
     import random
     numero = random.randint(1, 5)
     
+    if album == "noAlbum":
+        album = ""
+    
     canciones = model.get_canciones()
     canciones_list = json.loads(canciones)
     ultima_cancion = canciones_list[-1]
@@ -455,10 +458,12 @@ async def actualizar_cancion(request: Request,
         cancion["title"] = nombre
     if album != "":
         cancion["album"] = album
-    if genero != "":
+    if genero is not None:
         cancion["genre"] = genero
     if duracion != "":
         cancion["duration"] = duracion
+    if album == "noAlbum":
+        cancion["album"] = ""
     if lyrics != "":
         cancion["lyrics"] = lyrics
     if url != "":
