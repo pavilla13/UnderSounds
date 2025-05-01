@@ -32,6 +32,40 @@
       transform: translateY(0);
     }
     ground: #f9f9f9;
+
+    .select-album {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .select-album label {
+      display: block;
+      margin: 0.75rem 0 0.25rem;
+      font-weight: 500;
+      color: #4b5563;
+    }
+    
+    .select-album select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
+      background-color: #fff;
+    }
+    
+    .select-album select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
   </style>
 </head>
 
@@ -51,7 +85,7 @@
 
 
 
-<main class="content upload-album">
+<main class="content select-album">
     <h2 class="logo">Añadir Álbum</h2>
     <form id="AlbumForm" class="form" method="POST" action="/subir_album">
       <label for="nombre">Nombre:</label>
@@ -60,8 +94,13 @@
       <label for="descipcion">Descripción:</label>
       <input type="text" id="descripcion" name="descripcion" required>
 
-      <label for="genero">Género:</label>
-      <input type="text" id="genero" name="genero" required>
+      <label for="genreSelect">Seleccione un género:</label>
+      <select id="genreSelect" name="genero" required>
+        <option value="" disabled selected>— Elija uno —</option>
+        {% for genero in generos %}
+          <option value="{{ genero.name }}">{{ genero.name}}</option>
+        {% endfor %}
+      </select>
         
       <label for="portada">Imagen de portada (URL):</label>
       <input type="text" id="portada" name="portada">
@@ -90,7 +129,7 @@
       });
     });
     </script>
-    
+    <a href="/ayuda" class="help-button" title="Ayuda">?</a>    
 {% include "footer.html" %}
 
   </body>

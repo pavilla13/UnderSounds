@@ -21,10 +21,13 @@
     }
     /* Contenedor principal con dos columnas */
     .container {
+      flex:1;
       display: flex;
       justify-content: space-between;
       padding: 20px;
+      align-items: center;
     }
+
     /* Estilos para los paneles */
     .panel {
       background: #fff;
@@ -130,12 +133,12 @@
           <label for="cvv">CVV:</label>
           <input type="text" id="cvv" name="cvv" required>
           <!-- Botón para confirmar el pago -->
-          <button type="submit" id="confirm-payment">Confirmar Pedido</button>
+          <button class="edit-btn" type="submit" id="confirm-payment">Confirmar Pedido</button>
         </form>
       </div>
     </div>
   </main>
-
+  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
   {% include "footer.html" %}
 
   <div id="data-checkout"

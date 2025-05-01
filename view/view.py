@@ -193,13 +193,15 @@ class View():
         artistas_list = json.loads(artistas)
         return templates.TemplateResponse("sellos.html", {"request" : request, "user": user, "sellos": sellos_list, "artistas": artistas_list})
     
-    def get_subir_album_view(self, request: Request):
+    def get_subir_album_view(self, request: Request, generos):
         user = request.session.get("user")
-        return templates.TemplateResponse("subir_album.html", {"request" : request, "user": user})
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("subir_album.html", {"request" : request, "user": user, "generos": generos_list})
     
-    def get_actualizar_album_view(self, request: Request):
+    def get_actualizar_album_view(self, request: Request, generos):
         user = request.session.get("user")
-        return templates.TemplateResponse("actualizar_album.html", {"request" : request, "user": user})
+        generos_list = json.loads(generos)
+        return templates.TemplateResponse("actualizar_album.html", {"request" : request, "user": user, "generos": generos_list})
     
     def get_terminos_view(self, request: Request):
         user = request.session.get("user")

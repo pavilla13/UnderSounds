@@ -292,7 +292,8 @@ async def sellos(request: Request):
 
 @app.get("/subir_album")
 async def subir_album(request: Request):
-    return view.get_subir_album_view(request)
+    generos = model.get_generos()
+    return view.get_subir_album_view(request, generos)
 
 @app.post("/subir_album")
 async def subir_album_post(
@@ -325,7 +326,8 @@ async def subir_album_post(
     
 @app.get("/actualizar_album")    
 async def actualizar_album(request: Request):
-    return view.get_actualizar_album_view(request)
+    generos = model.get_generos()
+    return view.get_actualizar_album_view(request, generos)
 
 @app.post("/actualizar_album")
 async def actualizar_album(request: Request, id: int, 
