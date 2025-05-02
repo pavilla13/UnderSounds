@@ -4,83 +4,170 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Género</title>
-  
-  <!-- Fuente moderna y redondeada -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/static/css/styles.css">
-
   <style>
-    .genre-header {
-      text-align: center;
-      margin-top: 20px;
+    :root {
+      --primary: #3a86ff;
+      --primary-dark: #2667cc;
+      --secondary: #ff006e;
+      --dark: #1a1a2e;
+      --light: #ffffff;
+      --gray-light: #f8f9fa;
+      --gray: #e9ecef;
     }
-    .genre-content {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--gray-light);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
-    .songs-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px; 
-      padding: 30px; 
-      max-width: 1200px; 
+
+    .genre-page {
+      padding: 2rem;
+      max-width: 90%;
       margin: 0 auto;
     }
-    .card {
-      display: flex;               /* Para usar flexbox */
-      flex-direction: column;      /* Apilar hijos en columna */
-      align-items: center;         /* Centrar contenido horizontalmente */
-      text-decoration: none;
-      color: inherit;
-      border-radius: 12px;
-      width: 400px;                /* Ancho fijo */
-      background-color: transparent;
-      margin-top: 100px;
-      transition: transform 0.3s;
-    }
-    
-    .card:hover {
-      transform: scale(1.08);
-      background-color: transparent; /* Mantiene el fondo blanco al pasar el ratón */
+
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
     }
 
-    .card img {
-      max-width: 400px; /* La imagen no será más ancha que 400px */
-      max-height: 300px; /* La imagen no será más alta que 300px */
-      width: auto;
-      height: auto; /* Elimina espacios extra abajo de la imagen */
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
     }
 
-    .card-caption {
-      padding: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      width: 100%;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 50px;
-    }
-  
-    #songs-container {
+    .genre-details {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      width: 100%;
+      margin-bottom: 2.5rem;
     }
-  
+
+    .genre-info {
+      flex: 3;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .genre-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .genre-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      border: none;
+    }
+
+    .genre-metadata {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding-top: 0.5rem;
+      flex: 1;
+    }
+
+    .genre-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .description-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .description-container i {
+      color: var(--primary);
+      width: 24px;
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    .genre-description {
+      margin-top: 0;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #555;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    .section-container {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      border-bottom: none;
+      padding-bottom: 0;
+      text-align: left;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Track list styling */
     .track-list {
       list-style: none;
       padding: 0;
-      margin: 2rem auto;    /* auto a los lados centra */
-      width: 80%;           /* ajústalo al % que quieras */
-      max-width: 600px;     /* opcional */
+      margin: 1.5rem 0;
+      width: 100%;
+      max-width: 100%;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -90,7 +177,7 @@
     .track {
       padding: 1rem;
       border-bottom: 1px solid #eee;
-      transition: background-color 0.2s;
+      transition: all 0.2s ease;
     }
     
     .track:last-child {
@@ -98,7 +185,8 @@
     }
     
     .track:hover {
-      background-color: #f8f9fa;
+      background-color: var(--gray-light);
+      transform: translateX(5px);
     }
     
     .track-link {
@@ -110,26 +198,114 @@
     }
     
     .track-img {
-      max-width: 100px; 
-      max-height: 100px; 
-      border-radius: 12px;
-      width: auto;
-      height: auto; 
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
     .track-title {
       flex: 1;
       font-weight: 600;
       margin: 0 1rem;
+      font-size: 1.1rem;
+      color: var(--dark);
     }
     
     .track-duration {
       color: #777;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .track-duration i {
+      color: var(--primary);
+    }
+
+    .track-artist {
+      color: #777;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 1rem;
+    }
+
+    .track-artist i {
+      color: var(--primary);
+    }
+
+    .help-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .help-button:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 1200px) {
+      .genre-page {
+        max-width: 95%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .genre-info {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .genre-image-container {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .genre-page {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+      
+      .genre-details {
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      
+      .genre-name {
+        font-size: 2rem;
+      }
+
+      .track-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .track-title {
+        margin: 0;
+      }
     }
   </style>
 </head>
 <body>
-
 
   {% include "header.html" %}
   <script>
@@ -139,23 +315,38 @@
     });
   </script>
 
-  <!-- Contenido específico del género -->
-  <main class="genre-content" id="genre-content">
-    <div class="genre-header">
-      <h1 id="genre-name">Nombre del Género</h1>
-      <img id="genre-image" src="" alt="Imagen del Género" style="max-width: 300px;">
+  <!-- Contenido principal: Género -->
+  <main class="genre-page">
+    <h2 class="page-title">Explorar Género</h2>
+    
+    <div class="genre-details">
+      <div class="genre-info">
+        <div class="genre-image-container">
+          <img id="genre-image" class="genre-image" src="/placeholder.svg" alt="Imagen del Género"/>
+        </div>
+        <div class="genre-metadata">
+          <h1 id="genre-name" class="genre-name">Nombre del Género</h1>
+          <div class="description-container">
+            <i class="fas fa-info-circle"></i>
+            <p id="genre-description" class="genre-description">Descripción del género.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <p id="genre-description">Descripción del género.</p>
+
+    <section class="section-container">
+      <h2 class="section-title">Canciones de este género</h2>
+      <div id="songs-container" class="songs-container">
+        <!-- Las canciones se cargarán aquí dinámicamente -->
+      </div>
+    </section>
+    
   </main>
 
-  <!-- Sección de canciones del género -->
-  <section style="margin-bottom: 50px;">
-    <h2 style="text-align: center;">Canciones de este género</h2>
-    <div id="songs-container" class="songs-container"></div>
-  </section>
-
   <!-- Botón de Ayuda Flotante -->
-  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+  <a href="/ayuda" class="help-button" title="Ayuda">
+    <i class="fas fa-question"></i>
+  </a>
 
   {% include "footer.html" %}
 
@@ -164,8 +355,6 @@
        data-canciones='{{ canciones | tojson }}'>
   </div>
 
-
-
   <!-- Carga de scripts -->
   <script src="/static/js/generos.js"></script>
   <script src="/static/js/canciones.js"></script>
@@ -173,4 +362,3 @@
   <script src="/static/js/main.js"></script>
 </body>
 </html>
-

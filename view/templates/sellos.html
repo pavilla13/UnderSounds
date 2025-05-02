@@ -4,146 +4,170 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Sello Discográfico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/static/css/styles.css">
   <style>
-    /* Estilos anteriores se mantienen igual */
     :root {
-      --primary-color: #6c5ce7;
-      --secondary-color: #a29bfe;
-      --dark-color: #2d3436;
-      --light-color: #f5f6fa;
-      --accent-color: #fd79a8;
-    }
-    
-    body {
-      font-family: 'Nunito', sans-serif;
-      background-color: #f8f9fa;
-      color: var(--dark-color);
-      margin: 0;
-      padding: 0;
-    }
-    
-    .content {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .label-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    
-    #label-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 3rem 0;
+      --primary: #3a86ff;
+      --primary-dark: #2667cc;
+      --secondary: #ff006e;
+      --dark: #1a1a2e;
+      --light: #ffffff;
+      --gray-light: #f8f9fa;
+      --gray: #e9ecef;
     }
 
-    .label-name {
-      text-align: center;
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--gray-light);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .label-page {
+      padding: 2rem;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 800;
       margin-bottom: 1.5rem;
-      font-size: 2.5rem;           
-      color: var(--primary-color); 
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .label-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+
+    .label-info {
+      flex: 3;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .label-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.3s ease;
     }
 
     .label-image {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 1.5rem;
-      max-width: 400px;
-      max-height: 400px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      border: none;
+    }
+
+    .label-metadata {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding-top: 0.5rem;
+      flex: 1;
+    }
+
+    .label-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .description-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .description-container i {
+      color: var(--primary);
+      width: 24px;
+      text-align: center;
+      margin-top: 0.4rem;
     }
 
     .label-description {
-      max-width: 800px;
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 2rem;
+      margin-top: 0;
+      font-size: 1.05rem;
+      line-height: 1.8;
       color: #555;
+      max-width: 800px;
+      text-align: left;
     }
 
-    
+    .section-container {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2.5rem;
+    }
+
     .section-title {
       font-size: 1.8rem;
-      margin: 2rem 0 1rem;
-      color: var(--dark-color);
-      border-bottom: 2px solid var(--secondary-color);
-      padding-bottom: 0.5rem;
-      text-align: center;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      border-bottom: none;
+      padding-bottom: 0;
+      text-align: left;
     }
-    
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
     }
-    
-    .card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-    
-    .card-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    
-    .card-caption {
-      padding: 1rem;
-      text-align: center;
-      font-weight: bold;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #777;
-    }
-    
-    .error-message {
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .help-button:hover {
-      transform: scale(1.1);
-      background-color: #e84393;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background-color: var(--dark-color);
-      color: white;
-      margin-top: 2rem;
-    }
-   
-    
-    #label-content {
-      flex: 1;
-    }
+
+    /* Artist list styling */
     .artista-list {
       list-style: none;
       padding: 0;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
+      width: 100%;
+      max-width: 100%;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -153,7 +177,7 @@
     .artista {
       padding: 1rem;
       border-bottom: 1px solid #eee;
-      transition: background-color 0.2s;
+      transition: all 0.2s ease;
     }
     
     .artista:last-child {
@@ -161,7 +185,8 @@
     }
     
     .artista:hover {
-      background-color: #f8f9fa;
+      background-color: var(--gray-light);
+      transform: translateX(5px);
     }
     
     .artista-link {
@@ -173,21 +198,97 @@
     }
     
     .artista-img {
-      max-width: 100px; 
-      max-height: 100px; 
-      border-radius: 12px;
-      width: auto;
-      height: auto; 
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
     .artista-name {
       flex: 1;
       font-weight: 600;
       margin: 0 1rem;
+      font-size: 1.1rem;
+      color: var(--dark);
     }
     
     .artista-genre {
       color: #777;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .artista-genre i {
+      color: var(--primary);
+    }
+
+    .help-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .help-button:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 1200px) {
+      .label-page {
+        max-width: 95%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .label-info {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .label-image-container {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .label-page {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+      
+      .label-details {
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      
+      .label-name {
+        font-size: 2rem;
+      }
+
+      .artista-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .artista-name {
+        margin: 0;
+      }
     }
   </style>
 </head>
@@ -202,19 +303,37 @@
   </script>
 
   <!-- Contenido principal: Sello Discográfico -->
-   <main class="content">
-  <div id="label-content">
-    <h1 id="label-name" class="label-name"></h1>
-    <p id="label-description" class="label-description"></p>
-    <img id="label-image" class="label-image" src="" alt="">
-  </div>
-  <h2>Artistas</h2>
-    <ul class="artista-list" id="artista-list">
-      <li>Cargando artistas...</li>
-    </ul>
+  <main class="label-page">
+    <h2 class="page-title">Sello Discográfico</h2>
+    
+    <div class="label-details">
+      <div class="label-info">
+        <div class="label-image-container">
+          <img id="label-image" class="label-image" src="/placeholder.svg" alt=""/>
+        </div>
+        <div class="label-metadata">
+          <h1 id="label-name" class="label-name"></h1>
+          <div class="description-container">
+            <i class="fas fa-info-circle"></i>
+            <p id="label-description" class="label-description"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-container">
+      <h2 class="section-title">Artistas del Sello</h2>
+      <ul class="artista-list" id="artista-list">
+        <li class="artista">Cargando artistas...</li>
+      </ul>
+    </section>
+    
   </main>
+
   <!-- Botón de Ayuda Flotante -->
-  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
+  <a href="/ayuda" class="help-button" title="Ayuda">
+    <i class="fas fa-question"></i>
+  </a>
 
   {% include "footer.html" %}
 
@@ -222,7 +341,6 @@
        data-sellos='{{ sellos | tojson }}'
        data-artistas='{{ artistas | tojson }}'>
   </div>
-
   
   <script src="/static/js/sellos.js"></script>
 </body>

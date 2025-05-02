@@ -4,74 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UnderSounds - Artista</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/static/css/styles.css">
   <style>
-    /* Estilos similares a sellos.html */
-    .artist-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    
-    .artist-image {
-      width: 250px;
-      height: 250px;
-      border-radius: 30%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 5px solid var(--primary-color);
-    }
-    
-    .artist-name {
-      font-size: 2.5rem;
-      margin: 0 0 0.5rem;
-      color: var(--primary-color);
-    }
-    
-    .artist-genre {
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-    
-    .artist-description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #555;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-    }
-    
-    .section-title {
-      font-size: 1.8rem;
-      margin: 2rem 0 1rem;
-      color: var(--dark-color);
-      border-bottom: 2px solid var(--secondary-color);
-      padding-bottom: 0.5rem;
-      text-align: center;
-    }
-    
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+    :root {
+      --primary: #3a86ff;
+      --primary-dark: #2667cc;
+      --secondary: #ff006e;
+      --dark: #1a1a2e;
+      --light: #ffffff;
+      --gray-light: #f8f9fa;
+      --gray: #e9ecef;
     }
 
-    #songs-container {
-      display: flex;
-      justify-content: center;
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--gray-light);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
-  
+
+    .artist-page {
+      padding: 2rem;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .artist-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+
+    .artist-info {
+      flex: 3;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .artist-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .artist-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      border: none;
+    }
+
+    .artist-metadata {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding-top: 0.5rem;
+      flex: 1;
+    }
+
+    .artist-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+    }
+
+    .artist-genre {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      color: #555;
+      margin: 0;
+    }
+
+    .artist-genre i {
+      color: var(--primary);
+      width: 24px;
+      text-align: center;
+    }
+
+    .artist-description {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      max-width: 800px;
+    }
+
+    .metadata-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: -0.5rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .metadata-item i {
+      color: var(--primary);
+      width: 24px;
+      text-align: center;
+    }
+
+    .description-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .description-container i {
+      color: var(--primary);
+      width: 24px;
+      text-align: center;
+      margin-top: 1.6rem; /* Alinea el icono con la primera línea del texto */
+    }
+
+    .section-container {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Track list styling */
     .track-list {
       list-style: none;
       padding: 0;
-      margin: 2rem auto;    /* auto a los lados centra */
-      width: 80%;           /* ajústalo al % que quieras */
-      max-width: 600px;     /* opcional */
+      margin: 1.5rem 0;
+      width: 100%;
+      max-width: 100%;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -81,7 +205,7 @@
     .track {
       padding: 1rem;
       border-bottom: 1px solid #eee;
-      transition: background-color 0.2s;
+      transition: all 0.2s ease;
     }
     
     .track:last-child {
@@ -89,7 +213,8 @@
     }
     
     .track:hover {
-      background-color: #f8f9fa;
+      background-color: var(--gray-light);
+      transform: translateX(5px);
     }
     
     .track-link {
@@ -101,21 +226,150 @@
     }
     
     .track-img {
-      max-width: 100px; 
-      max-height: 100px; 
-      border-radius: 12px;
-      width: auto;
-      height: auto; 
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
     .track-title {
       flex: 1;
       font-weight: 600;
       margin: 0 1rem;
+      font-size: 1.1rem;
+      color: var(--dark);
     }
     
     .track-duration {
       color: #777;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .track-duration i {
+      color: var(--primary);
+    }
+
+    /* Albums grid */
+    .albums-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .album-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .album-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .album-cover {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    .album-info {
+      padding: 1rem;
+    }
+
+    .album-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--dark);
+    }
+
+    .album-year {
+      font-size: 0.9rem;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .album-year i {
+      color: var(--primary);
+    }
+
+    .help-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .help-button:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+
+    @media (max-width: 1200px) {
+      .artist-page {
+        max-width: 95%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .artist-info {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .artist-image-container {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .artist-page {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+      
+      .artist-details {
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      
+      .artist-name {
+        font-size: 2rem;
+      }
+
+      .track-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .track-title {
+        margin: 0;
+      }
+
+      .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
     }
   </style>
 </head>
@@ -130,32 +384,46 @@
   </script>
 
   <!-- Contenido principal: Artista -->
-  <main class="content">
-    <div class="artist-header">
-      <img id="artist-image" class="artist-image" src="" alt=""/>
-      <h1 id="artist-name" class="artist-name"></h1>
-      <p id="artist-genre" class="artist-genre"></p>
-      <p id="artist-description" class="artist-description"></p>
+  <main class="artist-page">
+    <h2 class="page-title">Perfil del Artista</h2>
+    
+    <div class="artist-details">
+      <div class="artist-info">
+        <div class="artist-image-container">
+          <img id="artist-image" class="artist-image" alt=""/>
+        </div>
+        <div class="artist-metadata">
+          <h1 id="artist-name" class="artist-name"></h1>
+          <div class="description-container">
+            <i class="fas fa-music"></i>
+            <p id="artist-genre" class="artist-description"></p>
+          </div>
+          <div class="description-container">
+            <i class="fas fa-info-circle"></i>
+            <p id="artist-description" class="artist-description"></p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <section style="margin-bottom: 50px;">
-      <h2 style="text-align: center;">Canciones de este artista</h2>
+    <section class="section-container">
+      <h2 class="section-title">Canciones de este artista</h2>
       <div id="songs-container" class="songs-container"></div>
     </section>
 
-    <section style="margin-bottom: 50px;">
-      <h2 style="text-align: center;">Albumes de este artista</h2>
-      <div id="albums-container" class="songs-container"></div>
+    <section class="section-container">
+      <h2 class="section-title">Álbumes de este artista</h2>
+      <div id="albums-container" class="albums-container"></div>
     </section>
     
   </main>
 
   <!-- Botón de Ayuda Flotante -->
-  <a href="/ayuda" class="help-button" title="Ayuda">?</a>
-
+  <a href="/ayuda" class="help-button" title="Ayuda">
+    <i class="fas fa-question"></i>
+  </a>
 
   {% include "footer.html" %}
-
 
   <div id="data-artistas"
        data-artistas='{{ artistas | tojson }}'
