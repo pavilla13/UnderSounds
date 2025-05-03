@@ -55,42 +55,4 @@ class MongoDAOFactory(InterfaceDAOFactory):
         collection = self.db["USUARIO"]
         return MongoDAOUsuario(collection)
     
-    def create_album(self):
-        collection = self.db["ALBUM"]
-        return MongoDAOAlbum(collection)
-
-    def update_album(self):
-        collection = self.db["ALBUM"]
-        return MongoDAOAlbum(collection)
-    
-    def delete_album(self):
-        collection = self.db["ALBUM"]
-        return MongoDAOAlbum(collection)
-    
-    def create_cancion(self):
-        collection = self.db["CANCION"]
-        return MongoDAOCancion(collection)
-    
-    def update_cancion(self):
-        collection = self.db["CANCION"]
-        return MongoDAOCancion(collection)
-    
-    def delete_cancion(self):
-        collection = self.db["CANCION"]
-        return MongoDAOCancion(collection)
-    
-    def create_sello(self):
-        collection = self.db["SELLO"]
-        return MongoDAOSello(collection)
-    
-    def update_sello(self):
-        collection = self.db["SELLO"]
-        return MongoDAOSello(collection)
-    
-    def create_artista(self):
-        collection = self.db["ARTISTA"]
-        return MongoDAOArtista(collection)
-    
-    def delete_artista(self):
-        collection = self.db["ARTISTA"]
-        return MongoDAOArtista(collection)
+   
