@@ -5,7 +5,9 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copiamos nuestro código en el contenedor
-COPY . .
+COPY ../requirements.txt /app/
+COPY .. /app/
+
 
 # Instalamos las dependencias de la aplicación.
 RUN pip install --no-cache-dir -r requirements.txt
