@@ -49,45 +49,6 @@ class InterfaceDAOFactory(ABC):
     def get_usuarios(self):
         pass
     
-    @abstractmethod
-    def create_album(self):
-        pass
-    
-    @abstractmethod
-    def update_album(self):
-        pass
-    
-    @abstractmethod
-    def delete_album(self):
-        pass
-    
-    @abstractmethod
-    def create_cancion(self):
-        pass
-    
-    @abstractmethod
-    def update_cancion(self):
-        pass
-    
-    @abstractmethod
-    def delete_cancion(self):
-        pass
-    
-    @abstractmethod
-    def create_sello(self):
-        pass
-    
-    @abstractmethod
-    def update_sello(self):
-        pass
-    
-    @abstractmethod
-    def create_artista(self):
-        pass
-    
-    @abstractmethod
-    def delete_artista(self):
-        pass
 
 
 
