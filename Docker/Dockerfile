@@ -5,8 +5,7 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copiamos nuestro código en el contenedor
-COPY ../requirements.txt /app/
-COPY .. /app/
+COPY . .
 
 
 # Instalamos las dependencias de la aplicación.
